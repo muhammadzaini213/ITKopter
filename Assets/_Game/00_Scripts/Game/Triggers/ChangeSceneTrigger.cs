@@ -1,10 +1,10 @@
 using Slafurry.Systems.Scene;
 using UnityEngine;
 
-public class ChangeSceneTrigger: MonoBehaviour
+public class ChangeSceneTrigger : MonoBehaviour
 {
-    public void ChangeScene(string sceneName)
+    public void ChangeScene(SceneReference scene)
     {
-        SceneSystem.Load(sceneName);
+        SceneSystem.Load(scene);
     }
 }

@@ -14,7 +14,7 @@ namespace Slafurry.Systems.Bootstrap
     {
         [Header("Target")]
         [Tooltip("Nama scene yang akan dimuat setelah semua system siap.")]
-        [SerializeField] private string targetSceneName = "MainMenu";
+        [SerializeField] private SceneReference targetSceneName;
 
         [Header("Systems To Wait For")]
         [Tooltip("Referensi ke semua GameSystem yang harus siap sebelum pindah scene. " +
@@ -61,7 +61,7 @@ namespace Slafurry.Systems.Bootstrap
 
             Debug.Log($"[BootstrapLoader] Semua system siap. Pindah ke scene '{targetSceneName}'.");
 
-            if (string.IsNullOrEmpty(targetSceneName))
+            if (targetSceneName == null)
             {
                 Debug.LogError("[BootstrapLoader] targetSceneName kosong! Set di inspector.");
                 yield break;
