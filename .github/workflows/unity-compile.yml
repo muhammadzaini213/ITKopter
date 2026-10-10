@@ -1,0 +1,90 @@
+name: Unity Compile
+
+# PR-only gate: fail the PR if the project does not compile in batchmode.
+on:
+  pull_request:
+    paths:
+      - "Assets/**"
+      - "Packages/**"
+      - "ProjectSettings/**"
+      - ".github/workflows/unity-compile.yml"
+
+permissions:
+  contents: read
+
+env:
+  UNITY_PROJECT_PATH: ${{ vars.UNITY_PROJECT_PATH || '.' }}
+
+jobs:
+  compile:
+    name: Batchmode compile
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.UNITY_PROJECT_PATH }}/Library
+          key: >-
+            Library-compile-${{ hashFiles(
+              format('{0}/Assets/**', env.UNITY_PROJECT_PATH),
+              format('{0}/Packages/**', env.UNITY_PROJECT_PATH),
+              format('{0}/ProjectSettings/**', env.UNITY_PROJECT_PATH)
+            ) }}
+          restore-keys: |
+            Library-compile-
+            Library-
+
+      - name: Setup Unity
+        uses: buildalon/unity-setup@v2
+        with:
+          version-file: ${{ env.UNITY_PROJECT_PATH }}/ProjectSettings/ProjectVersion.txt
+
+      - name: Activate Unity license
+        uses: buildalon/activate-unity-license@v2
+        with:
+          license: Personal
+          username: ${{ secrets.UNITY_EMAIL }}
+          password: ${{ secrets.UNITY_PASSWORD }}
+
+      - name: Compile Unity project
+        uses: buildalon/unity-action@v3
+        with:
+          args: >-
+            -quit
+            -batchmode
+            -nographics
+            -projectPath "${{ env.UNITY_PROJECT_PATH }}"
+            -logFile "${{ github.workspace }}/unity-compile.log"
+
+      - name: Check for compile errors
+        if: always()
+        shell: bash
+        run: |
+          set -e
+          LOG="${GITHUB_WORKSPACE}/unity-compile.log"
+
+          if [ ! -f "$LOG" ]; then
+            echo "::error::Unity compile log was not generated."
+            exit 1
+          fi
+
+          if grep -n "error CS" "$LOG"; then
+            echo ""
+            echo "========================================"
+            echo "COMPILE ERRORS FOUND"
+            echo "========================================"
+            grep -n "error CS" "$LOG" | tail -100
+            exit 1
+          fi
+
+          if ! grep -q "Exiting batchmode successfully" "$LOG"; then
+            echo "::error::Unity did not exit batchmode successfully (license, crash, or non-CS failure). Last 200 log lines:"
+            tail -200 "$LOG"
+            exit 1
+          fi
+
+          echo "Compile check passed."
