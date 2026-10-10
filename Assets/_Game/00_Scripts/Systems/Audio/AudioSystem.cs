@@ -12,6 +12,17 @@ namespace Slafurry.Systems.Audio
         public static void PlayMusic(string trackName, float fade = -1f)
             => AudioSystem.Music.PlayMusic(trackName, fade);
 
+        public static void PlayMusic(MusicReference music, float fade = -1f)
+        {
+            if (music == null)
+            {
+                Debug.LogError("[Audio] MusicReference is null");
+                return;
+            }
+
+            PlayMusic(music.MusicName, fade);
+        }
+
         public static void StopMusic(float fade = -1f)
             => AudioSystem.Music.StopMusic(fade);
 
@@ -19,8 +30,30 @@ namespace Slafurry.Systems.Audio
         public static void PlaySFX2D(string category, string effect, bool loop = false, float fadeIn = -1f)
             => AudioSystem.SFX.PlaySFX2D(category, effect, loop, fadeIn);
 
+        public static void PlaySFX2D(SFXReference sfx, bool loop = false, float fadeIn = -1f)
+        {
+            if (sfx == null)
+            {
+                Debug.LogError("[Audio] SFXReference is null");
+                return;
+            }
+
+            PlaySFX2D(sfx.Category, sfx.SFXName, loop, fadeIn);
+        }
+
         public static void PlaySFX3D(string category, string effect, Vector3 pos, bool loop = false, float fadeIn = -1f)
             => AudioSystem.SFX.PlaySFX3D(category, effect, pos, loop, fadeIn);
+
+        public static void PlaySFX3D(SFXReference sfx, Vector3 pos, bool loop = false, float fadeIn = -1f)
+        {
+            if (sfx == null)
+            {
+                Debug.LogError("[Audio] SFXReference is null");
+                return;
+            }
+
+            PlaySFX3D(sfx.Category, sfx.SFXName, pos, loop, fadeIn);
+        }
 
         public static void StopSFX(float fadeOut = -1f)
             => AudioSystem.SFX.StopAllSFX(fadeOut);
@@ -30,6 +63,17 @@ namespace Slafurry.Systems.Audio
 
         public static void StopSFX(string category, string effect, float fadeOut = -1f)
             => AudioSystem.SFX.StopSFX(category, effect, fadeOut);
+
+        public static void StopSFX(SFXReference sfx, float fadeOut = -1f)
+        {
+            if (sfx == null)
+            {
+                Debug.LogError("[Audio] SFXReference is null");
+                return;
+            }
+
+            StopSFX(sfx.Category, sfx.SFXName, fadeOut);
+        }
     }
 
     public class AudioSystem : GameSystem<AudioSystem>
@@ -49,8 +93,16 @@ namespace Slafurry.Systems.Audio
         public event Action<float> OnSFXVolumeChanged;
 
         private const string MasterKey = "MasterVolume";
-        private const string MusicKey = "MusicVolume";
-        private const string SFXKey = "SFXVolume";
+        private const string MusicKey  = "MusicVolume";
+        private const string SFXKey    = "SFXVolume";
+
+        private const string MasterPref = "MasterVolume_dB";
+        private const string MusicPref  = "MusicVolume_dB";
+        private const string SFXPref    = "SFXVolume_dB";
+
+        public const float MinDb = -80f;
+        public const float MaxDb = 20f;
+        public const float DefaultDb = 0f;
 
         // ======================== GAME SYSTEM LIFECYCLE ========================
 
@@ -64,16 +116,7 @@ namespace Slafurry.Systems.Audio
         public override void PostInitialize()
         {
             musicPlayer.Initialize();
-            // Retrieve saved volume
-            float masterVolume = PlayerPrefs.GetFloat(MasterKey, 5f);
-            float musicVolume = PlayerPrefs.GetFloat(MusicKey, 5f);
-            float sfxVolume = PlayerPrefs.GetFloat(SFXKey, 5f);
-
-            // Apply volume to mixer
-            UpdateMasterVolume(masterVolume);
-            UpdateMusicVolume(musicVolume);
-            UpdateSFXVolume(sfxVolume);
-
+            LoadVolume(); 
             PlaySceneMusic();
         }
 
@@ -81,13 +124,9 @@ namespace Slafurry.Systems.Audio
 
         public void LoadVolume()
         {
-            float masterVolume = PlayerPrefs.GetFloat(MasterKey, 1f);
-            float musicVolume = PlayerPrefs.GetFloat(MusicKey, 1f);
-            float sfxVolume = PlayerPrefs.GetFloat(SFXKey, 1f);
-
-            audioMixer.SetFloat(MasterKey, LinearToDecibel(masterVolume));
-            audioMixer.SetFloat(MusicKey, LinearToDecibel(musicVolume));
-            audioMixer.SetFloat(SFXKey, LinearToDecibel(sfxVolume));
+            ApplyDb(MasterKey, PlayerPrefs.GetFloat(MasterPref, DefaultDb));
+            ApplyDb(MusicKey,  PlayerPrefs.GetFloat(MusicPref,  DefaultDb));
+            ApplyDb(SFXKey,    PlayerPrefs.GetFloat(SFXPref,    DefaultDb));
         }
 
         // ======================== PUBLIC API ========================
@@ -98,61 +137,54 @@ namespace Slafurry.Systems.Audio
             musicPlayer.PlayMusic(currentSceneName);
         }
 
-        // ======================== VOLUME CHANGER ========================
+        // ======================== VOLUME CHANGER (dalam dB) ========================
 
-        public void UpdateMasterVolume(float linearVolume)
+        public void UpdateMasterVolume(float db)
         {
-            linearVolume = Mathf.Clamp01(linearVolume);
+            db = ApplyDb(MasterKey, db);
 
-            audioMixer.SetFloat(
-                MasterKey,
-                LinearToDecibel(linearVolume)
-            );
-
-            PlayerPrefs.SetFloat(MasterKey, linearVolume);
+            PlayerPrefs.SetFloat(MasterPref, db);
             PlayerPrefs.Save();
 
-            OnMasterVolumeChanged?.Invoke(linearVolume);
+            OnMasterVolumeChanged?.Invoke(db);
         }
 
-        public void UpdateMusicVolume(float linearVolume)
+        public void UpdateMusicVolume(float db)
         {
-            linearVolume = Mathf.Clamp(linearVolume, 0f, 20f);
+            db = ApplyDb(MusicKey, db);
 
-            audioMixer.SetFloat(
-                MusicKey,
-                LinearToDecibel(linearVolume)
-            );
-
-            PlayerPrefs.SetFloat(MusicKey, linearVolume);
+            PlayerPrefs.SetFloat(MusicPref, db);
             PlayerPrefs.Save();
 
-            OnMusicVolumeChanged?.Invoke(linearVolume);
+            OnMusicVolumeChanged?.Invoke(db);
         }
 
-        public void UpdateSFXVolume(float linearVolume)
+        public void UpdateSFXVolume(float db)
         {
-            linearVolume = Mathf.Clamp(linearVolume, 0f, 20f);
+            db = ApplyDb(SFXKey, db);
 
-            audioMixer.SetFloat(
-                SFXKey,
-                LinearToDecibel(linearVolume)
-            );
-
-            PlayerPrefs.SetFloat(SFXKey, linearVolume);
+            PlayerPrefs.SetFloat(SFXPref, db);
             PlayerPrefs.Save();
 
-            OnSFXVolumeChanged?.Invoke(linearVolume);
+            OnSFXVolumeChanged?.Invoke(db);
         }
 
         // ======================== UTILITIES ========================
 
-        private float LinearToDecibel(float linear)
+        private float ApplyDb(string param, float db)
         {
-            return linear > 0.0001f
-                ? Mathf.Log10(linear) * 20f
-                : -80f;
+            db = Mathf.Clamp(db, MinDb, MaxDb);
+            audioMixer.SetFloat(param, db);
+            return db;
         }
+
+        public static float LinearToDecibel(float linear)
+            => linear > 0.0001f
+                ? Mathf.Clamp(Mathf.Log10(linear) * 20f, MinDb, MaxDb)
+                : MinDb;
+
+        public static float DecibelToLinear(float db)
+            => db <= MinDb ? 0f : Mathf.Pow(10f, db / 20f);
 
         protected override void OnSingletonAwake()
         {

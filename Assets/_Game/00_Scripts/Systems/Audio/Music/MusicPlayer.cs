@@ -36,9 +36,11 @@ namespace Slafurry.Systems.Audio
             {
                 foreach (var st in sceneTracks)
                 {
-                    if (!string.IsNullOrEmpty(st.sceneName) && st.sceneName == sceneName)
+                    string registeredScene = st.SceneName;
+
+                    if (!string.IsNullOrEmpty(registeredScene) && registeredScene == sceneName)
                     {
-                        trackToPlay = st.trackName;
+                        trackToPlay = st.TrackName;
                         break;
                     }
                 }
@@ -51,12 +53,25 @@ namespace Slafurry.Systems.Audio
                 PlayMusic(trackToPlay);
         }
 
+        public void PlayMusic(MusicReference music, float fadeDuration = 0f)
+        {
+            if (music == null)
+            {
+                Debug.LogError("[MusicPlayer] MusicReference is null");
+                return;
+            }
+
+            PlayMusic(music.MusicName, fadeDuration);
+        }
+
         public void PlayMusic(string trackName, float fadeDuration = 0f)
         {
             if (musicData == null || musicSource == null) return;
 
             MusicTrack track = musicData.GetTrack(trackName);
             if (track.clip == null) return;
+
+            if (IsCurrentTrack(track)) return;
 
             StopAllPlayback();
 
@@ -74,6 +89,15 @@ namespace Slafurry.Systems.Audio
             {
                 PlayInstant(track);
             }
+        }
+
+        private bool IsCurrentTrack(MusicTrack track)
+        {
+            if (!_hasTrack) return false;
+
+            return track.music != null
+                ? track.music == _currentTrack.music
+                : track.clip == _currentTrack.clip;
         }
 
         private void PlayInstant(MusicTrack track)
@@ -115,13 +139,13 @@ namespace Slafurry.Systems.Audio
             if (musicSource == null) return;
 
             StopAllPlayback();
+            _hasTrack = false;
 
             if (fadeDuration <= 0f)
             {
                 musicSource.Stop();
                 musicSource.clip = null;
                 musicSource.volume = 0f;
-                _hasTrack = false;
                 return;
             }
 
@@ -199,7 +223,6 @@ namespace Slafurry.Systems.Audio
             musicSource.clip = null;
             musicSource.volume = 0f;
 
-            _hasTrack = false;
             _currentFadeCoroutine = null;
         }
     }

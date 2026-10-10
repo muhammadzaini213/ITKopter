@@ -9,8 +9,10 @@ namespace Slafurry.Systems.Scene
     public static class SceneSystem
     {
         public static void Load(string sceneName) => SceneLoader.Instance.LoadScene(sceneName);
+
+        public static void Load(SceneReference scene) => SceneLoader.Instance.LoadScene(scene);
     }
-    
+
     public class SceneLoader : GameSystem<SceneLoader>
     {
         public event Action<string> OnSceneLoadStarted;
@@ -28,8 +30,25 @@ namespace Slafurry.Systems.Scene
             base.OnSingletonAwake();
         }
 
+        public void LoadScene(SceneReference scene)
+        {
+            if (scene == null)
+            {
+                Debug.LogError("[SceneLoader] SceneReference is null");
+                return;
+            }
+
+            LoadScene(scene.SceneName);
+        }
+
         public void LoadScene(string sceneName)
         {
+            if (string.IsNullOrEmpty(sceneName))
+            {
+                Debug.LogError("[SceneLoader] Scene name is empty");
+                return;
+            }
+
             if (_isLoading)
             {
                 Debug.LogWarning($"[SceneLoader] Already loading a scene, ignoring request for '{sceneName}'");

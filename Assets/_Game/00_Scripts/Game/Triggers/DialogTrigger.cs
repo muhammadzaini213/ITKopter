@@ -16,7 +16,7 @@ public class DialogTrigger : BaseTrigger
     private void Start()
     {
         if (dialogHUD == null)
-            dialogHUD = FindObjectOfType<DialogHUD>();
+            dialogHUD = Object.FindFirstObjectByType<DialogHUD>();
     }
 
     public void StartDialog()
