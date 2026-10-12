@@ -1,4 +1,4 @@
-public enum CharaterRole
+public enum CharacterRole
 {
     ATTACKER,
     PROTECTOR,
