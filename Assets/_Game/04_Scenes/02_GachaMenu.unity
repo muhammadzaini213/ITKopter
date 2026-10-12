@@ -1067,7 +1067,7 @@ PrefabInstance:
     - target: {fileID: 5849254474931102219, guid: 0e1c5d97723bdd54f855117e98a5b341,
         type: 3}
       propertyPath: m_Name
-      value: SettingsButton
+      value: 03_SettingsButton
       objectReference: {fileID: 0}
     - target: {fileID: 6188288928370842855, guid: 0e1c5d97723bdd54f855117e98a5b341,
         type: 3}
@@ -1936,7 +1936,7 @@ PrefabInstance:
     - target: {fileID: 7271918347990408656, guid: aaed0fbc9a85edb6f9c5fc3398549eaa,
         type: 3}
       propertyPath: m_Name
-      value: Currency
+      value: 02_Currency
       objectReference: {fileID: 0}
     - target: {fileID: 8162560774545336835, guid: aaed0fbc9a85edb6f9c5fc3398549eaa,
         type: 3}
@@ -2154,10 +2154,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1097358393}
+  - {fileID: 1957690743}
   - {fileID: 1359949443}
   - {fileID: 776964555}
   - {fileID: 5822631171100887771}
-  - {fileID: 1957690743}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2389,7 +2389,7 @@ GameObject:
   - component: {fileID: 1957690743}
   - component: {fileID: 1957690744}
   m_Layer: 5
-  m_Name: Gacha
+  m_Name: 01_Gacha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2784,7 +2784,7 @@ PrefabInstance:
     - target: {fileID: 8382357699594628134, guid: 0bac3e081fd3746249c06da66231514d,
         type: 3}
       propertyPath: m_Name
-      value: BackToMainBtn
+      value: 04_BackToMainBtn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
