@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharacterData", menuName = "Scriptable Objects/CharacterData")]
 public class CharacterData : RewardData
 {
+    [SerializeField] private string characterId;
     [SerializeField] private string characterName;
     [SerializeField] private float health;
     [SerializeField] private float attackPower;
@@ -16,6 +17,7 @@ public class CharacterData : RewardData
     [SerializeField] private CharacterRole characterRole;
     [SerializeField] private GameObject characterPrefab;
 
+    public string CharacterId => characterId;
     public string CharacterName => characterName;
     public float Health => health;
     public float AttackPower => attackPower;
