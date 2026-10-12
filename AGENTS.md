@@ -5,21 +5,21 @@ Unity **6000.3.25f1** (Unity 6.3 LTS) URP starter (C#). Verify C# with Unity bat
 ## Sources of truth
 
 - **`ARCHITECTURE.md`** — folder rules, base classes, lifecycle, naming (System vs Manager vs Controller). Prefer this over README.
-- **`README.md`** — pitch + setup; trees use `_Game/` + `Systems/`; only scene is `Boot.unity`.
+- **`README.md`** — pitch + setup; trees use `_Game/` + `Systems/`.
 - **`GITHUB_WORKFLOWS.md`** — secrets/vars setup, run steps, deploy inputs (`platforms`/`release_type`/`release_tag`), Discord + GitHub Release changelog.
-- Executable wins over docs: `ProjectSettings/ProjectVersion.txt`, `Packages/manifest.json`, `.gitattributes`, `.github/workflows/`.
+- Executable wins over docs: `ProjectSettings/ProjectVersion.txt`, `Packages/manifest.json`, `.gitattributes`, `.github/workflows/`, `ProjectSettings/EditorBuildSettings.asset`.
 
 ## Layout
 
 ```
 Assets/_Game/          # all game content
   00_Scripts/          # Core, Systems, Manager, Game, UI, Utils
-  01_Objects/          # Prefabs/ + Data/ (SO variants)
-  02_Art/Sprite/       # Drive-synced sprites — retrieve.yml wipes + restores this
+  01_Objects/          # Prefabs/ + Data/ (SO variants, incl. Scenes/)
+  02_Art/              # Drive-synced sprites — retrieve.yml wipes + restores 02_Art/Sprite
   03_Audio/            # GameAudioMixer.mixer (+ Music/, SFX/ for Drive clips)
-  04_Scenes/           # Boot only (in Build Settings)
+  04_Scenes/           # 00_Boot … 11_StoryScene (numbered; see Build Settings below)
   05_Settings/         # URP, Input
-Assets/Editor/         # BuildScript.cs (CI -executeMethod) + GameAssetCreator
+Assets/Editor/         # BuildScript.cs (CI -executeMethod)
 Assets/_Vendor/        # third-party — do not edit
 .github/workflows/     # unity-compile (PR), unity-itchio-deploy, retrieve, track
 scripts/test_state.py       # Drive state regressions
@@ -32,16 +32,18 @@ retrieve.py, track.py, core/, state/, requirements.txt  # Drive → assets tooli
 
 ## Boot / lifecycle (easy to get wrong)
 
-- `Singleton`/`Manager` `Awake` is private and auto-calls `LoadingSystem.Instance.Register(this)`. **`LoadingSystem` must exist first** — in the only scene (`Assets/_Game/04_Scenes/Boot.unity`) it sits on its own **`====== LOADING ======`** root GameObject (script GUID `2ba4b0833086a19a0b6ff4653a00344a`); do not remove it. New systems attach to the **`====== SYSTEM ======`** root (or their own root), alongside `SceneLoader`, `SaveSystem`, `InputHub`, `PauseSystem`, `LocalizationSystem`.
+- Scenes are numbered `00_Boot` … `11_StoryScene`. **`EditorBuildSettings` lists 10 enabled** (`00_Boot`–`09_SettingsMenu`); `10_StoryMenu` and `11_StoryScene` exist on disk but are **not** in Build Settings. Do not assume every scene is loadable.
+- `Singleton`/`Manager` `Awake` is private and auto-calls `LoadingSystem.Instance.Register(this)`. **`LoadingSystem` must exist first** — in `Assets/_Game/04_Scenes/00_Boot.unity` it sits on its own root GameObject (script GUID `2ba4b0833086a19a0b6ff4653a00344a`); do not remove it.
+- `00_Boot` root objects today: `LoadingSystem`, `LocalizationSystem`, `AudioSystem` (children `MusicPlayer`/`SFXPlayer`), `SaveSystem`, `SceneLoader`, `PauseSystem`, `====== BOOT ======` (BootstrapLoader), `====== SETUP ======` (EventSystem + light). **`InputHub` and `VFXSystem` are not in `00_Boot`** — add them if gameplay needs them. New systems attach as their own root GameObject (or under an existing root).
 - `Initialize()` = internal setup only (no other-object refs). Cross-object wiring only in `PostInitialize()`. Avoid `Start()` (guard with `_isReady` if unavoidable).
-- `IInitializable.Priority` orders boot (lower first). Late registrants after boot get a one-frame delayed batch (`LoadingSystem`).
+- `IInitializable.Priority` orders boot (lower first). Late registrants after boot get a one-frame delayed batch (`LoadingSystem.ProcessLateBatch`).
 - Base class: cross-scene singleton → `GameSystem<T>`; scene-bound singleton → `LocalSingleton<T>`; session coordinator → `Manager` (registers with `GameManager` in `PostInitialize` via abstract `RegisterToGameManager`/`OnPostInitialize`).
-- **`GameManager` does not exist** — `Manager.cs` and ARCHITECTURE still describe it; **any `Manager` subclass will not compile** until you add one (or drop the abstract hooks). No subclasses exist today.
-- `BootstrapLoader` (Systems/Scene) is optional: wire `systemsToWaitFor` + `targetSceneName` if you add a boot scene. Default `targetSceneName` is `"MainMenu"` (not in Build Settings).
+- **`GameManager` does not exist** — `Manager.cs` and ARCHITECTURE still describe it; **any `Manager` subclass will not compile** until you add one (or drop the abstract hooks). No subclasses exist today (`ObjectiveManager` extends `Singleton<T>`, not `Manager`).
+- `BootstrapLoader` (Systems/Scene, namespace `Slafurry.Systems.Bootstrap`) sits on `====== BOOT ======` in `00_Boot`. Its `targetSceneName` is a **`SceneReference` ScriptableObject** (asset under `01_Objects/Data/Scenes/`), currently `01_MainMenuScene` — not a raw string.
 
 ## Static facades (prefer over `.Instance` chains)
 
-`Audio` · `Save` · `Pause` · `Controls` (input) · `Localize` · `SceneSystem`
+`Audio` · `Save` · `Pause` · `Controls` (input, on `InputHub`) · `Localize` · `SceneSystem`
 
 - Pause is a **key stack** (`Pause.On("UI")` / `Pause.Off("UI")`), not a bool — multiple holders can keep pause.
 - Save: Newtonsoft.Json → `Application.persistentDataPath/{fileName}.json` (caller omits `.json`).
@@ -84,8 +86,8 @@ env:
 - `.gitattributes` sets `merge=unityyamlmerge` for `*.unity`/`*.asset`/etc., but the **driver is not in git config** — Unity YAML conflict merges fail until UnityYAMLMerge is configured.
 - Serialization: Force Text YAML + Visible Meta Files. **Commit `.meta` with every new asset**; never hand-edit GUIDs.
 - Input System only (`activeInputHandler: 2`). Actions: `Assets/_Game/05_Settings/Input/Main Input.inputactions` → generated `Main Input.cs` (regenerate in Unity after editing actions). Legacy `Input.GetKeyDown` in `DIalogHUD` is dead code.
-- Editor menu: **Slafurry → Game Data** (GameAssetCreator). Types for that window use `[GameAssetCreator(category, displayName, order)]`; other SOs use `[CreateAssetMenu]`.
-- `EditorBuildSettings` lists only `Boot` (enabled). Do not assume other scenes are loadable.
+- `[GameAssetCreator(category, displayName, order)]` attribute exists (`Utils/Attributes/GameAssetCreatorAttributes.cs`) but the **creator EditorWindow is gone** — nothing consumes the attribute. Other SOs use `[CreateAssetMenu]`; `SceneReference` uses `menuName: "Scene Reference"`.
+- `EditorBuildSettings` lists **10 scenes** (`00_Boot` … `09_SettingsMenu`, all enabled). `10_StoryMenu`/`11_StoryScene` are on disk only.
 - `*.csproj` / `*.sln` are Editor-generated (`Assembly-CSharp.csproj` is gitignored) — never hand-edit or commit them.
 - **Drive bots re-sync from `origin/main` every run**: `retrieve.yml` `rm -rf`s `state/`, `Assets/_Game/02_Art/Sprite`, `Assets/_Game/03_Audio` then restores via `git archive origin/main`. Commit `GameAudioMixer.mixer` (and local state) to `main` before relying on those workflows.
 - **`track` / `retrieve` commit `state/` to `main`** (`[skip ci]`) so `deleted_in_drive` / `retrieve_status` / `downloaded_*` persist. Assets still go `chore/asset` → PR. `core/state.py` must keep retrieve fields when track merges a fresh listing (`scripts/test_state.py`).
@@ -94,7 +96,7 @@ env:
 ## Verify changes
 
 - **Style only:** `.editorconfig`.
-- **Compile:** run Unity batchmode directly. Pass = exit 0, log contains `Exiting batchmode successfully`, and no `error CS` lines. (Editor path is not in the repo — read it from `ProjectSettings/ProjectVersion.txt` / your Unity Hub install.)
+- **Compile:** run Unity batchmode directly. Pass = exit 0, log contains `Exiting batchmode successfully`, and no `error CS` lines. Editor is installed at `~/Unity/Hub/Editor/6000.3.25f1/Editor/Unity` on this machine; read the path from `ProjectSettings/ProjectVersion.txt` elsewhere.
 - **CI:** `unity-compile.yml` runs the same batchmode compile + `error CS` grep on **PRs only** (paths: `Assets/`, `Packages/`, `ProjectSettings/`, the workflow file). Require in branch protection. CI installs the editor from `ProjectVersion.txt` — no version pin there.
 - **Drive tooling:** `pip install -r requirements.txt`, then `python3 scripts/test_state.py` after touching `core/state.py` / `track.py` / `retrieve.py` (state tests are dependency-free and pass as-is).
 
@@ -106,4 +108,4 @@ grep -n "error CS" /tmp/unity-compile.log
 grep -q "Exiting batchmode successfully" /tmp/unity-compile.log && echo OK
 ```
 
-Prefer this (or opening the Editor) after any C# change. Play-mode behavior still needs a manual Editor run (`Boot`).
+Prefer this (or opening the Editor) after any C# change. Play-mode behavior still needs a manual Editor run (`00_Boot`).
