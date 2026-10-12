@@ -57,6 +57,26 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         return true;
     }
 
+    public bool CanAddNewOwnedCharacter(CharacterData character)
+    {
+        if (character == null)
+            return false;
+
+        if (string.IsNullOrWhiteSpace(character.CharacterId))
+            return false;
+
+        foreach (CharacterData owned in characterOwned)
+        {
+            if (owned != null &&
+                owned.CharacterId == character.CharacterId)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private void SavePlayerData()
     {
         PlayerSaveData data = new PlayerSaveData
