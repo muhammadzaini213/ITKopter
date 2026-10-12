@@ -5,11 +5,13 @@ using UnityEngine;
 public class LevelData : ScriptableObject
 {
     [Header("Level Info")]
+    [SerializeField] private string levelId;
     [SerializeField] private string levelName;
     [SerializeField] private LevelPartData[] levelParts;
     [SerializeField] private RewardData[] levelRewards;
     [SerializeField] private int energyCost;
 
+    public string LevelId => levelId;
     public string LevelName => levelName;
     public LevelPartData[] LevelParts => levelParts;
     public RewardData[] LevelRewards => levelRewards;
