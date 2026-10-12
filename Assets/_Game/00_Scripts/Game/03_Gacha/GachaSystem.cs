@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +8,11 @@ public class GachaSystem : GameSystem<GachaSystem>
 {
     private const string SaveFileName = "gacha";
 
-    private readonly Dictionary<string, int> pityCounters = new();
+    private GachaSaveData saveData = new GachaSaveData();
 
     public override IEnumerator Initialize()
     {
-        LoadPityData();
+        LoadGachaData();
         yield return null;
     }
 
@@ -21,280 +20,365 @@ public class GachaSystem : GameSystem<GachaSystem>
     {
     }
 
-    protected override void OnSingletonAwake()
+    public int GetPityCount(string gachaId)
     {
-        base.OnSingletonAwake();
-    }
-
-    public int GetPityCount(GachaData banner)
-    {
-        if (banner == null || string.IsNullOrWhiteSpace(banner.GachaId))
+        if (string.IsNullOrWhiteSpace(gachaId))
             return 0;
 
-        return pityCounters.TryGetValue(banner.GachaId, out int count)
-            ? count
-            : 0;
-    }
-
-    public int GetPullCost(GachaData banner, bool multi)
-    {
-        if (banner == null)
-            return 0;
-
-        int count = multi
-            ? banner.MultiPullCount
-            : banner.SinglePullCount;
-
-        float discount = Mathf.Clamp(banner.GachaDiscount, 0f, 100f);
-
-        return Mathf.Max(0, Mathf.RoundToInt(
-            banner.GachaCost * count * (1f - discount / 100f)
-        ));
+        BannerPityData banner = FindBannerPity(gachaId);
+        return banner != null ? banner.pityCount : 0;
     }
 
     public bool PullSingle(
-        GachaData banner,
-        out List<GachaPullResult> results)
+        GachaData gacha,
+        out GachaPullResult[] results)
     {
-        return Pull(banner, false, out results);
+        return Pull(gacha, 1, out results);
     }
 
     public bool PullMulti(
-        GachaData banner,
-        out List<GachaPullResult> results)
+        GachaData gacha,
+        out GachaPullResult[] results)
     {
-        return Pull(banner, true, out results);
+        if (gacha == null)
+        {
+            results = new GachaPullResult[0];
+            return false;
+        }
+
+        return Pull(gacha, gacha.MultiPullCount, out results);
     }
 
-    private bool Pull(
-        GachaData banner,
-        bool multi,
-        out List<GachaPullResult> results)
+    public bool Pull(
+        GachaData gacha,
+        int pullCount,
+        out GachaPullResult[] results)
     {
-        results = new List<GachaPullResult>();
+        results = new GachaPullResult[0];
 
-        if (!ValidateBanner(banner))
+        if (!ValidateBanner(gacha, pullCount, out string error))
+        {
+            Debug.LogWarning($"Gacha failed: {error}");
             return false;
+        }
 
-        int pullCount = multi
-            ? banner.MultiPullCount
-            : banner.SinglePullCount;
+        int cost = CalculateCost(gacha, pullCount);
 
-        int cost = GetPullCost(banner, multi);
-
-        // Pastikan Gems cukup sebelum menjalankan RNG.
         if (CurrencySystem.Instance.Gems < cost)
+        {
+            Debug.LogWarning("Not enough Gems.");
             return false;
+        }
 
-        // Semua konfigurasi sudah divalidasi sebelum Gems dipotong.
-        if (!CurrencySystem.Instance.SpendGems(cost))
-            return false;
+        // Roll memakai pity sementara.
+        // Data pity yang tersimpan belum diubah.
+        int currentPity = GetPityCount(gacha.GachaId);
 
-        string id = banner.GachaId;
-        int pity = GetPityCount(banner);
+        List<GachaPullResult> rolledResults =
+            new List<GachaPullResult>(pullCount);
+
+        List<RewardGrantRequest> grantRequests =
+            new List<RewardGrantRequest>(pullCount);
 
         for (int i = 0; i < pullCount; i++)
         {
-            bool isPity = pity + 1 >= banner.PityThreshold;
+            GachaPullResult rolled = RollReward(
+                gacha,
+                ref currentPity
+            );
 
-            RewardData reward = isPity
-                ? GetRandomRewardOfRarity(
-                    banner, banner.PityRarity)
-                : RollReward(banner);
-
-            if (reward == null)
+            if (rolled == null || rolled.Reward == null)
             {
-                // Kondisi ini seharusnya tidak terjadi setelah validasi.
-                Debug.LogError("[GachaSystem] Failed to select reward.");
-                break;
+                Debug.LogError("Gacha produced an invalid reward.");
+                return false;
             }
 
-            if (reward.Rarity == banner.PityRarity)
-                pity = 0;
-            else
-                pity++;
-
-            results.Add(new GachaPullResult(reward, isPity));
+            rolledResults.Add(rolled);
+            grantRequests.Add(
+                new RewardGrantRequest(rolled.Reward, 1)
+            );
         }
 
-        pityCounters[id] = pity;
-        SavePityData();
+        // Preflight: pastikan seluruh reward bisa diberikan.
+        if (!RewardSystem.Instance.CanGrantRewards(
+                grantRequests,
+                out error))
+        {
+            Debug.LogWarning($"Gacha batch rejected: {error}");
+            return false;
+        }
 
-        return results.Count == pullCount;
+        // Biaya dibayar setelah hasil undian dan validasi siap.
+        if (!CurrencySystem.Instance.SpendGems(cost))
+            return false;
+
+        // Distribusikan seluruh hasil lewat RewardSystem.
+        RewardGrantResult[] grantResults =
+            RewardSystem.Instance.GrantRewards(grantRequests).ToArray();
+
+        if (!AllRewardsGranted(grantResults))
+        {
+            Debug.LogError(
+                "Gacha reward commit failed. " +
+                "Currency refund/rollback is not implemented."
+            );
+
+            return false;
+        }
+
+        // Pity baru diperbarui setelah semua reward berhasil.
+        SetPityCount(gacha.GachaId, currentPity);
+        SaveGachaData();
+
+        results = rolledResults.ToArray();
+        return true;
     }
 
-    private bool ValidateBanner(GachaData banner)
+    private bool ValidateBanner(
+        GachaData gacha,
+        int pullCount,
+        out string error)
     {
-        if (banner == null)
+        error = null;
+
+        if (gacha == null)
         {
-            Debug.LogWarning("[GachaSystem] Banner is null.");
+            error = "GachaData is null.";
             return false;
         }
 
-        if (string.IsNullOrWhiteSpace(banner.GachaId))
+        if (string.IsNullOrWhiteSpace(gacha.GachaId))
         {
-            Debug.LogWarning("[GachaSystem] Banner ID is missing.");
+            error = "Gacha ID is empty.";
             return false;
         }
 
-        if (banner.GachaCost <= 0 ||
-            banner.PityThreshold <= 0 ||
-            banner.SinglePullCount <= 0 ||
-            banner.MultiPullCount <= 0)
+        if (pullCount <= 0)
         {
-            Debug.LogWarning("[GachaSystem] Invalid banner settings.");
+            error = "Pull count must be greater than zero.";
             return false;
         }
 
-        if (banner.RewardPool == null ||
-            banner.RewardPool.Length == 0)
+        if (gacha.PityThreshold <= 0)
         {
-            Debug.LogWarning("[GachaSystem] Reward pool is empty.");
+            error = "Pity threshold must be greater than zero.";
             return false;
         }
 
-        // Hard pity wajib bisa memberikan rarity yang dijanjikan.
-        if (GetRandomRewardOfRarity(
-                banner, banner.PityRarity) == null)
+        if (gacha.RewardPool == null ||
+            gacha.RewardPool.Length == 0)
         {
-            Debug.LogWarning(
-                $"[GachaSystem] No {banner.PityRarity} reward " +
-                $"exists in banner '{banner.GachaName}'."
-            );
+            error = "Reward pool is empty.";
             return false;
         }
 
-        if (GetAvailableRateTotal(banner) <= 0f)
+        if (gacha.RRate < 0f ||
+            gacha.SRRate < 0f ||
+            gacha.SSRRate < 0f)
         {
-            Debug.LogWarning("[GachaSystem] No valid rarity rates.");
+            error = "Rarity rates cannot be negative.";
             return false;
+        }
+
+        float totalRate =
+            gacha.RRate + gacha.SRRate + gacha.SSRRate;
+
+        if (totalRate <= 0f ||
+            !Mathf.Approximately(totalRate, 100f))
+        {
+            error = "Rarity rates must add up to 100%.";
+            return false;
+        }
+
+        foreach (RewardData reward in gacha.RewardPool)
+        {
+            if (reward == null)
+            {
+                error = "Reward pool contains a null entry.";
+                return false;
+            }
         }
 
         return true;
     }
 
-    private RewardData RollReward(GachaData banner)
+    private int CalculateCost(GachaData gacha, int pullCount)
     {
-        List<RewardRarity> rarities = new();
-        List<float> weights = new();
+        // Discount 10 means 10%.
+        float discountMultiplier =
+            1f - Mathf.Clamp(gacha.GachaDiscount, 0f, 100f) / 100f;
 
-        AddRarityIfAvailable(
-            banner, RewardRarity.R, banner.RRate, rarities, weights);
+        long rawCost =
+            (long)gacha.GachaCost * pullCount;
 
-        AddRarityIfAvailable(
-            banner, RewardRarity.SR, banner.SRRate, rarities, weights);
+        long discountedCost =
+            Mathf.RoundToInt(rawCost * discountMultiplier);
 
-        AddRarityIfAvailable(
-            banner, RewardRarity.SSR, banner.SSRRate, rarities, weights);
+        if (discountedCost > int.MaxValue)
+            return int.MaxValue;
 
-        float totalWeight = 0f;
+        return Mathf.Max(0, (int)discountedCost);
+    }
 
-        foreach (float weight in weights)
-            totalWeight += weight;
+    private GachaPullResult RollReward(
+        GachaData gacha,
+        ref int pityCount)
+    {
+        pityCount++;
 
-        if (totalWeight <= 0f)
-            return null;
-
-        float roll = Random.value * totalWeight;
-
-        for (int i = 0; i < rarities.Count; i++)
+        // Hard pity: jamin rarity pity saat threshold tercapai.
+        if (pityCount >= gacha.PityThreshold)
         {
-            roll -= weights[i];
+            RewardData pityReward = PickRewardByRarity(
+                gacha,
+                gacha.PityRarity
+            );
 
-            if (roll <= 0f)
-                return GetRandomRewardOfRarity(banner, rarities[i]);
+            if (pityReward == null)
+            {
+                Debug.LogError(
+                    $"No reward found for pity rarity {gacha.PityRarity}."
+                );
+
+                return null;
+            }
+
+            pityCount = 0;
+            return new GachaPullResult(pityReward, true);
         }
 
-        return GetRandomRewardOfRarity(
-            banner, rarities[rarities.Count - 1]);
+        RewardRarity rarity = RollRarity(gacha);
+
+        RewardData reward = PickRewardByRarity(gacha, rarity);
+
+        // Kalau rarity hasil roll tidak punya reward di pool,
+        // fallback ke rarity tertinggi yang tersedia di pool.
+        if (reward == null)
+            reward = PickFallbackReward(gacha);
+
+        if (reward == null)
+            return null;
+
+        return new GachaPullResult(reward, false);
     }
 
-    private void AddRarityIfAvailable(
-        GachaData banner,
-        RewardRarity rarity,
-        float rate,
-        List<RewardRarity> rarities,
-        List<float> weights)
+    private RewardRarity RollRarity(GachaData gacha)
     {
-        if (rate <= 0f)
-            return;
+        float roll = Random.Range(
+            0f,
+            gacha.RRate + gacha.SRRate + gacha.SSRRate
+        );
 
-        if (GetRandomRewardOfRarity(banner, rarity) == null)
-            return;
+        if (roll < gacha.SSRRate)
+            return RewardRarity.SSR;
 
-        rarities.Add(rarity);
-        weights.Add(rate);
+        roll -= gacha.SSRRate;
+
+        if (roll < gacha.SRRate)
+            return RewardRarity.SR;
+
+        return RewardRarity.R;
     }
 
-    private float GetAvailableRateTotal(GachaData banner)
-    {
-        float total = 0f;
-
-        if (GetRandomRewardOfRarity(banner, RewardRarity.R) != null)
-            total += banner.RRate;
-
-        if (GetRandomRewardOfRarity(banner, RewardRarity.SR) != null)
-            total += banner.SRRate;
-
-        if (GetRandomRewardOfRarity(banner, RewardRarity.SSR) != null)
-            total += banner.SSRRate;
-
-        return total;
-    }
-
-    private RewardData GetRandomRewardOfRarity(
-        GachaData banner,
+    private RewardData PickRewardByRarity(
+        GachaData gacha,
         RewardRarity rarity)
     {
-        List<RewardData> matchingRewards = new();
+        List<RewardData> candidates = new List<RewardData>();
 
-        foreach (RewardData reward in banner.RewardPool)
+        foreach (RewardData reward in gacha.RewardPool)
         {
             if (reward != null && reward.Rarity == rarity)
-                matchingRewards.Add(reward);
+                candidates.Add(reward);
         }
 
-        if (matchingRewards.Count == 0)
+        if (candidates.Count == 0)
             return null;
 
-        return matchingRewards[Random.Range(0, matchingRewards.Count)];
+        return candidates[Random.Range(0, candidates.Count)];
     }
 
-    private void LoadPityData()
+    private RewardData PickFallbackReward(GachaData gacha)
     {
-        GachaSaveData data = Save.From<GachaSaveData>(
+        RewardData best = null;
+
+        foreach (RewardData reward in gacha.RewardPool)
+        {
+            if (reward == null)
+                continue;
+
+            if (best == null || reward.Rarity > best.Rarity)
+                best = reward;
+        }
+
+        return best;
+    }
+
+    private bool AllRewardsGranted(RewardGrantResult[] results)
+    {
+        if (results == null || results.Length == 0)
+            return false;
+
+        foreach (RewardGrantResult result in results)
+        {
+            if (result == null || !result.Success)
+                return false;
+        }
+
+        return true;
+    }
+
+    private BannerPityData FindBannerPity(string gachaId)
+    {
+        if (saveData.banners == null)
+            saveData.banners = new List<BannerPityData>();
+
+        return saveData.banners.Find(
+            banner => banner != null &&
+                      banner.gachaId == gachaId
+        );
+    }
+
+    private void SetPityCount(string gachaId, int pityCount)
+    {
+        if (saveData.banners == null)
+            saveData.banners = new List<BannerPityData>();
+
+        BannerPityData banner = FindBannerPity(gachaId);
+
+        if (banner == null)
+        {
+            banner = new BannerPityData
+            {
+                gachaId = gachaId,
+                pityCount = pityCount
+            };
+
+            saveData.banners.Add(banner);
+        }
+        else
+        {
+            banner.pityCount = pityCount;
+        }
+    }
+
+    private void LoadGachaData()
+    {
+        saveData = Save.From(
             SaveFileName,
             new GachaSaveData()
         );
 
-        pityCounters.Clear();
+        if (saveData == null)
+            saveData = new GachaSaveData();
 
-        if (data == null || data.banners == null)
-            return;
-
-        foreach (BannerPityData banner in data.banners)
-        {
-            if (banner == null ||
-                string.IsNullOrWhiteSpace(banner.gachaId))
-                continue;
-
-            pityCounters[banner.gachaId] = Mathf.Max(0, banner.pityCount);
-        }
+        if (saveData.banners == null)
+            saveData.banners = new List<BannerPityData>();
     }
 
-    private void SavePityData()
+    private void SaveGachaData()
     {
-        GachaSaveData data = new GachaSaveData();
-
-        foreach (KeyValuePair<string, int> entry in pityCounters)
-        {
-            data.banners.Add(new BannerPityData
-            {
-                gachaId = entry.Key,
-                pityCount = entry.Value
-            });
-        }
-
-        Save.To(data, SaveFileName);
+        Save.To(saveData, SaveFileName);
     }
+
 }

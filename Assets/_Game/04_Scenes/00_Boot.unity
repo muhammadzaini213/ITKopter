@@ -640,6 +640,7 @@ GameObject:
   - component: {fileID: 1652718308}
   - component: {fileID: 1652718311}
   - component: {fileID: 1652718312}
+  - component: {fileID: 1652718313}
   m_Layer: 0
   m_Name: GameSystem
   m_TagString: Untagged
@@ -711,6 +712,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af0b2dcc1ed2cc6f9c69274b5f18974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GachaSystem
+--- !u!114 &1652718313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652718307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcdb5b39a35c31e3ab3dcab2890c6ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RewardSystem
 --- !u!1 &2110492261
 GameObject:
   m_ObjectHideFlags: 0
