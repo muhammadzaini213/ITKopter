@@ -1,8 +1,8 @@
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyWaveData", menuName = "Scriptable Objects/Wave Data")]
-public class EnemyWaveData : ScriptableObject
+[CreateAssetMenu(fileName = "WaveData", menuName = "Scriptable Objects/Wave Data")]
+public class WaveData : ScriptableObject
 {
     [Header("Wave Info")]
     [SerializeField] private string waveName;
