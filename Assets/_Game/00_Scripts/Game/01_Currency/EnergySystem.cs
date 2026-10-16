@@ -26,24 +26,23 @@ public class EnergySystem : GameSystem<EnergySystem>
 
     public int Energy => energy;
     public int MaxEnergy => MaxEnergyValue;
-    public int EnergyMissing => MaxEnergy - Energy;
+    public int EnergyMissing => MaxEnergy - energy;
+
+    public event Action<int> OnEnergyChanged;
 
     public TimeSpan TimeUntilNextEnergy
     {
         get
         {
+            RefreshEnergy();
+
             if (energy >= MaxEnergy)
                 return TimeSpan.Zero;
 
-            long elapsedTicks =
-                DateTime.UtcNow.Ticks - lastRegenUtcTicks;
+            long elapsed = DateTime.UtcNow.Ticks - lastRegenUtcTicks;
+            long remaining = GetRecoveryIntervalTicks() - elapsed;
 
-            long remainingTicks =
-                GetRecoveryIntervalTicks() - elapsedTicks;
-
-            return TimeSpan.FromTicks(
-                Math.Max(0, remainingTicks)
-            );
+            return TimeSpan.FromTicks(Math.Max(0, remaining));
         }
     }
 
@@ -51,7 +50,6 @@ public class EnergySystem : GameSystem<EnergySystem>
     {
         LoadEnergy();
         RefreshEnergy();
-
         yield return null;
     }
 
@@ -79,6 +77,8 @@ public class EnergySystem : GameSystem<EnergySystem>
             lastRegenUtcTicks = DateTime.UtcNow.Ticks;
 
         SaveEnergy();
+        OnEnergyChanged?.Invoke(energy);
+
         return true;
     }
 
@@ -86,8 +86,10 @@ public class EnergySystem : GameSystem<EnergySystem>
     {
         RefreshEnergy();
 
-        if (amount <= 0)
+        if (amount <= 0 || energy >= MaxEnergy)
             return;
+
+        int previous = energy;
 
         energy = (int)Math.Min(
             (long)energy + amount,
@@ -97,7 +99,11 @@ public class EnergySystem : GameSystem<EnergySystem>
         if (energy >= MaxEnergy)
             lastRegenUtcTicks = DateTime.UtcNow.Ticks;
 
+        if (energy == previous)
+            return;
+
         SaveEnergy();
+        OnEnergyChanged?.Invoke(energy);
     }
 
     private void RefreshEnergy()
@@ -107,13 +113,13 @@ public class EnergySystem : GameSystem<EnergySystem>
         if (energy >= MaxEnergy)
         {
             energy = MaxEnergy;
-            lastRegenUtcTicks = now;
             return;
         }
 
         if (lastRegenUtcTicks <= 0 || now < lastRegenUtcTicks)
         {
             lastRegenUtcTicks = now;
+            SaveEnergy();
             return;
         }
 
@@ -123,6 +129,8 @@ public class EnergySystem : GameSystem<EnergySystem>
 
         if (recovered <= 0)
             return;
+
+        int previous = energy;
 
         energy = (int)Math.Min(
             (long)energy + recovered,
@@ -138,7 +146,11 @@ public class EnergySystem : GameSystem<EnergySystem>
             lastRegenUtcTicks += recovered * intervalTicks;
         }
 
-        SaveEnergy();
+        if (energy != previous)
+        {
+            SaveEnergy();
+            OnEnergyChanged?.Invoke(energy);
+        }
     }
 
     private void LoadEnergy()
@@ -148,10 +160,11 @@ public class EnergySystem : GameSystem<EnergySystem>
             energy = MaxEnergy;
             lastRegenUtcTicks = DateTime.UtcNow.Ticks;
             SaveEnergy();
+            OnEnergyChanged?.Invoke(energy);
             return;
         }
 
-        EnergySaveData data = Save.From<EnergySaveData>(
+        EnergySaveData data = Save.From(
             SaveFileName,
             new EnergySaveData()
         );
@@ -161,14 +174,20 @@ public class EnergySystem : GameSystem<EnergySystem>
             energy = MaxEnergy;
             lastRegenUtcTicks = DateTime.UtcNow.Ticks;
             SaveEnergy();
+            OnEnergyChanged?.Invoke(energy);
             return;
         }
 
         energy = Mathf.Clamp(data.energy, 0, MaxEnergy);
         lastRegenUtcTicks = data.lastRegenUtcTicks;
 
-        if (lastRegenUtcTicks <= 0)
-            lastRegenUtcTicks = DateTime.UtcNow.Ticks;
+        long now = DateTime.UtcNow.Ticks;
+
+        if (lastRegenUtcTicks <= 0 || lastRegenUtcTicks > now)
+            lastRegenUtcTicks = now;
+
+        Debug.Log($"[EnergySystem] Loaded: {energy}/{MaxEnergy}");
+        OnEnergyChanged?.Invoke(energy);
     }
 
     private void SaveEnergy()
