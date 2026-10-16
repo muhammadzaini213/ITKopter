@@ -6,6 +6,9 @@ using Slafurry.Core.Abstract;
 
 public class RewardSystem : GameSystem<RewardSystem>
 {
+    [Header("Reward Popup")]
+    [SerializeField] private RewardPopupUI rewardPopupUI;
+
     public override IEnumerator Initialize()
     {
         yield return null;
@@ -18,6 +21,19 @@ public class RewardSystem : GameSystem<RewardSystem>
     protected override void OnSingletonAwake()
     {
         base.OnSingletonAwake();
+    }
+
+    public void ShowRewardPopup(
+    IReadOnlyList<RewardData> rewards)
+    {
+        if (rewardPopupUI == null)
+        {
+            Debug.LogWarning(
+                "[RewardSystem] RewardPopupUI reference is missing.");
+            return;
+        }
+
+        rewardPopupUI.ShowRewards(rewards);
     }
 
     public List<RewardGrantResult> GrantReward(

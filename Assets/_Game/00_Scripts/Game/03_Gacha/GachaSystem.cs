@@ -110,6 +110,7 @@ public class GachaSystem : GameSystem<GachaSystem>
         if (!CurrencySystem.Instance.SpendGems(cost))
             return false;
 
+
         RewardGrantResult[] grantResults =
             RewardSystem.Instance.GrantRewards(grantRequests).ToArray();
 
@@ -127,7 +128,21 @@ public class GachaSystem : GameSystem<GachaSystem>
         SaveGachaData();
 
         results = rolledResults.ToArray();
+
+        // Show the popup after all rewards have been granted successfully.
+        List<RewardData> popupRewards =
+            new List<RewardData>(results.Length);
+
+        foreach (GachaPullResult result in results)
+        {
+            if (result != null && result.Reward != null)
+                popupRewards.Add(result.Reward);
+        }
+
+        RewardSystem.Instance.ShowRewardPopup(popupRewards);
+
         return true;
+
     }
 
     private bool ValidateBanner(
