@@ -26,8 +26,8 @@ scripts/test_state.py       # Drive state regressions
 retrieve.py, track.py, core/, state/, requirements.txt  # Drive → assets tooling
 ```
 
-- Namespaces mirror folders: `Slafurry.Systems.*`, `Slafurry.Core.*`, `Slafurry.Utils.*`. Folder is **`Systems/`** (plural) — not `System/` (BCL conflict). **Exception:** everything under `00_Scripts/Game/` is in the **global namespace** (no `namespace` block) — match files there, don't add one.
-- `00_Scripts/Game/` uses **numbered domain subfolders** (`00_Player`, `01_Currency`, `02_Characters`, `03_Gacha`, `03_Reward` (yes, duplicate `03_`), `04_Items`, `05_Shop`, `06_Bundle`, `07_Level`, `08_Story`, `_old`). Gameplay `GameSystem<T>` subclasses (`PlayerSystem`, `CurrencySystem`, `EnergySystem`, `GachaSystem`, `RewardSystem`, `ShopSystem`, `BundleSystem`) live **here**, not in `Systems/` — this deviates from ARCHITECTURE's "`GameSystem<T>` → `Systems/`" rule; follow the code, not the doc.
+- Namespaces mirror folders: `Slafurry.Systems.*`, `Slafurry.Core.*`, `Slafurry.Utils.*`. Folder is **`Systems/`** (plural) — not `System/` (BCL conflict). **Exception:** active code under `00_Scripts/Game/` is in the **global namespace** (no `namespace` block) — match files there, don't add one. Only `_old/` files declare namespaces (`Game.Dialog`, …).
+- `00_Scripts/Game/` uses **numbered domain subfolders** (`00_Player`, `01_Currency`, `02_Characters`, `03_Gacha`, `03_Reward` (yes, duplicate `03_`), `04_Items`, `05_Shop`, `06_Bundle`, `07_Level`, `08_Story`, `09_Inventory`, `_old`). Gameplay `GameSystem<T>` subclasses (`PlayerSystem`, `CurrencySystem`, `EnergySystem`, `GachaSystem`, `RewardSystem`, `ShopSystem`, `BundleSystem`, `InventorySystem`) live **here**, not in `Systems/` — this deviates from ARCHITECTURE's "`GameSystem<T>` → `Systems/`" rule; follow the code, not the doc.
 - **No `.asmdef`** — every non-`Editor` script compiles into `Assembly-CSharp`. Editor-only code must live under an `Editor/` folder.
 - Internal rule: max 6 subfolders per folder (ARCHITECTURE.md).
 
@@ -35,7 +35,7 @@ retrieve.py, track.py, core/, state/, requirements.txt  # Drive → assets tooli
 
 - Scenes are numbered `00_Boot` … `11_StoryScene`. **`EditorBuildSettings` lists 10 enabled** (`00_Boot`–`09_SettingsMenu`); `10_StoryMenu` and `11_StoryScene` exist on disk but are **not** in Build Settings. Do not assume every scene is loadable.
 - `Singleton`/`Manager` `Awake` is private and auto-calls `LoadingSystem.Instance.Register(this)`. **`LoadingSystem` must exist first** — in `Assets/_Game/04_Scenes/00_Boot.unity` it sits on its own root GameObject (script GUID `2ba4b0833086a19a0b6ff4653a00344a`); do not remove it.
-- `00_Boot` root objects today: `LoadingSystem`, `LocalizationSystem`, `AudioSystem` (children `MusicPlayer`/`SFXPlayer`), `SaveSystem`, `SceneLoader`, `PauseSystem`, `GameSystem` (one root holding the gameplay `GameSystem<T>`s: `PlayerSystem`, `CurrencySystem`, `EnergySystem`, `GachaSystem`, `RewardSystem`, `ShopSystem`, `BundleSystem`), `====== BOOT ======` (BootstrapLoader), `====== SETUP ======` (EventSystem + light). **`InputHub` and `VFXSystem` are not in `00_Boot`** — add them if gameplay needs them. New systems attach as their own root GameObject or onto the `GameSystem` root.
+- `00_Boot` root objects today (verified in scene YAML): `LoadingSystem`, `LocalizationSystem`, `AudioSystem` (children `MusicPlayer`/`SFXPlayer`), `SaveSystem`, `SceneLoader`, `PauseSystem`, gameplay `GameSystem<T>` roots — `PlayerSystem`, `CurrencySystem`, `EnergySystem`, `GachaSystem`, `RewardSystem`, `ShopSystem`, `BundleSystem`, `InventorySystem`, **each its own root GameObject** (no parent object named `GameSystem`), `====== BOOT ======` (BootstrapLoader), `====== SETUP ======` (EventSystem + light). **`InputHub` and `VFXSystem` are not in `00_Boot`** — add them if gameplay needs them. New systems attach as their own root GameObject.
 - `Initialize()` = internal setup only (no other-object refs). Cross-object wiring only in `PostInitialize()`. Avoid `Start()` (guard with `_isReady` if unavoidable).
 - `IInitializable.Priority` orders boot (lower first). Late registrants after boot get a one-frame delayed batch (`LoadingSystem.ProcessLateBatch`).
 - Base class: cross-scene singleton → `GameSystem<T>`; scene-bound singleton → `LocalSingleton<T>`; session coordinator → `Manager` (registers with `GameManager` in `PostInitialize` via abstract `RegisterToGameManager`/`OnPostInitialize`).
@@ -46,7 +46,7 @@ retrieve.py, track.py, core/, state/, requirements.txt  # Drive → assets tooli
 
 `Audio` · `Save` · `Pause` · `Controls` (input, on `InputHub`) · `Localize` · `SceneSystem`
 
-- Pause is a **key stack** (`Pause.On("UI")` / `Pause.Off("UI")`), not a bool — multiple holders can keep pause.
+- Pause is a **key set** (`Pause.On("UI")` / `Pause.Off("UI")` — stored in a `HashSet<string>`), not a bool — multiple holders can keep pause.
 - Save: Newtonsoft.Json → `Application.persistentDataPath/{fileName}.json` (caller omits `.json`).
 - Linear volume → dB via `Mathf.Log10(x) * 20` before `AudioMixer.SetFloat`.
 - `GameFeel` is a **MonoBehaviour**, not a static facade.
@@ -98,7 +98,7 @@ env:
 
 - **Style only:** `.editorconfig`.
 - **Compile:** run Unity batchmode directly. Pass = exit 0, log contains `Exiting batchmode successfully`, and no `error CS` lines. Editor is installed at `~/Unity/Hub/Editor/6000.3.25f1/Editor/Unity` on this machine; read the path from `ProjectSettings/ProjectVersion.txt` elsewhere.
-- **CI:** no PR compile gate (`unity-compile.yml` deleted in PR #8 — do not re-add unless asked). The only CI compile check is inside `retrieve.yml`'s post-download import; deploy fails on `error CS` at build time.
+- **CI:** no PR compile gate (`unity-compile.yml` deleted in PR #8 — do not re-add unless asked). The only CI compile check is inside `retrieve.yml`'s post-download import; deploy fails on `error CS` at build time. **Stale docs:** `README.md`, `GITHUB_WORKFLOWS.md`, and `CONTRIBUTING.md` still claim the PR gate exists — trust `.github/workflows/` over them.
 - **Drive tooling:** `pip install -r requirements.txt`, then `python3 scripts/test_state.py` after touching `core/state.py` / `track.py` / `retrieve.py` (state tests are dependency-free and pass as-is).
 
 ```bash
