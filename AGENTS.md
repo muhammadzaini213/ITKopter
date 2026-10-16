@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Unity **6000.3.25f1** (Unity 6.3 LTS) URP starter (C#). Verify C# with Unity batchmode (see **Verify changes** — no wrapper script, no git hooks). Style: root **`.editorconfig`** (hints only). CI: GitHub Actions under `.github/workflows/` (PR compile gate `unity-compile` + itch.io deploy + Drive retrieve/track).
+Unity **6000.3.25f1** (Unity 6.3 LTS) URP starter (C#). Verify C# with Unity batchmode (see **Verify changes** — no wrapper script, no git hooks, **no CI compile gate** — `unity-compile.yml` was deleted on purpose). Style: root **`.editorconfig`** (hints only). CI: GitHub Actions under `.github/workflows/` (itch.io deploy + Drive retrieve/track only).
 
 ## Sources of truth
 
@@ -21,12 +21,13 @@ Assets/_Game/          # all game content
   05_Settings/         # URP, Input
 Assets/Editor/         # BuildScript.cs (CI -executeMethod)
 Assets/_Vendor/        # third-party — do not edit
-.github/workflows/     # unity-compile (PR), unity-itchio-deploy, retrieve, track
+.github/workflows/     # unity-itchio-deploy, retrieve, track (unity-compile deleted)
 scripts/test_state.py       # Drive state regressions
 retrieve.py, track.py, core/, state/, requirements.txt  # Drive → assets tooling
 ```
 
-- Namespaces mirror folders: `Slafurry.Systems.*`, `Slafurry.Core.*`, `Slafurry.Utils.*`. Folder is **`Systems/`** (plural) — not `System/` (BCL conflict).
+- Namespaces mirror folders: `Slafurry.Systems.*`, `Slafurry.Core.*`, `Slafurry.Utils.*`. Folder is **`Systems/`** (plural) — not `System/` (BCL conflict). **Exception:** everything under `00_Scripts/Game/` is in the **global namespace** (no `namespace` block) — match files there, don't add one.
+- `00_Scripts/Game/` uses **numbered domain subfolders** (`00_Player`, `01_Currency`, `02_Characters`, `03_Gacha`, `03_Reward` (yes, duplicate `03_`), `04_Items`, `05_Shop`, `06_Bundle`, `07_Level`, `08_Story`, `_old`). Gameplay `GameSystem<T>` subclasses (`PlayerSystem`, `CurrencySystem`, `EnergySystem`, `GachaSystem`, `RewardSystem`, `ShopSystem`, `BundleSystem`) live **here**, not in `Systems/` — this deviates from ARCHITECTURE's "`GameSystem<T>` → `Systems/`" rule; follow the code, not the doc.
 - **No `.asmdef`** — every non-`Editor` script compiles into `Assembly-CSharp`. Editor-only code must live under an `Editor/` folder.
 - Internal rule: max 6 subfolders per folder (ARCHITECTURE.md).
 
@@ -34,7 +35,7 @@ retrieve.py, track.py, core/, state/, requirements.txt  # Drive → assets tooli
 
 - Scenes are numbered `00_Boot` … `11_StoryScene`. **`EditorBuildSettings` lists 10 enabled** (`00_Boot`–`09_SettingsMenu`); `10_StoryMenu` and `11_StoryScene` exist on disk but are **not** in Build Settings. Do not assume every scene is loadable.
 - `Singleton`/`Manager` `Awake` is private and auto-calls `LoadingSystem.Instance.Register(this)`. **`LoadingSystem` must exist first** — in `Assets/_Game/04_Scenes/00_Boot.unity` it sits on its own root GameObject (script GUID `2ba4b0833086a19a0b6ff4653a00344a`); do not remove it.
-- `00_Boot` root objects today: `LoadingSystem`, `LocalizationSystem`, `AudioSystem` (children `MusicPlayer`/`SFXPlayer`), `SaveSystem`, `SceneLoader`, `PauseSystem`, `====== BOOT ======` (BootstrapLoader), `====== SETUP ======` (EventSystem + light). **`InputHub` and `VFXSystem` are not in `00_Boot`** — add them if gameplay needs them. New systems attach as their own root GameObject (or under an existing root).
+- `00_Boot` root objects today: `LoadingSystem`, `LocalizationSystem`, `AudioSystem` (children `MusicPlayer`/`SFXPlayer`), `SaveSystem`, `SceneLoader`, `PauseSystem`, `GameSystem` (one root holding the gameplay `GameSystem<T>`s: `PlayerSystem`, `CurrencySystem`, `EnergySystem`, `GachaSystem`, `RewardSystem`, `ShopSystem`, `BundleSystem`), `====== BOOT ======` (BootstrapLoader), `====== SETUP ======` (EventSystem + light). **`InputHub` and `VFXSystem` are not in `00_Boot`** — add them if gameplay needs them. New systems attach as their own root GameObject or onto the `GameSystem` root.
 - `Initialize()` = internal setup only (no other-object refs). Cross-object wiring only in `PostInitialize()`. Avoid `Start()` (guard with `_isReady` if unavoidable).
 - `IInitializable.Priority` orders boot (lower first). Late registrants after boot get a one-frame delayed batch (`LoadingSystem.ProcessLateBatch`).
 - Base class: cross-scene singleton → `GameSystem<T>`; scene-bound singleton → `LocalSingleton<T>`; session coordinator → `Manager` (registers with `GameManager` in `PostInitialize` via abstract `RegisterToGameManager`/`OnPostInitialize`).
@@ -52,7 +53,7 @@ retrieve.py, track.py, core/, state/, requirements.txt  # Drive → assets tooli
 
 ## GitHub Actions — config lives in workflow-level `env:`
 
-All four workflows declare config in a workflow-level `env:` block; `run:` steps read `"$NAME"` only, never hardcoded values.
+All three workflows declare config in a workflow-level `env:` block; `run:` steps read `"$NAME"` only, never hardcoded values.
 
 ```yaml
 env:
@@ -70,9 +71,9 @@ env:
 
 `secrets.*` still appears inline in **action `with:` inputs** (Unity license activation, Butler upload) and in **failure-notify step `env:`** blocks — that is intentional, not drift.
 
-**Secrets** (credentials only): `GEMINI_API_KEY`, `GOOGLE_SERVICE_ACCOUNT_JSON_B64`, `DISCORD_WEBHOOK_URL`, `DISCORD_WEBHOOK_URL_DEPLOY`, `UNITY_EMAIL`, `UNITY_PASSWORD`, `BUTLER_API_KEY`, `PR_PAT` (**retrieve only** — compile/deploy use the default `GITHUB_TOKEN`).
+**Secrets** (credentials only): `GEMINI_API_KEY`, `GOOGLE_SERVICE_ACCOUNT_JSON_B64`, `DISCORD_WEBHOOK_URL`, `DISCORD_WEBHOOK_URL_DEPLOY`, `UNITY_EMAIL`, `UNITY_PASSWORD`, `BUTLER_API_KEY`, `PR_PAT` (**retrieve only** — deploy uses the default `GITHUB_TOKEN`).
 
-**Variables** (non-credential): `DRIVE_SPRITE_FOLDER_ID`, `DRIVE_AUDIO_FOLDER_ID`, `GEMINI_MODEL`, `GEMINI_PERSONA`, `GEMINI_LANGUAGE`, `BOT_GIT_USERNAME`, `BOT_GIT_EMAIL`, `ITCH_*`, `GAME_DISPLAY_NAME`, `UNITY_PROJECT_PATH` (deploy, retrieve, compile).
+**Variables** (non-credential): `DRIVE_SPRITE_FOLDER_ID`, `DRIVE_AUDIO_FOLDER_ID`, `GEMINI_MODEL`, `GEMINI_PERSONA`, `GEMINI_LANGUAGE`, `BOT_GIT_USERNAME`, `BOT_GIT_EMAIL`, `ITCH_*`, `GAME_DISPLAY_NAME`, `UNITY_PROJECT_PATH` (deploy, retrieve).
 
 **Retrieve runs a Unity batchmode import after downloading** so new Drive files get generated `.meta` (stable GUID + import settings) — committed inside the asset PR. Requires `UNITY_EMAIL`/`UNITY_PASSWORD` on `retrieve` now.
 
@@ -97,7 +98,7 @@ env:
 
 - **Style only:** `.editorconfig`.
 - **Compile:** run Unity batchmode directly. Pass = exit 0, log contains `Exiting batchmode successfully`, and no `error CS` lines. Editor is installed at `~/Unity/Hub/Editor/6000.3.25f1/Editor/Unity` on this machine; read the path from `ProjectSettings/ProjectVersion.txt` elsewhere.
-- **CI:** `unity-compile.yml` runs the same batchmode compile + `error CS` grep on **PRs only** (paths: `Assets/`, `Packages/`, `ProjectSettings/`, the workflow file). Require in branch protection. CI installs the editor from `ProjectVersion.txt` — no version pin there.
+- **CI:** no PR compile gate (`unity-compile.yml` deleted in PR #8 — do not re-add unless asked). The only CI compile check is inside `retrieve.yml`'s post-download import; deploy fails on `error CS` at build time.
 - **Drive tooling:** `pip install -r requirements.txt`, then `python3 scripts/test_state.py` after touching `core/state.py` / `track.py` / `retrieve.py` (state tests are dependency-free and pass as-is).
 
 ```bash
