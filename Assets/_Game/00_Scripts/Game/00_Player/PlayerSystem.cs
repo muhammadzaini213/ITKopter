@@ -19,12 +19,12 @@ public class PlayerSystem : GameSystem<PlayerSystem>
     private readonly List<CharacterData> characterOwned = new();
     private readonly HashSet<string> completedLevelIds = new();
 
+    private bool isPlayerDataLoaded;
+
     public string PlayerName => playerName;
-
-    // Total EXP accumulated by the player.
     public int PlayerExp => playerExp;
+    public bool IsPlayerDataLoaded => isPlayerDataLoaded;
 
-    // Calculate the player's level from their total EXP.
     public int PlayerLevel
     {
         get
@@ -45,7 +45,6 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         }
     }
 
-    // EXP accumulated within the current level.
     public int CurrentLevelExp
     {
         get
@@ -63,7 +62,6 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         }
     }
 
-    // EXP required to reach the next level.
     public int RequiredLevelExp
     {
         get
@@ -71,9 +69,7 @@ public class PlayerSystem : GameSystem<PlayerSystem>
             long requiredExp = BaseExpRequired;
 
             for (int level = 1; level < PlayerLevel; level++)
-            {
                 requiredExp = GetNextRequiredExp(requiredExp);
-            }
 
             return (int)requiredExp;
         }
@@ -90,8 +86,20 @@ public class PlayerSystem : GameSystem<PlayerSystem>
 
     public override IEnumerator Initialize()
     {
+        isPlayerDataLoaded = false;
+
+        // Wait until the inventory system exists and its item database is ready.
+        while (InventorySystem.Instance == null ||
+               !InventorySystem.Instance.IsDatabaseReady)
+        {
+            yield return null;
+        }
+
         LoadPlayerData();
-        yield return null;
+
+        isPlayerDataLoaded = true;
+
+        Debug.Log("[PlayerSystem] Player data loaded successfully.");
     }
 
     protected override void OnSingletonAwake()
@@ -109,7 +117,6 @@ public class PlayerSystem : GameSystem<PlayerSystem>
             currentRequiredExp * ExpMultiplier
         );
 
-        // Prevent overflow when the required EXP becomes very large.
         if (nextExp >= int.MaxValue)
             return int.MaxValue;
 
@@ -128,13 +135,15 @@ public class PlayerSystem : GameSystem<PlayerSystem>
 
         playerName = newName;
 
-        SavePlayerData();
+        if (!SavePlayerData())
+            return;
+
         OnPlayerNameChanged?.Invoke(playerName);
     }
 
     public void AddExp(int amount)
     {
-        if (amount <= 0)
+        if (amount <= 0 || !isPlayerDataLoaded)
             return;
 
         int previousLevel = PlayerLevel;
@@ -146,7 +155,8 @@ public class PlayerSystem : GameSystem<PlayerSystem>
 
         int currentLevel = PlayerLevel;
 
-        SavePlayerData();
+        if (!SavePlayerData())
+            return;
 
         OnPlayerExpChanged?.Invoke(playerExp);
 
@@ -162,11 +172,19 @@ public class PlayerSystem : GameSystem<PlayerSystem>
 
     public bool AddNewOwnedCharacter(CharacterData newCharacter)
     {
-        if (!CanAddNewOwnedCharacter(newCharacter))
+        if (!isPlayerDataLoaded ||
+            !CanAddNewOwnedCharacter(newCharacter))
+        {
             return false;
+        }
 
         characterOwned.Add(newCharacter);
-        SavePlayerData();
+
+        if (!SavePlayerData())
+        {
+            characterOwned.Remove(newCharacter);
+            return false;
+        }
 
         return true;
     }
@@ -199,15 +217,38 @@ public class PlayerSystem : GameSystem<PlayerSystem>
 
     public void CompleteLevel(string levelId)
     {
-        if (string.IsNullOrWhiteSpace(levelId))
+        if (!isPlayerDataLoaded ||
+            string.IsNullOrWhiteSpace(levelId))
+        {
             return;
+        }
 
         if (completedLevelIds.Add(levelId))
-            SavePlayerData();
+        {
+            if (!SavePlayerData())
+                completedLevelIds.Remove(levelId);
+        }
     }
 
-    private void SavePlayerData()
+    private bool SavePlayerData()
     {
+        if (!isPlayerDataLoaded)
+        {
+            Debug.LogWarning(
+                "[PlayerSystem] Cannot save before player data is loaded.");
+            return false;
+        }
+
+        InventorySystem inventorySystem = InventorySystem.Instance;
+
+        if (inventorySystem == null || !inventorySystem.IsDatabaseReady)
+        {
+            Debug.LogWarning(
+                "[PlayerSystem] Cannot save before the inventory database " +
+                "is ready. Existing save data was preserved.");
+            return false;
+        }
+
         PlayerSaveData data = new PlayerSaveData
         {
             playerName = playerName,
@@ -220,7 +261,10 @@ public class PlayerSystem : GameSystem<PlayerSystem>
             completedLevelIds = new List<string>(completedLevelIds)
         };
 
+        inventorySystem.WriteToSaveData(data);
+
         Save.To(data, SaveFileName);
+        return true;
     }
 
     private void LoadPlayerData()
@@ -266,7 +310,8 @@ public class PlayerSystem : GameSystem<PlayerSystem>
             }
         }
 
-        // Notify listeners after player data has been loaded.
+        InventorySystem.Instance.LoadFromSaveData(data);
+
         OnPlayerNameChanged?.Invoke(playerName);
         OnPlayerExpChanged?.Invoke(playerExp);
         OnPlayerLevelChanged?.Invoke(PlayerLevel);
@@ -277,8 +322,8 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         if (string.IsNullOrWhiteSpace(id))
             return null;
 
-        // TODO: Connect this method to the character database or registry.
-        // Owned characters cannot be restored until this lookup is implemented.
+        // TODO: Resolve the character through the character database.
+        // Return the CharacterData asset that matches this ID.
         return null;
     }
 }

@@ -99,7 +99,6 @@ public class GachaSystem : GameSystem<GachaSystem>
             );
         }
 
-        // Preflight: pastikan seluruh reward bisa diberikan.
         if (!RewardSystem.Instance.CanGrantRewards(
                 grantRequests,
                 out error))
@@ -108,11 +107,9 @@ public class GachaSystem : GameSystem<GachaSystem>
             return false;
         }
 
-        // Biaya dibayar setelah hasil undian dan validasi siap.
         if (!CurrencySystem.Instance.SpendGems(cost))
             return false;
 
-        // Distribusikan seluruh hasil lewat RewardSystem.
         RewardGrantResult[] grantResults =
             RewardSystem.Instance.GrantRewards(grantRequests).ToArray();
 
@@ -126,7 +123,6 @@ public class GachaSystem : GameSystem<GachaSystem>
             return false;
         }
 
-        // Pity baru diperbarui setelah semua reward berhasil.
         SetPityCount(gacha.GachaId, currentPity);
         SaveGachaData();
 

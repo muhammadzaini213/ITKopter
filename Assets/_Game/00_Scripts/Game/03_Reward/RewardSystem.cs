@@ -28,8 +28,7 @@ public class RewardSystem : GameSystem<RewardSystem>
             new List<RewardGrantRequest>
             {
                 new RewardGrantRequest(reward, amount)
-            }
-        );
+            });
     }
 
     public List<RewardGrantResult> GrantRewards(
@@ -45,13 +44,14 @@ public class RewardSystem : GameSystem<RewardSystem>
             if (request == null || request.reward == null)
             {
                 results.Add(CreateFailure(
-                    request?.reward, request?.amount ?? 0,
+                    request?.reward,
+                    request?.amount ?? 0,
                     "Reward data is missing."));
                 continue;
             }
 
-            results.Add(GrantSingleReward(
-                request.reward, request.amount));
+            results.Add(
+                GrantSingleReward(request.reward, request.amount));
         }
 
         return results;
@@ -61,15 +61,26 @@ public class RewardSystem : GameSystem<RewardSystem>
         RewardData reward,
         int amount)
     {
+        if (reward == null)
+            return CreateFailure(null, amount, "Reward data is missing.");
+
         if (amount <= 0)
         {
             return CreateFailure(
-                reward, amount, "Amount must be greater than zero.");
+                reward, amount,
+                "Amount must be greater than zero.");
         }
 
         // Currency rewards
         if (reward is CurrencyRewardData currencyReward)
         {
+            if (CurrencySystem.Instance == null)
+            {
+                return CreateFailure(
+                    reward, amount,
+                    "CurrencySystem is unavailable.");
+            }
+
             switch (currencyReward.CurrencyType)
             {
                 case CurrencyType.Gems:
@@ -82,7 +93,8 @@ public class RewardSystem : GameSystem<RewardSystem>
 
                 default:
                     return CreateFailure(
-                        reward, amount, "Unsupported currency type.");
+                        reward, amount,
+                        "Unsupported currency type.");
             }
 
             return new RewardGrantResult(
@@ -99,6 +111,13 @@ public class RewardSystem : GameSystem<RewardSystem>
                     "Character rewards currently support amount = 1.");
             }
 
+            if (PlayerSystem.Instance == null)
+            {
+                return CreateFailure(
+                    reward, amount,
+                    "PlayerSystem is unavailable.");
+            }
+
             bool added =
                 PlayerSystem.Instance.AddNewOwnedCharacter(character);
 
@@ -113,15 +132,35 @@ public class RewardSystem : GameSystem<RewardSystem>
                 reward, amount, 1, true, "Character granted.");
         }
 
-        // Item rewards will be connected to InventorySystem.
+        // Item rewards
+        if (reward is ItemData item)
+        {
+            if (InventorySystem.Instance == null)
+            {
+                return CreateFailure(
+                    reward, amount,
+                    "InventorySystem is unavailable.");
+            }
+
+            if (!InventorySystem.Instance.AddItem(item, amount))
+            {
+                return CreateFailure(
+                    reward, amount,
+                    "Item could not be added to the inventory.");
+            }
+
+            return new RewardGrantResult(
+                reward, amount, amount, true, "Item granted.");
+        }
+
         return CreateFailure(
             reward, amount,
             $"No reward handler registered for {reward.GetType().Name}.");
     }
 
     public bool CanGrantRewards(
-    IReadOnlyList<RewardGrantRequest> requests,
-    out string error)
+        IReadOnlyList<RewardGrantRequest> requests,
+        out string error)
     {
         error = null;
 
@@ -157,6 +196,12 @@ public class RewardSystem : GameSystem<RewardSystem>
                     return false;
                 }
 
+                if (CurrencySystem.Instance == null)
+                {
+                    error = "CurrencySystem is unavailable.";
+                    return false;
+                }
+
                 continue;
             }
 
@@ -169,22 +214,52 @@ public class RewardSystem : GameSystem<RewardSystem>
                     return false;
                 }
 
-                if (!characterIds.Add(character.CharacterId))
+                if (string.IsNullOrWhiteSpace(character.CharacterId))
                 {
-                    error = $"Duplicate character in reward batch: {character.name}";
+                    error = $"Character ID is missing: {character.name}";
                     return false;
                 }
 
-                if (!PlayerSystem.Instance.CanAddNewOwnedCharacter(character))
+                if (!characterIds.Add(character.CharacterId))
                 {
-                    error = $"Character already owned or cannot be added: {character.name}";
+                    error =
+                        $"Duplicate character in reward batch: {character.name}";
+                    return false;
+                }
+
+                if (PlayerSystem.Instance == null ||
+                    !PlayerSystem.Instance.CanAddNewOwnedCharacter(character))
+                {
+                    error =
+                        $"Character already owned or cannot be added: {character.name}";
                     return false;
                 }
 
                 continue;
             }
 
-            error = $"Unsupported reward type: {request.reward.GetType().Name}";
+            // Item reward validation
+            if (request.reward is ItemData item)
+            {
+                if (InventorySystem.Instance == null)
+                {
+                    error = "InventorySystem is unavailable.";
+                    return false;
+                }
+
+                if (!InventorySystem.Instance.CanAddItem(
+                        item, request.amount))
+                {
+                    error =
+                        $"Item cannot be added to inventory: {item.name}";
+                    return false;
+                }
+
+                continue;
+            }
+
+            error =
+                $"Unsupported reward type: {request.reward.GetType().Name}";
             return false;
         }
 

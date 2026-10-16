@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8af704c02b7b69aa5bd6516d08a747a0, type: 3}
+  m_Name: debug_GachaData_3
+  m_EditorClassIdentifier: Assembly-CSharp::GachaData
+  gachaId: gacha_3
+  gachaName: Currency gacha
+  gachaCost: 160
+  gachaDiscount: 0
+  singlePullCount: 1
+  multiPullCount: 10
+  pityThreshold: 200
+  pityRarity: 2
+  rRate: 80
+  srRate: 18
+  ssrRate: 2
+  rewardPool:
+  - {fileID: 11400000, guid: 647a754b2432732019eb3f1c5f5614ea, type: 2}
+  - {fileID: 11400000, guid: 91dcc40afd6a40db993b31327f427f5a, type: 2}
+  - {fileID: 11400000, guid: 8a57a4382eebb32db8cf13ffc3c9026f, type: 2}
+  - {fileID: 11400000, guid: 44f00f6052d2ef6b08d8e58722cd7c5c, type: 2}
+  - {fileID: 11400000, guid: d76fd8de2ba3d7a31abaa86cf2bb4251, type: 2}
+  - {fileID: 11400000, guid: 218c33f756c0555d08bc5f9f55acf548, type: 2}

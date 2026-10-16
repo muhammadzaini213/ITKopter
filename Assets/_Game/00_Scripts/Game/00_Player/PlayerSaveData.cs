@@ -10,4 +10,7 @@ public class PlayerSaveData
 
     public List<string> ownedCharacterIds = new List<string>();
     public List<string> completedLevelIds = new List<string>();
+
+    public List<InventoryItemSaveData> inventoryItems =
+        new List<InventoryItemSaveData>();
 }
