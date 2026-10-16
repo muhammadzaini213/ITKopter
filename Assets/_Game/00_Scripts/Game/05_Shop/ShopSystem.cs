@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class ShopSystem : GameSystem<ShopSystem>
 {
+    public const int MaxPurchaseQuantity = 999;
+
     public override IEnumerator Initialize()
     {
         yield return null;
@@ -18,6 +20,7 @@ public class ShopSystem : GameSystem<ShopSystem>
     public bool CanBuyItem(
         ShopData shop,
         ShopItemEntry entry,
+        int quantity,
         out string error)
     {
         error = null;
@@ -34,6 +37,15 @@ public class ShopSystem : GameSystem<ShopSystem>
             return false;
         }
 
+        if (shop.ItemsForSale == null ||
+            !System.Array.Exists(
+                shop.ItemsForSale,
+                item => item == entry))
+        {
+            error = "Item does not belong to this shop.";
+            return false;
+        }
+
         if (entry.Price <= 0)
         {
             error = "Item price must be greater than zero.";
@@ -46,12 +58,17 @@ public class ShopSystem : GameSystem<ShopSystem>
             return false;
         }
 
-        if (shop.ItemsForSale == null ||
-            !System.Array.Exists(
-                shop.ItemsForSale,
-                item => item == entry))
+        if (quantity <= 0 || quantity > MaxPurchaseQuantity)
         {
-            error = "Item does not belong to this shop.";
+            error = "Purchase quantity is outside the allowed range.";
+            return false;
+        }
+
+        long totalCost = (long)entry.Price * quantity;
+
+        if (totalCost > int.MaxValue)
+        {
+            error = "Total purchase price is too high.";
             return false;
         }
 
@@ -61,7 +78,7 @@ public class ShopSystem : GameSystem<ShopSystem>
             return false;
         }
 
-        if (CurrencySystem.Instance.Coins < entry.Price)
+        if (CurrencySystem.Instance.Coins < totalCost)
         {
             error = "Not enough Coins.";
             return false;
@@ -73,11 +90,12 @@ public class ShopSystem : GameSystem<ShopSystem>
             return false;
         }
 
-        // CanGrantRewards membutuhkan list request dan parameter out.
         List<RewardGrantRequest> requests =
             new List<RewardGrantRequest>
             {
-                new RewardGrantRequest(entry.RewardData, 1)
+                new RewardGrantRequest(
+                    entry.RewardData,
+                    quantity)
             };
 
         if (!RewardSystem.Instance.CanGrantRewards(
@@ -92,54 +110,69 @@ public class ShopSystem : GameSystem<ShopSystem>
     public bool BuyItem(
         ShopData shop,
         ShopItemEntry entry,
+        int quantity,
         out string error)
     {
-        if (!CanBuyItem(shop, entry, out error))
-        {
+        if (!CanBuyItem(shop, entry, quantity, out error))
             return false;
-        }
 
-        if (!CurrencySystem.Instance.SpendCoins(entry.Price))
+        int totalCost = (int)((long)entry.Price * quantity);
+
+        if (!CurrencySystem.Instance.SpendCoins(totalCost))
         {
             error = "Failed to spend Coins.";
             return false;
         }
 
-        // GrantReward mengembalikan List<RewardGrantResult>.
         List<RewardGrantResult> results =
             RewardSystem.Instance.GrantReward(
-                entry.RewardData, 1);
+                entry.RewardData,
+                quantity);
 
         if (results == null ||
             results.Count == 0 ||
             results[0] == null ||
             !results[0].Success)
         {
-            // Refund jika reward gagal diberikan.
-            CurrencySystem.Instance.AddCoins(entry.Price);
+            CurrencySystem.Instance.AddCoins(totalCost);
 
             error = "Failed to grant reward. Coins refunded.";
-            Debug.LogError(error);
+            Debug.LogError($"[ShopSystem] {error}");
             return false;
         }
+
+        // Repeat the reward entry so the popup displays the purchased quantity.
+        List<RewardData> popupRewards =
+            new List<RewardData>(quantity);
+
+        for (int i = 0; i < quantity; i++)
+            popupRewards.Add(entry.RewardData);
+
+        RewardSystem.Instance.ShowRewardPopup(popupRewards);
 
         error = null;
 
         Debug.Log(
-            $"Purchased {entry.EntryName} from {shop.ShopName} " +
-            $"for {entry.Price} Coins.");
+            $"Purchased {quantity}x {entry.EntryName} " +
+            $"from {shop.ShopName} for {totalCost} Coins.");
 
         return true;
     }
 
+    public bool BuyItem(
+        ShopData shop,
+        ShopItemEntry entry,
+        out string error)
+    {
+        return BuyItem(shop, entry, 1, out error);
+    }
+
     public bool BuyItem(ShopData shop, ShopItemEntry entry)
     {
-        bool success = BuyItem(shop, entry, out string error);
+        bool success = BuyItem(shop, entry, 1, out string error);
 
         if (!success)
-        {
-            Debug.LogWarning($"Purchase failed: {error}");
-        }
+            Debug.LogWarning($"[ShopSystem] Purchase failed: {error}");
 
         return success;
     }
