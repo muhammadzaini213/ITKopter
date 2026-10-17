@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fcf3e0bd07c144f9821b6295b9db28, type: 3}
+  m_Name: WaveData
+  m_EditorClassIdentifier: Assembly-CSharp::WaveData
+  waveName: wave_1
+  enemyCollectionPrefab: {fileID: 7501149063217960289, guid: 1522ea5ab41c7179786bf16412ec487c,
+    type: 3}

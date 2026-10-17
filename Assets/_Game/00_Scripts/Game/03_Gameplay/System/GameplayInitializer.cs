@@ -14,6 +14,9 @@ public class GameplayInitializer : MonoBehaviour
     [SerializeField] private bool initializeOnStart = true;
     [SerializeField] private bool activateFirstCharacterOnly = true;
 
+    [Header("Enemy Waves")]
+    [SerializeField] private EnemyWaveManager enemyWaveManager;
+
     private readonly List<GameObject> characterInstances = new();
     private readonly List<Character> initializedCharacters = new();
 
@@ -48,7 +51,8 @@ public class GameplayInitializer : MonoBehaviour
         if (IsInitialized)
         {
             Debug.LogWarning(
-                "[GameplayInitializer] Gameplay is already initialized.");
+                "[GameplayInitializer] Gameplay is already initialized.",
+                this);
             return false;
         }
 
@@ -57,14 +61,24 @@ public class GameplayInitializer : MonoBehaviour
         if (levelSystem == null)
         {
             Debug.LogError(
-                "[GameplayInitializer] LevelSystem instance was not found.");
+                "[GameplayInitializer] LevelSystem instance was not found.",
+                this);
             return false;
         }
 
         if (!levelSystem.HasActiveSession)
         {
             Debug.LogError(
-                "[GameplayInitializer] No active level session was found.");
+                "[GameplayInitializer] No active level session was found.",
+                this);
+            return false;
+        }
+
+        if (enemyWaveManager == null)
+        {
+            Debug.LogError(
+                "[GameplayInitializer] EnemyWaveManager is not assigned.",
+                this);
             return false;
         }
 
@@ -74,14 +88,24 @@ public class GameplayInitializer : MonoBehaviour
         if (level == null)
         {
             Debug.LogError(
-                "[GameplayInitializer] Current level data is missing.");
+                "[GameplayInitializer] Current level data is missing.",
+                this);
             return false;
         }
 
         if (team == null || team.Count < 1 || team.Count > MaxTeamSize)
         {
             Debug.LogError(
-                "[GameplayInitializer] Team must contain between 1 and 3 characters.");
+                "[GameplayInitializer] Team must contain between 1 and 3 characters.",
+                this);
+            return false;
+        }
+
+        if (characterRoot == null)
+        {
+            Debug.LogError(
+                "[GameplayInitializer] Character Root is not assigned.",
+                this);
             return false;
         }
 
@@ -89,10 +113,12 @@ public class GameplayInitializer : MonoBehaviour
             characterSpawnPoints.Length < team.Count)
         {
             Debug.LogError(
-                "[GameplayInitializer] Not enough character spawn points are assigned.");
+                "[GameplayInitializer] Not enough character spawn points are assigned.",
+                this);
             return false;
         }
 
+        // Validate all selected characters before spawning any of them.
         for (int i = 0; i < team.Count; i++)
         {
             CharacterData data = team[i];
@@ -100,14 +126,16 @@ public class GameplayInitializer : MonoBehaviour
             if (data == null || data.CharacterPrefab == null)
             {
                 Debug.LogError(
-                    $"[GameplayInitializer] Character data or prefab is missing at team index {i}.");
+                    $"[GameplayInitializer] Character data or prefab is missing at team index {i}.",
+                    this);
                 return false;
             }
 
             if (characterSpawnPoints[i] == null)
             {
                 Debug.LogError(
-                    $"[GameplayInitializer] Spawn point {i} is not assigned.");
+                    $"[GameplayInitializer] Spawn point {i} is not assigned.",
+                    this);
                 return false;
             }
 
@@ -115,7 +143,8 @@ public class GameplayInitializer : MonoBehaviour
             {
                 Debug.LogError(
                     $"[GameplayInitializer] Prefab '{data.CharacterPrefab.name}' " +
-                    "does not have a Character component on its root.");
+                    "does not have a Character component on its root.",
+                    this);
                 return false;
             }
         }
@@ -149,7 +178,11 @@ public class GameplayInitializer : MonoBehaviour
 
         Debug.Log(
             $"[GameplayInitializer] Initialized level '{CurrentLevel.LevelName}' " +
-            $"with {initializedCharacters.Count} character(s).");
+            $"with {initializedCharacters.Count} character(s).",
+            this);
+
+        // Start enemy waves only after all characters have been initialized.
+        enemyWaveManager.StartLevelWaves();
 
         return true;
     }
@@ -181,6 +214,7 @@ public class GameplayInitializer : MonoBehaviour
         characterInstances.Clear();
         initializedCharacters.Clear();
 
+        CurrentLevel = null;
         IsInitialized = false;
     }
 }

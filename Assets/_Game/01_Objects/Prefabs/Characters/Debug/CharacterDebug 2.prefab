@@ -132,7 +132,6 @@ MonoBehaviour:
   firePoint: {fileID: 276194683720365842}
   bulletSpawner: {fileID: 8161822079336005736}
   normalAutoShooter: {fileID: 105019972791932153}
-  characterSwitcher: {fileID: 0}
   spacing: 0.3
   duration: 3
 --- !u!114 &8161822079336005736
@@ -153,7 +152,7 @@ MonoBehaviour:
   projectileDamage: 10
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   prewarmCount: 30
   maxPoolSize: 300
   projectileCount: 12
