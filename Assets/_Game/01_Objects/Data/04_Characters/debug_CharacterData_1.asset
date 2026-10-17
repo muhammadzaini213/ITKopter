@@ -16,16 +16,17 @@ MonoBehaviour:
   icon: {fileID: 0}
   characterId: debug_1
   characterName: Debugy
-  health: 0
-  attackPower: 0
+  health: 10
+  attackPower: 2
   defensePower: 0
-  specialAttackPower: 0
-  specialDefensePower: 0
-  specialSkillCooldown: 0
-  movementSpeed: 0
-  bulletSpeed: 0
+  exSkillPower: 0
+  exDefensePower: 0
+  exSkillCooldown: 5
+  movementSpeed: 5
+  bulletSpeed: 10
   characterType: 0
   characterRole: 0
-  characterPrefab: {fileID: 0}
+  characterPrefab: {fileID: 8729292657063863904, guid: 314f6b1abc5438092a14c559d62fde72,
+    type: 3}
   duplicateItem: {fileID: 11400000, guid: 647a754b2432732019eb3f1c5f5614ea, type: 2}
   duplicateItemAmount: 1

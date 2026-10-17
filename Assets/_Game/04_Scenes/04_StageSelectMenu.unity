@@ -1084,6 +1084,7 @@ MonoBehaviour:
   messageText: {fileID: 2077006896}
   startButton: {fileID: 645664302}
   closeButton: {fileID: 2145954706}
+  gameplayScene: {fileID: 11400000, guid: 82dc3e3cce79197f8a4de62cb99d6fdb, type: 2}
 --- !u!1 &1080642822
 GameObject:
   m_ObjectHideFlags: 0

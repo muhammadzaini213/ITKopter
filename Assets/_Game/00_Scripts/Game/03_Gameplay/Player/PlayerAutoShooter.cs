@@ -1,135 +1,122 @@
 
 using UnityEngine;
-using Slafurry.Utils.Pooling;
 
 public class PlayerAutoShooter : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField]
-    private Transform firePoint;
-
-    [SerializeField]
-    private Projectile projectilePrefab;
-
-    private Transform projectilePoolParent;
+    [SerializeField] private BulletSpawner bulletSpawner;
 
     [Header("Firing Settings")]
-    [SerializeField, Min(0.01f)]
-    private float fireInterval = 0.2f;
+    [SerializeField, Min(0.01f)] private float fireInterval = 0.2f;
 
-    [SerializeField, Min(0.01f)]
-    private float projectileSpeed = 15f;
-
-    [SerializeField, Min(0f)]
-    private float projectileDamage = 10f;
-
-    [Header("Pooling")]
-    [SerializeField, Min(0)]
-    private int prewarmCount = 30;
-
-    [SerializeField, Min(1)]
-    private int maxPoolSize = 300;
-
-    [Header("Target Detection")]
-    [SerializeField]
-    private LayerMask targetMask;
-
-    private GenericPool<Projectile> projectilePool;
+    private Transform firePoint;
+    private CharacterSwitcher characterSwitcher;
+    private Character character;
     private float fireTimer;
-    private bool poolReady;
+    private bool hasLoggedMissingReference;
 
     private void Awake()
     {
-        projectilePoolParent = Object.FindFirstObjectByType<PoolParent>()?.transform;
-    }
+        character = GetComponentInParent<Character>();
+        firePoint = GetComponentInChildren<Firepoint>().transform;
+        if (character == null)
+        {
+            Debug.LogError(
+                "[PlayerAutoShooter] Character component is missing.",
+                this);
+        }
 
-    private void Start()
-    {
-        InitializePool();
+        if (firePoint == null)
+        {
+            Debug.LogError(
+                "[PlayerAutoShooter] Fire Point is not assigned.",
+                this);
+        }
+
+        if (bulletSpawner == null)
+        {
+            Debug.LogError(
+                "[PlayerAutoShooter] Bullet Spawner is not assigned.",
+                this);
+        }
+
+        characterSwitcher = Object.FindFirstObjectByType<CharacterSwitcher>();
+
+        if (characterSwitcher == null)
+        {
+            Debug.LogError(
+                "[PlayerAutoShooter] CharacterSwitcher is not found in the scene.",
+                this);
+        }
     }
 
     private void Update()
     {
-        if (!poolReady || firePoint == null || projectilePrefab == null)
+        if (!CanShoot())
+        {
+            fireTimer = 0f;
             return;
+        }
 
         fireTimer += Time.deltaTime;
 
-        while (fireTimer >= fireInterval)
-        {
-            fireTimer -= fireInterval;
-            FireProjectile();
-        }
+        if (fireTimer < fireInterval)
+            return;
+
+        fireTimer -= fireInterval;
+
+        Debug.Log(
+            $"[AutoShooter] {character.name} firing. " +
+            $"Switching: {characterSwitcher.IsSwitching}, " +
+            $"Active: {characterSwitcher.ActiveCharacter?.name}",
+            this);
+
+        bulletSpawner.Fire(
+            firePoint,
+            character.BulletSpeed
+        );
     }
 
-    private void InitializePool()
+    private bool CanShoot()
     {
-        if (projectilePrefab == null)
-        {
-            Debug.LogError(
-                "[PlayerAutoShooter] Projectile prefab is not assigned.",
-                this
-            );
+        if (!isActiveAndEnabled || !gameObject.activeInHierarchy)
+            return false;
 
-            return;
+        if (character == null || firePoint == null || bulletSpawner == null)
+            return false;
+
+        if (characterSwitcher == null)
+        {
+            if (!hasLoggedMissingReference)
+            {
+                Debug.LogError(
+                    "[PlayerAutoShooter] CharacterSwitcher is not assigned.",
+                    this);
+
+                hasLoggedMissingReference = true;
+            }
+
+            return false;
         }
 
-        if (projectilePoolParent == null)
-        {
-            GameObject poolContainer = new GameObject(
-                "PlayerProjectilePool"
-            );
+        // During the switching window, every active character can shoot.
+        if (characterSwitcher.IsSwitching)
+            return true;
 
-            projectilePoolParent = poolContainer.transform;
-        }
+        // Outside the switching window, only the selected character can shoot.
+        if (characterSwitcher.ActiveCharacter != character.gameObject)
+            return false;
 
-        projectilePool = new GenericPool<Projectile>(
-            projectilePrefab,
-            projectilePoolParent,
-            defaultCapacity: Mathf.Max(1, prewarmCount),
-            maxSize: Mathf.Max(1, maxPoolSize)
-        );
+        Health health = GetComponent<Health>();
 
-        projectilePool.Prewarm(prewarmCount);
+        if (health != null && health.IsDead)
+            return false;
 
-        poolReady = true;
+        return true;
+    }
+
+    private void OnDisable()
+    {
         fireTimer = 0f;
-    }
-
-    private void FireProjectile()
-    {
-        if (firePoint == null)
-            return;
-
-        Projectile projectile = projectilePool.Get();
-
-        projectile.SetReturnCallback(ReturnProjectile);
-
-        projectile.Initialize(
-            firePoint.position,
-            firePoint.rotation,
-            projectileSpeed,
-            projectileDamage,
-            targetMask
-        );
-    }
-
-    private void ReturnProjectile(Projectile projectile)
-    {
-        if (projectilePool == null || projectile == null)
-            return;
-
-        projectilePool.Release(projectile);
-    }
-
-    private void OnDestroy()
-    {
-        poolReady = false;
-
-        if (projectilePool != null)
-        {
-            projectilePool.Clear();
-            projectilePool = null;
-        }
     }
 }
