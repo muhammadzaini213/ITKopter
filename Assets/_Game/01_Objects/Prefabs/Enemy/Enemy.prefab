@@ -200,7 +200,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 5609170668845526785, guid: b5613532732257468a1b572894e8b15f,
     type: 3}
   projectileSpeed: 15
-  projectileDamage: 10
+  projectileDamage: 1
   targetMask:
     serializedVersion: 2
     m_Bits: 64

@@ -11,6 +11,7 @@ public abstract class Character : MonoBehaviour
 
     public string CharacterId { get; private set; }
     public string CharacterName { get; private set; }
+    public Sprite CharacterIcon { get; private set; }
 
     public float Health { get; private set; }
     public float AttackPower { get; private set; }
@@ -44,6 +45,7 @@ public abstract class Character : MonoBehaviour
 
         CharacterId = data.CharacterId;
         CharacterName = data.CharacterName;
+        CharacterIcon = data.Icon;
         Health = data.Health;
         AttackPower = data.AttackPower;
         DefensePower = data.DefensePower;
