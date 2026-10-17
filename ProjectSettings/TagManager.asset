@@ -12,9 +12,9 @@ TagManager:
   - Collider
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Environment
   - 
   - 
   - 
