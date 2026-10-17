@@ -42,6 +42,33 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3431970655
+    locked: 0
+  - name: BackgroundDecoration
+    uniqueID: 3978305959
+    locked: 0
+  - name: Enemy
+    uniqueID: 1795425955
+    locked: 0
+  - name: Entity
+    uniqueID: 3915321695
+    locked: 0
+  - name: Player
+    uniqueID: 1414673075
+    locked: 0
+  - name: Bullet
+    uniqueID: 2025351037
+    locked: 0
+  - name: Foreground
+    uniqueID: 840622547
+    locked: 0
+  - name: ForegroundDecoration
+    uniqueID: 3278755301
+    locked: 0
+  - name: UI
+    uniqueID: 2730009913
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
