@@ -204,6 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 147611761}
   - component: {fileID: 147611762}
+  - component: {fileID: 147611763}
   m_Layer: 0
   m_Name: ====== GAME ======
   m_TagString: Untagged
@@ -228,6 +229,7 @@ Transform:
   - {fileID: 695964230}
   - {fileID: 1822628094}
   - {fileID: 246178325}
+  - {fileID: 1205925594}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &147611762
@@ -249,6 +251,22 @@ MonoBehaviour:
   - {fileID: 1062891441}
   initializeOnStart: 1
   activateFirstCharacterOnly: 1
+  enemyWaveManager: {fileID: 1205925595}
+--- !u!114 &147611763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147611760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55fe6adcb581a11da4851e99ea60b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameplayManager
+  enemyWaveManager: {fileID: 1205925595}
+  stageScene: {fileID: 11400000, guid: 6b89e3f2deb7ff58e8e9c98c8200b5c6, type: 2}
+  returnToMenuDelay: 2
 --- !u!1 &175085710
 GameObject:
   m_ObjectHideFlags: 0
@@ -2798,6 +2816,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112930535}
   m_CullTransparentMesh: 1
+--- !u!1 &1205925593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1205925594}
+  - component: {fileID: 1205925595}
+  m_Layer: 0
+  m_Name: === Enemy ===
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1205925594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205925593}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.91, y: -7.77, z: 0}
+  m_LocalScale: {x: 2.9, y: 2.9, z: 2.9}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 147611761}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1205925595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205925593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6654f8f5bdaceaeeb86ac7fa9c0934fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyWaveManager
+  enemyContainer: {fileID: 1205925594}
+  delayBetweenWaves: 1
+  delayBetweenParts: 1
 --- !u!1 &1220085688
 GameObject:
   m_ObjectHideFlags: 0
