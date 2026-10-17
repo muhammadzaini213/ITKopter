@@ -24,9 +24,17 @@ public class EnergySystem : GameSystem<EnergySystem>
     private int energy;
     private long lastRegenUtcTicks;
 
-    public int Energy => energy;
+    public int Energy
+    {
+        get
+        {
+            RefreshEnergy();
+            return energy;
+        }
+    }
+
     public int MaxEnergy => MaxEnergyValue;
-    public int EnergyMissing => MaxEnergy - energy;
+    public int EnergyMissing => MaxEnergy - Energy;
 
     public event Action<int> OnEnergyChanged;
 
@@ -93,8 +101,7 @@ public class EnergySystem : GameSystem<EnergySystem>
 
         energy = (int)Math.Min(
             (long)energy + amount,
-            MaxEnergy
-        );
+            MaxEnergy);
 
         if (energy >= MaxEnergy)
             lastRegenUtcTicks = DateTime.UtcNow.Ticks;
@@ -134,8 +141,7 @@ public class EnergySystem : GameSystem<EnergySystem>
 
         energy = (int)Math.Min(
             (long)energy + recovered,
-            MaxEnergy
-        );
+            MaxEnergy);
 
         if (energy >= MaxEnergy)
         {
@@ -166,8 +172,7 @@ public class EnergySystem : GameSystem<EnergySystem>
 
         EnergySaveData data = Save.From(
             SaveFileName,
-            new EnergySaveData()
-        );
+            new EnergySaveData());
 
         if (data == null)
         {
