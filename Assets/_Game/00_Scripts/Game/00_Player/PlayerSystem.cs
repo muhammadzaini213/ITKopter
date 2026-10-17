@@ -2,15 +2,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using Slafurry.Core.Abstract;
 using Slafurry.Systems.Save;
-using UnityEngine;
 
 public class PlayerSystem : GameSystem<PlayerSystem>
 {
     private const string SaveFileName = "player";
     private const int BaseExpRequired = 100;
     private const double ExpMultiplier = 1.5;
+    private const int MaxTeamSize = 3;
 
     [Header("Player Data")]
     [SerializeField] private string playerName = "Player";
@@ -21,8 +22,10 @@ public class PlayerSystem : GameSystem<PlayerSystem>
 
     private readonly List<CharacterData> characterOwned = new();
     private readonly HashSet<string> completedLevelIds = new();
+    private readonly List<string> lastTeamCharacterIds = new();
 
-    private readonly Dictionary<string, CharacterProgression> characterProgressions = new();
+    private readonly Dictionary<string, CharacterProgression>
+        characterProgressions = new();
 
     private bool isPlayerDataLoaded;
 
@@ -32,14 +35,16 @@ public class PlayerSystem : GameSystem<PlayerSystem>
 
     public IReadOnlyList<CharacterData> CharacterOwned => characterOwned;
     public IReadOnlyCollection<string> CompletedLevelIds => completedLevelIds;
+    public IReadOnlyList<string> LastTeamCharacterIds => lastTeamCharacterIds;
 
     public event Action<string> OnPlayerNameChanged;
     public event Action<int> OnPlayerExpChanged;
     public event Action<int> OnPlayerLevelChanged;
-
     public event Action OnPlayerDataReady;
     public event Action OnCharacterOwnedChanged;
     public event Action<string> OnCharacterProgressionChanged;
+    public event Action OnLevelProgressChanged;
+    public event Action OnLastTeamChanged;
 
     public int PlayerLevel
     {
@@ -107,13 +112,11 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         }
 
         LoadPlayerData();
-
         isPlayerDataLoaded = true;
 
         OnPlayerNameChanged?.Invoke(playerName);
         OnPlayerExpChanged?.Invoke(playerExp);
         OnPlayerLevelChanged?.Invoke(PlayerLevel);
-
         OnPlayerDataReady?.Invoke();
 
         Debug.Log("[PlayerSystem] Player data loaded successfully.");
@@ -238,7 +241,8 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         return true;
     }
 
-    public CharacterProgression GetCharacterProgression(CharacterData character)
+    public CharacterProgression GetCharacterProgression(
+        CharacterData character)
     {
         if (character == null)
             return null;
@@ -314,6 +318,25 @@ public class PlayerSystem : GameSystem<PlayerSystem>
                completedLevelIds.Contains(levelId);
     }
 
+    public bool IsLevelUnlocked(LevelData level)
+    {
+        if (level == null ||
+            string.IsNullOrWhiteSpace(level.LevelId))
+        {
+            return false;
+        }
+
+        if (level.PreviousLevel == null)
+            return true;
+
+        string prerequisiteId = level.PreviousLevel.LevelId;
+
+        if (string.IsNullOrWhiteSpace(prerequisiteId))
+            return false;
+
+        return completedLevelIds.Contains(prerequisiteId);
+    }
+
     public void CompleteLevel(string levelId)
     {
         if (!isPlayerDataLoaded ||
@@ -326,7 +349,95 @@ public class PlayerSystem : GameSystem<PlayerSystem>
             return;
 
         if (!SavePlayerData())
+        {
             completedLevelIds.Remove(levelId);
+            return;
+        }
+
+        OnLevelProgressChanged?.Invoke();
+
+        Debug.Log($"[PlayerSystem] Level completed: {levelId}");
+    }
+
+    public List<CharacterData> GetLastTeamCharacters()
+    {
+        List<CharacterData> team = new();
+        HashSet<string> uniqueIds = new();
+
+        foreach (string id in lastTeamCharacterIds)
+        {
+            if (string.IsNullOrWhiteSpace(id) ||
+                !uniqueIds.Add(id))
+            {
+                continue;
+            }
+
+            CharacterData character = FindCharacterById(id);
+
+            if (character == null)
+                continue;
+
+            bool isOwned = characterOwned.Exists(
+                item => item != null &&
+                        item.CharacterId == id);
+
+            if (!isOwned)
+                continue;
+
+            if (team.Count >= MaxTeamSize)
+                break;
+
+            team.Add(character);
+        }
+
+        return team;
+    }
+
+    public bool SaveLastTeam(IReadOnlyList<CharacterData> team)
+    {
+        if (!isPlayerDataLoaded ||
+            team == null ||
+            team.Count > MaxTeamSize)
+        {
+            return false;
+        }
+
+        List<string> newIds = new();
+        HashSet<string> uniqueIds = new();
+
+        foreach (CharacterData character in team)
+        {
+            if (character == null ||
+                string.IsNullOrWhiteSpace(character.CharacterId) ||
+                !uniqueIds.Add(character.CharacterId))
+            {
+                return false;
+            }
+
+            bool isOwned = characterOwned.Exists(
+                item => item != null &&
+                        item.CharacterId == character.CharacterId);
+
+            if (!isOwned)
+                return false;
+
+            newIds.Add(character.CharacterId);
+        }
+
+        List<string> previousIds = new(lastTeamCharacterIds);
+
+        lastTeamCharacterIds.Clear();
+        lastTeamCharacterIds.AddRange(newIds);
+
+        if (!SavePlayerData())
+        {
+            lastTeamCharacterIds.Clear();
+            lastTeamCharacterIds.AddRange(previousIds);
+            return false;
+        }
+
+        OnLastTeamChanged?.Invoke();
+        return true;
     }
 
     private bool SavePlayerData()
@@ -359,6 +470,7 @@ public class PlayerSystem : GameSystem<PlayerSystem>
                 .ConvertAll(character => character.CharacterId),
 
             completedLevelIds = new List<string>(completedLevelIds),
+            lastTeamCharacterIds = new List<string>(lastTeamCharacterIds),
 
             characterProgressions = new List<CharacterProgressionSaveData>()
         };
@@ -402,6 +514,7 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         characterOwned.Clear();
         completedLevelIds.Clear();
         characterProgressions.Clear();
+        lastTeamCharacterIds.Clear();
 
         if (data.ownedCharacterIds != null)
         {
@@ -432,8 +545,8 @@ public class PlayerSystem : GameSystem<PlayerSystem>
 
         if (data.characterProgressions != null)
         {
-            foreach (CharacterProgressionSaveData saved in
-                     data.characterProgressions)
+            foreach (CharacterProgressionSaveData saved
+                     in data.characterProgressions)
             {
                 if (saved == null ||
                     string.IsNullOrWhiteSpace(saved.characterId))
@@ -463,13 +576,47 @@ public class PlayerSystem : GameSystem<PlayerSystem>
             }
         }
 
+        if (data.lastTeamCharacterIds != null)
+        {
+            HashSet<string> uniqueIds = new();
+
+            foreach (string id in data.lastTeamCharacterIds)
+            {
+                if (string.IsNullOrWhiteSpace(id) ||
+                    !uniqueIds.Add(id))
+                {
+                    continue;
+                }
+
+                CharacterData character = FindCharacterById(id);
+
+                if (character == null)
+                    continue;
+
+                bool isOwned = characterOwned.Exists(
+                    item => item != null &&
+                            item.CharacterId == id);
+
+                if (!isOwned)
+                    continue;
+
+                if (lastTeamCharacterIds.Count >= MaxTeamSize)
+                    break;
+
+                lastTeamCharacterIds.Add(id);
+            }
+        }
+
         InventorySystem.Instance.LoadFromSaveData(data);
     }
 
     private CharacterData FindCharacterById(string id)
     {
-        if (characterDatabase == null)
+        if (characterDatabase == null ||
+            string.IsNullOrWhiteSpace(id))
+        {
             return null;
+        }
 
         return characterDatabase.FindById(id);
     }

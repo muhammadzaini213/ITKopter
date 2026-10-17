@@ -17,10 +17,9 @@ public class PlayerSaveData
     public int playerExp;
 
     public List<string> ownedCharacterIds = new();
-
     public List<string> completedLevelIds = new();
+    public List<string> lastTeamCharacterIds = new();
 
     public List<CharacterProgressionSaveData> characterProgressions = new();
-
     public List<InventoryItemSaveData> inventoryItems = new();
 }
