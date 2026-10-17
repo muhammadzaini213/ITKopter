@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -44,6 +45,9 @@ public class CharacterSwitcher : MonoBehaviour
 
     private GameObject[] characters;
     private BoxCollider2D[] childColliders;
+    private Health[] characterHealths;
+    private bool[] defeatedCharacters;
+    private Action[] deathCallbacks;
     private UnityAction[] buttonCallbacks;
 
     private int activeCharacterIndex;
@@ -56,8 +60,10 @@ public class CharacterSwitcher : MonoBehaviour
 
     public GameObject ActiveCharacter =>
         isInitialized &&
+        characters != null &&
         activeCharacterIndex >= 0 &&
-        activeCharacterIndex < characters.Length
+        activeCharacterIndex < characters.Length &&
+        !defeatedCharacters[activeCharacterIndex]
             ? characters[activeCharacterIndex]
             : null;
 
@@ -73,11 +79,15 @@ public class CharacterSwitcher : MonoBehaviour
 
     public float CooldownRemaining => cooldownTimer;
 
+    public float SwitchCooldownDuration => switchCooldown;
+
     public bool CanSwitch =>
         isInitialized &&
+        characters != null &&
         characters.Length > 1 &&
         !isSwitching &&
-        cooldownTimer <= 0f;
+        cooldownTimer <= 0f &&
+        HasLivingCharacterOtherThanActive();
 
     private void Start()
     {
@@ -221,7 +231,10 @@ public class CharacterSwitcher : MonoBehaviour
 
         characters = new GameObject[count];
         childColliders = new BoxCollider2D[count];
-        buttonCallbacks = new UnityAction[3];
+        characterHealths = new Health[count];
+        defeatedCharacters = new bool[count];
+        deathCallbacks = new Action[count];
+        buttonCallbacks = new UnityAction[switchButtons.Length];
 
         for (int i = 0; i < count; i++)
         {
@@ -274,14 +287,44 @@ public class CharacterSwitcher : MonoBehaviour
             characters[i] = characterObject;
             childColliders[i] = childCollider;
 
+            Health health = characterObject.GetComponent<Health>();
+            characterHealths[i] = health;
+
+            if (health != null)
+            {
+                int index = i;
+
+                deathCallbacks[i] = () => HandleCharacterDeath(index);
+                health.OnDeath += deathCallbacks[i];
+
+                if (health.IsDead)
+                {
+                    defeatedCharacters[i] = true;
+                }
+            }
+
             characterObject.transform.localPosition =
                 frontPosition.localPosition;
 
             characterObject.transform.localRotation = Quaternion.identity;
-            characterObject.SetActive(i == 0);
+            characterObject.SetActive(false);
         }
 
-        activeCharacterIndex = 0;
+        activeCharacterIndex = FindFirstLivingCharacter();
+
+        if (activeCharacterIndex < 0)
+        {
+            Debug.LogWarning(
+                "[CharacterSwitcher] No living characters are available.",
+                this);
+
+            isInitialized = true;
+            RefreshButtons();
+            return true;
+        }
+
+        characters[activeCharacterIndex].SetActive(true);
+
         cooldownTimer = 0f;
         isSwitching = false;
         isInitialized = true;
@@ -293,15 +336,30 @@ public class CharacterSwitcher : MonoBehaviour
 
     private void Update()
     {
-        if (!isInitialized || cooldownTimer <= 0f)
+        if (!isInitialized)
             return;
 
-        cooldownTimer = Mathf.Max(
-            0f,
-            cooldownTimer - Time.deltaTime);
+        if (cooldownTimer > 0f)
+        {
+            cooldownTimer = Mathf.Max(
+                0f,
+                cooldownTimer - Time.deltaTime);
 
-        onCooldownChanged?.Invoke(cooldownTimer);
-        RefreshButtons();
+            onCooldownChanged?.Invoke(cooldownTimer);
+            RefreshButtons();
+        }
+
+        // Detect deaths even if an event was missed.
+        for (int i = 0; i < characters.Length; i++)
+        {
+            if (defeatedCharacters[i])
+                continue;
+
+            Health health = characterHealths[i];
+
+            if (health != null && health.IsDead)
+                HandleCharacterDeath(i);
+        }
     }
 
     private void RegisterButtonCallbacks()
@@ -328,18 +386,17 @@ public class CharacterSwitcher : MonoBehaviour
         if (targetIndex < 0 || targetIndex >= characters.Length)
             return;
 
+        if (defeatedCharacters[targetIndex])
+            return;
+
         if (targetIndex == activeCharacterIndex)
             return;
 
-        Health targetHealth =
-            characters[targetIndex].GetComponent<Health>();
+        Health targetHealth = characterHealths[targetIndex];
 
         if (targetHealth != null && targetHealth.IsDead)
         {
-            Debug.LogWarning(
-                "[CharacterSwitcher] Cannot switch to a defeated character.",
-                characters[targetIndex]);
-
+            HandleCharacterDeath(targetIndex);
             return;
         }
 
@@ -359,7 +416,6 @@ public class CharacterSwitcher : MonoBehaviour
         int count = characters.Length;
 
         Vector3 frontLocal = frontPosition.localPosition;
-
         Vector3[] formationTargets = new Vector3[count];
 
         formationTargets[targetIndex] = frontLocal;
@@ -380,6 +436,9 @@ public class CharacterSwitcher : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
+            if (defeatedCharacters[i])
+                continue;
+
             formationTargets[i] =
                 ClampChildLocalPosition(i, formationTargets[i]);
         }
@@ -392,16 +451,34 @@ public class CharacterSwitcher : MonoBehaviour
         Vector3[] retreatTargets = new Vector3[count];
 
         for (int i = 0; i < count; i++)
+        {
             retreatTargets[i] = characters[i].transform.localPosition;
 
-        retreatTargets[fromIndex] = retreatPos;
+            if (defeatedCharacters[i])
+                continue;
 
-        yield return AnimateAllCharacters(
+            if (i == fromIndex)
+                retreatTargets[i] = retreatPos;
+        }
+
+        yield return AnimateLivingCharacters(
             retreatTargets,
             retreatDuration);
 
+        if (!IsSwitchTargetAlive(targetIndex))
+        {
+            FinishInterruptedSwitch();
+            yield break;
+        }
+
         for (int i = 0; i < count; i++)
         {
+            if (defeatedCharacters[i])
+            {
+                characters[i].SetActive(false);
+                continue;
+            }
+
             characters[i].transform.localPosition =
                 ClampChildLocalPosition(i, retreatPos);
 
@@ -410,31 +487,72 @@ public class CharacterSwitcher : MonoBehaviour
 
         RefreshAutoShoot();
 
-        yield return AnimateAllCharacters(
+        yield return AnimateLivingCharacters(
             formationTargets,
             spreadDuration);
 
+        if (!IsSwitchTargetAlive(targetIndex))
+        {
+            FinishInterruptedSwitch();
+            yield break;
+        }
+
         if (switchingWindowDuration > 0f)
-            yield return new WaitForSeconds(switchingWindowDuration);
+        {
+            float elapsed = 0f;
+
+            while (elapsed < switchingWindowDuration)
+            {
+                if (!IsSwitchTargetAlive(targetIndex))
+                {
+                    FinishInterruptedSwitch();
+                    yield break;
+                }
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        if (!IsSwitchTargetAlive(targetIndex))
+        {
+            FinishInterruptedSwitch();
+            yield break;
+        }
 
         Vector3 mainPos = formationTargets[targetIndex];
         Vector3[] mergeTargets = new Vector3[count];
 
         for (int i = 0; i < count; i++)
-            mergeTargets[i] = mainPos;
+        {
+            mergeTargets[i] = characters[i].transform.localPosition;
 
-        yield return AnimateAllCharacters(
+            if (!defeatedCharacters[i])
+                mergeTargets[i] = mainPos;
+        }
+
+        yield return AnimateLivingCharacters(
             mergeTargets,
             mergeDuration);
 
+        if (!IsSwitchTargetAlive(targetIndex))
+        {
+            FinishInterruptedSwitch();
+            yield break;
+        }
+
         for (int i = 0; i < count; i++)
         {
-            if (i != targetIndex)
+            if (defeatedCharacters[i] || i != targetIndex)
+            {
                 characters[i].SetActive(false);
+            }
         }
 
         characters[targetIndex].transform.localPosition =
             ClampChildLocalPosition(targetIndex, frontLocal);
+
+        characters[targetIndex].SetActive(true);
 
         activeCharacterIndex = targetIndex;
         cooldownTimer = switchCooldown;
@@ -450,14 +568,11 @@ public class CharacterSwitcher : MonoBehaviour
         RefreshButtons();
 
         Debug.Log(
-            $"[CharacterSwitcher] Switch completed. " +
-            $"Active index: {activeCharacterIndex}, " +
-            $"Active character: {ActiveCharacter?.name}, " +
-            $"Switching: {isSwitching}",
+            $"[CharacterSwitcher] Switch completed. Active index: {activeCharacterIndex}, Active character: {ActiveCharacter?.name}",
             this);
     }
 
-    private IEnumerator AnimateAllCharacters(
+    private IEnumerator AnimateLivingCharacters(
         Vector3[] targets,
         float duration)
     {
@@ -471,6 +586,12 @@ public class CharacterSwitcher : MonoBehaviour
         {
             for (int i = 0; i < count; i++)
             {
+                if (defeatedCharacters[i])
+                {
+                    characters[i].SetActive(false);
+                    continue;
+                }
+
                 characters[i].transform.localPosition =
                     ClampChildLocalPosition(i, targets[i]);
             }
@@ -491,6 +612,12 @@ public class CharacterSwitcher : MonoBehaviour
 
             for (int i = 0; i < count; i++)
             {
+                if (defeatedCharacters[i])
+                {
+                    characters[i].SetActive(false);
+                    continue;
+                }
+
                 Vector3 desired = Vector3.Lerp(
                     starts[i],
                     targets[i],
@@ -505,9 +632,154 @@ public class CharacterSwitcher : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
+            if (defeatedCharacters[i])
+            {
+                characters[i].SetActive(false);
+                continue;
+            }
+
             characters[i].transform.localPosition =
                 ClampChildLocalPosition(i, targets[i]);
         }
+    }
+
+    private bool IsSwitchTargetAlive(int targetIndex)
+    {
+        if (targetIndex < 0 || targetIndex >= characters.Length)
+            return false;
+
+        if (defeatedCharacters[targetIndex])
+            return false;
+
+        Health health = characterHealths[targetIndex];
+
+        if (health != null && health.IsDead)
+        {
+            HandleCharacterDeath(targetIndex);
+            return false;
+        }
+
+        return true;
+    }
+
+    private void HandleCharacterDeath(int characterIndex)
+    {
+        if (!isInitialized ||
+            characters == null ||
+            characterIndex < 0 ||
+            characterIndex >= characters.Length ||
+            defeatedCharacters[characterIndex])
+        {
+            return;
+        }
+
+        defeatedCharacters[characterIndex] = true;
+
+        if (characters[characterIndex] != null)
+            characters[characterIndex].SetActive(false);
+
+        bool activeCharacterDied =
+            characterIndex == activeCharacterIndex;
+
+        // Cancel any running transition so it cannot reactivate a defeated character.
+        if (switchCoroutine != null)
+        {
+            StopCoroutine(switchCoroutine);
+            switchCoroutine = null;
+        }
+
+        isSwitching = false;
+
+        if (activeCharacterDied)
+        {
+            int nextIndex = FindFirstLivingCharacter();
+
+            if (nextIndex >= 0)
+            {
+                activeCharacterIndex = nextIndex;
+
+                characters[nextIndex].transform.localPosition =
+                    ClampChildLocalPosition(
+                        nextIndex,
+                        frontPosition.localPosition);
+
+                characters[nextIndex].SetActive(true);
+
+                // Forced switch is immediate and does not wait for cooldown.
+                cooldownTimer = 0f;
+            }
+            else
+            {
+                // No living characters remain.
+                for (int i = 0; i < characters.Length; i++)
+                    characters[i].SetActive(false);
+            }
+        }
+
+        // Enforce the defeated state immediately.
+        for (int i = 0; i < characters.Length; i++)
+        {
+            if (defeatedCharacters[i])
+                characters[i].SetActive(false);
+        }
+
+        RefreshAutoShoot();
+        RefreshButtons();
+
+        onActiveCharacterChanged?.Invoke(activeCharacterIndex);
+        onCooldownChanged?.Invoke(cooldownTimer);
+        onSwitchingWindowChanged?.Invoke(false);
+
+        Debug.Log(
+            $"[CharacterSwitcher] Character at index {characterIndex} was defeated.",
+            this);
+    }
+
+    private int FindFirstLivingCharacter()
+    {
+        if (characters == null)
+            return -1;
+
+        // Prefer the next character after the current active index.
+        for (int offset = 1; offset <= characters.Length; offset++)
+        {
+            int index = (activeCharacterIndex + offset) % characters.Length;
+
+            if (defeatedCharacters[index])
+                continue;
+
+            Health health = characterHealths[index];
+
+            if (health != null && health.IsDead)
+            {
+                defeatedCharacters[index] = true;
+                characters[index].SetActive(false);
+                continue;
+            }
+
+            return index;
+        }
+
+        return -1;
+    }
+
+    private bool HasLivingCharacterOtherThanActive()
+    {
+        if (characters == null || defeatedCharacters == null)
+            return false;
+
+        for (int i = 0; i < characters.Length; i++)
+        {
+            if (i == activeCharacterIndex || defeatedCharacters[i])
+                continue;
+
+            Health health = characterHealths[i];
+
+            if (health == null || !health.IsDead)
+                return true;
+        }
+
+        return false;
     }
 
     private Vector3 ClampChildLocalPosition(
@@ -602,12 +874,136 @@ public class CharacterSwitcher : MonoBehaviour
 
         for (int i = 0; i < characters.Length; i++)
         {
+            if (characters[i] == null)
+                continue;
+
             bool shouldShoot =
-                isSwitching || i == activeCharacterIndex;
+                !defeatedCharacters[i] &&
+                (isSwitching || i == activeCharacterIndex);
 
             SetAutoShoot(characters[i], shouldShoot);
         }
     }
+
+    private void RefreshButtons()
+    {
+        if (!isInitialized || switchButtons == null)
+            return;
+
+        for (int i = 0; i < switchButtons.Length; i++)
+        {
+            Button button = switchButtons[i];
+
+            if (button == null)
+                continue;
+
+            bool characterExists =
+                characters != null && i < characters.Length;
+
+            bool characterAlive =
+                characterExists && !defeatedCharacters[i];
+
+            button.interactable =
+                characterAlive &&
+                CanSwitch &&
+                i != activeCharacterIndex;
+        }
+    }
+
+    private void FinishInterruptedSwitch()
+    {
+        if (switchCoroutine != null)
+        {
+            StopCoroutine(switchCoroutine);
+            switchCoroutine = null;
+        }
+
+        isSwitching = false;
+
+        int livingIndex = FindLivingCharacterForRecovery();
+
+        for (int i = 0; i < characters.Length; i++)
+        {
+            if (defeatedCharacters[i])
+            {
+                characters[i].SetActive(false);
+                continue;
+            }
+
+            characters[i].SetActive(i == livingIndex);
+
+            if (i == livingIndex)
+            {
+                characters[i].transform.localPosition =
+                    ClampChildLocalPosition(
+                        i,
+                        frontPosition.localPosition);
+            }
+        }
+
+        if (livingIndex >= 0)
+            activeCharacterIndex = livingIndex;
+
+        RefreshAutoShoot();
+        RefreshButtons();
+
+        onActiveCharacterChanged?.Invoke(activeCharacterIndex);
+        onCooldownChanged?.Invoke(cooldownTimer);
+        onSwitchingWindowChanged?.Invoke(false);
+    }
+
+    private int FindLivingCharacterForRecovery()
+    {
+        if (activeCharacterIndex >= 0 &&
+            activeCharacterIndex < characters.Length &&
+            !defeatedCharacters[activeCharacterIndex])
+        {
+            Health activeHealth = characterHealths[activeCharacterIndex];
+
+            if (activeHealth == null || !activeHealth.IsDead)
+                return activeCharacterIndex;
+        }
+
+        return FindFirstLivingCharacter();
+    }
+
+    private void OnDestroy()
+    {
+        if (switchButtons != null && buttonCallbacks != null)
+        {
+            for (int i = 0; i < switchButtons.Length; i++)
+            {
+                if (switchButtons[i] == null ||
+                    i >= buttonCallbacks.Length ||
+                    buttonCallbacks[i] == null)
+                {
+                    continue;
+                }
+
+                switchButtons[i].onClick.RemoveListener(
+                    buttonCallbacks[i]);
+            }
+        }
+
+        if (characterHealths != null && deathCallbacks != null)
+        {
+            for (int i = 0; i < characterHealths.Length; i++)
+            {
+                if (characterHealths[i] != null &&
+                    deathCallbacks[i] != null)
+                {
+                    characterHealths[i].OnDeath -= deathCallbacks[i];
+                }
+            }
+        }
+
+        if (switchCoroutine != null)
+        {
+            StopCoroutine(switchCoroutine);
+            switchCoroutine = null;
+        }
+    }
+
 
     public float GetEffectiveMovementSpeed()
     {
@@ -635,11 +1031,14 @@ public class CharacterSwitcher : MonoBehaviour
 
         for (int i = 0; i < characters.Length; i++)
         {
+            if (defeatedCharacters[i])
+                continue;
+
             Character character =
                 characters[i].GetComponent<Character>();
 
             Health health =
-                characters[i].GetComponent<Health>();
+                characterHealths[i];
 
             if (character == null)
                 continue;
@@ -657,52 +1056,4 @@ public class CharacterSwitcher : MonoBehaviour
         return totalSpeed / validCharacterCount;
     }
 
-    private void RefreshButtons()
-    {
-        if (!isInitialized)
-            return;
-
-        for (int i = 0; i < switchButtons.Length; i++)
-        {
-            Button button = switchButtons[i];
-
-            if (button == null)
-                continue;
-
-            bool characterExists = i < characters.Length;
-
-            button.interactable =
-                characterExists &&
-                CanSwitch &&
-                i != activeCharacterIndex;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (switchButtons != null && buttonCallbacks != null)
-        {
-            for (int i = 0; i < switchButtons.Length; i++)
-            {
-                if (switchButtons[i] == null ||
-                    i >= buttonCallbacks.Length ||
-                    buttonCallbacks[i] == null)
-                {
-                    continue;
-                }
-
-                switchButtons[i].onClick.RemoveListener(
-                    buttonCallbacks[i]);
-            }
-        }
-
-        if (switchCoroutine != null)
-        {
-            StopCoroutine(switchCoroutine);
-            switchCoroutine = null;
-        }
-
-        // GameplayInitializer owns these character instances.
-        // CharacterSwitcher must not destroy them.
-    }
 }

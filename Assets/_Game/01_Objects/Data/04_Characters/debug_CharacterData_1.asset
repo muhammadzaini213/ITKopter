@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: debug_CharacterData_1
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   rarity: 2
-  icon: {fileID: 0}
+  icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   characterId: debug_1
   characterName: Debugy
   health: 10

@@ -169,10 +169,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6926721190873350581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 40, y: -12.144}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1717751213457283095
 CanvasRenderer:
@@ -828,7 +828,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6926721190873350581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1020,10 +1020,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6926721190873350581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 70, y: -12.144}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3810713496384183064
 CanvasRenderer:
@@ -1232,10 +1232,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6926721190873350581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10, y: -12.144}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6480442223132268114
 CanvasRenderer:
@@ -1287,6 +1287,7 @@ GameObject:
   - component: {fileID: 5716776272260885218}
   - component: {fileID: 2919310563351940575}
   - component: {fileID: 182202380205068369}
+  - component: {fileID: 4302369687187955678}
   m_Layer: 5
   m_Name: CharacterStatus
   m_TagString: Untagged
@@ -1402,6 +1403,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4302369687187955678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8343987942255846973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81b39de0cf4ca427ab573befa237b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterStatPanel
+  characterNameText: {fileID: 6487918899762178972}
+  characterIcon: {fileID: 3476322331056080666}
+  healthSlider: {fileID: 3403066606721959902}
+  healthText: {fileID: 3852645902907734401}
+  cooldownSlider: {fileID: 8257625944541468083}
+  cooldownText: {fileID: 7181378309689620601}
 --- !u!1 &8586398447618098088
 GameObject:
   m_ObjectHideFlags: 0

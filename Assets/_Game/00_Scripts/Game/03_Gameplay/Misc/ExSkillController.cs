@@ -33,6 +33,21 @@ public class ExSkillController : MonoBehaviour
         public float Remaining;
     }
 
+    public Character CooldownCharacter => GetActiveCharacter();
+
+    public float CooldownDuration
+    {
+        get
+        {
+            Character character = GetActiveCharacter();
+
+            return character != null &&
+                   cooldowns.TryGetValue(character, out CharacterCooldown state)
+                ? state.Duration
+                : 0f;
+        }
+    }
+
     private readonly Dictionary<Character, CharacterCooldown> cooldowns =
         new Dictionary<Character, CharacterCooldown>();
 

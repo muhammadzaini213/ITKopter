@@ -1,12 +1,14 @@
 
+using System;
 using System.Collections;
 using UnityEngine;
-using System;
+using UnityEngine.UI;
 
 public class EnemyWaveManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform enemyContainer;
+    [SerializeField] private Slider waveProgressSlider;
 
     [Header("Wave Settings")]
     [SerializeField, Min(0f)] private float delayBetweenWaves = 1f;
@@ -16,28 +18,43 @@ public class EnemyWaveManager : MonoBehaviour
     private Coroutine waveRoutine;
     private EnemyCollection currentCollection;
 
+    private int totalWaves;
+    private int completedWaves;
+
     public bool IsRunning { get; private set; }
     public int CurrentPartIndex { get; private set; } = -1;
     public int CurrentWaveIndex { get; private set; } = -1;
+
+    public int TotalWaves => totalWaves;
+    public int CompletedWaves => completedWaves;
+
+    public float WaveProgress =>
+        totalWaves > 0
+            ? Mathf.Clamp01((float)completedWaves / totalWaves)
+            : 0f;
 
     public event Action OnLevelWon;
     public event Action<int, int> OnWaveStarted;
     public event Action<int> OnPartStarted;
 
-    void Awake()
+    private void Awake()
     {
         levelSystem = LevelSystem.Instance;
+        ResetProgressSlider();
     }
 
     public void StartLevelWaves()
     {
-        if (IsRunning)
+        if (IsRunning || waveRoutine != null)
         {
             Debug.LogWarning(
                 "[EnemyWaveManager] Wave sequence is already running.",
                 this);
             return;
         }
+
+        if (levelSystem == null)
+            levelSystem = LevelSystem.Instance;
 
         if (levelSystem == null)
         {
@@ -55,11 +72,25 @@ public class EnemyWaveManager : MonoBehaviour
             return;
         }
 
-        if (levelSystem.CurrentLevelParts == null ||
-            levelSystem.CurrentLevelParts.Length == 0)
+        LevelPartData[] parts = levelSystem.CurrentLevelParts;
+
+        if (parts == null || parts.Length == 0)
         {
             Debug.LogError(
                 "[EnemyWaveManager] No level parts are configured.",
+                this);
+            return;
+        }
+
+        totalWaves = CountValidWaves(parts);
+        completedWaves = 0;
+
+        RefreshProgressSlider();
+
+        if (totalWaves == 0)
+        {
+            Debug.LogWarning(
+                "[EnemyWaveManager] No valid waves were found.",
                 this);
             return;
         }
@@ -108,18 +139,10 @@ public class EnemyWaveManager : MonoBehaviour
             {
                 WaveData wave = waves[waveIndex];
 
-                if (wave == null)
+                if (wave == null || wave.EnemyCollectionPrefab == null)
                 {
-                    Debug.LogError(
-                        $"[EnemyWaveManager] Wave at index {waveIndex} in part '{part.PartName}' is null.",
-                        this);
-                    continue;
-                }
-
-                if (wave.EnemyCollectionPrefab == null)
-                {
-                    Debug.LogError(
-                        $"[EnemyWaveManager] Wave '{wave.WaveName}' has no enemy collection prefab.",
+                    Debug.LogWarning(
+                        $"[EnemyWaveManager] Skipping invalid wave at index {waveIndex} in part '{part.PartName}'.",
                         this);
                     continue;
                 }
@@ -150,7 +173,6 @@ public class EnemyWaveManager : MonoBehaviour
                     $"[EnemyWaveManager] Started wave '{wave.WaveName}' in part '{part.PartName}'.",
                     this);
 
-                // Wait until every enemy in this collection is defeated.
                 yield return new WaitUntil(
                     () => currentCollection == null ||
                           currentCollection.IsCleared
@@ -161,6 +183,17 @@ public class EnemyWaveManager : MonoBehaviour
                     Destroy(currentCollection.gameObject);
                     currentCollection = null;
                 }
+
+                completedWaves = Mathf.Min(
+                    completedWaves + 1,
+                    totalWaves
+                );
+
+                RefreshProgressSlider();
+
+                Debug.Log(
+                    $"[EnemyWaveManager] Wave progress: {completedWaves}/{totalWaves} ({WaveProgress:P0}).",
+                    this);
 
                 if (delayBetweenWaves > 0f)
                     yield return new WaitForSeconds(delayBetweenWaves);
@@ -173,9 +206,52 @@ public class EnemyWaveManager : MonoBehaviour
         IsRunning = false;
         waveRoutine = null;
 
-        Debug.Log("[EnemyWaveManager] All level waves completed.", this);
+        // Mark the level as complete after the entire sequence finishes.
+        completedWaves = totalWaves;
+        RefreshProgressSlider();
+
+        Debug.Log(
+            "[EnemyWaveManager] All level waves completed.",
+            this);
 
         OnLevelWon?.Invoke();
+    }
+
+    private int CountValidWaves(LevelPartData[] parts)
+    {
+        int count = 0;
+
+        foreach (LevelPartData part in parts)
+        {
+            if (part == null || part.EnemyWaves == null)
+                continue;
+
+            foreach (WaveData wave in part.EnemyWaves)
+            {
+                if (wave != null && wave.EnemyCollectionPrefab != null)
+                    count++;
+            }
+        }
+
+        return count;
+    }
+
+    private void ResetProgressSlider()
+    {
+        if (waveProgressSlider == null)
+            return;
+
+        waveProgressSlider.minValue = 0f;
+        waveProgressSlider.maxValue = 1f;
+        waveProgressSlider.value = 0f;
+    }
+
+    private void RefreshProgressSlider()
+    {
+        if (waveProgressSlider != null)
+        {
+            waveProgressSlider.value = WaveProgress;
+        }
     }
 
     public void StopLevelWaves()

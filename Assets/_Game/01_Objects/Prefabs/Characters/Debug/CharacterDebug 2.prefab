@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 105019972791932153}
   - component: {fileID: 7211370521755765697}
   - component: {fileID: 6623092591450504551}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AutoShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1633968615364522779}
   - component: {fileID: 2044929518673164990}
   - component: {fileID: 8161822079336005736}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ExSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 738526280938229782}
   - component: {fileID: 8837663874862066067}
   - component: {fileID: 560273263055718007}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CharacterDebug 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

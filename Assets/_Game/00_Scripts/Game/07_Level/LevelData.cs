@@ -17,10 +17,16 @@ public class LevelData : ScriptableObject
     [Header("Energy")]
     [SerializeField, Min(0)] private int energyCost;
 
+    [Header("Time Limit")]
+    [Tooltip("Maximum time allowed to complete this level, in seconds.")]
+    [SerializeField, Min(1)] private int timeLimitSeconds = 180;
+
     public string LevelId => levelId;
     public string LevelName => levelName;
     public LevelData PreviousLevel => previousLevel;
     public LevelPartData[] LevelParts => levelParts;
     public RewardData[] LevelRewards => levelRewards;
     public int EnergyCost => energyCost;
+
+    public int TimeLimitSeconds => timeLimitSeconds;
 }
