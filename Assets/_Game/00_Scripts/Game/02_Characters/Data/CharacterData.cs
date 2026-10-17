@@ -11,9 +11,9 @@ public class CharacterData : RewardData
     [SerializeField] private float health;
     [SerializeField] private float attackPower;
     [SerializeField] private float defensePower;
-    [SerializeField] private float specialAttackPower;
-    [SerializeField] private float specialDefensePower;
-    [SerializeField] private float specialSkillCooldown;
+    [SerializeField] private float exSkillPower;
+    [SerializeField] private float exDefensePower;
+    [SerializeField] private float exSkillCooldown;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float bulletSpeed;
 
@@ -31,9 +31,9 @@ public class CharacterData : RewardData
     public float Health => health;
     public float AttackPower => attackPower;
     public float DefensePower => defensePower;
-    public float SpecialAttackPower => specialAttackPower;
-    public float SpecialDefensePower => specialDefensePower;
-    public float SpecialSkillCooldown => specialSkillCooldown;
+    public float ExSkillPower => exSkillPower;
+    public float ExDefensePower => exDefensePower;
+    public float ExSkillCooldown => exSkillCooldown;
     public float MovementSpeed => movementSpeed;
     public float BulletSpeed => bulletSpeed;
     public CharacterType CharacterType => characterType;

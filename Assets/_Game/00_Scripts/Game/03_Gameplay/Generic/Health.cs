@@ -11,11 +11,17 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField]
     private bool startAtFullHealth = true;
 
+    [Header("Defense Settings")]
+    [SerializeField, Min(0f)]
+    private float defensePower = 0f;
+
     private float currentHealth;
     private bool isDead;
 
     public float MaxHealth => maxHealth;
     public float CurrentHealth => currentHealth;
+    public float DefensePower => defensePower;
+
     public float HealthPercentage => maxHealth > 0f
         ? currentHealth / maxHealth
         : 0f;
@@ -28,13 +34,18 @@ public class Health : MonoBehaviour, IDamageable
     private void Awake()
     {
         maxHealth = Mathf.Max(1f, maxHealth);
+        defensePower = Mathf.Max(0f, defensePower);
 
-        if (startAtFullHealth)
-            currentHealth = maxHealth;
-        else
-            currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        currentHealth = startAtFullHealth
+            ? maxHealth
+            : Mathf.Clamp(currentHealth, 0f, maxHealth);
 
         isDead = currentHealth <= 0f;
+    }
+
+    public void SetDefensePower(float newDefensePower)
+    {
+        defensePower = Mathf.Max(0f, newDefensePower);
     }
 
     public void TakeDamage(float amount)
@@ -42,7 +53,12 @@ public class Health : MonoBehaviour, IDamageable
         if (isDead || amount <= 0f)
             return;
 
-        currentHealth = Mathf.Max(0f, currentHealth - amount);
+        float finalDamage = Mathf.Max(0f, amount - defensePower);
+
+        if (finalDamage <= 0f)
+            return;
+
+        currentHealth = Mathf.Max(0f, currentHealth - finalDamage);
 
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
@@ -62,7 +78,9 @@ public class Health : MonoBehaviour, IDamageable
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
-    public void SetMaxHealth(float newMaxHealth, bool refillHealth = true)
+    public void SetMaxHealth(
+        float newMaxHealth,
+        bool refillHealth = true)
     {
         maxHealth = Mathf.Max(1f, newMaxHealth);
 

@@ -1,5 +1,163 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2145688271286325870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3406656693831215743}
+  - component: {fileID: 822777529741974063}
+  - component: {fileID: 1609714553636308963}
+  - component: {fileID: 4400764521156952465}
+  m_Layer: 0
+  m_Name: AutoShoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3406656693831215743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145688271286325870}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 276194683720365842}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &822777529741974063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145688271286325870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef3ebc162161922fbe97f7c5227fd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAutoShooter
+  bulletSpawner: {fileID: 1609714553636308963}
+  fireInterval: 0.2
+--- !u!114 &1609714553636308963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145688271286325870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd815ed2726bd2ca39246aa01ac9b96a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BurstSpawner
+  projectilePrefab: {fileID: 5609170668845526785, guid: 6dac9472c70ace5cabd88b95dd89555d,
+    type: 3}
+  projectileSpeed: 15
+  projectileDamage: 10
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 128
+  prewarmCount: 30
+  maxPoolSize: 300
+  shotsPerBurst: 3
+  shotInterval: 0.1
+--- !u!114 &4400764521156952465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145688271286325870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99079be27343303fe91646fee4a5d240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Firepoint
+--- !u!1 &6292319002528782448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3623161626945081265}
+  - component: {fileID: 2063583709255372182}
+  - component: {fileID: 7438163090455295992}
+  m_Layer: 0
+  m_Name: ExSkill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3623161626945081265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292319002528782448}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 276194683720365842}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2063583709255372182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292319002528782448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b9006d1ab24336583ff0c744f1f81d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BurstExSkill
+  skillName: Triumph
+  firePoint: {fileID: 276194683720365842}
+  bulletSpawner: {fileID: 7438163090455295992}
+  normalAutoShooter: {fileID: 822777529741974063}
+  characterSwitcher: {fileID: 0}
+  spacing: 0.3
+  duration: 3
+--- !u!114 &7438163090455295992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292319002528782448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b4db3a39d40e266892a6a5ef8ce602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CircularSpawner
+  projectilePrefab: {fileID: 5609170668845526785, guid: 6dac9472c70ace5cabd88b95dd89555d,
+    type: 3}
+  projectileSpeed: 15
+  projectileDamage: 10
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  prewarmCount: 30
+  maxPoolSize: 300
+  projectileCount: 12
+  angleOffset: 0
 --- !u!1 &8729292657063863904
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +170,7 @@ GameObject:
   - component: {fileID: 2311281249053205704}
   - component: {fileID: 738526280938229782}
   - component: {fileID: 8837663874862066067}
-  - component: {fileID: 5327188077603474911}
+  - component: {fileID: 560273263055718007}
   m_Layer: 0
   m_Name: CharacterDebug
   m_TagString: Untagged
@@ -32,7 +190,9 @@ Transform:
   m_LocalPosition: {x: -8.12, y: -10.28, z: 0}
   m_LocalScale: {x: 0.43, y: 0.43, z: 0.43}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 3406656693831215743}
+  - {fileID: 3623161626945081265}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2311281249053205704
@@ -155,7 +315,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
   startAtFullHealth: 1
---- !u!114 &5327188077603474911
+  defensePower: 0
+--- !u!114 &560273263055718007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,17 +325,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8729292657063863904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bef3ebc162161922fbe97f7c5227fd32, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d938f4607f182bf0acec44341a5eaeb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAutoShooter
-  firePoint: {fileID: 276194683720365842}
-  projectilePrefab: {fileID: 5609170668845526785, guid: 6dac9472c70ace5cabd88b95dd89555d,
-    type: 3}
-  fireInterval: 0.2
-  projectileSpeed: 15
-  projectileDamage: 10
-  prewarmCount: 30
-  maxPoolSize: 300
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 384
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterDebug
+  characterData: {fileID: 11400000, guid: 44f00f6052d2ef6b08d8e58722cd7c5c, type: 2}
+  logStatsOnStart: 1
