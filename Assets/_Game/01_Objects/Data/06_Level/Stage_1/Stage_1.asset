@@ -15,7 +15,9 @@ MonoBehaviour:
   levelId: stage_1_debug
   levelName: stage_1
   previousLevel: {fileID: 0}
-  levelParts: []
+  levelParts:
+  - {fileID: 11400000, guid: aa5325c96cfdf90fa948037f8c1df807, type: 2}
+  - {fileID: 11400000, guid: 24cfe724e1e60bbafbefe5d4f9bb8184, type: 2}
   levelRewards:
   - {fileID: 11400000, guid: 91dcc40afd6a40db993b31327f427f5a, type: 2}
   - {fileID: 11400000, guid: 8a57a4382eebb32db8cf13ffc3c9026f, type: 2}
