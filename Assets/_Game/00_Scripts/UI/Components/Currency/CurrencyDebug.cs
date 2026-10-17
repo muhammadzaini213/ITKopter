@@ -27,8 +27,8 @@ public class CurrencyDebug : MonoBehaviour
             if (GUILayout.Button("+10 Coins"))
                 CurrencySystem.Instance.AddCoins(10);
 
-            if (GUILayout.Button("+5 Gems"))
-                CurrencySystem.Instance.AddGems(5);
+            if (GUILayout.Button("+100 Gems"))
+                CurrencySystem.Instance.AddGems(100);
         }
         else
         {

@@ -1620,6 +1620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSystem
   playerName: Player
   playerExp: 0
+  characterDatabase: {fileID: 11400000, guid: fd47cf525ed2c302d89f322db310a35e, type: 2}
 --- !u!4 &1663416815
 Transform:
   m_ObjectHideFlags: 0

@@ -23,8 +23,7 @@ public class RewardSystem : GameSystem<RewardSystem>
         base.OnSingletonAwake();
     }
 
-    public void ShowRewardPopup(
-    IReadOnlyList<RewardData> rewards)
+    public void ShowRewardPopup(IReadOnlyList<RewardData> rewards)
     {
         if (rewardPopupUI == null)
         {
@@ -83,7 +82,8 @@ public class RewardSystem : GameSystem<RewardSystem>
         if (amount <= 0)
         {
             return CreateFailure(
-                reward, amount,
+                reward,
+                amount,
                 "Amount must be greater than zero.");
         }
 
@@ -93,7 +93,8 @@ public class RewardSystem : GameSystem<RewardSystem>
             if (CurrencySystem.Instance == null)
             {
                 return CreateFailure(
-                    reward, amount,
+                    reward,
+                    amount,
                     "CurrencySystem is unavailable.");
             }
 
@@ -109,12 +110,17 @@ public class RewardSystem : GameSystem<RewardSystem>
 
                 default:
                     return CreateFailure(
-                        reward, amount,
+                        reward,
+                        amount,
                         "Unsupported currency type.");
             }
 
             return new RewardGrantResult(
-                reward, amount, amount, true, "Currency granted.");
+                reward,
+                amount,
+                amount,
+                true,
+                "Currency granted.");
         }
 
         // Character rewards
@@ -123,15 +129,23 @@ public class RewardSystem : GameSystem<RewardSystem>
             if (amount != 1)
             {
                 return CreateFailure(
-                    reward, amount,
+                    reward,
+                    amount,
                     "Character rewards currently support amount = 1.");
             }
 
             if (PlayerSystem.Instance == null)
             {
                 return CreateFailure(
-                    reward, amount,
+                    reward,
+                    amount,
                     "PlayerSystem is unavailable.");
+            }
+
+            // Convert duplicate characters into their configured item.
+            if (!PlayerSystem.Instance.CanAddNewOwnedCharacter(character))
+            {
+                return ConvertDuplicateCharacter(character, amount);
             }
 
             bool added =
@@ -139,13 +153,22 @@ public class RewardSystem : GameSystem<RewardSystem>
 
             if (!added)
             {
+                // Re-check in case the character became owned before insertion.
+                if (!PlayerSystem.Instance.CanAddNewOwnedCharacter(character))
+                    return ConvertDuplicateCharacter(character, amount);
+
                 return CreateFailure(
-                    reward, amount,
-                    "Character could not be added. It may already be owned.");
+                    reward,
+                    amount,
+                    "Character could not be added.");
             }
 
             return new RewardGrantResult(
-                reward, amount, 1, true, "Character granted.");
+                reward,
+                amount,
+                1,
+                true,
+                "Character granted.");
         }
 
         // Item rewards
@@ -154,24 +177,72 @@ public class RewardSystem : GameSystem<RewardSystem>
             if (InventorySystem.Instance == null)
             {
                 return CreateFailure(
-                    reward, amount,
+                    reward,
+                    amount,
                     "InventorySystem is unavailable.");
             }
 
             if (!InventorySystem.Instance.AddItem(item, amount))
             {
                 return CreateFailure(
-                    reward, amount,
+                    reward,
+                    amount,
                     "Item could not be added to the inventory.");
             }
 
             return new RewardGrantResult(
-                reward, amount, amount, true, "Item granted.");
+                reward,
+                amount,
+                amount,
+                true,
+                "Item granted.");
         }
 
         return CreateFailure(
-            reward, amount,
+            reward,
+            amount,
             $"No reward handler registered for {reward.GetType().Name}.");
+    }
+
+    private RewardGrantResult ConvertDuplicateCharacter(
+        CharacterData character,
+        int requestedAmount)
+    {
+        ItemData duplicateItem = character.DuplicateItem;
+        int duplicateAmount = character.DuplicateItemAmount;
+
+        if (duplicateItem == null || duplicateAmount <= 0)
+        {
+            return CreateFailure(
+                character,
+                requestedAmount,
+                $"Duplicate conversion is not configured for {character.CharacterName}.");
+        }
+
+        if (InventorySystem.Instance == null)
+        {
+            return CreateFailure(
+                character,
+                requestedAmount,
+                "InventorySystem is unavailable.");
+        }
+
+        if (!InventorySystem.Instance.AddItem(
+                duplicateItem,
+                duplicateAmount))
+        {
+            return CreateFailure(
+                character,
+                requestedAmount,
+                "Duplicate conversion item could not be added.");
+        }
+
+        return new RewardGrantResult(
+            character,
+            requestedAmount,
+            1,
+            true,
+            $"Duplicate character converted into {duplicateItem.name} x{duplicateAmount}.");
     }
 
     public bool CanGrantRewards(
@@ -183,6 +254,13 @@ public class RewardSystem : GameSystem<RewardSystem>
         if (requests == null || requests.Count == 0)
         {
             error = "Reward batch is empty.";
+            return false;
+        }
+
+        if (PlayerSystem.Instance == null &&
+            ContainsCharacterReward(requests))
+        {
+            error = "PlayerSystem is unavailable.";
             return false;
         }
 
@@ -236,18 +314,47 @@ public class RewardSystem : GameSystem<RewardSystem>
                     return false;
                 }
 
-                if (!characterIds.Add(character.CharacterId))
+                if (PlayerSystem.Instance == null)
                 {
-                    error =
-                        $"Duplicate character in reward batch: {character.name}";
+                    error = "PlayerSystem is unavailable.";
                     return false;
                 }
 
-                if (PlayerSystem.Instance == null ||
-                    !PlayerSystem.Instance.CanAddNewOwnedCharacter(character))
+                // An already-owned character is valid only if its conversion
+                // item can be granted.
+                if (!PlayerSystem.Instance.CanAddNewOwnedCharacter(character))
+                {
+                    if (character.DuplicateItem == null ||
+                        character.DuplicateItemAmount <= 0)
+                    {
+                        error =
+                            $"Duplicate conversion is not configured: {character.CharacterName}";
+                        return false;
+                    }
+
+                    if (InventorySystem.Instance == null)
+                    {
+                        error = "InventorySystem is unavailable.";
+                        return false;
+                    }
+
+                    if (!InventorySystem.Instance.CanAddItem(
+                            character.DuplicateItem,
+                            character.DuplicateItemAmount))
+                    {
+                        error =
+                            $"Duplicate conversion item cannot be added: {character.DuplicateItem.name}";
+                        return false;
+                    }
+
+                    continue;
+                }
+
+                // Prevent the same unowned character appearing twice in one batch.
+                if (!characterIds.Add(character.CharacterId))
                 {
                     error =
-                        $"Character already owned or cannot be added: {character.name}";
+                        $"Duplicate character in reward batch: {character.CharacterName}";
                     return false;
                 }
 
@@ -264,7 +371,8 @@ public class RewardSystem : GameSystem<RewardSystem>
                 }
 
                 if (!InventorySystem.Instance.CanAddItem(
-                        item, request.amount))
+                        item,
+                        request.amount))
                 {
                     error =
                         $"Item cannot be added to inventory: {item.name}";
@@ -282,6 +390,18 @@ public class RewardSystem : GameSystem<RewardSystem>
         return true;
     }
 
+    private bool ContainsCharacterReward(
+        IReadOnlyList<RewardGrantRequest> requests)
+    {
+        foreach (RewardGrantRequest request in requests)
+        {
+            if (request?.reward is CharacterData)
+                return true;
+        }
+
+        return false;
+    }
+
     private RewardGrantResult CreateFailure(
         RewardData reward,
         int requestedAmount,
@@ -290,6 +410,10 @@ public class RewardSystem : GameSystem<RewardSystem>
         Debug.LogWarning($"[RewardSystem] {message}");
 
         return new RewardGrantResult(
-            reward, requestedAmount, 0, false, message);
+            reward,
+            requestedAmount,
+            0,
+            false,
+            message);
     }
 }
