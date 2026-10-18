@@ -28,6 +28,7 @@ public static class BuildScript
             .Select(scene => scene.path)
             .ToArray();
 
+
         if (scenes.Length == 0)
         {
             Fail(
