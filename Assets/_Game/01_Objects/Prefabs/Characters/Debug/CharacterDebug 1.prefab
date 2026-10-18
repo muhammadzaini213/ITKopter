@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 7980083695552940897}
   - component: {fileID: 8398632455271830748}
   - component: {fileID: 5058163268309870037}
-  - component: {fileID: 7841028558223761843}
+  - component: {fileID: 9055358249454212439}
   m_Layer: 6
   m_Name: AutoShoot
   m_TagString: Untagged
@@ -145,7 +145,7 @@ MonoBehaviour:
   maxPoolSize: 300
   shotsPerBurst: 3
   shotInterval: 0.1
---- !u!114 &7841028558223761843
+--- !u!114 &9055358249454212439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8320132065033642237}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99079be27343303fe91646fee4a5d240, type: 3}
+  m_Script: {fileID: 11500000, guid: fbe002524ece1d5d19df7d8c46435b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Firepoint
 --- !u!1 &8729292657063863904
