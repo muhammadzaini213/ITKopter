@@ -7,7 +7,8 @@ using Slafurry.Core.Abstract;
 public class InventorySystem : GameSystem<InventorySystem>
 {
     [Header("Item Database")]
-    [SerializeField] private List<ItemData> itemDatabase =
+    [SerializeField]
+    private List<ItemData> itemDatabase =
         new List<ItemData>();
 
     private readonly Dictionary<string, ItemData> itemsById =
@@ -245,4 +246,28 @@ public class InventorySystem : GameSystem<InventorySystem>
                 new InventoryItemSaveData(entry.Key, entry.Value));
         }
     }
+
+
+    public List<InventoryItemSaveData> GetInventoryItems()
+    {
+        List<InventoryItemSaveData> result =
+            new List<InventoryItemSaveData>();
+
+        if (!IsDatabaseReady)
+            return result;
+
+        foreach (KeyValuePair<string, int> entry in inventory)
+        {
+            if (entry.Value <= 0)
+                continue;
+
+            result.Add(
+                new InventoryItemSaveData(
+                    entry.Key,
+                    entry.Value));
+        }
+
+        return result;
+    }
+
 }
