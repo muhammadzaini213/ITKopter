@@ -21,4 +21,5 @@ MonoBehaviour:
   levelRewards:
   - {fileID: 11400000, guid: 91dcc40afd6a40db993b31327f427f5a, type: 2}
   - {fileID: 11400000, guid: 8a57a4382eebb32db8cf13ffc3c9026f, type: 2}
-  energyCost: 0
+  energyCost: 10
+  timeLimitSeconds: 180
