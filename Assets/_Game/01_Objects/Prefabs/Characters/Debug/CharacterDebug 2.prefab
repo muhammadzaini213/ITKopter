@@ -80,7 +80,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 428067925768684158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99079be27343303fe91646fee4a5d240, type: 3}
+  m_Script: {fileID: 11500000, guid: fbe002524ece1d5d19df7d8c46435b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Firepoint
 --- !u!1 &2161063196117425820
