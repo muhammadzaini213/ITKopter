@@ -20,3 +20,6 @@ MonoBehaviour:
   - entryName: Item 5
     rewardData: {fileID: 11400000, guid: 218c33f756c0555d08bc5f9f55acf548, type: 2}
     price: 200
+  - entryName: Item 5
+    rewardData: {fileID: 11400000, guid: 7876597b4dfbd8480ad03a3b808ec61d, type: 2}
+    price: 200
