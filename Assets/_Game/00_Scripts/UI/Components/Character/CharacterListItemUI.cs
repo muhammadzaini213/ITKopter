@@ -12,7 +12,31 @@ public class CharacterListItemUI : MonoBehaviour
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private Button detailsButton;
 
+    [Header("Character Classification UI")]
+    [SerializeField] private Image roleImage;
+    [SerializeField] private Image hierarchyImage;
+
+    [Header("Role Sprites")]
+    [SerializeField] private RoleSpriteMapping[] roleSprites;
+
+    [Header("Hierarchy / Type Sprites")]
+    [SerializeField] private TypeSpriteMapping[] typeSprites;
+
     private Action onDetailsClicked;
+
+    [Serializable]
+    private struct RoleSpriteMapping
+    {
+        public CharacterRole role;
+        public Sprite sprite;
+    }
+
+    [Serializable]
+    private struct TypeSpriteMapping
+    {
+        public CharacterType type;
+        public Sprite sprite;
+    }
 
     private void Awake()
     {
@@ -47,6 +71,50 @@ public class CharacterListItemUI : MonoBehaviour
 
         if (levelText != null)
             levelText.text = $"Lv. {progression.Level}";
+
+        UpdateRoleImage(data.CharacterRole);
+        UpdateHierarchyImage(data.CharacterType);
+    }
+
+    private void UpdateRoleImage(CharacterRole role)
+    {
+        Sprite sprite = null;
+
+        foreach (var mapping in roleSprites)
+        {
+            if (mapping.role == role)
+            {
+                sprite = mapping.sprite;
+                break;
+            }
+        }
+
+        SetImage(roleImage, sprite);
+    }
+
+    private void UpdateHierarchyImage(CharacterType type)
+    {
+        Sprite sprite = null;
+
+        foreach (var mapping in typeSprites)
+        {
+            if (mapping.type == type)
+            {
+                sprite = mapping.sprite;
+                break;
+            }
+        }
+
+        SetImage(hierarchyImage, sprite);
+    }
+
+    private void SetImage(Image target, Sprite sprite)
+    {
+        if (target == null)
+            return;
+
+        target.sprite = sprite;
+        target.enabled = sprite != null;
     }
 
     private void HandleDetailsClicked()
