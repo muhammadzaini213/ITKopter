@@ -20,6 +20,7 @@ namespace Slafurry.Utils.UI
 
         [Header("Options")]
         [SerializeField] private bool useUnscaledTime = true;
+        [SerializeField] private bool playOnStart = true;
 
         [Header("Events")]
         [SerializeField] private UnityEvent onFloatStart;
@@ -35,6 +36,11 @@ namespace Slafurry.Utils.UI
 
             if (target != null)
                 _originalPosition = target.anchoredPosition;
+        }
+
+        private void Start()
+        {
+            if (playOnStart) Float();
         }
 
         public void Float()
