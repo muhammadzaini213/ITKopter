@@ -21,7 +21,7 @@ public class DelayTrigger : BaseTrigger
 
     private IEnumerator DelayCoroutine()
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
 
         isWaiting = false;
         onComplete?.Invoke();

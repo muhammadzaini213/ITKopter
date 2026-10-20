@@ -2,6 +2,7 @@ using System.Collections;
 using Slafurry.Systems.Scene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 namespace Slafurry.Systems.Bootstrap
 {
@@ -24,6 +25,9 @@ namespace Slafurry.Systems.Bootstrap
         [Header("Optional")]
         [Tooltip("Delay tambahan (detik) setelah semua system siap, sebelum load scene. Berguna untuk splash screen minimal duration.")]
         [SerializeField] private float minimumDelay = 0f;
+
+        [Header("Event")]
+        [SerializeField] private UnityEvent onBootstrapCompleted;
 
         private void Start()
         {
@@ -67,9 +71,14 @@ namespace Slafurry.Systems.Bootstrap
                 yield break;
             }
 
+            onBootstrapCompleted?.Invoke();
+        }
+        public void ChangeScene()
+        {
             SceneSystem.Load(targetSceneName);
         }
     }
+
 
     /// <summary>
     /// Interface bantu supaya BootstrapLoader bisa memanggil Initialize()/PostInitialize()
