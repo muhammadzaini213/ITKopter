@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5985053502503484768}
   - component: {fileID: 8658891399040292790}
   - component: {fileID: 8443892891481359613}
+  - component: {fileID: -8998247507499945123}
   m_Layer: 5
   m_Name: BackToMainBtn
   m_TagString: Untagged
@@ -147,3 +148,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f7e1e1ae6e0e8654a3c80a6386cb8e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeSceneTrigger
+--- !u!114 &-8998247507499945123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382357699594628134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92637eaefb9d9581bb27b4402a01ac53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIHoverScale
+  target: {fileID: 0}
+  hoverScale: 1.1
+  speed: 10
+  useUnscaledTime: 1
+  onHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onHoverExit:
+    m_PersistentCalls:
+      m_Calls: []

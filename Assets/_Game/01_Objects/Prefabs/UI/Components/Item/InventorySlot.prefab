@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9167178381990886773}
   - component: {fileID: 8393104389715133047}
   - component: {fileID: 8276163314477253332}
+  - component: {fileID: 2265219714494037246}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -93,6 +94,28 @@ MonoBehaviour:
   itemIcon: {fileID: 8393104389715133047}
   itemNameText: {fileID: 178030868555483604}
   itemAmountText: {fileID: 25280191845619643}
+--- !u!114 &2265219714494037246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3392068452015050319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92637eaefb9d9581bb27b4402a01ac53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIHoverScale
+  target: {fileID: 0}
+  hoverScale: 1.1
+  speed: 10
+  useUnscaledTime: 1
+  onHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6380170756702664611
 GameObject:
   m_ObjectHideFlags: 0
