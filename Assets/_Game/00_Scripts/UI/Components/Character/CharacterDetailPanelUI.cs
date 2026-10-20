@@ -88,7 +88,7 @@ public class CharacterDetailPanelUI : MonoBehaviour
 
         // Affection level and points.
         if (affectionLevelText != null)
-            affectionLevelText.text = $"Affection Lv. {progression.AffectionLevel}";
+            affectionLevelText.text = $"Lv. {progression.AffectionLevel}";
 
         if (affectionSlider != null)
         {

@@ -1,4 +1,5 @@
 
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,16 @@ public class CharacterStatPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private Image characterIcon;
 
+    [Header("Character Classification UI")]
+    [SerializeField] private Image roleImage;
+    [SerializeField] private Image hierarchyImage;
+
+    [Header("Role Sprites")]
+    [SerializeField] private RoleSpriteMapping[] roleSprites;
+
+    [Header("Hierarchy / Type Sprites")]
+    [SerializeField] private TypeSpriteMapping[] typeSprites;
+
     [Header("Health UI")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI healthText;
@@ -16,6 +27,20 @@ public class CharacterStatPanel : MonoBehaviour
     [Header("EX Skill Cooldown UI")]
     [SerializeField] private Slider cooldownSlider;
     [SerializeField] private TextMeshProUGUI cooldownText;
+
+    [Serializable]
+    private struct RoleSpriteMapping
+    {
+        public CharacterRole role;
+        public Sprite sprite;
+    }
+
+    [Serializable]
+    private struct TypeSpriteMapping
+    {
+        public CharacterType type;
+        public Sprite sprite;
+    }
 
     private Character character;
     private Health health;
@@ -43,6 +68,7 @@ public class CharacterStatPanel : MonoBehaviour
         UnsubscribeHealthEvents();
 
         character = targetCharacter;
+        health = null;
         exSkillController = skillController;
 
         if (character == null)
@@ -66,17 +92,67 @@ public class CharacterStatPanel : MonoBehaviour
         if (characterNameText != null)
             characterNameText.text = character.CharacterName;
 
-        health.OnHealthChanged += HandleHealthChanged;
-        health.OnDeath += HandleDeath;
-
         if (characterIcon != null)
         {
             characterIcon.sprite = character.CharacterIcon;
             characterIcon.enabled = character.CharacterIcon != null;
         }
 
+        UpdateRoleImage(character.CharacterRole);
+        UpdateHierarchyImage(character.CharacterType);
+
+        health.OnHealthChanged += HandleHealthChanged;
+        health.OnDeath += HandleDeath;
+
         RefreshHealthUI();
         RefreshCooldownUI();
+    }
+
+    private void UpdateRoleImage(CharacterRole role)
+    {
+        Sprite sprite = null;
+
+        if (roleSprites != null)
+        {
+            foreach (RoleSpriteMapping mapping in roleSprites)
+            {
+                if (mapping.role == role)
+                {
+                    sprite = mapping.sprite;
+                    break;
+                }
+            }
+        }
+
+        SetImage(roleImage, sprite);
+    }
+
+    private void UpdateHierarchyImage(CharacterType type)
+    {
+        Sprite sprite = null;
+
+        if (typeSprites != null)
+        {
+            foreach (TypeSpriteMapping mapping in typeSprites)
+            {
+                if (mapping.type == type)
+                {
+                    sprite = mapping.sprite;
+                    break;
+                }
+            }
+        }
+
+        SetImage(hierarchyImage, sprite);
+    }
+
+    private void SetImage(Image target, Sprite sprite)
+    {
+        if (target == null)
+            return;
+
+        target.sprite = sprite;
+        target.enabled = sprite != null;
     }
 
     private void Update()
@@ -113,9 +189,7 @@ public class CharacterStatPanel : MonoBehaviour
         }
 
         if (healthText != null)
-        {
             healthText.text = $"{current:0} / {max:0}";
-        }
     }
 
     private void RefreshCooldownUI()
@@ -123,8 +197,6 @@ public class CharacterStatPanel : MonoBehaviour
         if (cooldownSlider == null && cooldownText == null)
             return;
 
-        // Cooldown is tracked for the active character by ExSkillController.
-        // Only display this character's cooldown when it is active.
         bool isActiveCharacter =
             exSkillController != null &&
             exSkillController.CooldownCharacter == character;
