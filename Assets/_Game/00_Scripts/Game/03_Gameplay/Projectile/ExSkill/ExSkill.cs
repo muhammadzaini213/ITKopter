@@ -10,15 +10,6 @@ public abstract class ExSkill : MonoBehaviour
 
     public string SkillName => skillName;
     public Character Owner => owner;
-
-    public float SkillPower => owner != null
-        ? owner.ExSkillPower
-        : 0f;
-
-    public float DefensePower => owner != null
-        ? owner.ExDefensePower
-        : 0f;
-
     public float Cooldown => owner != null
         ? owner.ExSkillCooldown
         : 0f;

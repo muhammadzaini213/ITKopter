@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28b817bb14ed2fbab9bc7adaf76ac79, type: 3}
+  m_Name: Trady_Char
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  rarity: 3
+  icon: {fileID: -1716582223, guid: 75314c323dd4b00fe90ecfeceb6e7535, type: 3}
+  characterId: char_5_trady
+  characterName: Trady
+  characterPortrait: {fileID: -1382697778907519323, guid: 75314c323dd4b00fe90ecfeceb6e7535,
+    type: 3}
+  health: 1900
+  attackPower: 0
+  defensePower: 65
+  exSkillCooldown: 30
+  movementSpeed: 4
+  bulletSpeed: 0
+  characterType: 0
+  characterRole: 4
+  characterPrefab: {fileID: 0}
+  duplicateDust: {fileID: 11400000, guid: f7f10a0a4c87a2d5892f1a7d6bdb4663, type: 2}
+  duplicateEngram: {fileID: 11400000, guid: 66aabe718522424b9a360e69c59040bf, type: 2}
+  duplicateDustAmount: 3
+  duplicateEngramAmount: 1
+  dustMaterial: {fileID: 11400000, guid: f7f10a0a4c87a2d5892f1a7d6bdb4663, type: 2}
+  engramMaterial: {fileID: 11400000, guid: 66aabe718522424b9a360e69c59040bf, type: 2}

@@ -15,12 +15,16 @@ public class CharacterListItemUI : MonoBehaviour
     [Header("Character Classification UI")]
     [SerializeField] private Image roleImage;
     [SerializeField] private Image hierarchyImage;
+    [SerializeField] private Image backgroundImage;
 
     [Header("Role Sprites")]
     [SerializeField] private RoleSpriteMapping[] roleSprites;
 
     [Header("Hierarchy / Type Sprites")]
     [SerializeField] private TypeSpriteMapping[] typeSprites;
+
+    [Header("Hierarchy Background Colors")]
+    [SerializeField] private TypeColorMapping[] typeColors;
 
     private Action onDetailsClicked;
 
@@ -36,6 +40,13 @@ public class CharacterListItemUI : MonoBehaviour
     {
         public CharacterType type;
         public Sprite sprite;
+    }
+
+    [Serializable]
+    private struct TypeColorMapping
+    {
+        public CharacterType type;
+        public Color color;
     }
 
     private void Awake()
@@ -62,8 +73,8 @@ public class CharacterListItemUI : MonoBehaviour
 
         if (iconImage != null)
         {
-            iconImage.sprite = data.Icon;
-            iconImage.enabled = data.Icon != null;
+            iconImage.sprite = data.CharacterPortrait;
+            iconImage.enabled = data.CharacterPortrait != null;
         }
 
         if (nameText != null)
@@ -74,7 +85,10 @@ public class CharacterListItemUI : MonoBehaviour
 
         UpdateRoleImage(data.CharacterRole);
         UpdateHierarchyImage(data.CharacterType);
+        UpdateBackgroundColor(data.CharacterType);
     }
+
+    #region Role
 
     private void UpdateRoleImage(CharacterRole role)
     {
@@ -92,6 +106,10 @@ public class CharacterListItemUI : MonoBehaviour
         SetImage(roleImage, sprite);
     }
 
+    #endregion
+
+    #region Hierarchy
+
     private void UpdateHierarchyImage(CharacterType type)
     {
         Sprite sprite = null;
@@ -108,6 +126,33 @@ public class CharacterListItemUI : MonoBehaviour
         SetImage(hierarchyImage, sprite);
     }
 
+    #endregion
+
+    #region Background Color
+
+    private void UpdateBackgroundColor(CharacterType type)
+    {
+        if (backgroundImage == null)
+            return;
+
+        foreach (var mapping in typeColors)
+        {
+            if (mapping.type == type)
+            {
+                // Apply vertex color to UI Image.
+                backgroundImage.color = mapping.color;
+                return;
+            }
+        }
+
+        // Default color when no mapping exists.
+        backgroundImage.color = Color.white;
+    }
+
+    #endregion
+
+    #region Utilities
+
     private void SetImage(Image target, Sprite sprite)
     {
         if (target == null)
@@ -121,4 +166,6 @@ public class CharacterListItemUI : MonoBehaviour
     {
         onDetailsClicked?.Invoke();
     }
+
+    #endregion
 }

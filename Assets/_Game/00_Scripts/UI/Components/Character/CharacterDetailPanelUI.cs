@@ -62,8 +62,8 @@ public class CharacterDetailPanelUI : MonoBehaviour
 
         if (iconImage != null)
         {
-            iconImage.sprite = character.Icon;
-            iconImage.enabled = character.Icon != null;
+            iconImage.sprite = character.CharacterPortrait;
+            iconImage.enabled = character.CharacterPortrait != null;
         }
 
         if (nameText != null)

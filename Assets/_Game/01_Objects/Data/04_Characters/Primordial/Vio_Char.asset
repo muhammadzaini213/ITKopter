@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28b817bb14ed2fbab9bc7adaf76ac79, type: 3}
+  m_Name: Vio_Char
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  rarity: 2
+  icon: {fileID: -1930044106, guid: a0dd804ecf1e53187883a96e6f6ffa7b, type: 3}
+  characterId: char_4_vio
+  characterName: Vio
+  characterPortrait: {fileID: -6271339354940852609, guid: a0dd804ecf1e53187883a96e6f6ffa7b,
+    type: 3}
+  health: 550
+  attackPower: 155
+  defensePower: 5
+  exSkillCooldown: 22
+  movementSpeed: 5.5
+  bulletSpeed: 13
+  characterType: 3
+  characterRole: 3
+  characterPrefab: {fileID: 0}
+  duplicateDust: {fileID: 11400000, guid: 7efdbe2d3c4bd48b0a8eca3d2b4641ac, type: 2}
+  duplicateEngram: {fileID: 11400000, guid: ff8fcfa6234c091ec87a7d99983fff79, type: 2}
+  duplicateDustAmount: 3
+  duplicateEngramAmount: 1
+  dustMaterial: {fileID: 11400000, guid: 7efdbe2d3c4bd48b0a8eca3d2b4641ac, type: 2}
+  engramMaterial: {fileID: 11400000, guid: ff8fcfa6234c091ec87a7d99983fff79, type: 2}

@@ -29,7 +29,7 @@ public class CharacterDebug : Character
     {
         Debug.Log(
             $"[{CharacterName}] used EX Skill. " +
-            $"EX Skill Power: {ExSkillPower}",
+            $"EX Skill Power: {AttackPower}",
             this
         );
     }
@@ -46,8 +46,6 @@ public class CharacterDebug : Character
             $"Health: {Health}\n" +
             $"Attack Power: {AttackPower}\n" +
             $"Defense Power: {DefensePower}\n" +
-            $"EX Skill Power: {ExSkillPower}\n" +
-            $"EX Defense Power: {ExDefensePower}\n" +
             $"EX Skill Cooldown: {ExSkillCooldown}\n" +
             $"Movement Speed: {MovementSpeed}\n" +
             $"Bullet Speed: {BulletSpeed}\n" +

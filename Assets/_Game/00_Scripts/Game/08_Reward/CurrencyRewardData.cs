@@ -1,4 +1,5 @@
 
+using System.Globalization;
 using UnityEngine;
 
 public enum CurrencyType
@@ -12,6 +13,7 @@ public enum CurrencyType
     menuName = "Scriptable Objects/Currency Reward")]
 public class CurrencyRewardData : RewardData
 {
+    [Header("Basic")]
     [SerializeField] private CurrencyType currencyType;
     [SerializeField] private int amount;
 

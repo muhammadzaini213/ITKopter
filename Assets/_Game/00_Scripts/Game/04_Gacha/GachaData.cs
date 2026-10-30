@@ -16,15 +16,17 @@ public class GachaData : ScriptableObject
     [SerializeField, Min(1)] private int singlePullCount = 1;
     [SerializeField, Min(1)] private int multiPullCount = 10;
     [SerializeField, Min(1)] private int pityThreshold = 200;
-    [SerializeField] private RewardRarity pityRarity = RewardRarity.SSR;
+    [SerializeField] private RewardRarity pityRarity = RewardRarity.UR;
 
     [Header("Rarity Rates (%)")]
-    [SerializeField, Min(0f)] private float rRate = 80f;
+    [SerializeField, Min(0f)] private float nRate = 50f;
+    [SerializeField, Min(0f)] private float rRate = 30f;
     [SerializeField, Min(0f)] private float srRate = 18f;
-    [SerializeField, Min(0f)] private float ssrRate = 2f;
+    [SerializeField, Min(0f)] private float urRate = 2f;
 
     [Header("Reward Pool")]
-    [SerializeField] private RewardData[] rewardPool;
+    [SerializeField] private RewardData featuredReward;
+    [SerializeField] private GachaEntry[] gachaEntries;
 
     public string GachaId => gachaId;
     public string GachaName => gachaName;
@@ -35,9 +37,22 @@ public class GachaData : ScriptableObject
     public int PityThreshold => pityThreshold;
     public RewardRarity PityRarity => pityRarity;
 
+    public float NRate => nRate;
     public float RRate => rRate;
     public float SRRate => srRate;
-    public float SSRRate => ssrRate;
+    public float URRate => urRate;
 
-    public RewardData[] RewardPool => rewardPool;
+    public RewardData FeaturedReward => featuredReward;
+    public GachaEntry[] GachaEntries => gachaEntries;
+}
+
+[System.Serializable]
+public class GachaEntry
+{
+    public RewardData RewardData;
+    public bool UseInterval;
+    public int LowInterval = 1;
+    public int HighInterval = 1;
+    public bool OverrideRarity;
+    public RewardRarity OverrideRarityValue;
 }

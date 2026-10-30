@@ -25,7 +25,16 @@ public class RewardItemUI : MonoBehaviour
         }
 
         if (nameText != null)
-            nameText.text = reward.name;
+        {
+            if (reward is ItemData item)
+            {
+                nameText.text = item.ItemName;
+            }
+            else if (reward is CharacterData character)
+            {
+                nameText.text = character.CharacterName;
+            }
+        }
 
         if (amountText != null)
             amountText.text = $"× {amount}";

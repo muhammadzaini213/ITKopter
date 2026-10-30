@@ -12,13 +12,12 @@ public abstract class Character : MonoBehaviour
     public string CharacterId { get; private set; }
     public string CharacterName { get; private set; }
     public Sprite CharacterIcon { get; private set; }
+    public Sprite CharacterPortrait { get; private set; }
 
     public float Health { get; private set; }
     public float AttackPower { get; private set; }
     public float DefensePower { get; private set; }
 
-    public float ExSkillPower { get; private set; }
-    public float ExDefensePower { get; private set; }
     public float ExSkillCooldown { get; private set; }
 
     public float MovementSpeed { get; private set; }
@@ -46,11 +45,10 @@ public abstract class Character : MonoBehaviour
         CharacterId = data.CharacterId;
         CharacterName = data.CharacterName;
         CharacterIcon = data.Icon;
+        CharacterPortrait = data.CharacterPortrait;
         Health = data.Health;
         AttackPower = data.AttackPower;
         DefensePower = data.DefensePower;
-        ExSkillPower = data.ExSkillPower;
-        ExDefensePower = data.ExDefensePower;
         ExSkillCooldown = data.ExSkillCooldown;
         MovementSpeed = data.MovementSpeed;
         BulletSpeed = data.BulletSpeed;

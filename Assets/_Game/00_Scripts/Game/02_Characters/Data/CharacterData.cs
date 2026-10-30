@@ -12,8 +12,6 @@ public class CharacterData : RewardData
     [SerializeField] private float health;
     [SerializeField] private float attackPower;
     [SerializeField] private float defensePower;
-    [SerializeField] private float exSkillPower;
-    [SerializeField] private float exDefensePower;
     [SerializeField] private float exSkillCooldown;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float bulletSpeed;
@@ -24,16 +22,21 @@ public class CharacterData : RewardData
     [SerializeField] private GameObject characterPrefab;
 
     [Header("Duplicate Conversion")]
-    [SerializeField] private ItemData duplicateItem;
-    [SerializeField, Min(1)] private int duplicateItemAmount = 1;
+    [SerializeField] private ItemData duplicateDust;
+    [SerializeField] private ItemData duplicateEngram;
+    [SerializeField, Min(1)] private int duplicateDustAmount = 3;
+    [SerializeField, Min(1)] private int duplicateEngramAmount = 1;
+
+    [Header("Upgrades")]
+    [SerializeField] private ItemData dustMaterial;
+    [SerializeField] private ItemData engramMaterial;
 
     public string CharacterId => characterId;
     public string CharacterName => characterName;
+    public Sprite CharacterPortrait => characterPortrait;
     public float Health => health;
     public float AttackPower => attackPower;
     public float DefensePower => defensePower;
-    public float ExSkillPower => exSkillPower;
-    public float ExDefensePower => exDefensePower;
     public float ExSkillCooldown => exSkillCooldown;
     public float MovementSpeed => movementSpeed;
     public float BulletSpeed => bulletSpeed;
@@ -41,6 +44,8 @@ public class CharacterData : RewardData
     public CharacterRole CharacterRole => characterRole;
     public GameObject CharacterPrefab => characterPrefab;
 
-    public ItemData DuplicateItem => duplicateItem;
-    public int DuplicateItemAmount => duplicateItemAmount;
+    public ItemData DuplicateDust => duplicateDust;
+    public ItemData DuplicateEngram => duplicateEngram;
+    public int DuplicateDustAmount => duplicateDustAmount;
+    public int DuplicateEngramAmount => duplicateEngramAmount;
 }

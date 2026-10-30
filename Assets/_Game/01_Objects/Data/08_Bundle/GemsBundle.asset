@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 810986990160bebff884fa7171c725ff, type: 3}
+  m_Name: GemsBundle
+  m_EditorClassIdentifier: Assembly-CSharp::BundleData
+  bundleCategory: Gems
+  bundles:
+  - bundleName: Mini Games Pack
+    description: A small bundle containing 300 Gems. Perfect for a few extra pulls
+      or topping up your remaining balance.
+    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    price: 15000
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 300
+  - bundleName: 'Standard Games Pack  '
+    description: A standard bundle containing 1,000 Gems. Ideal for regular players
+      who want several pulls to keep their collection growing.
+    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    price: 49000
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 1000
+  - bundleName: 'Premium Gems Pack  '
+    description: A premium bundle containing 2,100 Gems. Stock up on Gems and get
+      closer to your next big acquisition.
+    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    price: 99000
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 21000
+  - bundleName: 'Mega Gems Pack  '
+    description: The largest bundle containing 4,500 Gems. Get a substantial supply
+      of Gems for extended summoning sessions and major collection goals.
+    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    price: 199000
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 4500

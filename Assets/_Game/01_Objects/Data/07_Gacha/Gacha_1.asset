@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8af704c02b7b69aa5bd6516d08a747a0, type: 3}
+  m_Name: Gacha_1
+  m_EditorClassIdentifier: Assembly-CSharp::GachaData
+  gachaId: artificial_order_gacha_1
+  gachaName: Artificial Order
+  gachaCost: 160
+  gachaDiscount: 0
+  singlePullCount: 1
+  multiPullCount: 10
+  pityThreshold: 200
+  pityRarity: 3
+  nRate: 50
+  rRate: 30
+  srRate: 18
+  urRate: 2
+  featuredReward: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+  gachaEntries:
+  - RewardData: {fileID: 11400000, guid: 5b228f6276d163bbf8f4ba4aea0ee88d, type: 2}
+    UseInterval: 1
+    LowInterval: 2
+    HighInterval: 4
+    OverrideRarity: 1
+    OverrideRarityValue: 0
+  - RewardData: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+    UseInterval: 1
+    LowInterval: 500
+    HighInterval: 1000
+    OverrideRarity: 1
+    OverrideRarityValue: 0
+  - RewardData: {fileID: 11400000, guid: e1879c82a8d88f34796f68bee58ae117, type: 2}
+    UseInterval: 0
+    LowInterval: 1
+    HighInterval: 1
+    OverrideRarity: 1
+    OverrideRarityValue: 0
+  - RewardData: {fileID: 11400000, guid: 6134dd6d0ecfb3b96b55175db641717b, type: 2}
+    UseInterval: 0
+    LowInterval: 2
+    HighInterval: 2
+    OverrideRarity: 1
+    OverrideRarityValue: 1
+  - RewardData: {fileID: 11400000, guid: e442fae7597d100deac5d91e425d4f49, type: 2}
+    UseInterval: 0
+    LowInterval: 2
+    HighInterval: 2
+    OverrideRarity: 1
+    OverrideRarityValue: 1
+  - RewardData: {fileID: 11400000, guid: 17e3c74c9b42ed40e87e4ac4008bf67e, type: 2}
+    UseInterval: 0
+    LowInterval: 2
+    HighInterval: 2
+    OverrideRarity: 1
+    OverrideRarityValue: 1
+  - RewardData: {fileID: 11400000, guid: 5b228f6276d163bbf8f4ba4aea0ee88d, type: 2}
+    UseInterval: 1
+    LowInterval: 5
+    HighInterval: 8
+    OverrideRarity: 1
+    OverrideRarityValue: 1
+  - RewardData: {fileID: 11400000, guid: 7b1e503074c0e22ba8291973dc096bc4, type: 2}
+    UseInterval: 1
+    LowInterval: 3
+    HighInterval: 5
+    OverrideRarity: 1
+    OverrideRarityValue: 1
+  - RewardData: {fileID: 11400000, guid: e1879c82a8d88f34796f68bee58ae117, type: 2}
+    UseInterval: 1
+    LowInterval: 5
+    HighInterval: 5
+    OverrideRarity: 1
+    OverrideRarityValue: 2
+  - RewardData: {fileID: 11400000, guid: 3bc8b19072853aadd991ef8bce657d11, type: 2}
+    UseInterval: 1
+    LowInterval: 5
+    HighInterval: 5
+    OverrideRarity: 1
+    OverrideRarityValue: 2
+  - RewardData: {fileID: 11400000, guid: 5b228f6276d163bbf8f4ba4aea0ee88d, type: 2}
+    UseInterval: 1
+    LowInterval: 10
+    HighInterval: 15
+    OverrideRarity: 1
+    OverrideRarityValue: 2
+  - RewardData: {fileID: 11400000, guid: 0c436f1b446f5542c802931be519caa6, type: 2}
+    UseInterval: 1
+    LowInterval: 5
+    HighInterval: 5
+    OverrideRarity: 1
+    OverrideRarityValue: 2
+  - RewardData: {fileID: 11400000, guid: 66aabe718522424b9a360e69c59040bf, type: 2}
+    UseInterval: 1
+    LowInterval: 10
+    HighInterval: 10
+    OverrideRarity: 1
+    OverrideRarityValue: 3
+  - RewardData: {fileID: 11400000, guid: a2d95c2c7229bc7378d9e3c58318b06c, type: 2}
+    UseInterval: 1
+    LowInterval: 10
+    HighInterval: 10
+    OverrideRarity: 1
+    OverrideRarityValue: 3
+  - RewardData: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+    UseInterval: 0
+    LowInterval: 1
+    HighInterval: 1
+    OverrideRarity: 1
+    OverrideRarityValue: 3
+  - RewardData: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    UseInterval: 0
+    LowInterval: 1
+    HighInterval: 1
+    OverrideRarity: 0
+    OverrideRarityValue: 0
+  - RewardData: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+    UseInterval: 0
+    LowInterval: 1
+    HighInterval: 1
+    OverrideRarity: 0
+    OverrideRarityValue: 0
+  - RewardData: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    UseInterval: 0
+    LowInterval: 1
+    HighInterval: 1
+    OverrideRarity: 0
+    OverrideRarityValue: 0
+  - RewardData: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+    UseInterval: 0
+    LowInterval: 1
+    HighInterval: 1
+    OverrideRarity: 0
+    OverrideRarityValue: 0
+  - RewardData: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    UseInterval: 0
+    LowInterval: 1
+    HighInterval: 1
+    OverrideRarity: 0
+    OverrideRarityValue: 0
+  - RewardData: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+    UseInterval: 0
+    LowInterval: 1
+    HighInterval: 1
+    OverrideRarity: 0
+    OverrideRarityValue: 0
+  - RewardData: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+    UseInterval: 0
+    LowInterval: 1
+    HighInterval: 1
+    OverrideRarity: 0
+    OverrideRarityValue: 0
+  - RewardData: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+    UseInterval: 0
+    LowInterval: 1
+    HighInterval: 1
+    OverrideRarity: 0
+    OverrideRarityValue: 0
+  - RewardData: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    UseInterval: 0
+    LowInterval: 1
+    HighInterval: 1
+    OverrideRarity: 0
+    OverrideRarityValue: 0

@@ -12,7 +12,8 @@ public abstract class RewardData : ScriptableObject
 
 public enum RewardRarity
 {
+    N,
     R,
     SR,
-    SSR
+    UR
 }
