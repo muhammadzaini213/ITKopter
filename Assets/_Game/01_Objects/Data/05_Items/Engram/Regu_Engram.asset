@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52237fa38844ca055b77e8a4c725c069, type: 3}
+  m_Name: Regu_Engram
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  rarity: 0
+  icon: {fileID: 2725946374239863731, guid: 9d7a78ef569baf0f7a681483a989a2a2, type: 3}
+  itemId: regu_engram
+  itemName: Regu Engram
+  desc: Upgrade Regu character level

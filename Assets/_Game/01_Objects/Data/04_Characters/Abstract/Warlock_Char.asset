@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28b817bb14ed2fbab9bc7adaf76ac79, type: 3}
+  m_Name: Warlock_Char
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  rarity: 1
+  icon: {fileID: 1017394623, guid: 1b7a95f3ea7a258e1859099926f65377, type: 3}
+  characterId: char_9_warlock
+  characterName: Warlock
+  characterPortrait: {fileID: -7770993545756500656, guid: 1b7a95f3ea7a258e1859099926f65377,
+    type: 3}
+  health: 950
+  attackPower: 95
+  defensePower: 18
+  exSkillCooldown: 25
+  movementSpeed: 4.6
+  bulletSpeed: 12
+  characterType: 0
+  characterRole: 0
+  characterPrefab: {fileID: 0}
+  duplicateDust: {fileID: 11400000, guid: f7f10a0a4c87a2d5892f1a7d6bdb4663, type: 2}
+  duplicateEngram: {fileID: 11400000, guid: 98ad94a16ac3f9d7e9f1059564ccb513, type: 2}
+  duplicateDustAmount: 3
+  duplicateEngramAmount: 1
+  dustMaterial: {fileID: 11400000, guid: f7f10a0a4c87a2d5892f1a7d6bdb4663, type: 2}
+  engramMaterial: {fileID: 11400000, guid: 98ad94a16ac3f9d7e9f1059564ccb513, type: 2}

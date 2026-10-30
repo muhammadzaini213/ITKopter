@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28b817bb14ed2fbab9bc7adaf76ac79, type: 3}
+  m_Name: Regu_Char
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  rarity: 2
+  icon: {fileID: -1003039640, guid: 97f0d329ab699af96bac898f6d998f95, type: 3}
+  characterId: char_7_regu
+  characterName: Regu
+  characterPortrait: {fileID: -1693122083504339094, guid: 97f0d329ab699af96bac898f6d998f95,
+    type: 3}
+  health: 1250
+  attackPower: 50
+  defensePower: 35
+  exSkillCooldown: 25
+  movementSpeed: 4.5
+  bulletSpeed: 9
+  characterType: 2
+  characterRole: 1
+  characterPrefab: {fileID: 0}
+  duplicateDust: {fileID: 11400000, guid: 35922ea8f99da01adb6e1fb0f904baab, type: 2}
+  duplicateEngram: {fileID: 11400000, guid: 0ae1e73952ecd1d44819c66485133047, type: 2}
+  duplicateDustAmount: 3
+  duplicateEngramAmount: 1
+  dustMaterial: {fileID: 11400000, guid: 35922ea8f99da01adb6e1fb0f904baab, type: 2}
+  engramMaterial: {fileID: 11400000, guid: 0ae1e73952ecd1d44819c66485133047, type: 2}

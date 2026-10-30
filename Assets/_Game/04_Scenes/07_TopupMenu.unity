@@ -2288,6 +2288,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BundleComponentUI
   bundleSlots:
+  - bundleData: {fileID: 11400000, guid: 6952014d8116657dbbb85e55d37ea62a, type: 2}
+    selectButton: {fileID: 1207574518}
   - bundleData: {fileID: 11400000, guid: 05690edd6ad49f54daf750eb11eb53c5, type: 2}
     selectButton: {fileID: 1207574518}
   contentRoot: {fileID: 340496385}

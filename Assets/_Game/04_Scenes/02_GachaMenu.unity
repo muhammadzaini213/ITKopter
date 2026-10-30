@@ -2812,9 +2812,9 @@ MonoBehaviour:
   banners:
   - gachaData: {fileID: 11400000, guid: 7ef3f0f81c1ece3cdbc81f4934739761, type: 2}
     selectButton: {fileID: 102750390}
-  - gachaData: {fileID: 11400000, guid: 386876182cca395438b2adae18177024, type: 2}
+  - gachaData: {fileID: 11400000, guid: 407ee964c556decbeb5a06c3494782d1, type: 2}
     selectButton: {fileID: 510170814}
-  - gachaData: {fileID: 11400000, guid: 05e9fa2052f484d9782e4427019a11ac, type: 2}
+  - gachaData: {fileID: 11400000, guid: 8bd9b2d334cc187578aced512b4ac837, type: 2}
     selectButton: {fileID: 583326236}
   gachaNameText: {fileID: 460942465}
   singlePullPriceText: {fileID: 748034547}

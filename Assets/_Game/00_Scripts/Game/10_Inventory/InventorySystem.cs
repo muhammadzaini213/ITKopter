@@ -8,28 +8,26 @@ public class InventorySystem : GameSystem<InventorySystem>
 {
     [Header("Item Database")]
     [SerializeField]
-    private List<ItemData> itemDatabase =
-        new List<ItemData>();
-
-    private readonly Dictionary<string, ItemData> itemsById =
-        new Dictionary<string, ItemData>();
+    private ItemDatabase itemDatabase;
 
     private readonly Dictionary<string, int> inventory =
         new Dictionary<string, int>();
 
-    public bool IsDatabaseReady { get; private set; }
+    public bool IsDatabaseReady =>
+        itemDatabase != null;
 
     public override IEnumerator Initialize()
     {
-        IsDatabaseReady = false;
+        if (!IsDatabaseReady)
+        {
+            Debug.LogError(
+                "[InventorySystem] ItemDatabase reference is missing.");
 
-        BuildItemDatabase();
-
-        IsDatabaseReady = true;
+            yield break;
+        }
 
         Debug.Log(
-            $"[InventorySystem] Item database ready. " +
-            $"Registered items: {itemsById.Count}");
+            "[InventorySystem] Initialized successfully.");
 
         yield return null;
     }
@@ -43,43 +41,25 @@ public class InventorySystem : GameSystem<InventorySystem>
         base.OnSingletonAwake();
     }
 
-    private void BuildItemDatabase()
-    {
-        itemsById.Clear();
-
-        foreach (ItemData item in itemDatabase)
-        {
-            if (item == null || string.IsNullOrWhiteSpace(item.ItemId))
-            {
-                Debug.LogWarning(
-                    "[InventorySystem] An item or item ID is missing.");
-                continue;
-            }
-
-            if (itemsById.ContainsKey(item.ItemId))
-            {
-                Debug.LogError(
-                    $"[InventorySystem] Duplicate item ID: {item.ItemId}");
-                continue;
-            }
-
-            itemsById.Add(item.ItemId, item);
-        }
-    }
+    // ============================================
+    // ITEM VALIDATION
+    // ============================================
 
     public bool CanAddItem(ItemData item, int amount)
     {
-        if (!IsDatabaseReady || item == null || amount <= 0)
+        if (!IsDatabaseReady ||
+            item == null ||
+            amount <= 0)
+        {
             return false;
+        }
 
-        if (string.IsNullOrWhiteSpace(item.ItemId))
-            return false;
-
-        if (!itemsById.TryGetValue(item.ItemId, out ItemData registeredItem))
-            return false;
-
-        return registeredItem == item;
+        return itemDatabase.Contains(item);
     }
+
+    // ============================================
+    // ADD ITEM
+    // ============================================
 
     public bool AddItem(ItemData item, int amount = 1)
     {
@@ -88,42 +68,51 @@ public class InventorySystem : GameSystem<InventorySystem>
             Debug.LogWarning(
                 "[InventorySystem] Cannot add an invalid, " +
                 "unregistered, or not-yet-ready item.");
+
             return false;
         }
 
         string itemId = item.ItemId;
 
-        inventory.TryGetValue(itemId, out int currentAmount);
+        inventory.TryGetValue(
+            itemId,
+            out int currentAmount);
 
         if (currentAmount > int.MaxValue - amount)
         {
             Debug.LogWarning(
                 $"[InventorySystem] Item amount overflow: {itemId}");
+
             return false;
         }
 
         inventory[itemId] = currentAmount + amount;
+
         return true;
     }
+
+    // ============================================
+    // REMOVE ITEM
+    // ============================================
 
     public bool RemoveItem(ItemData item, int amount = 1)
     {
         if (!IsDatabaseReady ||
             item == null ||
             amount <= 0 ||
-            string.IsNullOrWhiteSpace(item.ItemId))
+            !itemDatabase.Contains(item))
         {
             return false;
         }
 
-        if (!itemsById.TryGetValue(item.ItemId, out ItemData registeredItem) ||
-            registeredItem != item)
+        string itemId = item.ItemId;
+
+        if (!inventory.TryGetValue(
+            itemId,
+            out int currentAmount))
         {
             return false;
         }
-
-        if (!inventory.TryGetValue(item.ItemId, out int currentAmount))
-            return false;
 
         if (currentAmount < amount)
             return false;
@@ -131,20 +120,22 @@ public class InventorySystem : GameSystem<InventorySystem>
         int remaining = currentAmount - amount;
 
         if (remaining == 0)
-            inventory.Remove(item.ItemId);
+            inventory.Remove(itemId);
         else
-            inventory[item.ItemId] = remaining;
+            inventory[itemId] = remaining;
 
         return true;
     }
 
+    // ============================================
+    // GET ITEM AMOUNT
+    // ============================================
+
     public int GetItemAmount(ItemData item)
     {
-        if (!IsDatabaseReady || item == null)
-            return 0;
-
-        if (!itemsById.TryGetValue(item.ItemId, out ItemData registeredItem) ||
-            registeredItem != item)
+        if (!IsDatabaseReady ||
+            item == null ||
+            !itemDatabase.Contains(item))
         {
             return 0;
         }
@@ -154,40 +145,63 @@ public class InventorySystem : GameSystem<InventorySystem>
 
     public int GetItemAmount(string itemId)
     {
-        if (!IsDatabaseReady || string.IsNullOrWhiteSpace(itemId))
+        if (!IsDatabaseReady ||
+            string.IsNullOrWhiteSpace(itemId))
+        {
             return 0;
+        }
 
-        return inventory.TryGetValue(itemId, out int amount)
+        return inventory.TryGetValue(
+            itemId,
+            out int amount)
             ? amount
             : 0;
     }
+
+    // ============================================
+    // GET ITEM DATA
+    // ============================================
 
     public bool TryGetItem(string itemId, out ItemData item)
     {
         item = null;
 
-        if (!IsDatabaseReady || string.IsNullOrWhiteSpace(itemId))
+        if (!IsDatabaseReady ||
+            string.IsNullOrWhiteSpace(itemId))
+        {
             return false;
+        }
 
-        return itemsById.TryGetValue(itemId, out item);
+        return itemDatabase.TryGetItem(
+            itemId,
+            out item);
     }
+
+    // ============================================
+    // LOAD INVENTORY
+    // ============================================
 
     public void LoadFromSaveData(PlayerSaveData saveData)
     {
         if (!IsDatabaseReady)
         {
             Debug.LogError(
-                "[InventorySystem] Cannot load inventory before " +
-                "the item database is ready.");
+                "[InventorySystem] Cannot load inventory. " +
+                "ItemDatabase is missing.");
+
             return;
         }
 
         inventory.Clear();
 
-        if (saveData == null || saveData.inventoryItems == null)
+        if (saveData == null ||
+            saveData.inventoryItems == null)
+        {
             return;
+        }
 
-        foreach (InventoryItemSaveData savedItem in saveData.inventoryItems)
+        foreach (InventoryItemSaveData savedItem
+                 in saveData.inventoryItems)
         {
             if (savedItem == null ||
                 string.IsNullOrWhiteSpace(savedItem.itemId) ||
@@ -196,57 +210,88 @@ public class InventorySystem : GameSystem<InventorySystem>
                 continue;
             }
 
-            if (!itemsById.ContainsKey(savedItem.itemId))
+            if (!itemDatabase.TryGetItem(
+                savedItem.itemId,
+                out _))
             {
                 Debug.LogWarning(
                     $"[InventorySystem] Saved item is not registered: " +
                     $"{savedItem.itemId}");
+
                 continue;
             }
 
-            inventory.TryGetValue(savedItem.itemId, out int currentAmount);
+            inventory.TryGetValue(
+                savedItem.itemId,
+                out int currentAmount);
 
             if (currentAmount > int.MaxValue - savedItem.amount)
             {
                 Debug.LogWarning(
                     $"[InventorySystem] Saved item amount overflow: " +
                     $"{savedItem.itemId}");
+
                 continue;
             }
 
-            inventory[savedItem.itemId] = currentAmount + savedItem.amount;
+            inventory[savedItem.itemId] =
+                currentAmount + savedItem.amount;
         }
+
+        Debug.Log(
+            $"[InventorySystem] Inventory loaded. " +
+            $"Unique items: {inventory.Count}");
     }
+
+    // ============================================
+    // SAVE INVENTORY
+    // ============================================
 
     public void WriteToSaveData(PlayerSaveData saveData)
     {
         if (!IsDatabaseReady)
         {
             Debug.LogError(
-                "[InventorySystem] Cannot save inventory before " +
-                "the item database is ready.");
+                "[InventorySystem] Cannot save inventory. " +
+                "ItemDatabase is missing.");
+
             return;
         }
 
         if (saveData == null)
         {
             Debug.LogWarning(
-                "[InventorySystem] Cannot save inventory: save data is null.");
+                "[InventorySystem] Cannot save inventory: " +
+                "save data is null.");
+
             return;
         }
 
         if (saveData.inventoryItems == null)
-            saveData.inventoryItems = new List<InventoryItemSaveData>();
+        {
+            saveData.inventoryItems =
+                new List<InventoryItemSaveData>();
+        }
         else
+        {
             saveData.inventoryItems.Clear();
+        }
 
         foreach (KeyValuePair<string, int> entry in inventory)
         {
+            if (entry.Value <= 0)
+                continue;
+
             saveData.inventoryItems.Add(
-                new InventoryItemSaveData(entry.Key, entry.Value));
+                new InventoryItemSaveData(
+                    entry.Key,
+                    entry.Value));
         }
     }
 
+    // ============================================
+    // GET INVENTORY SNAPSHOT
+    // ============================================
 
     public List<InventoryItemSaveData> GetInventoryItems()
     {
@@ -269,5 +314,4 @@ public class InventorySystem : GameSystem<InventorySystem>
 
         return result;
     }
-
 }

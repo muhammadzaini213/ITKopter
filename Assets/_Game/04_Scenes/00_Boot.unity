@@ -278,6 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 241259134}
   - component: {fileID: 241259133}
+  - component: {fileID: 241259135}
   m_Layer: 0
   m_Name: CurrencySystem
   m_TagString: Untagged
@@ -312,6 +313,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &241259135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241259132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d62df29013a0b96699dcc076073c8eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CurrencyDebug
 --- !u!1 &256598592
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,11 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 470f4a2e240a5cf13897408254f15493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySystem
-  itemDatabase:
-  - {fileID: 11400000, guid: 647a754b2432732019eb3f1c5f5614ea, type: 2}
-  - {fileID: 11400000, guid: 91dcc40afd6a40db993b31327f427f5a, type: 2}
-  - {fileID: 11400000, guid: 8a57a4382eebb32db8cf13ffc3c9026f, type: 2}
-  - {fileID: 11400000, guid: 7876597b4dfbd8480ad03a3b808ec61d, type: 2}
+  itemDatabase: {fileID: 11400000, guid: 63b0234fbd1193a6bbf47f3519af3d29, type: 2}
 --- !u!4 &393791939
 Transform:
   m_ObjectHideFlags: 0
