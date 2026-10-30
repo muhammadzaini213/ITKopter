@@ -6,6 +6,7 @@ public class CharacterData : RewardData
     [Header("Character Info")]
     [SerializeField] private string characterId;
     [SerializeField] private string characterName;
+    [SerializeField] private Sprite characterPortrait;
 
     [Header("Stats")]
     [SerializeField] private float health;
