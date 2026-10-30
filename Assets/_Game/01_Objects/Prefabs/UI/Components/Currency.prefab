@@ -578,7 +578,6 @@ GameObject:
   - component: {fileID: 2537387961459308227}
   - component: {fileID: 8698744421702418508}
   - component: {fileID: 720667464503503565}
-  - component: {fileID: 1406578779325381431}
   m_Layer: 5
   m_Name: Currency
   m_TagString: Untagged
@@ -657,18 +656,6 @@ MonoBehaviour:
   coinsText: {fileID: 4531298497037055500}
   gemsText: {fileID: 2175290193472442576}
   energyText: {fileID: 1456643390073824577}
---- !u!114 &1406578779325381431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7271918347990408656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d62df29013a0b96699dcc076073c8eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CurrencyDebug
 --- !u!1 &9181214246882694966
 GameObject:
   m_ObjectHideFlags: 0

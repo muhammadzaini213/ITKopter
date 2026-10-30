@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CurrencyDebug : MonoBehaviour
 {
-    private bool showDebug = true;
+    private bool showDebug = false;
 
     private void OnGUI()
     {
