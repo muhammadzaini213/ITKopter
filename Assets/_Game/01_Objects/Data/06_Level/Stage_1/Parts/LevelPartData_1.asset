@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: LevelPartData_1
   m_EditorClassIdentifier: Assembly-CSharp::LevelPartData
   partName: Part_1
-  areaPrefab: {fileID: 1642783251020503190, guid: 29c9a951b4865bcc88214ac28e9b1095,
+  areaPrefab: {fileID: 1642783251020503190, guid: 87088da0821d15a74b30161b3acfe29a,
     type: 3}
   enemyWaves:
+  - {fileID: 11400000, guid: 879e39b259c3d942fb5282d1f212a061, type: 2}
   - {fileID: 11400000, guid: 879e39b259c3d942fb5282d1f212a061, type: 2}
   - {fileID: 11400000, guid: 879e39b259c3d942fb5282d1f212a061, type: 2}
