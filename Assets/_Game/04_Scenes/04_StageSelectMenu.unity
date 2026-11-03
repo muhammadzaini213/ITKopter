@@ -1657,7 +1657,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4396820456594586127, guid: 1db9a3f382b5f93faa2fd5ee5926dfcd,
+  m_Sprite: {fileID: 2365596823942982563, guid: 2131dec12abd08c9aabdc9c28f88f2f1,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -2308,7 +2308,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 585221312}
   m_HandleRect: {fileID: 585221311}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
