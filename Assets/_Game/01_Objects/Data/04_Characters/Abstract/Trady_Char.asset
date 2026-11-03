@@ -26,7 +26,7 @@ MonoBehaviour:
   bulletSpeed: 0
   characterType: 0
   characterRole: 4
-  characterPrefab: {fileID: 8729292657063863904, guid: 314f6b1abc5438092a14c559d62fde72,
+  characterPrefab: {fileID: 8729292657063863904, guid: 3f5529602973cae6c840a6a180f7e9fd,
     type: 3}
   duplicateDust: {fileID: 11400000, guid: f7f10a0a4c87a2d5892f1a7d6bdb4663, type: 2}
   duplicateEngram: {fileID: 11400000, guid: 66aabe718522424b9a360e69c59040bf, type: 2}
