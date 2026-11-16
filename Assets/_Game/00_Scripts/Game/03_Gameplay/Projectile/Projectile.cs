@@ -5,6 +5,9 @@ using Slafurry.Utils.Pooling;
 
 public class Projectile : MonoBehaviour, IPoolable
 {
+    public static event Action<Character, Health, float, bool> OnHit;
+
+    private Character ownerCharacter;
     [Header("Projectile Settings")]
     [SerializeField, Min(0.01f)]
     private float speed = 15f;
@@ -28,6 +31,11 @@ public class Projectile : MonoBehaviour, IPoolable
     public void SetReturnCallback(Action<Projectile> callback)
     {
         returnToPool = callback;
+    }
+
+    public void SetOwner(Character owner)
+    {
+        ownerCharacter = owner;
     }
 
     public void Initialize(
@@ -71,7 +79,7 @@ public class Projectile : MonoBehaviour, IPoolable
         if (distance <= 0f)
             return;
 
-        Vector2 direction = transform.up;
+        Vector2 direction = GetMovementDirection();
         float angle = transform.eulerAngles.z;
 
         RaycastHit2D hit = Physics2D.BoxCast(
@@ -87,11 +95,26 @@ public class Projectile : MonoBehaviour, IPoolable
         {
             hasHit = true;
 
+            Health targetHealth =
+                hit.collider.GetComponentInParent<Health>();
+            Character targetCharacter =
+                targetHealth != null ? targetHealth.GetComponent<Character>() : null;
+
+            bool wasAliveBefore = targetHealth != null && !targetHealth.IsDead;
+
             IDamageable damageable =
                 hit.collider.GetComponentInParent<IDamageable>();
 
             if (damageable != null)
                 damageable.TakeDamage(damage);
+
+            bool wasKilled = wasAliveBefore &&
+                targetHealth != null && targetHealth.IsDead;
+
+            OnHit?.Invoke(ownerCharacter, targetHealth, damage, wasKilled);
+
+            if (wasKilled && targetCharacter != null && ownerCharacter != null)
+                CombatEventBus.InvokeEnemyDiedMarked(ownerCharacter, targetCharacter);
 
             transform.position = hit.centroid;
             ReturnToPool();
@@ -101,7 +124,9 @@ public class Projectile : MonoBehaviour, IPoolable
         transform.position += (Vector3)(direction * distance);
     }
 
-    private void ReturnToPool()
+    protected virtual Vector2 GetMovementDirection() => transform.up;
+
+    public void ReturnToPool()
     {
         if (hasHit && !isInitialized)
             return;

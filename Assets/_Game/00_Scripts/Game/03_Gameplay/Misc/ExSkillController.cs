@@ -1,6 +1,8 @@
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -26,6 +28,8 @@ public class ExSkillController : MonoBehaviour
     [SerializeField]
     private List<CharacterCooldownDebug> cooldownDebug =
         new List<CharacterCooldownDebug>();
+
+    private UnityAction useExSkillAction;
 
     private class CharacterCooldown
     {
@@ -58,16 +62,18 @@ public class ExSkillController : MonoBehaviour
 
     private void Awake()
     {
+        useExSkillAction = new UnityAction(UseExSkill);
+
         if (characterSwitcher == null)
         {
-            characterSwitcher =
-                Object.FindFirstObjectByType<CharacterSwitcher>();
+        characterSwitcher =
+            UnityEngine.Object.FindFirstObjectByType<CharacterSwitcher>();
         }
 
         if (gameplayInitializer == null)
         {
-            gameplayInitializer =
-                Object.FindFirstObjectByType<GameplayInitializer>();
+        gameplayInitializer =
+            UnityEngine.Object.FindFirstObjectByType<GameplayInitializer>();
         }
 
         if (characterSwitcher == null)
@@ -108,7 +114,7 @@ public class ExSkillController : MonoBehaviour
 
         if (exSkillButton != null)
         {
-            exSkillButton.onClick.AddListener(UseExSkill);
+            exSkillButton.onClick.AddListener(useExSkillAction);
             Debug.Log("[ExSkillController] Button listener registered.", this);
         }
         else
@@ -120,7 +126,7 @@ public class ExSkillController : MonoBehaviour
     private void OnDisable()
     {
         if (exSkillButton != null)
-            exSkillButton.onClick.RemoveListener(UseExSkill);
+            exSkillButton.onClick.RemoveListener(useExSkillAction);
     }
 
     private void Start()
@@ -348,7 +354,17 @@ public class ExSkillController : MonoBehaviour
         if (character == null)
             return null;
 
-        return character.transform.Find(exSkillChildName);
+        // Prefer a child named "ExSkill".
+        Transform child = character.transform.Find(exSkillChildName);
+
+        if (child != null)
+            return child;
+
+        // Fallback: EX Skill component placed on the same GameObject as the Character.
+        if (character.GetComponent<ExSkill>() != null)
+            return character.transform;
+
+        return null;
     }
 
     private ExSkill GetExSkill(Character character)
@@ -448,8 +464,7 @@ public class ExSkillController : MonoBehaviour
         if (health != null && health.IsDead)
             canUse = false;
 
-        Transform exSkillTransform =
-            activeCharacter.transform.Find(exSkillChildName);
+        Transform exSkillTransform = GetExSkillTransform(activeCharacter);
 
         // The EX Skill child may be inactive before first use.
         // Search inactive children when checking for the component.

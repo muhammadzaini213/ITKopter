@@ -17,10 +17,15 @@ public class Health : MonoBehaviour, IDamageable
 
     private float currentHealth;
     private bool isDead;
+    private Shield shield;
 
     public float MaxHealth => maxHealth;
     public float CurrentHealth => currentHealth;
     public float DefensePower => defensePower;
+
+    public float IncomingDamageMultiplier { get; set; } = 1f;
+
+    public Shield Shield => shield;
 
     public float HealthPercentage => maxHealth > 0f
         ? currentHealth / maxHealth
@@ -48,10 +53,22 @@ public class Health : MonoBehaviour, IDamageable
         defensePower = Mathf.Max(0f, newDefensePower);
     }
 
+    public void AssignShield(Shield newShield) => shield = newShield;
+
+    public void RemoveShield() => shield = null;
+
     public void TakeDamage(float amount)
     {
         if (isDead || amount <= 0f)
             return;
+
+        if (shield != null)
+            shield.Absorb(ref amount);
+
+        if (amount <= 0f)
+            return;
+
+        amount *= IncomingDamageMultiplier;
 
         float finalDamage = Mathf.Max(0f, amount - defensePower);
 

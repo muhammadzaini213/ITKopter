@@ -190,6 +190,46 @@ public class CharacterLifeController : MonoBehaviour
         CharacterDefeated?.Invoke(index);
     }
 
+    public bool Revive(int index)
+    {
+        if (!IsInitialized ||
+            index < 0 ||
+            index >= CharacterCount ||
+            !defeated[index] ||
+            characters[index] == null ||
+            healths[index] == null)
+        {
+            return false;
+        }
+
+        defeated[index] = false;
+
+        healths[index].RestoreFullHealth();
+
+        if (deathCallbacks[index] != null)
+            healths[index].OnDeath += deathCallbacks[index];
+
+        characters[index].SetActive(true);
+
+        Debug.Log(
+            $"[CharacterLifeController] Character at index {index} was revived.",
+            this);
+
+        return true;
+    }
+
+    public bool CanRevive(int index)
+    {
+        if (!IsInitialized ||
+            index < 0 ||
+            index >= CharacterCount)
+        {
+            return false;
+        }
+
+        return defeated[index] && characters[index] != null && healths[index] != null;
+    }
+
     private void UnregisterCallbacks()
     {
         if (healths != null && deathCallbacks != null)
