@@ -607,6 +607,7 @@ GameObject:
   - component: {fileID: 645664303}
   - component: {fileID: 645664302}
   - component: {fileID: 645664305}
+  - component: {fileID: 645664306}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -739,6 +740,21 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &645664306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645664300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
+  category: UI
+  effectName: Click
 --- !u!1 &730025271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,7 +2324,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 585221312}
   m_HandleRect: {fileID: 585221311}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3042,6 +3058,7 @@ GameObject:
   - component: {fileID: 2145954707}
   - component: {fileID: 2145954706}
   - component: {fileID: 2145954709}
+  - component: {fileID: 2145954710}
   m_Layer: 5
   m_Name: Cancel
   m_TagString: Untagged
@@ -3174,6 +3191,21 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2145954710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145954704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: 33195710c99faf241bece9182f4e675b, type: 2}
+  category: UI
+  effectName: Click
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

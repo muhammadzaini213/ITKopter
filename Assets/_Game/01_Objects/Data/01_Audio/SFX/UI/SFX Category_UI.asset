@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f389c41d65c452db0308108628f351, type: 3}
+  m_Name: SFX Category_UI
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Systems.Audio.SFXCategory
+  categoryName: UI
+  effects:
+  - groupID: BUY
+    clips:
+    - {fileID: 8300000, guid: 116af69273b4f69f7a6950a52416f16d, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: CANCEL
+    clips:
+    - {fileID: 8300000, guid: eba0412883fd1a10581c7677adbaf5a5, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: CHOOSE UNIT
+    clips:
+    - {fileID: 8300000, guid: 5db1c3875f35b6774bbdd4e3c96abe99, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: CLICK
+    clips:
+    - {fileID: 8300000, guid: 7c4e1910bfbe84c2db70a8c76b19198b, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: DIALOG
+    clips:
+    - {fileID: 8300000, guid: fbde8a632afc4dd5a8e9d4174bda5654, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: GACHA
+    clips:
+    - {fileID: 8300000, guid: 2b571d43555038fc1af6322dc90734ab, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: REWARD
+    clips:
+    - {fileID: 8300000, guid: 38ef0850bcafef2d29fdf6b13fb890ab, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: SLIDE
+    clips:
+    - {fileID: 8300000, guid: 7de0f78b1b3927d928c5488f236042e0, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: UPGRADE
+    clips:
+    - {fileID: 8300000, guid: 798bd6e40f54b874f83633d9d83f803b, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  poolSize: 8

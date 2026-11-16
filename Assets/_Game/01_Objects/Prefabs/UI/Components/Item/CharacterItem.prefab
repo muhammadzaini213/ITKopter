@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6022515378570346050}
   - component: {fileID: 91731937608342705}
   - component: {fileID: 7133492863774851781}
-  - component: {fileID: 6328577844254437339}
   - component: {fileID: 8996347464366671022}
+  - component: {fileID: 4035892372013716257}
   m_Layer: 5
   m_Name: CharacterBorder
   m_TagString: Untagged
@@ -78,28 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6328577844254437339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121683682652496549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8428cc3e3a650c1a8d29d9fe3c3ef2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterListItemUI
-  iconImage: {fileID: 0}
-  nameText: {fileID: 0}
-  levelText: {fileID: 0}
-  detailsButton: {fileID: 8996347464366671022}
-  roleImage: {fileID: 0}
-  hierarchyImage: {fileID: 0}
-  backgroundImage: {fileID: 0}
-  roleSprites: []
-  typeSprites: []
-  typeColors: []
 --- !u!114 &8996347464366671022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +122,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4035892372013716257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121683682652496549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
+  category: UI
+  effectName: Click
 --- !u!1 &1655138652733789550
 GameObject:
   m_ObjectHideFlags: 0
