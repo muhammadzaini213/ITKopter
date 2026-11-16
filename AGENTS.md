@@ -14,7 +14,7 @@ Unity **6000.3.25f1** (Unity 6.3 LTS) URP starter (C#). Verify C# with Unity bat
 ```
 Assets/_Game/          # all game content
   00_Scripts/          # Core, Systems, Manager, Game, UI, Utils
-  01_Objects/          # Prefabs/ + Data/ (SO variants; SceneReference assets in Data/00_Scenes/)
+  01_Objects/          # Prefabs/ (Characters/{Role}/{Name}/ …) + Data/ (numbered domain subfolders; SceneReference assets in Data/00_Scenes/)
   02_Art/              # sprites (Drive sync removed)
   03_Audio/            # GameAudioMixer.mixer (+ Music/, SFX/)
   04_Scenes/           # 00_Boot … 11_StoryScene (numbered; see Build Settings below)
@@ -25,16 +25,17 @@ Assets/_Vendor/        # third-party — do not edit
 core/, state/, scripts/test_state.py   # orphaned Drive-tooling remnants (retrieve.py/track.py/requirements.txt removed) — do not extend
 ```
 
-- Namespaces mirror folders: `Slafurry.Systems.*`, `Slafurry.Core.*`, `Slafurry.Utils.*`. Folder is **`Systems/`** (plural) — not `System/` (BCL conflict). **Exception:** active code under `00_Scripts/Game/` is in the **global namespace** (no `namespace` block) — match files there, don't add one. Only `_old/` files declare namespaces (`Game.Dialog`, …). Most `UI/` files also global; `Systems/Scene/SceneReference.cs` is global despite its folder.
-- `00_Scripts/Game/` uses **numbered domain subfolders** (`00_Player`, `01_Currency`, `02_Characters`, `03_Gameplay`, `04_Gacha`, `05_Items`, `06_Bundle`, `07_Level`, `08_Reward`, `09_Shop`, `10_Inventory`, `11_Story`, `_old`). `03_Gameplay/` holds `PlayerMovement`, `PlayerAutoShooter`, projectiles. Gameplay `GameSystem<T>` subclasses (`PlayerSystem`, `CurrencySystem`, `EnergySystem`, `GachaSystem`, `RewardSystem`, `ShopSystem`, `BundleSystem`, `InventorySystem`) live **here**, not in `Systems/` — this deviates from ARCHITECTURE's "`GameSystem<T>` → `Systems/`" rule; follow the code, not the doc.
+- Namespaces mirror folders: `Slafurry.Systems.*`, `Slafurry.Core.*`, `Slafurry.Utils.*`. Folder is **`Systems/`** (plural) — not `System/` (BCL conflict). **Exception:** active code under `00_Scripts/Game/` is in the **global namespace** (no `namespace` block) — match files there, don't add one. Only `_old/` files there declare namespaces (`Game.Dialog`, …). `UI/` is global too except `LocalizeText` (`Slafurry.UI.Generic`) and `DIalogHUD` (`Game.UI.HUD`); `Systems/Scene/SceneReference.cs` is global despite its folder.
+- `00_Scripts/Game/` uses **numbered domain subfolders** (`00_Player`, `01_Currency`, `02_Characters`, `03_Gameplay`, `04_Gacha`, `05_Items`, `06_Bundle`, `07_Level`, `08_Reward`, `09_Shop`, `10_Inventory`, `11_Story`, `_old`). `03_Gameplay/` subdivides into `Player/`, `Enemy/`, `Projectile/`, `Annihilator/`, `System/` (plain-`MonoBehaviour` `GameplayManager`), etc. Gameplay `GameSystem<T>` subclasses (`PlayerSystem`, `CurrencySystem`, `EnergySystem`, `GachaSystem`, `LevelSystem`, `RewardSystem`, `ShopSystem`, `BundleSystem`, `InventorySystem`) live **here**, not in `Systems/` — this deviates from ARCHITECTURE's "`GameSystem<T>` → `Systems/`" rule; follow the code, not the doc.
+- Characters: concrete units in `02_Characters/Unit/{Role}/XCharacter.cs` (roles = `CharacterRole` enum; **Annihilator gameplay scripts are in `03_Gameplay/Annihilator/` instead**), prefabs in `01_Objects/Prefabs/Characters/{Role}/{Name}/` (character + projectile), data assets in `Data/04_Characters/{Type}/` (`CharacterType`: Abstract/Simple/Special/Primordial/Anomaly). All registered in `Data/04_Characters/CharacterDatabase.asset`; `PlayerSystem` holds the reference.
 - **No `.asmdef`** — every non-`Editor` script compiles into `Assembly-CSharp`. Editor-only code must live under an `Editor/` folder.
-- Internal rule: max 6 subfolders per folder (ARCHITECTURE.md).
+- ARCHITECTURE's "max 6 subfolders per folder" is a doc-only guideline — already exceeded in `Game/` (13), `03_Gameplay/` (10), `UI/Components/` (9). Do not reorganize folders to satisfy it.
 
 ## Boot / lifecycle (easy to get wrong)
 
 - Scenes are numbered `00_Boot` … `11_StoryScene`. **`EditorBuildSettings` lists 10 enabled** (`00_Boot`–`09_SettingsMenu`); `10_StoryMenu` and `11_StoryScene` exist on disk but are **not** in Build Settings. Do not assume every scene is loadable.
 - `Singleton`/`Manager` `Awake` is private and auto-calls `LoadingSystem.Instance.Register(this)`. **`LoadingSystem` must exist first** — in `Assets/_Game/04_Scenes/00_Boot.unity` it sits on its own root GameObject (script GUID `2ba4b0833086a19a0b6ff4653a00344a`); do not remove it.
-- `00_Boot` root objects today (verified in scene YAML): `LoadingSystem`, `LocalizationSystem`, `AudioSystem` (children `MusicPlayer`/`SFXPlayer`), `SaveSystem`, `SceneLoader`, `PauseSystem`, gameplay `GameSystem<T>` roots — `PlayerSystem`, `CurrencySystem`, `EnergySystem`, `GachaSystem`, `RewardSystem`, `ShopSystem`, `BundleSystem`, `InventorySystem`, **each its own root GameObject** (no parent object named `GameSystem`), `====== BOOT ======` (BootstrapLoader), `====== SETUP ======` (EventSystem + light). **`InputHub` and `VFXSystem` are not in `00_Boot`** — add them if gameplay needs them. New systems attach as their own root GameObject.
+- `00_Boot` root objects today (verified in scene YAML): `LoadingSystem`, `LocalizationSystem`, `AudioSystem` (children `MusicPlayer`/`SFXPlayer`), `SaveSystem`, `SceneLoader`, `PauseSystem`, gameplay `GameSystem<T>` roots — `PlayerSystem`, `CurrencySystem`, `EnergySystem`, `GachaSystem`, `LevelSystem`, `RewardSystem`, `ShopSystem`, `BundleSystem`, `InventorySystem`, **each its own root GameObject** (no parent object named `GameSystem`; `RewardSystem` owns child `RewardPopupUI` → `Popup`), `====== BOOT ======` (BootstrapLoader), `====== SETUP ======` (EventSystem + light), `====== UI ======` (Start/Background/Overlay/Button). **`InputHub` and `VFXSystem` scripts exist but sit in no scene at all** — `Controls.*` and `VFX.Play` NRE until you add them. New systems attach as their own root GameObject.
 - `Initialize()` = internal setup only (no other-object refs). Cross-object wiring only in `PostInitialize()`. Avoid `Start()` (guard with `_isReady` if unavoidable).
 - `IInitializable.Priority` orders boot (lower first). Late registrants after boot get a one-frame delayed batch (`LoadingSystem.ProcessLateBatch`).
 - Base class: cross-scene singleton → `GameSystem<T>`; scene-bound singleton → `LocalSingleton<T>`; session coordinator → `Manager` (registers with `GameManager` in `PostInitialize` via abstract `RegisterToGameManager`/`OnPostInitialize`).
@@ -43,9 +44,9 @@ core/, state/, scripts/test_state.py   # orphaned Drive-tooling remnants (retrie
 
 ## Static facades (prefer over `.Instance` chains)
 
-`Audio` · `Save` · `Pause` · `Controls` (input, on `InputHub`) · `Localize` · `SceneSystem`
+`Audio` · `Save` · `Pause` · `Controls` (input, on `InputHub`) · `Localize` · `SceneSystem` · `VFX`
 
-- Pause is a **key set** (`Pause.On("UI")` / `Pause.Off("UI")` — stored in a `HashSet<string>`), not a bool — multiple holders can keep pause.
+- Pause is a **key set** (`Pause.On(key)` / `Pause.Off(key)` — stored in a `HashSet<string>`), not a bool — multiple holders can keep pause. Default key `"Global"`; real keys in code: `"GameplayMenu"`, `"Dialog"`. Gameplay polls `Keyboard.current` directly (`PlayerMovement`), not the `Controls` facade — zero call sites outside `InputHub.cs`.
 - Save: Newtonsoft.Json → `Application.persistentDataPath/{fileName}.json` (caller omits `.json`).
 - Linear volume → dB via `Mathf.Log10(x) * 20` before `AudioMixer.SetFloat`.
 - `GameFeel` is a **MonoBehaviour**, not a static facade.
@@ -82,13 +83,14 @@ env:
 - Input System only (`activeInputHandler: 1` in `ProjectSettings.asset`; 0=old, 1=Input System only, 2=Both). Actions: `Assets/_Game/05_Settings/Input/Main Input.inputactions` → generated `Main Input.cs` (regenerate in Unity after editing actions). Legacy `Input.GetKeyDown` in `DIalogHUD` is dead code.
 - `[GameAssetCreator(category, displayName, order)]` attribute exists (`Utils/Attributes/GameAssetCreatorAttributes.cs`) but the **creator EditorWindow is gone** — nothing consumes the attribute. Other SOs use `[CreateAssetMenu]`; `SceneReference` uses `menuName: "Scene Reference"`.
 - `EditorBuildSettings` lists **10 scenes** (`00_Boot` … `09_SettingsMenu`, all enabled). `10_StoryMenu`/`11_StoryScene` are on disk only.
-- `*.csproj` / `*.sln` are Editor-generated (`Assembly-CSharp.csproj` is gitignored) — never hand-edit or commit them.
+- `*.csproj` / `*.sln` are Editor-generated (`Assembly-CSharp.csproj` is gitignored) — never hand-edit or commit them. The tracked solution files are the two `.slnx` (`ITKopter.slnx`, `Sourdough-Starter.slnx`).
 - **No git hooks.** `.githooks/pre-push` and `scripts/check-compile.sh` were removed deliberately — do not recreate them; local verification is the raw batchmode command below.
 
 ## Verify changes
 
 - **Style only:** `.editorconfig`.
 - **Compile:** run Unity batchmode directly. Pass = exit 0, log contains `Exiting batchmode successfully`, and no `error CS` lines. Editor is installed at `~/Unity/Hub/Editor/6000.3.25f1/Editor/Unity` on this machine; read the path from `ProjectSettings/ProjectVersion.txt` elsewhere.
+- **Tests:** none — `com.unity.test-framework` is installed but there are zero C# test files. Only `python3 scripts/test_state.py` (orphaned Drive tooling) runs. Do not hunt for a test suite.
 - **CI:** no PR compile gate (`unity-compile.yml` deleted in PR #8 — do not re-add unless asked). The only CI compile check is inside deploy's Unity build (`error CS` fails the build). **Stale docs:** `README.md`, `GITHUB_WORKFLOWS.md`, and `CONTRIBUTING.md` still claim the PR gate exists — trust `.github/workflows/` over them.
 
 ```bash
