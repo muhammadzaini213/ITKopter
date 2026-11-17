@@ -1048,7 +1048,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 908285517}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 908285519}
+        m_TargetAssemblyTypeName: ChangeSceneTrigger, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 060563769b2f7cf2ba93326bfa6d1db2,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: SceneReference, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &908285517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1288,6 +1301,7 @@ GameObject:
   - component: {fileID: 1133151218}
   - component: {fileID: 1133151221}
   - component: {fileID: 1133151222}
+  - component: {fileID: 1133151223}
   m_Layer: 5
   m_Name: 01_StartBtn
   m_TagString: Untagged
@@ -1444,6 +1458,21 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1133151223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133151216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
+  category: UI
+  effectName: Click
 --- !u!224 &1163163146 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2224176528033881753, guid: aaed0fbc9a85edb6f9c5fc3398549eaa,
