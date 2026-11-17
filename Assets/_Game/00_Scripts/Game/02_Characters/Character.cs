@@ -18,6 +18,12 @@ public abstract class Character : MonoBehaviour
     public float AttackPower { get; private set; }
     public float DefensePower { get; private set; }
 
+    public float AttackPowerBonus { get; private set; }
+    public float DefensePowerBonus { get; private set; }
+
+    public float EffectiveAttackPower => AttackPower + AttackPowerBonus;
+    public float EffectiveDefensePower => DefensePower + DefensePowerBonus;
+
     public float ExSkillCooldown { get; private set; }
 
     public float MovementSpeed { get; private set; }
@@ -55,6 +61,9 @@ public abstract class Character : MonoBehaviour
         CharacterType = data.CharacterType;
         CharacterRole = data.CharacterRole;
 
+        AttackPowerBonus = 0f;
+        DefensePowerBonus = 0f;
+
         Health healthComponent = GetComponent<Health>();
 
         if (healthComponent != null)
@@ -69,6 +78,14 @@ public abstract class Character : MonoBehaviour
             exSkill.Initialize(this);
         }
     }
+
+    public void AddAttackPowerBonus(float amount) => AttackPowerBonus += amount;
+
+    public void AddDefensePowerBonus(float amount) => DefensePowerBonus += amount;
+
+    public void ClearAttackPowerBonus() => AttackPowerBonus = 0f;
+
+    public void ClearDefensePowerBonus() => DefensePowerBonus = 0f;
 
     public abstract void BaseAttack();
 

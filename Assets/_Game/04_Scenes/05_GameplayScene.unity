@@ -667,6 +667,7 @@ GameObject:
   m_Component:
   - component: {fileID: 177432447}
   - component: {fileID: 177432448}
+  - component: {fileID: 177432449}
   m_Layer: 0
   m_Name: Combat
   m_TagString: Untagged
@@ -702,6 +703,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterCombatController
   autoShootComponentName: AutoShoot
+--- !u!114 &177432449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177432446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270a1069d11340d119e813b6805981f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectSystem
 --- !u!1001 &189285382
 PrefabInstance:
   m_ObjectHideFlags: 0
