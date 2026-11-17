@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7521695591534275911}
   - component: {fileID: 2332565257612936650}
   - component: {fileID: 4798468607700258470}
+  - component: {fileID: 8294145729646256549}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -170,3 +171,18 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8294145729646256549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5849254474931102219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
+  category: UI
+  effectName: Click

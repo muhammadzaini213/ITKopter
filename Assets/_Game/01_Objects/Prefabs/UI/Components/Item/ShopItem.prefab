@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 4007583302629733617}
   - component: {fileID: 4217840046360277459}
   - component: {fileID: 5122229206189853624}
+  - component: {fileID: 8192503598966416329}
   m_Layer: 5
   m_Name: BuyBtn
   m_TagString: Untagged
@@ -370,6 +371,21 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8192503598966416329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5196359265327331439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
+  category: UI
+  effectName: Click
 --- !u!1 &8081258012295945686
 GameObject:
   m_ObjectHideFlags: 0
