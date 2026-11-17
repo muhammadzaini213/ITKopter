@@ -2131,7 +2131,6 @@ GameObject:
   - component: {fileID: 2004680006}
   - component: {fileID: 2004680005}
   - component: {fileID: 2004680008}
-  - component: {fileID: 2004680009}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2318,21 +2317,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2004680009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004680003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
-  clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
-  category: UI
-  effectName: Click
 --- !u!1 &2110492261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,24 +2409,22 @@ MonoBehaviour:
   musicData: {fileID: 11400000, guid: b8d9925690fcb3f0ba9300fbd7ae1a52, type: 2}
   musicSource: {fileID: 4235417319029800511}
   sceneTracks:
-  - scene: {fileID: 11400000, guid: a2ab643042e578ba891260a89f32b7e9, type: 2}
-    music: {fileID: 11400000, guid: 1f17b27403c9cfc3cb22aab4c2e3ca94, type: 2}
   - scene: {fileID: 11400000, guid: 182af698886fa7b95b147b51c4b933c9, type: 2}
-    music: {fileID: 11400000, guid: d8bb118ed9afc98ecb6078abc6c0d285, type: 2}
+    music: {fileID: 0}
   - scene: {fileID: 11400000, guid: 77f990fd911530582b7b862d30e3a1b7, type: 2}
-    music: {fileID: 11400000, guid: bf679deac1bc427559b8ea87e019812e, type: 2}
+    music: {fileID: 0}
   - scene: {fileID: 11400000, guid: 1600afab6394ed758aa65fd51ea2a1d3, type: 2}
-    music: {fileID: 11400000, guid: d8bb118ed9afc98ecb6078abc6c0d285, type: 2}
+    music: {fileID: 0}
   - scene: {fileID: 11400000, guid: 6b89e3f2deb7ff58e8e9c98c8200b5c6, type: 2}
-    music: {fileID: 11400000, guid: d8bb118ed9afc98ecb6078abc6c0d285, type: 2}
+    music: {fileID: 0}
   - scene: {fileID: 11400000, guid: 82dc3e3cce79197f8a4de62cb99d6fdb, type: 2}
-    music: {fileID: 11400000, guid: 26db864fe6bd0e8fcadcf2d09fb71af5, type: 2}
+    music: {fileID: 0}
   - scene: {fileID: 11400000, guid: d23eab0e998ddf54aacae1b3dea3e23d, type: 2}
-    music: {fileID: 11400000, guid: d8bb118ed9afc98ecb6078abc6c0d285, type: 2}
+    music: {fileID: 0}
   - scene: {fileID: 11400000, guid: 83f2942a7ce07a0e9bb234a9a9e3c877, type: 2}
-    music: {fileID: 11400000, guid: bf679deac1bc427559b8ea87e019812e, type: 2}
+    music: {fileID: 0}
   - scene: {fileID: 11400000, guid: 1d94ed888ee6c7d77b17f191b07fdb78, type: 2}
-    music: {fileID: 11400000, guid: d8bb118ed9afc98ecb6078abc6c0d285, type: 2}
+    music: {fileID: 0}
 --- !u!1001 &1846741269742778515
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -152,7 +152,6 @@ GameObject:
   - component: {fileID: 3142542691492730024}
   - component: {fileID: 5343707107161970265}
   - component: {fileID: 8912931574242204295}
-  - component: {fileID: 6133152423474001168}
   m_Layer: 5
   m_Name: TeamSelectItem
   m_TagString: Untagged
@@ -305,21 +304,6 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6133152423474001168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3789525751899070224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
-  clickSfx: {fileID: 11400000, guid: 6d5e04ea6026812c3a21f68cabb027b4, type: 2}
-  category: UI
-  effectName: Click
 --- !u!1 &5083589789250694710
 GameObject:
   m_ObjectHideFlags: 0

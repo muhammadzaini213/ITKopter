@@ -12,10 +12,6 @@ namespace Slafurry.Utils.UI
     [RequireComponent(typeof(Button))]
     public class UIButtonSFX : MonoBehaviour
     {
-        [Header("SFX Reference")]
-        [SerializeField] private SFXReference clickSfx;
-
-        [Header("Fallback (used if SFX Reference is unassigned)")]
         [SerializeField] private string category = "UI";
         [SerializeField] private string effectName = "Click";
 
@@ -34,17 +30,8 @@ namespace Slafurry.Utils.UI
 
         private void PlayClickSFX()
         {
-            if (AudioSystem.Instance == null)
-                return;
-
-            if (clickSfx != null)
-            {
-                Audio.PlaySFX2D(clickSfx);
-            }
-            else
-            {
+            if (AudioSystem.Instance != null)
                 AudioSystem.SFX.PlaySFX2D(category, effectName);
-            }
         }
     }
 }
