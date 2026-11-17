@@ -15,6 +15,8 @@ public class PlayerAutoShooter : MonoBehaviour
     private float fireTimer;
     private bool hasLoggedMissingReference;
 
+    public float FireIntervalMultiplier { get; set; } = 1f;
+
     private void Awake()
     {
         character = GetComponentInParent<Character>();
@@ -48,6 +50,9 @@ public class PlayerAutoShooter : MonoBehaviour
                 "[PlayerAutoShooter] CharacterSwitcher is not found in the scene.",
                 this);
         }
+
+        if (bulletSpawner != null)
+            bulletSpawner.OwnerCharacter = character;
     }
 
     private void Update()
@@ -60,16 +65,12 @@ public class PlayerAutoShooter : MonoBehaviour
 
         fireTimer += Time.deltaTime;
 
-        if (fireTimer < fireInterval)
+        float effectiveInterval = fireInterval / Mathf.Max(0.01f, FireIntervalMultiplier);
+
+        if (fireTimer < effectiveInterval)
             return;
 
         fireTimer -= fireInterval;
-
-        Debug.Log(
-            $"[AutoShooter] {character.name} firing. " +
-            $"Switching: {characterSwitcher.IsSwitching}, " +
-            $"Active: {characterSwitcher.ActiveCharacter?.name}",
-            this);
 
         bulletSpawner.Fire(
             firePoint,

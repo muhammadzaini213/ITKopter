@@ -1,79 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7845891448158990407
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4470533410855942954}
-  - component: {fileID: 8876455123549376333}
-  - component: {fileID: 3244967617427477115}
-  m_Layer: 6
-  m_Name: ExSkill
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4470533410855942954
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7845891448158990407}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 276194683720365842}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8876455123549376333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7845891448158990407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7b9006d1ab24336583ff0c744f1f81d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BurstExSkill
-  skillName: Dump
-  firePoint: {fileID: 276194683720365842}
-  bulletSpawner: {fileID: 3244967617427477115}
-  normalAutoShooter: {fileID: 8398632455271830748}
-  spacing: 0.3
-  duration: 3
---- !u!114 &3244967617427477115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7845891448158990407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4b4db3a39d40e266892a6a5ef8ce602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CircularSpawner
-  projectilePrefab: {fileID: 5609170668845526785, guid: 6dac9472c70ace5cabd88b95dd89555d,
-    type: 3}
-  projectileSpeed: 15
-  projectileDamage: 10
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 128
-  prewarmCount: 30
-  maxPoolSize: 300
-  projectileCount: 12
-  angleOffset: 0
 --- !u!1 &8320132065033642237
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +96,7 @@ GameObject:
   - component: {fileID: 738526280938229782}
   - component: {fileID: 8837663874862066067}
   - component: {fileID: 4768187600724020680}
+  - component: {fileID: 3378404861930810193}
   m_Layer: 6
   m_Name: CharacterAnon
   m_TagString: Untagged
@@ -191,7 +118,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7980083695552940897}
-  - {fileID: 4470533410855942954}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2311281249053205704
@@ -329,3 +255,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnonCharacter
   characterData: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
   logStatsOnStart: 1
+--- !u!114 &3378404861930810193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8729292657063863904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822bf5577d4704bef9428be5d5d8254f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnknownOutcomeExSkill
+  skillName: Unknown Outcome
+  shieldMultiplier: 2
+  duration: 8
+  untouchableRadius: 2
+  enemyProjectileMask:
+    serializedVersion: 2
+    m_Bits: 128

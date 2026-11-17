@@ -28,6 +28,12 @@ public abstract class BulletSpawner : MonoBehaviour
     private Transform projectilePoolParent;
     private bool poolReady;
     private bool ownsPoolParent;
+    private Character ownerCharacter;
+
+    public Character OwnerCharacter
+    {
+        set => ownerCharacter = value;
+    }
 
     protected bool PoolReady => poolReady;
     protected float DefaultProjectileSpeed => projectileSpeed;
@@ -82,7 +88,15 @@ public abstract class BulletSpawner : MonoBehaviour
         Transform firePoint,
         float speedOverride)
     {
-        Fire(firePoint);
+        Fire(firePoint, speedOverride, 0f);
+    }
+
+    public virtual void Fire(
+        Transform firePoint,
+        float speedOverride,
+        float damageOverride)
+    {
+        SpawnProjectile(firePoint.position, firePoint.rotation, speedOverride, damageOverride);
     }
 
     protected void SpawnProjectile(
@@ -101,6 +115,15 @@ public abstract class BulletSpawner : MonoBehaviour
         Quaternion rotation,
         float speedOverride)
     {
+        SpawnProjectile(position, rotation, speedOverride, 0f);
+    }
+
+    protected void SpawnProjectile(
+        Vector3 position,
+        Quaternion rotation,
+        float speedOverride,
+        float damageOverride)
+    {
         if (!poolReady || projectilePool == null)
             return;
 
@@ -109,13 +132,18 @@ public abstract class BulletSpawner : MonoBehaviour
         if (projectile == null)
             return;
 
+        projectile.SetOwner(ownerCharacter);
         projectile.SetReturnCallback(ReturnProjectile);
+
+        float finalDamage = damageOverride > 0f
+            ? damageOverride
+            : projectileDamage;
 
         projectile.Initialize(
             position,
             rotation,
             Mathf.Max(0.01f, speedOverride),
-            projectileDamage,
+            finalDamage,
             targetMask
         );
     }
