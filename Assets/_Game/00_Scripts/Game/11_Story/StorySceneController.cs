@@ -1,14 +1,20 @@
+using System.Collections;
 using UnityEngine;
+using Slafurry.Core.Abstract;
 
-public class StorySceneController : MonoBehaviour
+public class StorySceneController : LocalSingleton<StorySceneController>
 {
     [Tooltip("Where the story prefab spawns. Null = this transform.")]
     [SerializeField] private Transform contentRoot;
 
     private GameObject spawnedStory;
 
-    private void Start()
+    public override IEnumerator Initialize() { yield return null; }
+    public override void PostInitialize() { }
+
+    protected override void OnSingletonAwake()
     {
+        base.OnSingletonAwake();
         SpawnSelectedStory();
     }
 

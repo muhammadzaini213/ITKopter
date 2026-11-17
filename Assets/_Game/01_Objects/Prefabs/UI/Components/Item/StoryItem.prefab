@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 584791744776865536}
   - component: {fileID: 5899646692046847801}
   m_Layer: 5
-  m_Name: StageNameTxt
+  m_Name: StoryNameTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 3325232882793224407}
   - component: {fileID: 1341268615378531735}
   - component: {fileID: 1873580885952186064}
+  - component: {fileID: 5651770991152915951}
   m_Layer: 5
   m_Name: StoryItem
   m_TagString: Untagged
@@ -451,3 +452,19 @@ MonoBehaviour:
   clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
   category: UI
   effectName: Click
+--- !u!114 &5651770991152915951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558976600727464248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c896a895e8595261916ab06e9da2e8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoryListItemUI
+  storyNameText: {fileID: 5899646692046847801}
+  lockedIndicator: {fileID: 5507061795484861418}
+  completedIndicator: {fileID: 2054651447172443981}
+  startButton: {fileID: 3325232882793224407}

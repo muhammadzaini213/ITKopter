@@ -56,7 +56,7 @@ public class StoryConfirmPopupUI : MonoBehaviour
             storyNameText.text = story.StoryName;
 
         if (descriptionText != null)
-            descriptionText.text = string.Empty;
+            descriptionText.text = story.StoryDescription;
 
         if (popupRoot != null)
             popupRoot.SetActive(true);
