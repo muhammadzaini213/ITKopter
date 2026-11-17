@@ -1,10 +1,8 @@
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Slafurry.Core.Abstract;
-using Slafurry.Systems.Audio;
 
 public class LevelSystem : GameSystem<LevelSystem>
 {
@@ -33,8 +31,6 @@ public class LevelSystem : GameSystem<LevelSystem>
     public IReadOnlyList<CharacterData> CurrentTeam => currentTeam;
 
     public int CurrentTeamSize => currentTeam.Count;
-
-    public MusicReference CurrentLevelMusic => currentLevel?.LevelMusic;
 
     public bool HasActiveSession =>
         currentLevel != null && currentTeam.Count > 0;
@@ -101,9 +97,6 @@ public class LevelSystem : GameSystem<LevelSystem>
         }
 
         currentLevel = level;
-
-        if (level.LevelMusic != null)
-            Audio.PlayMusic(level.LevelMusic);
 
         currentTeam.Clear();
         currentTeam.AddRange(team);
