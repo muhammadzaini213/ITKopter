@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f389c41d65c452db0308108628f351, type: 3}
+  m_Name: SFX Category_Unit
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Systems.Audio.SFXCategory
+  categoryName: Unit
+  effects:
+  - groupID: EXPLOSION
+    clips:
+    - {fileID: 8300000, guid: b7c42809e5f3b3d8daa121b8914027f7, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: GUN
+    clips:
+    - {fileID: 8300000, guid: 81e711dfb2f6489a489ce52ba9143ed5, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: LASER
+    clips:
+    - {fileID: 8300000, guid: 085147b22fad301afb13155ee9359f2a, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: METAL
+    clips:
+    - {fileID: 8300000, guid: 45a8aa929d111c697b2157af48bc8729, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: SKILL 1
+    clips:
+    - {fileID: 8300000, guid: 5bb0dffea408c2172b6cc932e2d0ce77, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: SKILL 2
+    clips:
+    - {fileID: 8300000, guid: 5c00b407650f0756c970810accbea87b, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  - groupID: SKILL 3
+    clips:
+    - {fileID: 8300000, guid: 0d89fef9b393ffd7fb5fbbd1f09af8df, type: 3}
+    volume: 1
+    maxSimultaneous: 3
+    fadeIn: 0
+    fadeOut: 0
+    distanceOnlyNoPanning: 1
+    rolloffMode: 1
+    minDistance: 1
+    maxDistance: 15
+  poolSize: 8

@@ -978,6 +978,7 @@ GameObject:
   - component: {fileID: 908285516}
   - component: {fileID: 908285519}
   - component: {fileID: 908285520}
+  - component: {fileID: 908285521}
   m_Layer: 5
   m_Name: StoryBtn
   m_TagString: Untagged
@@ -1121,6 +1122,21 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &908285521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908285514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
+  category: UI
+  effectName: Click
 --- !u!1 &973673144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,6 +1498,7 @@ GameObject:
   - component: {fileID: 1253243522}
   - component: {fileID: 1253243525}
   - component: {fileID: 1253243526}
+  - component: {fileID: 1253243527}
   m_Layer: 5
   m_Name: BundleBtn
   m_TagString: Untagged
@@ -1638,6 +1655,21 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1253243527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253243520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
+  category: UI
+  effectName: Click
 --- !u!1 &1281820207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,6 +1684,7 @@ GameObject:
   - component: {fileID: 1281820209}
   - component: {fileID: 1281820212}
   - component: {fileID: 1281820213}
+  - component: {fileID: 1281820214}
   m_Layer: 5
   m_Name: ShopBtn
   m_TagString: Untagged
@@ -1808,6 +1841,21 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1281820214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281820207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
+  category: UI
+  effectName: Click
 --- !u!1 &1363997875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,6 +1947,7 @@ GameObject:
   - component: {fileID: 1457591307}
   - component: {fileID: 1457591308}
   - component: {fileID: 1457591309}
+  - component: {fileID: 1457591310}
   m_Layer: 5
   m_Name: 03_Player
   m_TagString: Untagged
@@ -2076,6 +2125,21 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1457591310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457591302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
+  category: UI
+  effectName: Click
 --- !u!1 &1541347306
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,6 +2244,7 @@ GameObject:
   - component: {fileID: 1552733568}
   - component: {fileID: 1552733571}
   - component: {fileID: 1552733572}
+  - component: {fileID: 1552733573}
   m_Layer: 5
   m_Name: GachaBtn
   m_TagString: Untagged
@@ -2336,6 +2401,21 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1552733573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552733566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
+  category: UI
+  effectName: Click
 --- !u!1 &1564387871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2350,6 +2430,7 @@ GameObject:
   - component: {fileID: 1564387873}
   - component: {fileID: 1564387876}
   - component: {fileID: 1564387877}
+  - component: {fileID: 1564387878}
   m_Layer: 5
   m_Name: UnitBtn
   m_TagString: Untagged
@@ -2506,6 +2587,21 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1564387878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564387871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
+  category: UI
+  effectName: Click
 --- !u!1 &1580765344
 GameObject:
   m_ObjectHideFlags: 0
