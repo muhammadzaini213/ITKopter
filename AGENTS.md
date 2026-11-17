@@ -29,7 +29,7 @@ core/, state/, scripts/test_state.py   # orphaned Drive-tooling remnants (retrie
 - `00_Scripts/Game/` uses **numbered domain subfolders** (`00_Player`, `01_Currency`, `02_Characters`, `03_Gameplay`, `04_Gacha`, `05_Items`, `06_Bundle`, `07_Level`, `08_Reward`, `09_Shop`, `10_Inventory`, `11_Story`, `_old`). `03_Gameplay/` subdivides into `Player/`, `Enemy/`, `Projectile/`, `Annihilator/`, `System/` (plain-`MonoBehaviour` `GameplayManager`), etc. Gameplay `GameSystem<T>` subclasses (`PlayerSystem`, `CurrencySystem`, `EnergySystem`, `GachaSystem`, `LevelSystem`, `RewardSystem`, `ShopSystem`, `BundleSystem`, `InventorySystem`) live **here**, not in `Systems/` — this deviates from ARCHITECTURE's "`GameSystem<T>` → `Systems/`" rule; follow the code, not the doc.
 - Characters: concrete units in `02_Characters/Unit/{Role}/XCharacter.cs` (roles = `CharacterRole` enum; **Annihilator gameplay scripts are in `03_Gameplay/Annihilator/` instead**), prefabs in `01_Objects/Prefabs/Characters/{Role}/{Name}/` (character + projectile), data assets in `Data/04_Characters/{Type}/` (`CharacterType`: Abstract/Simple/Special/Primordial/Anomaly). All registered in `Data/04_Characters/CharacterDatabase.asset`; `PlayerSystem` holds the reference.
 - **No `.asmdef`** — every non-`Editor` script compiles into `Assembly-CSharp`. Editor-only code must live under an `Editor/` folder.
-- ARCHITECTURE's "max 6 subfolders per folder" is a doc-only guideline — already exceeded in `Game/` (13), `03_Gameplay/` (10), `UI/Components/` (9). Do not reorganize folders to satisfy it.
+- ARCHITECTURE's "max 6 subfolders per folder" is a doc-only guideline — already exceeded in `Game/` (13), `03_Gameplay/` (12), `UI/Components/` (10). Do not reorganize folders to satisfy it.
 
 ## Boot / lifecycle (easy to get wrong)
 
@@ -91,7 +91,7 @@ env:
 - **Style only:** `.editorconfig`.
 - **Compile:** run Unity batchmode directly. Pass = exit 0, log contains `Exiting batchmode successfully`, and no `error CS` lines. Editor is installed at `~/Unity/Hub/Editor/6000.3.25f1/Editor/Unity` on this machine; read the path from `ProjectSettings/ProjectVersion.txt` elsewhere.
 - **Tests:** none — `com.unity.test-framework` is installed but there are zero C# test files. Only `python3 scripts/test_state.py` (orphaned Drive tooling) runs. Do not hunt for a test suite.
-- **CI:** no PR compile gate (`unity-compile.yml` deleted in PR #8 — do not re-add unless asked). The only CI compile check is inside deploy's Unity build (`error CS` fails the build). **Stale docs:** `README.md`, `GITHUB_WORKFLOWS.md`, and `CONTRIBUTING.md` still claim the PR gate exists — trust `.github/workflows/` over them.
+- **CI:** no PR compile gate (`unity-compile.yml` deleted in PR #8 — do not re-add unless asked). The only CI compile check is inside deploy's Unity build (`error CS` fails the build). **Stale docs:** `README.md`, `GITHUB_WORKFLOWS.md`, and `CONTRIBUTING.md` still claim the PR gate exists — trust `.github/workflows/` over them. `README.md`, `ARCHITECTURE.md`, `CONTRIBUTING.md` also reference a non-existent `Boot.unity` — the real scene is `00_Boot.unity`.
 
 ```bash
 ~/Unity/Hub/Editor/6000.3.25f1/Editor/Unity \

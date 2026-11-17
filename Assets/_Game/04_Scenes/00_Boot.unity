@@ -2443,6 +2443,12 @@ MonoBehaviour:
     music: {fileID: 11400000, guid: bf679deac1bc427559b8ea87e019812e, type: 2}
   - scene: {fileID: 11400000, guid: 1d94ed888ee6c7d77b17f191b07fdb78, type: 2}
     music: {fileID: 11400000, guid: d8bb118ed9afc98ecb6078abc6c0d285, type: 2}
+  - scene: {fileID: 11400000, guid: 486af855a9f3fbb6eb0e2071e607729a, type: 2}
+    music: {fileID: 11400000, guid: d8bb118ed9afc98ecb6078abc6c0d285, type: 2}
+  - scene: {fileID: 11400000, guid: 060563769b2f7cf2ba93326bfa6d1db2, type: 2}
+    music: {fileID: 11400000, guid: d8bb118ed9afc98ecb6078abc6c0d285, type: 2}
+  - scene: {fileID: 11400000, guid: 70d1da871ac4aff889893968d0a5f311, type: 2}
+    music: {fileID: 11400000, guid: d8bb118ed9afc98ecb6078abc6c0d285, type: 2}
 --- !u!1001 &1846741269742778515
 PrefabInstance:
   m_ObjectHideFlags: 0
