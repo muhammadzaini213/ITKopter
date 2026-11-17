@@ -702,6 +702,7 @@ GameObject:
   - component: {fileID: 653971720}
   - component: {fileID: 653971719}
   - component: {fileID: 653971722}
+  - component: {fileID: 653971723}
   m_Layer: 5
   m_Name: Confirm
   m_TagString: Untagged
@@ -834,6 +835,21 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &653971723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653971717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: 57ffa89aaddd0f361a875bca3402cbcd, type: 2}
+  category: UI
+  effectName: Click
 --- !u!1 &655802489
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,6 +939,7 @@ GameObject:
   - component: {fileID: 884919553}
   - component: {fileID: 884919552}
   - component: {fileID: 884919555}
+  - component: {fileID: 884919556}
   m_Layer: 5
   m_Name: Cancel
   m_TagString: Untagged
@@ -1055,6 +1072,21 @@ MonoBehaviour:
   onHoverExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &884919556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884919550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f2dd41c98d92f1990b1115c32816b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slafurry.Utils.UI.UIButtonSFX
+  clickSfx: {fileID: 11400000, guid: 33195710c99faf241bece9182f4e675b, type: 2}
+  category: UI
+  effectName: Click
 --- !u!1 &911414296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,7 +1519,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 984570408}
   m_HandleRect: {fileID: 984570407}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
