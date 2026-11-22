@@ -15,6 +15,15 @@ public class HomingProjectile : Projectile
     private Transform target;
     private float seekTimer;
 
+    // Pool reuse: drop the previous life's target so the first seek scan
+    // runs immediately instead of aiming at a stale transform.
+    public override void OnSpawn()
+    {
+        base.OnSpawn();
+        target = null;
+        seekTimer = 0f;
+    }
+
     protected override Vector2 GetMovementDirection()
     {
         RefreshTarget();
