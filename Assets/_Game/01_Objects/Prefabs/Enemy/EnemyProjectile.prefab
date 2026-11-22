@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2737603518645244339}
   - component: {fileID: 600343575212828368}
-  - component: {fileID: 5609170668845526785}
+  - component: {fileID: 2487002234582384219}
   m_Layer: 0
   m_Name: EnemyProjectile
   m_TagString: Untagged
@@ -82,8 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
-    type: 3}
+  m_Sprite: {fileID: 937435592, guid: 20b4b3fa2c32838cea53f1a6697b7d27, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,7 +92,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &5609170668845526785
+--- !u!114 &2487002234582384219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,10 +101,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6026206712480199181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a6d800971d5a33e69420800f4fbb7b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 6202ea02d6b7fc42d98db544f4372fa6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Projectile
+  m_EditorClassIdentifier: Assembly-CSharp::SineProjectile
   speed: 15
   damage: 10
   hitboxSize: {x: 0.2, y: 0.4}
   lifetime: 5
+  hitVfxPrefab: {fileID: 3997575843738477916, guid: 65fab2d36c66973f3835fc7470e7a930,
+    type: 3}

@@ -73,7 +73,7 @@ public class Projectile : MonoBehaviour, IPoolable
         }
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!isInitialized || hasHit)
             return;
@@ -140,22 +140,32 @@ public class Projectile : MonoBehaviour, IPoolable
 
         isInitialized = false;
 
-        if (returnToPool != null)
+        // The spawner (owner enemy) may already be destroyed — its pool is
+        // gone, so invoking the callback would no-op and leave this bullet
+        // frozen on screen. Detect the dead owner and disable instead.
+        bool callbackAlive = returnToPool != null &&
+            (!(returnToPool.Target is UnityEngine.Object owner) ||
+             owner != null);
+
+        if (callbackAlive)
         {
             returnToPool.Invoke(this);
         }
         else
         {
-            Debug.LogWarning(
-                "[Projectile] Return callback is missing. Disabling projectile.",
-                this
-            );
+            if (returnToPool == null)
+            {
+                Debug.LogWarning(
+                    "[Projectile] Return callback is missing. Disabling projectile.",
+                    this
+                );
+            }
 
             gameObject.SetActive(false);
         }
     }
 
-    public void OnSpawn()
+    public virtual void OnSpawn()
     {
         lifetimeTimer = 0f;
         hasHit = false;

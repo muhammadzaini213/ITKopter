@@ -116,38 +116,38 @@ public abstract class BulletSpawner : MonoBehaviour
             Audio.PlaySFX2D(shootSfx);
     }
 
-    protected void SpawnProjectile(
+    protected Projectile SpawnProjectile(
         Vector3 position,
         Quaternion rotation)
     {
-        SpawnProjectile(
+        return SpawnProjectile(
             position,
             rotation,
             DefaultProjectileSpeed
         );
     }
 
-    protected void SpawnProjectile(
+    protected Projectile SpawnProjectile(
         Vector3 position,
         Quaternion rotation,
         float speedOverride)
     {
-        SpawnProjectile(position, rotation, speedOverride, 0f);
+        return SpawnProjectile(position, rotation, speedOverride, 0f);
     }
 
-    protected void SpawnProjectile(
+    protected Projectile SpawnProjectile(
         Vector3 position,
         Quaternion rotation,
         float speedOverride,
         float damageOverride)
     {
         if (!poolReady || projectilePool == null)
-            return;
+            return null;
 
         Projectile projectile = projectilePool.Get();
 
         if (projectile == null)
-            return;
+            return null;
 
         projectile.SetOwner(ownerCharacter);
         projectile.SetReturnCallback(ReturnProjectile);
@@ -163,6 +163,8 @@ public abstract class BulletSpawner : MonoBehaviour
             finalDamage,
             targetMask
         );
+
+        return projectile;
     }
 
     private void ReturnProjectile(Projectile projectile)
