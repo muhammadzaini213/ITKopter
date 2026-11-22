@@ -60,6 +60,9 @@ TagManager:
   - name: Bullet
     uniqueID: 2025351037
     locked: 0
+  - name: Status
+    uniqueID: 3657558739
+    locked: 0
   - name: Foreground
     uniqueID: 840622547
     locked: 0

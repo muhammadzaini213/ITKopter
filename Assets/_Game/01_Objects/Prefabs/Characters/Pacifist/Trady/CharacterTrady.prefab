@@ -69,8 +69,7 @@ MonoBehaviour:
     m_Bits: 128
   prewarmCount: 30
   maxPoolSize: 300
-  shotsPerBurst: 3
-  shotInterval: 0.1
+  shootSfx: {fileID: 11400000, guid: 57ffa89aaddd0f361a875bca3402cbcd, type: 2}
 --- !u!114 &9055358249454212439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +96,8 @@ GameObject:
   - component: {fileID: 8837663874862066067}
   - component: {fileID: -7181183520828566828}
   - component: {fileID: 6346578380590662572}
+  - component: {fileID: 821961811787048737}
+  - component: {fileID: 8169376717694975188}
   m_Layer: 6
   m_Name: CharacterTrady
   m_TagString: Untagged
@@ -240,6 +241,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
   startAtFullHealth: 1
+  deathSfx: {fileID: 11400000, guid: 37a659bfdcc1412649219817ad50f2a2, type: 2}
+  deathVfxPrefab: {fileID: 3997575843738477916, guid: 627f441b2b65cee7d8281f117456e31b,
+    type: 3}
   defensePower: 0
 --- !u!114 &-7181183520828566828
 MonoBehaviour:
@@ -268,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FairExchangeExSkill
   skillName: Fair Exchange
+  activationSfx: {fileID: 11400000, guid: 72a52b0ca63882271aa1b95bba83aaf0, type: 2}
   defenseShieldMultiplier: 4
   defenseDuration: 8
   offensePenaltyMultiplier: 0.8
@@ -275,3 +280,40 @@ MonoBehaviour:
   attackSpeedMultiplier: 2
   attackDuration: 8
   defensePenaltyMultiplier: 0.6
+--- !u!114 &821961811787048737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8729292657063863904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77eb29b3b90c1cb2806eac885775119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IdleSpriteAnimator
+  frames:
+  - {fileID: 2695444854845451506, guid: a758da7c5880582f2b4aebae5a0f0a64, type: 3}
+  - {fileID: -1706371804, guid: a758da7c5880582f2b4aebae5a0f0a64, type: 3}
+  frameDuration: 0.4
+  randomizeStart: 1
+--- !u!114 &8169376717694975188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8729292657063863904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63aa8ace68783e0087a026ed6f4820a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SquashBlink
+  health: {fileID: 0}
+  visualTarget: {fileID: 0}
+  renderers: []
+  squashDuration: 0.15
+  squashScale: {x: 1.25, y: 0.75}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  blinkDuration: 0.1
+  hitSfx: {fileID: 11400000, guid: a2c5d9da01dc2bc2184f35058c0b636a, type: 2}

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using Slafurry.Systems.Audio;
 
 public class ExSkillController : MonoBehaviour
 {
@@ -293,6 +294,9 @@ public class ExSkillController : MonoBehaviour
 
         exSkillTransform.gameObject.SetActive(true);
         exSkill.Activate();
+
+        if (exSkill.ActivationSfx != null)
+            Audio.PlaySFX2D(exSkill.ActivationSfx);
 
         float duration = GetCooldown(activeCharacter);
 

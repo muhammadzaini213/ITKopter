@@ -1,6 +1,7 @@
 
 using System;
 using UnityEngine;
+using Slafurry.Systems.Audio;
 
 public class Health : MonoBehaviour, IDamageable
 {
@@ -10,6 +11,12 @@ public class Health : MonoBehaviour, IDamageable
 
     [SerializeField]
     private bool startAtFullHealth = true;
+
+    [Header("Death SFX")]
+    [SerializeField] private SFXReference deathSfx;
+
+    [Header("Death VFX")]
+    [SerializeField] private GameObject deathVfxPrefab;
 
     [Header("Defense Settings")]
     [SerializeField, Min(0f)]
@@ -34,6 +41,7 @@ public class Health : MonoBehaviour, IDamageable
     public bool IsDead => isDead;
 
     public event Action<float, float> OnHealthChanged;
+    public event Action OnDamaged;
     public event Action OnDeath;
 
     private void Awake()
@@ -77,6 +85,7 @@ public class Health : MonoBehaviour, IDamageable
 
         currentHealth = Mathf.Max(0f, currentHealth - finalDamage);
 
+        OnDamaged?.Invoke();
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
         if (currentHealth <= 0f)
@@ -129,6 +138,13 @@ public class Health : MonoBehaviour, IDamageable
             return;
 
         isDead = true;
+
+        if (deathSfx != null)
+            Audio.PlaySFX2D(deathSfx);
+
+        if (deathVfxPrefab != null)
+            Instantiate(deathVfxPrefab, transform.position, Quaternion.identity);
+
         OnDeath?.Invoke();
 
         Debug.Log($"[{gameObject.name}] has been defeated.", this);

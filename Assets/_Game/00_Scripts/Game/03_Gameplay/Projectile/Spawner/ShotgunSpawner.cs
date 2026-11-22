@@ -22,6 +22,8 @@ public class ShotgunSpawner : BulletSpawner
         if (!PoolReady || firePoint == null)
             return;
 
+        PlayShootSFX();
+
         int count = Mathf.Max(1, projectileCount);
 
         if (count == 1)

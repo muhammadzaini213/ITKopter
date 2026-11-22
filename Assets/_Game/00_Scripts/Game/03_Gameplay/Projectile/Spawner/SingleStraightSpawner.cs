@@ -15,6 +15,8 @@ public class SingleStraightSpawner : BulletSpawner
         if (!PoolReady || firePoint == null)
             return;
 
+        PlayShootSFX();
+
         SpawnProjectile(
             firePoint.position,
             firePoint.rotation,
