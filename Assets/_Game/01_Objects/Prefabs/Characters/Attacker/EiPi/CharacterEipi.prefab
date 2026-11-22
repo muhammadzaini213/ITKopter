@@ -69,8 +69,7 @@ MonoBehaviour:
     m_Bits: 128
   prewarmCount: 30
   maxPoolSize: 300
-  shotsPerBurst: 3
-  shotInterval: 0.1
+  shootSfx: {fileID: 11400000, guid: b7cf966eaf08e3112bf4257921f9f39e, type: 2}
 --- !u!114 &9055358249454212439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +96,8 @@ GameObject:
   - component: {fileID: 8837663874862066067}
   - component: {fileID: -2334137377736135998}
   - component: {fileID: 7300036044669338989}
+  - component: {fileID: 8729353908413611308}
+  - component: {fileID: -4706868054017083488}
   m_Layer: 6
   m_Name: CharacterEipi
   m_TagString: Untagged
@@ -239,6 +240,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
   startAtFullHealth: 1
+  deathSfx: {fileID: 11400000, guid: 37a659bfdcc1412649219817ad50f2a2, type: 2}
+  deathVfxPrefab: {fileID: 3997575843738477916, guid: 627f441b2b65cee7d8281f117456e31b,
+    type: 3}
   defensePower: 0
 --- !u!114 &-2334137377736135998
 MonoBehaviour:
@@ -267,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SignalOverloadExSkill
   skillName: Signal Overload
+  activationSfx: {fileID: 11400000, guid: a670ce1d6f836f54e976017901cbed37, type: 2}
   waveDamageMultiplier: 1
   waveRadius: 8
   enemyMask:
@@ -276,3 +281,42 @@ MonoBehaviour:
   connectedEffectId: Connected
   burstDelay: 2
   burstDamageMultiplier: 2
+--- !u!114 &8729353908413611308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8729292657063863904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77eb29b3b90c1cb2806eac885775119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IdleSpriteAnimator
+  frames:
+  - {fileID: 3861774060247941764, guid: 53831d35e8ccf9b1aa5b8e5fc444d06c, type: 3}
+  - {fileID: -751959279, guid: 53831d35e8ccf9b1aa5b8e5fc444d06c, type: 3}
+  - {fileID: -1110161400, guid: 53831d35e8ccf9b1aa5b8e5fc444d06c, type: 3}
+  - {fileID: -751959279, guid: 53831d35e8ccf9b1aa5b8e5fc444d06c, type: 3}
+  frameDuration: 0.4
+  randomizeStart: 1
+--- !u!114 &-4706868054017083488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8729292657063863904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63aa8ace68783e0087a026ed6f4820a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SquashBlink
+  health: {fileID: 0}
+  visualTarget: {fileID: 0}
+  renderers: []
+  squashDuration: 0.15
+  squashScale: {x: 1.25, y: 0.75}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  blinkDuration: 0.1
+  hitSfx: {fileID: 11400000, guid: a2c5d9da01dc2bc2184f35058c0b636a, type: 2}

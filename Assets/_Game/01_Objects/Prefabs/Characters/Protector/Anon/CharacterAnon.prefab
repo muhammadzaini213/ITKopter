@@ -69,8 +69,7 @@ MonoBehaviour:
     m_Bits: 128
   prewarmCount: 30
   maxPoolSize: 300
-  shotsPerBurst: 3
-  shotInterval: 0.1
+  shootSfx: {fileID: 11400000, guid: a2c5d9da01dc2bc2184f35058c0b636a, type: 2}
 --- !u!114 &9055358249454212439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +96,8 @@ GameObject:
   - component: {fileID: 8837663874862066067}
   - component: {fileID: 4768187600724020680}
   - component: {fileID: 3378404861930810193}
+  - component: {fileID: 6701468570205767980}
+  - component: {fileID: -5056416217741981253}
   m_Layer: 6
   m_Name: CharacterAnon
   m_TagString: Untagged
@@ -240,6 +241,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
   startAtFullHealth: 1
+  deathSfx: {fileID: 11400000, guid: 37a659bfdcc1412649219817ad50f2a2, type: 2}
+  deathVfxPrefab: {fileID: 3997575843738477916, guid: 627f441b2b65cee7d8281f117456e31b,
+    type: 3}
   defensePower: 0
 --- !u!114 &4768187600724020680
 MonoBehaviour:
@@ -268,9 +272,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnknownOutcomeExSkill
   skillName: Unknown Outcome
+  activationSfx: {fileID: 11400000, guid: 410af93dcff6a3e78876d04d4fa85a17, type: 2}
   shieldMultiplier: 2
   duration: 8
   untouchableRadius: 2
   enemyProjectileMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &6701468570205767980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8729292657063863904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77eb29b3b90c1cb2806eac885775119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IdleSpriteAnimator
+  frames:
+  - {fileID: -6255209371460026101, guid: bbb1b31b44031c374a6d590df443aed6, type: 3}
+  - {fileID: -220354158, guid: bbb1b31b44031c374a6d590df443aed6, type: 3}
+  frameDuration: 0.4
+  randomizeStart: 1
+--- !u!114 &-5056416217741981253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8729292657063863904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63aa8ace68783e0087a026ed6f4820a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SquashBlink
+  health: {fileID: 0}
+  visualTarget: {fileID: 0}
+  renderers: []
+  squashDuration: 0.15
+  squashScale: {x: 1.25, y: 0.75}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  blinkDuration: 0.1
+  hitSfx: {fileID: 11400000, guid: a2c5d9da01dc2bc2184f35058c0b636a, type: 2}

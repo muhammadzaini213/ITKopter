@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using Slafurry.Utils.Pooling;
+using Slafurry.Systems.Audio;
 
 public abstract class BulletSpawner : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public abstract class BulletSpawner : MonoBehaviour
 
     [SerializeField, Min(1)]
     private int maxPoolSize = 300;
+
+    [Header("Shoot SFX")]
+    [SerializeField]
+    private SFXReference shootSfx;
 
     private GenericPool<Projectile> projectilePool;
     private Transform projectilePoolParent;
@@ -96,7 +101,19 @@ public abstract class BulletSpawner : MonoBehaviour
         float speedOverride,
         float damageOverride)
     {
+        if (firePoint == null)
+            return;
+
+        PlayShootSFX();
         SpawnProjectile(firePoint.position, firePoint.rotation, speedOverride, damageOverride);
+    }
+
+    // Called by subclasses that override Fire directly so every fire path
+    // plays the shot sound exactly once per trigger (not per projectile).
+    protected void PlayShootSFX()
+    {
+        if (shootSfx != null)
+            Audio.PlaySFX2D(shootSfx);
     }
 
     protected void SpawnProjectile(

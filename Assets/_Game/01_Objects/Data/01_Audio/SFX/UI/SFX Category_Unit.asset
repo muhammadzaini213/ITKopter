@@ -18,7 +18,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: b7c42809e5f3b3d8daa121b8914027f7, type: 3}
     volume: 1
-    maxSimultaneous: 3
+    maxSimultaneous: 10
     fadeIn: 0
     fadeOut: 0
     distanceOnlyNoPanning: 1
@@ -29,7 +29,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: 81e711dfb2f6489a489ce52ba9143ed5, type: 3}
     volume: 1
-    maxSimultaneous: 3
+    maxSimultaneous: 10
     fadeIn: 0
     fadeOut: 0
     distanceOnlyNoPanning: 1
@@ -40,7 +40,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: 085147b22fad301afb13155ee9359f2a, type: 3}
     volume: 1
-    maxSimultaneous: 3
+    maxSimultaneous: 10
     fadeIn: 0
     fadeOut: 0
     distanceOnlyNoPanning: 1
@@ -51,7 +51,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: 45a8aa929d111c697b2157af48bc8729, type: 3}
     volume: 1
-    maxSimultaneous: 3
+    maxSimultaneous: 10
     fadeIn: 0
     fadeOut: 0
     distanceOnlyNoPanning: 1
@@ -91,4 +91,4 @@ MonoBehaviour:
     rolloffMode: 1
     minDistance: 1
     maxDistance: 15
-  poolSize: 8
+  poolSize: 100

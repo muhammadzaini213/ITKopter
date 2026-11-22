@@ -22,6 +22,8 @@ public class CircularSpawner : BulletSpawner
         if (!PoolReady || firePoint == null)
             return;
 
+        PlayShootSFX();
+
         int count = Mathf.Max(1, projectileCount);
         float angleStep = 360f / count;
 

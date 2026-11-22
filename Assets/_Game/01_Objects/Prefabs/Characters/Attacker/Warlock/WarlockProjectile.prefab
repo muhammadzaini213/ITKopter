@@ -108,3 +108,5 @@ MonoBehaviour:
   damage: 10
   hitboxSize: {x: 0.2, y: 0.4}
   lifetime: 5
+  hitVfxPrefab: {fileID: 3997575843738477916, guid: 65fab2d36c66973f3835fc7470e7a930,
+    type: 3}

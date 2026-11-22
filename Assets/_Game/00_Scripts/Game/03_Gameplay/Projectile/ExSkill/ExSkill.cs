@@ -1,15 +1,20 @@
 
 using UnityEngine;
+using Slafurry.Systems.Audio;
 
 public abstract class ExSkill : MonoBehaviour
 {
     [Header("EX Skill Settings")]
     [SerializeField] private string skillName;
 
+    [Header("Audio")]
+    [SerializeField] private SFXReference activationSfx;
+
     private Character owner;
 
     public string SkillName => skillName;
     public Character Owner => owner;
+    public SFXReference ActivationSfx => activationSfx;
     public float Cooldown => owner != null
         ? owner.ExSkillCooldown
         : 0f;

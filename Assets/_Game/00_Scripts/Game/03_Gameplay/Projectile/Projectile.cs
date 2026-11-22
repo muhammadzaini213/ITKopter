@@ -21,6 +21,10 @@ public class Projectile : MonoBehaviour, IPoolable
     [SerializeField, Min(0.1f)]
     private float lifetime = 5f;
 
+    [Header("Hit VFX")]
+    [SerializeField]
+    private GameObject hitVfxPrefab;
+
     private LayerMask hitMask;
     private Action<Projectile> returnToPool;
 
@@ -115,6 +119,9 @@ public class Projectile : MonoBehaviour, IPoolable
 
             if (wasKilled && targetCharacter != null && ownerCharacter != null)
                 CombatEventBus.InvokeEnemyDiedMarked(ownerCharacter, targetCharacter);
+
+            if (hitVfxPrefab != null)
+                Instantiate(hitVfxPrefab, hit.point, transform.rotation);
 
             transform.position = hit.centroid;
             ReturnToPool();
