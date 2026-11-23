@@ -26,7 +26,11 @@ public class BuyConfirmationPopupUI : MonoBehaviour
 
     private ShopData currentShop;
     private ShopItemEntry currentEntry;
+    private ConversionOffer currentOffer;
     private int quantity = 1;
+
+    // Highest quantity allowed right now (coin shop: MaxPurchaseQuantity; conversion: materials and daily limit).
+    private int maxQuantity = ShopSystem.MaxPurchaseQuantity;
 
     private void Awake()
     {
@@ -78,7 +82,9 @@ public class BuyConfirmationPopupUI : MonoBehaviour
 
         currentShop = shop;
         currentEntry = entry;
+        currentOffer = null;
         quantity = 1;
+        maxQuantity = ShopSystem.MaxPurchaseQuantity;
 
         if (iconImage != null)
         {
@@ -95,6 +101,48 @@ public class BuyConfirmationPopupUI : MonoBehaviour
 
         if (unitPriceText != null)
             unitPriceText.text = $"{entry.Price} Coins each";
+
+        if (errorText != null)
+            errorText.text = "";
+
+        if (quantityInput != null)
+            quantityInput.text = "1";
+
+        UpdateQuantityUI();
+
+        if (popupRoot != null)
+            popupRoot.SetActive(true);
+    }
+
+    /// <summary>Opens the popup for a material conversion instead of a coin purchase.</summary>
+    public void OpenConversion(ConversionOffer offer)
+    {
+        if (offer == null || ShopSystem.Instance == null)
+            return;
+
+        currentShop = null;
+        currentEntry = null;
+        currentOffer = offer;
+        quantity = 1;
+        maxQuantity = Mathf.Max(1, ShopSystem.Instance.GetMaxConvertQuantity(offer));
+
+        if (iconImage != null)
+        {
+            Sprite icon = offer.Output != null ? offer.Output.Icon : null;
+            iconImage.sprite = icon;
+            iconImage.enabled = icon != null;
+        }
+
+        if (nameText != null)
+            nameText.text = offer.OutputName;
+
+        if (unitPriceText != null)
+        {
+            string limit = offer.DailyLimit > 0
+                ? $"\nToday: {ShopSystem.Instance.GetRemainingToday(offer)}/{offer.DailyLimit} left"
+                : string.Empty;
+            unitPriceText.text = $"Cost: {offer.InputName} each{limit}";
+        }
 
         if (errorText != null)
             errorText.text = "";
@@ -125,7 +173,7 @@ public class BuyConfirmationPopupUI : MonoBehaviour
             quantity = Mathf.Clamp(
                 parsed,
                 1,
-                ShopSystem.MaxPurchaseQuantity);
+                maxQuantity);
 
             UpdateTotalPrice();
         }
@@ -141,7 +189,7 @@ public class BuyConfirmationPopupUI : MonoBehaviour
         quantity = Mathf.Clamp(
             value,
             1,
-            ShopSystem.MaxPurchaseQuantity);
+            maxQuantity);
 
         if (quantityInput != null &&
             quantityInput.text != quantity.ToString())
@@ -162,14 +210,28 @@ public class BuyConfirmationPopupUI : MonoBehaviour
 
         if (increaseButton != null)
             increaseButton.interactable =
-                quantity < ShopSystem.MaxPurchaseQuantity;
+                quantity < maxQuantity;
 
         UpdateTotalPrice();
     }
 
     private void UpdateTotalPrice()
     {
-        if (totalPriceText == null || currentEntry == null)
+        if (totalPriceText == null)
+            return;
+
+        if (currentOffer != null)
+        {
+            int owned = InventorySystem.Instance != null
+                ? InventorySystem.Instance.GetItemAmount(currentOffer.InputItem)
+                : 0;
+            long needed = (long)currentOffer.InputAmount * quantity;
+            totalPriceText.text =
+                $"Total: {needed}x {currentOffer.InputItem.ItemName} (have {owned})";
+            return;
+        }
+
+        if (currentEntry == null)
             return;
 
         long total = (long)currentEntry.Price * quantity;
@@ -178,6 +240,12 @@ public class BuyConfirmationPopupUI : MonoBehaviour
 
     private void ConfirmPurchase()
     {
+        if (currentOffer != null)
+        {
+            ConfirmConversion();
+            return;
+        }
+
         if (currentShop == null || currentEntry == null)
             return;
 
@@ -218,6 +286,34 @@ public class BuyConfirmationPopupUI : MonoBehaviour
         Close();
     }
 
+    private void ConfirmConversion()
+    {
+        if (quantityInput != null)
+        {
+            if (!int.TryParse(quantityInput.text, out int parsedQuantity))
+            {
+                ShowError("Enter a valid quantity.");
+                return;
+            }
+
+            quantity = Mathf.Clamp(parsedQuantity, 1, maxQuantity);
+        }
+
+        if (ShopSystem.Instance == null)
+        {
+            ShowError("Shop system is unavailable.");
+            return;
+        }
+
+        if (!ShopSystem.Instance.Convert(currentOffer, quantity, out string error))
+        {
+            ShowError(error);
+            return;
+        }
+
+        Close();
+    }
+
     private void ShowError(string message)
     {
         if (errorText != null)
@@ -233,5 +329,6 @@ public class BuyConfirmationPopupUI : MonoBehaviour
 
         currentShop = null;
         currentEntry = null;
+        currentOffer = null;
     }
 }

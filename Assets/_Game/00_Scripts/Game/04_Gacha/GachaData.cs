@@ -7,6 +7,8 @@ public class GachaData : ScriptableObject
     [Header("Gacha Info")]
     [SerializeField] private string gachaId;
     [SerializeField] private string gachaName;
+    [Tooltip("Shown under the banner name on the Gacha screen.")]
+    [SerializeField, TextArea(2, 6)] private string description;
 
     [Header("Cost")]
     [SerializeField, Min(1)] private int gachaCost = 160;
@@ -30,6 +32,7 @@ public class GachaData : ScriptableObject
 
     public string GachaId => gachaId;
     public string GachaName => gachaName;
+    public string Description => description;
     public int GachaCost => gachaCost;
     public float GachaDiscount => gachaDiscount;
     public int SinglePullCount => singlePullCount;
@@ -50,9 +53,14 @@ public class GachaData : ScriptableObject
 public class GachaEntry
 {
     public RewardData RewardData;
+    [UnityEngine.Tooltip("Give a random amount between Low and High (inclusive) instead of 1.")]
     public bool UseInterval;
     public int LowInterval = 1;
     public int HighInterval = 1;
+
+    /// <summary>Amount range this entry grants (1-1 when intervals are off).</summary>
+    public int MinAmount => UseInterval ? UnityEngine.Mathf.Max(1, LowInterval) : 1;
+    public int MaxAmount => UseInterval ? UnityEngine.Mathf.Max(MinAmount, HighInterval) : 1;
     public bool OverrideRarity;
     public RewardRarity OverrideRarityValue;
 }

@@ -16,6 +16,11 @@ MonoBehaviour:
   icon: {fileID: 239604039, guid: bbc46663ab1e9fdd9afccf628f17b6e6, type: 3}
   characterId: char_11_anon
   characterName: Anon
+  alias: Primordial Concept Of Unknown
+  description: Anon is a mysterious Concept Spirit who represents everything still
+    unknown. Anon's form shows no recognizable features, and a shy nature makes Anon
+    prefer to stay out of the spotlight. In battle, Anon protects allies by hiding
+    their presence from enemy tracking.
   characterPortrait: {fileID: 4569041304383123513, guid: bbc46663ab1e9fdd9afccf628f17b6e6,
     type: 3}
   health: 1300
@@ -34,3 +39,9 @@ MonoBehaviour:
   duplicateEngramAmount: 1
   dustMaterial: {fileID: 11400000, guid: 7efdbe2d3c4bd48b0a8eca3d2b4641ac, type: 2}
   engramMaterial: {fileID: 11400000, guid: 3bc8b19072853aadd991ef8bce657d11, type: 2}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 1000
+  upgradeCoinPerLevel: 3.2

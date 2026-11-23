@@ -16,6 +16,11 @@ MonoBehaviour:
   icon: {fileID: -289709500, guid: 953ddee0692ad8060a91d9f8e7d7a22f, type: 3}
   characterId: char_12_majik
   characterName: Majik
+  alias: Anomaly Concept Of Magic
+  description: Majik is the embodiment of magic, a concept born from possibilities
+    beyond ordinary understanding. A fascination with the unknown drives Majik to
+    keep chasing mysteries. In battle, Majik uses magical attacks that can jump from
+    one enemy to the next.
   characterPortrait: {fileID: -329386340822592032, guid: 953ddee0692ad8060a91d9f8e7d7a22f,
     type: 3}
   health: 800
@@ -34,3 +39,9 @@ MonoBehaviour:
   duplicateEngramAmount: 1
   dustMaterial: {fileID: 11400000, guid: 5b228f6276d163bbf8f4ba4aea0ee88d, type: 2}
   engramMaterial: {fileID: 11400000, guid: be7247212fc676597840f894079075dc, type: 2}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 1000
+  upgradeCoinPerLevel: 3.2

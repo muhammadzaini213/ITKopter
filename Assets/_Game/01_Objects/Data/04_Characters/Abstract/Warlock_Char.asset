@@ -16,6 +16,10 @@ MonoBehaviour:
   icon: {fileID: 1017394623, guid: 1b7a95f3ea7a258e1859099926f65377, type: 3}
   characterId: char_9_warlock
   characterName: Warlock
+  alias: Abstract Concept Of War
+  description: Warlock is an arrogant Concept Spirit who is always eager for conflict.
+    Defeat never stops Warlock, because as long as war stays relevant, there's always
+    a chance to return. Warlock relies on massive bombardments to dominate the arena.
   characterPortrait: {fileID: -7770993545756500656, guid: 1b7a95f3ea7a258e1859099926f65377,
     type: 3}
   health: 950
@@ -34,3 +38,9 @@ MonoBehaviour:
   duplicateEngramAmount: 1
   dustMaterial: {fileID: 11400000, guid: f7f10a0a4c87a2d5892f1a7d6bdb4663, type: 2}
   engramMaterial: {fileID: 11400000, guid: 98ad94a16ac3f9d7e9f1059564ccb513, type: 2}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 1000
+  upgradeCoinPerLevel: 3.2

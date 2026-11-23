@@ -37,8 +37,8 @@ namespace Game.UI.HUD
         private Coroutine typingCoroutine;
         private UnityEvent[] currentLineEvents;
 
-        // Callback khusus untuk pemanggil StartDialog() saat ini.
-        // Digunakan sekali lalu di-null-kan, jadi tidak "nempel" ke trigger lain.
+        // Callback for the current StartDialog() caller only.
+        // Used once and then nulled, so it doesn't "stick" to other triggers.
         private Action onEndCallback;
 
         private void Update()
@@ -58,8 +58,8 @@ namespace Game.UI.HUD
         {
             if (bucket == null || bucket.dialogs.Length == 0) return;
 
-            // Cegah dialog baru "menimpa" dialog yang sedang berjalan
-            // (opsional, tapi disarankan agar tidak ada dua dialog nabrak).
+            // Prevent a new dialog from "overwriting" the one in progress
+            // (optional, but recommended so two dialogs don't collide).
             if (currentBucket != null) return;
 
             currentBucket = bucket;

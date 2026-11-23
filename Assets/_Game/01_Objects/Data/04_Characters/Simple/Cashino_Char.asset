@@ -16,6 +16,11 @@ MonoBehaviour:
   icon: {fileID: -575623777, guid: 1b277208aa53a99ac8aa7e8671c26e61, type: 3}
   characterId: char_6_cashino
   characterName: Cashino
+  alias: Simple Concept Of Gambling
+  description: Cashino is a Concept Spirit who loves bets and uncertainty. As the
+    keeper of the gacha, Cashino always offers the chance to win something extraordinary,
+    without ever guaranteeing the outcome. In battle, Cashino's luck can revive fallen
+    allies, empower the team, or backfire on them entirely.
   characterPortrait: {fileID: 4387352465902613807, guid: 1b277208aa53a99ac8aa7e8671c26e61,
     type: 3}
   health: 700
@@ -34,3 +39,9 @@ MonoBehaviour:
   duplicateEngramAmount: 1
   dustMaterial: {fileID: 11400000, guid: 7b1e503074c0e22ba8291973dc096bc4, type: 2}
   engramMaterial: {fileID: 11400000, guid: a2d95c2c7229bc7378d9e3c58318b06c, type: 2}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 0
+  upgradeCoinPerLevel: 3.2

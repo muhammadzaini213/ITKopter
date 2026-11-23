@@ -16,6 +16,11 @@ MonoBehaviour:
   icon: {fileID: 582076248, guid: 0866feda2f120a5d08044408bc245e7a, type: 3}
   characterId: char_1_eipi
   characterName: Ei-Pi
+  alias: Special Concept of Handphone
+  description: Ei-Pi is an energetic, talkative Concept Spirit who is always full
+    of the latest news. Ei-Pi can deliver a flood of information in no time, even
+    if others can't always keep up. In battle, Ei-Pi overwhelms enemies with signal
+    waves and barrages of data packets.
   characterPortrait: {fileID: -6893017998883532772, guid: 0866feda2f120a5d08044408bc245e7a,
     type: 3}
   health: 850
@@ -34,3 +39,9 @@ MonoBehaviour:
   duplicateEngramAmount: 1
   dustMaterial: {fileID: 11400000, guid: 35922ea8f99da01adb6e1fb0f904baab, type: 2}
   engramMaterial: {fileID: 11400000, guid: 6134dd6d0ecfb3b96b55175db641717b, type: 2}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 1000
+  upgradeCoinPerLevel: 3.2

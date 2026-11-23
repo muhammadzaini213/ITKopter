@@ -1,30 +1,20 @@
-
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Per-character progress: upgrade level (raised with materials, no EXP) and affection.
+/// </summary>
 [Serializable]
 public class CharacterProgression
 {
-    private const int BaseExpRequired = 100;
-    private const double ExpMultiplier = 1.5;
-
     private const int BaseAffectionRequired = 100;
     private const double AffectionMultiplier = 2.0;
 
-    [SerializeField, Min(0)] private int totalExp;
+    [SerializeField, Min(1)] private int level = 1;
     [SerializeField, Min(0)] private int affectionPoints;
 
-    public int TotalExp => totalExp;
+    public int Level => Mathf.Max(1, level);
     public int AffectionPoints => affectionPoints;
-
-    public int Level => CalculateLevel(
-        totalExp, BaseExpRequired, ExpMultiplier);
-
-    public int CurrentLevelExp => GetCurrentLevelPoints(
-        totalExp, BaseExpRequired, ExpMultiplier);
-
-    public int RequiredLevelExp => GetRequiredForLevel(
-        Level, BaseExpRequired, ExpMultiplier);
 
     public int AffectionLevel => CalculateLevel(
         affectionPoints, BaseAffectionRequired, AffectionMultiplier);
@@ -42,20 +32,16 @@ public class CharacterProgression
     {
     }
 
-    public CharacterProgression(int exp, int affection)
+    public CharacterProgression(int level, int affection)
     {
-        totalExp = Mathf.Max(0, exp);
+        this.level = Mathf.Max(1, level);
         affectionPoints = Mathf.Max(0, affection);
     }
 
-    public void AddExp(int amount)
+    public void LevelUp()
     {
-        if (amount <= 0)
-            return;
-
-        totalExp = (int)Math.Min(
-            (long)totalExp + amount,
-            int.MaxValue);
+        if (Level < int.MaxValue)
+            level = Level + 1;
     }
 
     public void AddAffection(int amount)
@@ -68,9 +54,9 @@ public class CharacterProgression
             int.MaxValue);
     }
 
-    public void SetProgress(int exp, int affection)
+    public void SetProgress(int level, int affection)
     {
-        totalExp = Mathf.Max(0, exp);
+        this.level = Mathf.Max(1, level);
         affectionPoints = Mathf.Max(0, affection);
     }
 
@@ -79,19 +65,19 @@ public class CharacterProgression
         int baseRequired,
         double multiplier)
     {
-        int level = 1;
+        int result = 1;
         long remaining = totalPoints;
         long required = baseRequired;
 
-        while (remaining >= required && level < int.MaxValue)
+        while (remaining >= required && result < int.MaxValue)
         {
             remaining -= required;
-            level++;
+            result++;
 
             required = GetNextRequired(required, multiplier);
         }
 
-        return level;
+        return result;
     }
 
     private static int GetCurrentLevelPoints(
@@ -112,14 +98,14 @@ public class CharacterProgression
     }
 
     private static int GetRequiredForLevel(
-        int level,
+        int targetLevel,
         int baseRequired,
         double multiplier)
     {
         long required = baseRequired;
 
         for (int currentLevel = 1;
-             currentLevel < level;
+             currentLevel < targetLevel;
              currentLevel++)
         {
             required = GetNextRequired(required, multiplier);

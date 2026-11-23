@@ -44,6 +44,23 @@ public class RewardSystem : GameSystem<RewardSystem>
         rewardPopupUI.ShowRewards(rewards);
     }
 
+    /// <summary>Shows rewards with explicit amounts (amounts[i] belongs to rewards[i]).</summary>
+    public void ShowRewardPopup(
+        IReadOnlyList<RewardData> rewards,
+        IReadOnlyList<int> amounts)
+    {
+        if (rewardPopupUI == null)
+        {
+            Debug.LogWarning(
+                "[RewardSystem] RewardPopupUI reference is missing."
+            );
+
+            return;
+        }
+
+        rewardPopupUI.ShowRewards(rewards, amounts);
+    }
+
     #endregion
 
     #region Grant API

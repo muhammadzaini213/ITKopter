@@ -62,6 +62,11 @@ public class ProjectileLimiter : MonoBehaviour
         if (projectile == null)
             return false;
 
+        // Enemy bullets live on the Default layer, so the layer mask alone misses them
+        // (and is empty on the limiter Regu's EX skill creates at runtime).
+        if (projectile.IsHostileToPlayer)
+            return true;
+
         int layer = projectile.gameObject.layer;
         return ((enemyProjectileLayerMask.value >> layer) & 1) == 1;
     }

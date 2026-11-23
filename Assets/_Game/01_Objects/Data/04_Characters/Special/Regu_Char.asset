@@ -16,6 +16,11 @@ MonoBehaviour:
   icon: {fileID: -1003039640, guid: 97f0d329ab699af96bac898f6d998f95, type: 3}
   characterId: char_7_regu
   characterName: Regu
+  alias: Special Concept Of Regulation
+  description: Regu understands that every activity needs rules, and every rule has
+    limits to how it applies. With confidence and a knack for finding loopholes,
+    Regu can turn dangerous situations into something far more controlled. Even the
+    number of enemy projectiles can be capped.
   characterPortrait: {fileID: -1693122083504339094, guid: 97f0d329ab699af96bac898f6d998f95,
     type: 3}
   health: 1250
@@ -34,3 +39,9 @@ MonoBehaviour:
   duplicateEngramAmount: 1
   dustMaterial: {fileID: 11400000, guid: 35922ea8f99da01adb6e1fb0f904baab, type: 2}
   engramMaterial: {fileID: 11400000, guid: 0ae1e73952ecd1d44819c66485133047, type: 2}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 1000
+  upgradeCoinPerLevel: 3.2

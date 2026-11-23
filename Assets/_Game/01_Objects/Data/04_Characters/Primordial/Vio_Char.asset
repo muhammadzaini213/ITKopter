@@ -16,6 +16,11 @@ MonoBehaviour:
   icon: {fileID: -1930044106, guid: a0dd804ecf1e53187883a96e6f6ffa7b, type: 3}
   characterId: char_4_vio
   characterName: Vio
+  alias: Primordial Concept Of Violence
+  description: Vio is the embodiment of violence, a concept that has existed since
+    the very beginning. Despite an intimidating look, Vio has a friendly nature that
+    contrasts with their concept. In battle, Vio unleashes brutal attacks that grow
+    stronger with every successful hit, but leave Vio increasingly open to counterattacks.
   characterPortrait: {fileID: -6271339354940852609, guid: a0dd804ecf1e53187883a96e6f6ffa7b,
     type: 3}
   health: 550
@@ -34,3 +39,9 @@ MonoBehaviour:
   duplicateEngramAmount: 1
   dustMaterial: {fileID: 11400000, guid: 7efdbe2d3c4bd48b0a8eca3d2b4641ac, type: 2}
   engramMaterial: {fileID: 11400000, guid: ff8fcfa6234c091ec87a7d99983fff79, type: 2}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 1000
+  upgradeCoinPerLevel: 3.2

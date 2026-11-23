@@ -14,7 +14,7 @@ public struct SubtitleLine
     public float duration;
     [Range(0f, 5f)]
     public float shakiness;
-    [Tooltip("Jeda (detik) setelah baris ini selesai, sebelum baris berikutnya mulai diketik.")]
+    [Tooltip("Pause (seconds) after this line finishes, before the next line starts typing.")]
     public float delayAfter;
 }
 
@@ -42,9 +42,9 @@ namespace Slafurry.Utils.UI
 
         [Header("Shake")]
         [SerializeField] private float shakeUpdateInterval = 0.08f;
-        [Tooltip("Offset maksimum (dalam em) saat shakiness bernilai maksimum (5). Dijaga kecil supaya karakter tidak keluar dari batas TMP.")]
+        [Tooltip("Maximum offset (in em) when shakiness is at its maximum (5). Kept small so characters stay inside the TMP bounds.")]
         [SerializeField] private float maxShakeOffsetEm = 0.12f;
-        [Tooltip("Nilai maksimum dari slider shakiness (harus sama dengan Range di SubtitleLine).")]
+        [Tooltip("Maximum value of the shakiness slider (must match the Range in SubtitleLine).")]
         [SerializeField] private float maxShakinessValue = 5f;
 
         [Header("Fade")]
@@ -67,10 +67,10 @@ namespace Slafurry.Utils.UI
 
         private void Awake()
         {
-            // Pastikan glyph yang sedikit keluar dari bounds (akibat voffset shake)
-            // tetap ter-render, tidak ter-cull oleh TMP.
-            // Nama property ini beda-beda antar versi TMP ("enableExtraPadding" / "extraPadding"),
-            // jadi pakai reflection supaya tidak error compile di versi manapun.
+            // Make sure glyphs that poke slightly outside the bounds (from the voffset shake)
+            // still render instead of being culled by TMP.
+            // The property name differs between TMP versions ("enableExtraPadding" / "extraPadding"),
+            // so use reflection to avoid a compile error on any version.
             TrySetExtraPadding(textLabel);
         }
 
@@ -93,8 +93,8 @@ namespace Slafurry.Utils.UI
                 }
             }
 
-            // Kalau tidak ketemu sama sekali, tidak masalah — cukup aktifkan manual
-            // checkbox "Extra Padding" di Inspector komponen TMP yang bersangkutan.
+            // If neither is found, that's fine: just tick "Extra Padding"
+            // manually in the Inspector of the TMP component.
         }
 
         private void OnEnable()
@@ -136,8 +136,8 @@ namespace Slafurry.Utils.UI
                 yield return ShowLine(lines[i]);
                 onLineComplete?.Invoke();
 
-                // Jeda antar baris diambil dari data baris itu sendiri (delayAfter),
-                // kecuali setelah baris terakhir (baris terakhir sudah punya hideDelay-nya sendiri).
+                // The pause between lines comes from the line's own data (delayAfter),
+                // except after the last line (the last line already has its own hideDelay).
                 if (i < lines.Length - 1 && lines[i].delayAfter > 0f)
                     yield return new WaitForSecondsRealtime(lines[i].delayAfter);
             }
@@ -206,8 +206,8 @@ namespace Slafurry.Utils.UI
             char[] chars = _currentLine.ToCharArray();
             var sb = new StringBuilder(chars.Length * 12);
 
-            // Remap shakiness (0..maxShakinessValue) ke offset maksimum yang aman (em),
-            // supaya nilai shakiness tinggi tidak membuat teks keluar dari batas TMP.
+            // Remap shakiness (0..maxShakinessValue) to a safe maximum offset (em),
+            // so high shakiness values don't push the text outside the TMP bounds.
             float normalized = maxShakinessValue > 0f
                 ? Mathf.Clamp01(_currentShakiness / maxShakinessValue)
                 : 0f;

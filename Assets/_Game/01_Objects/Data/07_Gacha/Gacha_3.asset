@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GachaData
   gachaId: arcane_impossibility_gacha_3
   gachaName: Arcane Impossibility
+  description: 'Featuring Majik, the anomaly attacker.
+
+    Half of every UR result
+    is Majik.
+
+    Guaranteed UR within 200 pulls.'
   gachaCost: 160
   gachaDiscount: 0
   singlePullCount: 1

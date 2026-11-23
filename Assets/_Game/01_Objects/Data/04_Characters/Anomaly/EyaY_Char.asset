@@ -16,6 +16,11 @@ MonoBehaviour:
   icon: {fileID: 522098594, guid: 1d4c98cbc6e1df68fa03a7e325f20bcf, type: 3}
   characterId: char_10_eyay
   characterName: EyaY
+  alias: Anomaly Concept Of Artificial Intelligence
+  description: EyaY is a Concept Spirit who keeps learning and evolving from every
+    piece of information received. Behind an innocent appearance lies extraordinary
+    potential for optimization. In battle, every hit the team lands becomes data
+    EyaY uses to make the whole team more effective.
   characterPortrait: {fileID: 8018393379024590537, guid: 1d4c98cbc6e1df68fa03a7e325f20bcf,
     type: 3}
   health: 850
@@ -34,3 +39,9 @@ MonoBehaviour:
   duplicateEngramAmount: 1
   dustMaterial: {fileID: 11400000, guid: 5b228f6276d163bbf8f4ba4aea0ee88d, type: 2}
   engramMaterial: {fileID: 11400000, guid: e1879c82a8d88f34796f68bee58ae117, type: 2}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 1000
+  upgradeCoinPerLevel: 3.2

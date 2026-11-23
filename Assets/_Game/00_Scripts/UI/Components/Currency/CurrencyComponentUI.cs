@@ -20,7 +20,7 @@ public class CurrencyComponentUI : MonoBehaviour
         if (currencySystem == null || energySystem == null)
         {
             Debug.LogError(
-                "[CurrencyComponentUI] CurrencySystem atau EnergySystem belum tersedia."
+                "[CurrencyComponentUI] CurrencySystem or EnergySystem is not available yet."
             );
             enabled = false;
             return;
@@ -30,7 +30,7 @@ public class CurrencyComponentUI : MonoBehaviour
         currencySystem.OnGemsChanged += UpdateGems;
         energySystem.OnEnergyChanged += UpdateEnergy;
 
-        // Sinkronisasi nilai awal setelah subscribe.
+        // Sync the initial values after subscribing.
         UpdateCoins(currencySystem.Coins);
         UpdateGems(currencySystem.Gems);
         UpdateEnergy(energySystem.Energy);

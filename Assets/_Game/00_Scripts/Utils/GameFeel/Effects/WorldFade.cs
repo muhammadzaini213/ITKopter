@@ -51,7 +51,7 @@ namespace Slafurry.Utils.GameFeel
 
             if (playOnEnable)
             {
-                // Mulai dari titik lawan target, biar transisinya kelihatan (bukan cuma diam di alpha akhir).
+                // Start from the opposite of the target so the transition is visible (instead of sitting at the final alpha).
                 SetImmediate(fadeInOnEnable ? 0f : 1f);
 
                 if (fadeInOnEnable)
@@ -70,12 +70,12 @@ namespace Slafurry.Utils.GameFeel
             }
         }
 
-        // ---- Dipanggil dari UnityEvent (tanpa parameter) ----
+        // ---- Called from a UnityEvent (no parameters) ----
         public void FadeIn() => FadeIn(duration);
 
         public void FadeOut() => FadeOut(duration);
 
-        // ---- Dipanggil dari kode (dengan override duration) ----
+        // ---- Called from code (with a duration override) ----
         public void FadeIn(float overrideDuration)
         {
             _isFadingIn = true;

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CoinsReward
   m_EditorClassIdentifier: Assembly-CSharp::CurrencyRewardData
   rarity: 0
-  icon: {fileID: 21300000, guid: c641573858af32a0ea71b00a7a4e7227, type: 3}
+  icon: {fileID: 21300000, guid: c0a6243bb1918bf2cb6c0e9bac84fd4a, type: 3}
   currencyType: 0
   amount: 1

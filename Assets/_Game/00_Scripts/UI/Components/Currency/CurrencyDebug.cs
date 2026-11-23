@@ -15,7 +15,7 @@ public class CurrencyDebug : MonoBehaviour
             return;
         }
 
-        GUILayout.BeginArea(new Rect(10, 10, 240, 260), GUI.skin.box);
+        GUILayout.BeginArea(new Rect(10, 10, 240, 340), GUI.skin.box);
 
         GUILayout.Label("=== GAME DEBUG ===");
 
@@ -29,6 +29,9 @@ public class CurrencyDebug : MonoBehaviour
 
             if (GUILayout.Button("+100 Gems"))
                 CurrencySystem.Instance.AddGems(100);
+
+            if (GUILayout.Button("+1600 Gems"))
+                CurrencySystem.Instance.AddGems(1600);
         }
         else
         {
@@ -46,6 +49,9 @@ public class CurrencyDebug : MonoBehaviour
 
             if (GUILayout.Button("+1 Energy"))
                 EnergySystem.Instance.AddEnergy(1);
+
+            if (GUILayout.Button("+10 Energy"))
+                EnergySystem.Instance.AddEnergy(10);
 
             if (GUILayout.Button("-1 Energy"))
                 EnergySystem.Instance.SpendEnergy(1);

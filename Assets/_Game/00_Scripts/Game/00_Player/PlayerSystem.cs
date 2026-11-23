@@ -23,6 +23,7 @@ public class PlayerSystem : GameSystem<PlayerSystem>
     private readonly List<CharacterData> characterOwned = new();
     private readonly HashSet<string> completedLevelIds = new();
     private readonly List<string> lastTeamCharacterIds = new();
+    private string showcaseCharacterId;
 
     private readonly Dictionary<string, CharacterProgression>
         characterProgressions = new();
@@ -32,6 +33,24 @@ public class PlayerSystem : GameSystem<PlayerSystem>
     public string PlayerName => playerName;
     public int PlayerExp => playerExp;
     public bool IsPlayerDataLoaded => isPlayerDataLoaded;
+    public CharacterDatabase CharacterDatabase => characterDatabase;
+
+    /// <summary>
+    /// Owned character shown on the main menu. Falls back to the first owned
+    /// character when nothing (or something no longer owned) was chosen.
+    /// </summary>
+    public CharacterData ShowcaseCharacter
+    {
+        get
+        {
+            CharacterData chosen = FindOwnedCharacter(showcaseCharacterId);
+
+            if (chosen != null)
+                return chosen;
+
+            return characterOwned.Find(character => character != null);
+        }
+    }
 
     public IReadOnlyList<CharacterData> CharacterOwned => characterOwned;
     public IReadOnlyCollection<string> CompletedLevelIds => completedLevelIds;
@@ -45,6 +64,7 @@ public class PlayerSystem : GameSystem<PlayerSystem>
     public event Action<string> OnCharacterProgressionChanged;
     public event Action OnLevelProgressChanged;
     public event Action OnLastTeamChanged;
+    public event Action OnShowcaseCharacterChanged;
 
     public int PlayerLevel
     {
@@ -127,8 +147,45 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         base.OnSingletonAwake();
     }
 
+    // Inventory has no save of its own; changes are batched and written at the end of the frame.
+    private bool inventorySaveQueued;
+
     public override void PostInitialize()
     {
+        if (InventorySystem.Instance != null)
+            InventorySystem.Instance.OnInventoryChanged += QueueInventorySave;
+    }
+
+    protected override void OnSingletonDestroyed()
+    {
+        if (InventorySystem.Instance != null)
+            InventorySystem.Instance.OnInventoryChanged -= QueueInventorySave;
+
+        FlushInventorySave();
+    }
+
+    private void QueueInventorySave()
+    {
+        inventorySaveQueued = true;
+    }
+
+    private void LateUpdate()
+    {
+        FlushInventorySave();
+    }
+
+    private void OnApplicationQuit()
+    {
+        FlushInventorySave();
+    }
+
+    private void FlushInventorySave()
+    {
+        if (!inventorySaveQueued || !isPlayerDataLoaded)
+            return;
+
+        inventorySaveQueued = false;
+        SavePlayerData();
     }
 
     private static long GetNextRequiredExp(long currentRequiredExp)
@@ -272,24 +329,98 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         return progression;
     }
 
-    public bool AddCharacterExp(string characterId, int amount)
+    /// <summary>Upgrade level of an owned character; 1 when unknown or not owned.</summary>
+    public int GetCharacterLevel(string characterId)
     {
-        if (!isPlayerDataLoaded || amount <= 0)
+        if (string.IsNullOrWhiteSpace(characterId))
+            return 1;
+
+        return characterProgressions.TryGetValue(characterId, out CharacterProgression progression)
+            ? progression.Level
+            : 1;
+    }
+
+    public CharacterUpgradeCost GetUpgradeCost(CharacterData character)
+    {
+        if (character == null)
+            return default;
+
+        return character.GetUpgradeCost(GetCharacterLevel(character.CharacterId));
+    }
+
+    /// <summary>True when the character is owned and every upgrade material and the coins are available.</summary>
+    public bool CanUpgradeCharacter(CharacterData character)
+    {
+        if (!isPlayerDataLoaded || character == null ||
+            GetCharacterProgression(character) == null)
+        {
+            return false;
+        }
+
+        InventorySystem inventory = InventorySystem.Instance;
+        CurrencySystem currency = CurrencySystem.Instance;
+
+        if (inventory == null || currency == null)
             return false;
 
-        CharacterProgression progression =
-            GetCharacterProgression(characterId);
+        CharacterUpgradeCost cost = GetUpgradeCost(character);
 
-        if (progression == null)
+        return HasMaterial(inventory, cost.Dust, cost.DustAmount) &&
+               HasMaterial(inventory, cost.Engram, cost.EngramAmount) &&
+               currency.Coins >= cost.Coins;
+    }
+
+    /// <summary>Spends the upgrade cost and raises the character by one level.</summary>
+    public bool UpgradeCharacter(CharacterData character)
+    {
+        if (!CanUpgradeCharacter(character))
             return false;
 
-        progression.AddExp(amount);
+        InventorySystem inventory = InventorySystem.Instance;
+        CurrencySystem currency = CurrencySystem.Instance;
+        CharacterProgression progression = GetCharacterProgression(character);
+        CharacterUpgradeCost cost = GetUpgradeCost(character);
+
+        if (cost.DustAmount > 0 && !inventory.RemoveItem(cost.Dust, cost.DustAmount))
+            return false;
+
+        if (cost.EngramAmount > 0 && !inventory.RemoveItem(cost.Engram, cost.EngramAmount))
+        {
+            RefundMaterial(inventory, cost.Dust, cost.DustAmount);
+            return false;
+        }
+
+        // SpendCoins rejects 0, so only spend when the formula asks for coins.
+        if (cost.Coins > 0 && !currency.SpendCoins(cost.Coins))
+        {
+            RefundMaterial(inventory, cost.Dust, cost.DustAmount);
+            RefundMaterial(inventory, cost.Engram, cost.EngramAmount);
+            return false;
+        }
+
+        progression.LevelUp();
 
         if (!SavePlayerData())
-            return false;
+        {
+            Debug.LogWarning("[PlayerSystem] Character upgraded but the save failed.");
+        }
 
-        OnCharacterProgressionChanged?.Invoke(characterId);
+        OnCharacterProgressionChanged?.Invoke(character.CharacterId);
         return true;
+    }
+
+    private static bool HasMaterial(InventorySystem inventory, ItemData item, int amount)
+    {
+        if (amount <= 0)
+            return true;
+
+        return item != null && inventory.GetItemAmount(item) >= amount;
+    }
+
+    private static void RefundMaterial(InventorySystem inventory, ItemData item, int amount)
+    {
+        if (item != null && amount > 0)
+            inventory.AddItem(item, amount);
     }
 
     public bool AddCharacterAffection(string characterId, int amount)
@@ -440,8 +571,55 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         return true;
     }
 
+    public bool IsCharacterOwned(CharacterData character)
+    {
+        return character != null &&
+               FindOwnedCharacter(character.CharacterId) != null;
+    }
+
+    /// <summary>Sets the main menu character. Only owned characters are accepted.</summary>
+    public bool SetShowcaseCharacter(CharacterData character)
+    {
+        if (!isPlayerDataLoaded || !IsCharacterOwned(character))
+            return false;
+
+        if (showcaseCharacterId == character.CharacterId)
+            return true;
+
+        string previousId = showcaseCharacterId;
+        showcaseCharacterId = character.CharacterId;
+
+        if (!SavePlayerData())
+        {
+            showcaseCharacterId = previousId;
+            return false;
+        }
+
+        OnShowcaseCharacterChanged?.Invoke();
+        return true;
+    }
+
+    private CharacterData FindOwnedCharacter(string characterId)
+    {
+        if (string.IsNullOrWhiteSpace(characterId))
+            return null;
+
+        return characterOwned.Find(
+            character => character != null &&
+                         character.CharacterId == characterId);
+    }
+
+    /// <summary>
+    /// Writes player data (including the inventory) to disk. Call after changing
+    /// inventory directly, since InventorySystem does not save on its own.
+    /// </summary>
+    public bool SaveProgress() => SavePlayerData();
+
     private bool SavePlayerData()
     {
+        // Any full save already includes the inventory.
+        inventorySaveQueued = false;
+
         if (!isPlayerDataLoaded)
         {
             Debug.LogWarning(
@@ -471,6 +649,7 @@ public class PlayerSystem : GameSystem<PlayerSystem>
 
             completedLevelIds = new List<string>(completedLevelIds),
             lastTeamCharacterIds = new List<string>(lastTeamCharacterIds),
+            showcaseCharacterId = showcaseCharacterId,
 
             characterProgressions = new List<CharacterProgressionSaveData>()
         };
@@ -485,7 +664,7 @@ public class PlayerSystem : GameSystem<PlayerSystem>
                 new CharacterProgressionSaveData
                 {
                     characterId = pair.Key,
-                    totalExp = pair.Value.TotalExp,
+                    level = pair.Value.Level,
                     affectionPoints = pair.Value.AffectionPoints
                 });
         }
@@ -515,6 +694,7 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         completedLevelIds.Clear();
         characterProgressions.Clear();
         lastTeamCharacterIds.Clear();
+        showcaseCharacterId = null;
 
         if (data.ownedCharacterIds != null)
         {
@@ -562,7 +742,7 @@ public class PlayerSystem : GameSystem<PlayerSystem>
 
                 characterProgressions[saved.characterId] =
                     new CharacterProgression(
-                        saved.totalExp,
+                        saved.level,
                         saved.affectionPoints);
             }
         }
@@ -606,6 +786,10 @@ public class PlayerSystem : GameSystem<PlayerSystem>
                 lastTeamCharacterIds.Add(id);
             }
         }
+
+        // Keep the saved choice only if it is still owned.
+        if (FindOwnedCharacter(data.showcaseCharacterId) != null)
+            showcaseCharacterId = data.showcaseCharacterId;
 
         InventorySystem.Instance.LoadFromSaveData(data);
     }

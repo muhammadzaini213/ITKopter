@@ -14,6 +14,7 @@ public abstract class Character : MonoBehaviour
     public Sprite CharacterIcon { get; private set; }
     public Sprite CharacterPortrait { get; private set; }
 
+    public int Level { get; private set; } = 1;
     public float Health { get; private set; }
     public float AttackPower { get; private set; }
     public float DefensePower { get; private set; }
@@ -52,9 +53,14 @@ public abstract class Character : MonoBehaviour
         CharacterName = data.CharacterName;
         CharacterIcon = data.Icon;
         CharacterPortrait = data.CharacterPortrait;
-        Health = data.Health;
-        AttackPower = data.AttackPower;
-        DefensePower = data.DefensePower;
+        // Upgrade level scales HP / ATK / DEF (see CharacterData growth constants).
+        Level = PlayerSystem.Instance != null
+            ? PlayerSystem.Instance.GetCharacterLevel(data.CharacterId)
+            : 1;
+
+        Health = data.GetHealthAtLevel(Level);
+        AttackPower = data.GetAttackAtLevel(Level);
+        DefensePower = data.GetDefenseAtLevel(Level);
         ExSkillCooldown = data.ExSkillCooldown;
         MovementSpeed = data.MovementSpeed;
         BulletSpeed = data.BulletSpeed;

@@ -21,22 +21,29 @@ public class RewardItemUI : MonoBehaviour
         if (iconImage != null)
         {
             iconImage.sprite = reward.Icon;
+            iconImage.preserveAspect = true;
             iconImage.enabled = reward.Icon != null;
         }
 
         if (nameText != null)
-        {
-            if (reward is ItemData item)
-            {
-                nameText.text = item.ItemName;
-            }
-            else if (reward is CharacterData character)
-            {
-                nameText.text = character.CharacterName;
-            }
-        }
+            nameText.text = GetDisplayName(reward);
 
         if (amountText != null)
-            amountText.text = $"× {amount}";
+            amountText.text = $"x{amount:N0}";
+    }
+
+    private static string GetDisplayName(RewardData reward)
+    {
+        switch (reward)
+        {
+            case ItemData item:
+                return item.ItemName;
+            case CharacterData character:
+                return character.CharacterName;
+            case CurrencyRewardData currency:
+                return currency.CurrencyType.ToString();
+            default:
+                return reward.name;
+        }
     }
 }

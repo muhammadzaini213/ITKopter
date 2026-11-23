@@ -14,9 +14,6 @@ public class UnknownOutcomeExSkill : ExSkill
     [SerializeField, Min(0f)]
     private float untouchableRadius = 2f;
 
-    [SerializeField]
-    private LayerMask enemyProjectileMask;
-
     private Shield stealthShield;
     private Coroutine durationRoutine;
 
@@ -101,18 +98,19 @@ public class UnknownOutcomeExSkill : ExSkill
 
     private void DestroyIncomingProjectiles()
     {
-        var hits = Physics2D.OverlapCircleAll(
-            Owner.transform.position,
-            untouchableRadius,
-            enemyProjectileMask);
+        // Projectiles have no colliders (they BoxCast), so OverlapCircle can't see them.
+        // Scan live projectiles and clear enemy bullets inside the radius instead.
+        Vector2 center = Owner.transform.position;
+        float sqrRadius = untouchableRadius * untouchableRadius;
 
-        foreach (var hit in hits)
+        var projectiles = Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None);
+
+        foreach (var projectile in projectiles)
         {
-            if (hit.transform == null)
+            if (projectile == null || !projectile.IsHostileToPlayer)
                 continue;
 
-            var projectile = hit.GetComponentInParent<Projectile>();
-            if (projectile != null)
+            if (((Vector2)projectile.transform.position - center).sqrMagnitude <= sqrRadius)
                 projectile.ReturnToPool();
         }
     }
