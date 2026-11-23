@@ -118,8 +118,19 @@ public class EnemyLifecycle : MonoBehaviour
         Cleanup(destroy: true);
     }
 
+    private bool deathReported;
+
     private void HandleDeath()
     {
+        if (!deathReported)
+        {
+            deathReported = true;
+            Objectives.Report(ObjectiveType.DefeatEnemies, 1);
+
+            if (GetComponent<EnemyBoss>() != null)
+                Objectives.Report(ObjectiveType.DefeatBosses, 1);
+        }
+
         // Stop everything — the corpse no longer moves or shoots.
         if (shooter != null)
             shooter.StopShooting();

@@ -26,6 +26,9 @@ public class EnemyDataBinder : MonoBehaviour
     [ContextMenu("Apply Data Now")]
     public void Apply()
     {
+        // Runs before SquashBlink caches its base colours, so hit flashes return to the tint.
+        ApplyLevelTint();
+
         if (data == null)
             return;
 
@@ -68,6 +71,21 @@ public class EnemyDataBinder : MonoBehaviour
 
         if (lifecycle != null)
             lifecycle.ApplyData(data);
+    }
+
+    private void ApplyLevelTint()
+    {
+        LevelSystem levelSystem = LevelSystem.Instance;
+        LevelData level = levelSystem != null ? levelSystem.CurrentLevel : null;
+
+        if (level == null || level.EnemyTint.a <= 0f || GetComponent<EnemyBoss>() != null)
+            return;
+
+        Color tint = level.EnemyTint;
+        tint.a = 1f;
+
+        foreach (SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>(true))
+            sprite.color *= tint;
     }
 
     // Enemy Scaling lives on the current LevelData (per-level difficulty);

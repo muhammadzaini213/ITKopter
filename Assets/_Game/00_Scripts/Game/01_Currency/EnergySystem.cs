@@ -86,6 +86,7 @@ public class EnergySystem : GameSystem<EnergySystem>
 
         SaveEnergy();
         OnEnergyChanged?.Invoke(energy);
+        Objectives.Report(ObjectiveType.SpendEnergy, amount);
 
         return true;
     }

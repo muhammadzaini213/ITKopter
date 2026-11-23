@@ -40,6 +40,8 @@ public class RewardPopupUI : MonoBehaviour
             okButton.onClick.RemoveListener(Close);
     }
 
+    public bool IsOpen => popupRoot != null && popupRoot.activeInHierarchy;
+
     public void ShowRewards(IReadOnlyList<RewardData> rewards)
     {
         ShowRewards(rewards, null);

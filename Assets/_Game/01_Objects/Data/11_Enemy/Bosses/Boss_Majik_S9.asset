@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456a7ecd4b97e5f2590828cfda681910, type: 3}
+  m_Name: Boss_Majik_S9
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  characterType: 4
+  maxHealth: 12000
+  defensePower: 0
+  projectileDamage: 50
+  projectileSpeed: 4
+  movementType: 8
+  holdY: 3.5
+  speed: 1.6
+  rangeX: 1.2
+  idleTime: 2
+  diveSpeed: 9
+  retreatSpeed: 3
+  enterSpeed: 2
+  stayTime: 3
+  hitAndRunExitSpeed: 4
+  descendSpeed: 0.8
+  moveDownSpeed: 0.6
+  amplitudeX: 2.5
+  frequency: 0.5
+  targetPoint: {x: 0, y: 3}
+  moveToSpeed: 1
+  lateralSpeed: 4
+  switchInterval: 0.6
+  blinkInterval: 3.5
+  fadeTime: 0.3
+  mirrorX: 1
+  center: {x: 0, y: 3}
+  radius: 2.5
+  angularSpeed: 40
+  spinSpeed: 0
+  facingMode: 0
+  facingSpeed: 360
+  alwaysAimAtPlayer: 0
+  fireOnlyOnScreen: 1
+  randomSeed: 0
+  patterns:
+  - enabled: 1
+    pattern: 2
+    startDelay: 1.5
+    interval: 0.2
+    cooldown: 2
+    burstDelay: 0.12
+    repeat: 1
+    repeatDelay: 0.6
+    count: 1
+    spread: 0
+    arc: 60
+    aimed: 0
+    arms: 5
+    angleStep: 9
+    speed: 2.6
+    speedMin: 2
+    speedMax: 5
+    scale: 1
+    spacingX: 0.6
+    randomGap: 0
+    offsetX: 0.6
+    amplitude: 0.6
+    frequency: 2
+    cone: 120
+  - enabled: 1
+    pattern: 3
+    startDelay: 3
+    interval: 1.5
+    cooldown: 3.4
+    burstDelay: 0.12
+    repeat: 1
+    repeatDelay: 0.6
+    count: 16
+    spread: 0
+    arc: 60
+    aimed: 0
+    arms: 1
+    angleStep: 12
+    speed: 2.2
+    speedMin: 2
+    speedMax: 5
+    scale: 1
+    spacingX: 0.6
+    randomGap: 0
+    offsetX: 0.6
+    amplitude: 0.6
+    frequency: 2
+    cone: 120
+  phase2Threshold: 0.5
+  phase2Patterns:
+  - enabled: 1
+    pattern: 2
+    startDelay: 0
+    interval: 0.16
+    cooldown: 2
+    burstDelay: 0.12
+    repeat: 1
+    repeatDelay: 0.6
+    count: 1
+    spread: 0
+    arc: 60
+    aimed: 0
+    arms: 4
+    angleStep: 11
+    speed: 2.8
+    speedMin: 2
+    speedMax: 5
+    scale: 1
+    spacingX: 0.6
+    randomGap: 0
+    offsetX: 0.6
+    amplitude: 0.6
+    frequency: 2
+    cone: 120
+  - enabled: 1
+    pattern: 2
+    startDelay: 0.08
+    interval: 0.16
+    cooldown: 2
+    burstDelay: 0.12
+    repeat: 1
+    repeatDelay: 0.6
+    count: 1
+    spread: 0
+    arc: 60
+    aimed: 0
+    arms: 4
+    angleStep: -11
+    speed: 2.8
+    speedMin: 2
+    speedMax: 5
+    scale: 1
+    spacingX: 0.6
+    randomGap: 0
+    offsetX: 0.6
+    amplitude: 0.6
+    frequency: 2
+    cone: 120
+  - enabled: 1
+    pattern: 9
+    startDelay: 1
+    interval: 1.6
+    cooldown: 2
+    burstDelay: 0.12
+    repeat: 1
+    repeatDelay: 0.6
+    count: 6
+    spread: 0
+    arc: 60
+    aimed: 0
+    arms: 1
+    angleStep: 12
+    speed: 4
+    speedMin: 2
+    speedMax: 4.5
+    scale: 1
+    spacingX: 0.6
+    randomGap: 0
+    offsetX: 0.6
+    amplitude: 0.6
+    frequency: 2
+    cone: 120
+  infiniteLifetime: 1
+  lifetime: 0
+  lifetimeExitSpeed: 4

@@ -1,0 +1,363 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ObjectiveDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectiveDatabase
+  objectives:
+  - id: d_login
+    period: 0
+    type: 0
+    description: Log in
+    target: 1
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 20
+    - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+      amount: 500
+  - id: d_clear3
+    period: 0
+    type: 1
+    description: Clear 3 stages
+    target: 3
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 30
+  - id: d_enemies50
+    period: 0
+    type: 2
+    description: Defeat 50 enemies
+    target: 50
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+      amount: 1000
+  - id: d_energy30
+    period: 0
+    type: 5
+    description: Spend 30 Energy
+    target: 30
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 20
+  - id: d_pull1
+    period: 0
+    type: 4
+    description: Pull the gacha 1 time
+    target: 1
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+      amount: 1000
+  - id: d_upgrade1
+    period: 0
+    type: 7
+    description: Upgrade a character
+    target: 1
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 7b1e503074c0e22ba8291973dc096bc4, type: 2}
+      amount: 3
+  - id: d_all
+    period: 0
+    type: 9
+    description: Claim 6 daily objectives
+    target: 6
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 50
+  - id: w_login5
+    period: 1
+    type: 0
+    description: Log in on 5 days
+    target: 5
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 100
+  - id: w_clear15
+    period: 1
+    type: 1
+    description: Clear 15 stages
+    target: 15
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 120
+  - id: w_boss3
+    period: 1
+    type: 3
+    description: Defeat 3 bosses
+    target: 3
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 80
+    - reward: {fileID: 11400000, guid: 35922ea8f99da01adb6e1fb0f904baab, type: 2}
+      amount: 10
+  - id: w_enemies300
+    period: 1
+    type: 2
+    description: Defeat 300 enemies
+    target: 300
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+      amount: 5000
+  - id: w_pull10
+    period: 1
+    type: 4
+    description: Pull the gacha 10 times
+    target: 10
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 160
+  - id: w_energy200
+    period: 1
+    type: 5
+    description: Spend 200 Energy
+    target: 200
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 100
+  - id: w_shop3
+    period: 1
+    type: 8
+    description: Buy 3 items in the Shop
+    target: 3
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+      amount: 3000
+  - id: w_upgrade5
+    period: 1
+    type: 7
+    description: Upgrade characters 5 times
+    target: 5
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: f7f10a0a4c87a2d5892f1a7d6bdb4663, type: 2}
+      amount: 10
+  - id: w_all
+    period: 1
+    type: 9
+    description: Claim 8 weekly objectives
+    target: 8
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 200
+  - id: m_login20
+    period: 2
+    type: 0
+    description: Log in on 20 days
+    target: 20
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 500
+  - id: m_clear60
+    period: 2
+    type: 1
+    description: Clear 60 stages
+    target: 60
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 400
+  - id: m_boss15
+    period: 2
+    type: 3
+    description: Defeat 15 bosses
+    target: 15
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 300
+  - id: m_enemies1500
+    period: 2
+    type: 2
+    description: Defeat 1,500 enemies
+    target: 1500
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+      amount: 20000
+  - id: m_pull50
+    period: 2
+    type: 4
+    description: Pull the gacha 50 times
+    target: 50
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 480
+  - id: m_energy1000
+    period: 2
+    type: 5
+    description: Spend 1,000 Energy
+    target: 1000
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 300
+  - id: m_upgrade20
+    period: 2
+    type: 7
+    description: Upgrade characters 20 times
+    target: 20
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+      amount: 20000
+    - reward: {fileID: 11400000, guid: 7efdbe2d3c4bd48b0a8eca3d2b4641ac, type: 2}
+      amount: 20
+  - id: m_gems3000
+    period: 2
+    type: 6
+    description: Spend 3,000 Gems
+    target: 3000
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 300
+  - id: a_story
+    period: 3
+    type: 13
+    description: Finish the opening story
+    target: 1
+    targetId: story_main_08
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 300
+  - id: a_stage3
+    period: 3
+    type: 12
+    description: Defeat Regu in Stage 3
+    target: 1
+    targetId: stage_03
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 100
+  - id: a_stage6
+    period: 3
+    type: 12
+    description: Defeat Vio in Stage 6
+    target: 1
+    targetId: stage_06
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 150
+  - id: a_stage9
+    period: 3
+    type: 12
+    description: Defeat Majik in Stage 9
+    target: 1
+    targetId: stage_09
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 200
+  - id: a_stage12
+    period: 3
+    type: 12
+    description: Defeat EyaY in Stage 12
+    target: 1
+    targetId: stage_12
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 300
+  - id: a_own5
+    period: 3
+    type: 10
+    description: Own 5 characters
+    target: 5
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 200
+  - id: a_own12
+    period: 3
+    type: 10
+    description: Own all 12 characters
+    target: 12
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 1000
+  - id: a_level10
+    period: 3
+    type: 11
+    description: Raise a character to Lv. 10
+    target: 10
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 150
+  - id: a_level20
+    period: 3
+    type: 11
+    description: Raise a character to Lv. 20
+    target: 20
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 400
+  - id: a_pull100
+    period: 3
+    type: 4
+    description: Pull the gacha 100 times
+    target: 100
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 500
+  - id: a_enemies1000
+    period: 3
+    type: 2
+    description: Defeat 1,000 enemies
+    target: 1000
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 300
+  - id: a_boss10
+    period: 3
+    type: 3
+    description: Defeat 10 bosses
+    target: 10
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 200
+  - id: a_login7
+    period: 3
+    type: 0
+    description: Log in on 7 days
+    target: 7
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 100
+  - id: a_login30
+    period: 3
+    type: 0
+    description: Log in on 30 days
+    target: 30
+    targetId: 
+    rewards:
+    - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+      amount: 400

@@ -22,6 +22,9 @@ public class LevelListItemUI : MonoBehaviour
     [SerializeField] private Button startButton;
 
     private LevelData levelData;
+
+    public bool IsUnlocked { get; private set; }
+    public bool IsCompleted { get; private set; }
     private Action<LevelData> onStartClicked;
 
     private void Awake()
@@ -44,6 +47,8 @@ public class LevelListItemUI : MonoBehaviour
     {
         levelData = data;
         onStartClicked = startCallback;
+        IsUnlocked = isUnlocked;
+        IsCompleted = isCompleted;
 
         if (levelData == null)
             return;
@@ -74,16 +79,32 @@ public class LevelListItemUI : MonoBehaviour
         foreach (Transform child in rewardIconsRoot)
             Destroy(child.gameObject);
 
-        if (levelData == null || levelData.LevelRewards == null)
+        if (levelData == null)
             return;
 
-        foreach (RewardData reward in levelData.LevelRewards)
+        var shown = new System.Collections.Generic.List<RewardData>();
+
+        if (levelData.RewardEntries != null)
+        {
+            foreach (StoryRewardEntry entry in levelData.RewardEntries)
+            {
+                if (entry != null && entry.reward != null)
+                    shown.Add(entry.reward);
+            }
+        }
+
+        if (levelData.LevelRewards != null)
+            shown.AddRange(levelData.LevelRewards);
+
+        foreach (RewardData reward in shown)
         {
             if (reward == null || reward.Icon == null)
                 continue;
 
             Image icon = Instantiate(rewardIconPrefab, rewardIconsRoot);
             icon.sprite = reward.Icon;
+            icon.preserveAspect = true;
+            icon.color = Color.white;
             icon.enabled = true;
         }
     }

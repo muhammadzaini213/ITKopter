@@ -14,6 +14,8 @@ public class CharacterProgressionSaveData
 public class PlayerSaveData
 {
     public string playerName;
+    /// <summary>False until the player has entered a name on first login.</summary>
+    public bool hasChosenName;
     public int playerExp;
 
     public List<string> ownedCharacterIds = new();

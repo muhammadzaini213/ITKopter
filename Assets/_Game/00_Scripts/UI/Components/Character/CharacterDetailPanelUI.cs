@@ -10,6 +10,19 @@ public class CharacterDetailPanelUI : MonoBehaviour
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text levelText;
 
+    [Header("Hierarchy / Role / Rarity")]
+    [SerializeField] private Image typeIcon;
+    [SerializeField] private TMP_Text typeText;
+    [SerializeField] private Image roleIcon;
+    [SerializeField] private TMP_Text roleText;
+    [Tooltip("Large rarity letters (UR / SR / R / N), tinted by rarity.")]
+    [SerializeField] private TMP_Text rarityBadgeText;
+    [SerializeField] private TMP_Text rarityText;
+    [Tooltip("Hierarchy icons indexed by CharacterType (Abstract, Simple, Special, Primordial, Anomaly).")]
+    [SerializeField] private Sprite[] typeSprites = new Sprite[5];
+    [Tooltip("Role icons indexed by CharacterRole.")]
+    [SerializeField] private Sprite[] roleSprites = new Sprite[7];
+
     [Header("Stats (current -> next level)")]
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private TMP_Text attackText;
@@ -99,6 +112,8 @@ public class CharacterDetailPanelUI : MonoBehaviour
         if (levelText != null)
             levelText.text = $"Lv. {level}";
 
+        ShowTags(character);
+
         // Stats now and after the next upgrade.
         SetStat(healthText, "HP", character.GetHealthAtLevel(level), character.GetHealthAtLevel(level + 1));
         SetStat(attackText, "ATK", character.GetAttackAtLevel(level), character.GetAttackAtLevel(level + 1));
@@ -131,6 +146,47 @@ public class CharacterDetailPanelUI : MonoBehaviour
 
         if (nextButton != null)
             nextButton.interactable = canNavigate;
+    }
+
+    private void ShowTags(CharacterData character)
+    {
+        SetIcon(typeIcon, GetSprite(typeSprites, (int)character.CharacterType));
+        SetIcon(roleIcon, GetSprite(roleSprites, (int)character.CharacterRole));
+
+        if (typeText != null)
+            typeText.text = character.CharacterType.ToString().ToUpperInvariant();
+
+        if (roleText != null)
+            roleText.text = character.CharacterRole.ToString().ToUpperInvariant();
+
+        Color rarityColor = RarityStyle.GetColor(character.Rarity);
+
+        if (rarityBadgeText != null)
+        {
+            rarityBadgeText.text = character.Rarity.ToString();
+            rarityBadgeText.color = rarityColor;
+        }
+
+        if (rarityText != null)
+        {
+            rarityText.text = RarityStyle.GetFullName(character.Rarity);
+            rarityText.color = rarityColor;
+        }
+    }
+
+    private static Sprite GetSprite(Sprite[] sprites, int index)
+    {
+        return sprites != null && index >= 0 && index < sprites.Length ? sprites[index] : null;
+    }
+
+    private static void SetIcon(Image image, Sprite sprite)
+    {
+        if (image == null)
+            return;
+
+        image.sprite = sprite;
+        image.preserveAspect = true;
+        image.enabled = sprite != null;
     }
 
     private void ShowUpgradeCost(CharacterUpgradeCost cost)

@@ -24,11 +24,11 @@ MonoBehaviour:
   characterPortrait: {fileID: -1382697778907519323, guid: 75314c323dd4b00fe90ecfeceb6e7535,
     type: 3}
   health: 1900
-  attackPower: 0
+  attackPower: 10
   defensePower: 65
   exSkillCooldown: 30
   movementSpeed: 4
-  bulletSpeed: 0
+  bulletSpeed: 5
   characterType: 0
   characterRole: 4
   characterPrefab: {fileID: 8729292657063863904, guid: 3f5529602973cae6c840a6a180f7e9fd,

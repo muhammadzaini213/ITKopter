@@ -90,6 +90,7 @@ public class CurrencySystem : GameSystem<CurrencySystem>
         gems -= amount;
         SaveCurrency();
         OnGemsChanged?.Invoke(gems);
+        Objectives.Report(ObjectiveType.SpendGems, amount);
 
         return true;
     }

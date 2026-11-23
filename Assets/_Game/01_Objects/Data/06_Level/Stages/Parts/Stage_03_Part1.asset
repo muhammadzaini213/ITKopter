@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2f316b7afe41de89f5538cf0760972, type: 3}
+  m_Name: Stage_03_Part1
+  m_EditorClassIdentifier: Assembly-CSharp::LevelPartData
+  partName: Stage_03_Part1
+  areaPrefab: {fileID: 1642783251020503190, guid: 96036b259976d9d109bdd98e7d8cf9af,
+    type: 3}
+  enemyWaves:
+  - {fileID: 11400000, guid: 15143520e0a61186884e5b58625cab38, type: 2}
+  - {fileID: 11400000, guid: 877ec3e3c8bec7e9ea347e8b44bdca72, type: 2}

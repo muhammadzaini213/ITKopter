@@ -13,6 +13,8 @@ public class AreaLoopController : MonoBehaviour
     [Tooltip("Distance between the top edges of consecutive areas.")]
     [SerializeField, Min(0.01f)] private float areaHeight = 20f;
 
+    private const float SeamOverlap = 0.02f;
+
     private Transform[] areas;
     private bool isInitialized;
 
@@ -83,20 +85,20 @@ public class AreaLoopController : MonoBehaviour
         if (!isInitialized || areas == null)
             return;
 
+        // Move every area first, then recycle. Recycling while the others
+        // were still unmoved this frame left a one-frame gap (a visible seam).
+        Vector3 step = Vector3.down * (scrollSpeed * Time.deltaTime);
+
         for (int i = 0; i < areas.Length; i++)
         {
-            Transform area = areas[i];
+            if (areas[i] != null)
+                areas[i].position += step;
+        }
 
-            if (area == null)
-                continue;
-
-            area.position +=
-                Vector3.down * (scrollSpeed * Time.deltaTime);
-
-            if (area.position.y <= recycleY)
-            {
+        for (int i = 0; i < areas.Length; i++)
+        {
+            if (areas[i] != null && areas[i].position.y <= recycleY)
                 RecycleArea(i);
-            }
         }
     }
 
@@ -123,7 +125,8 @@ public class AreaLoopController : MonoBehaviour
         }
 
         Vector3 newPosition = area.position;
-        newPosition.y = highestY + areaHeight;
+        // A hair of overlap hides sub-pixel rasterisation seams between tiles.
+        newPosition.y = highestY + areaHeight - SeamOverlap;
 
         area.position = newPosition;
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52237fa38844ca055b77e8a4c725c069, type: 3}
   m_Name: Anon_Engram
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  rarity: 0
+  rarity: 2
   icon: {fileID: 8776580216438086401, guid: 06ae9665496072f3296ac0d417488dd3, type: 3}
   itemId: anon_engram
   itemName: Anon Engram

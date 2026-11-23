@@ -9,6 +9,7 @@ public class InventorySlotUI : MonoBehaviour
     [SerializeField] private Image itemIcon;
     [SerializeField] private TMP_Text itemNameText;
     [SerializeField] private TMP_Text itemAmountText;
+    [SerializeField] private TMP_Text rarityText;
 
     public void Setup(ItemData item, int amount)
     {
@@ -29,6 +30,12 @@ public class InventorySlotUI : MonoBehaviour
 
         if (itemAmountText != null)
             itemAmountText.text = $"x{amount}";
+
+        if (rarityText != null)
+        {
+            rarityText.text = item.Rarity.ToString();
+            rarityText.color = RarityStyle.GetColor(item.Rarity);
+        }
     }
 
     public void Clear()
@@ -44,5 +51,8 @@ public class InventorySlotUI : MonoBehaviour
 
         if (itemAmountText != null)
             itemAmountText.text = string.Empty;
+
+        if (rarityText != null)
+            rarityText.text = string.Empty;
     }
 }

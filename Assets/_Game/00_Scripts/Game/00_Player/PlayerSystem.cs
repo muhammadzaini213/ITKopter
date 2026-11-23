@@ -29,10 +29,17 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         characterProgressions = new();
 
     private bool isPlayerDataLoaded;
+    private bool hasChosenName;
+
+    /// <summary>Longest name the player can enter.</summary>
+    public const int MaxNameLength = 15;
 
     public string PlayerName => playerName;
     public int PlayerExp => playerExp;
     public bool IsPlayerDataLoaded => isPlayerDataLoaded;
+
+    /// <summary>True on first login: the player hasn't entered a name yet.</summary>
+    public bool NeedsNameEntry => isPlayerDataLoaded && !hasChosenName;
     public CharacterDatabase CharacterDatabase => characterDatabase;
 
     /// <summary>
@@ -205,15 +212,21 @@ public class PlayerSystem : GameSystem<PlayerSystem>
 
         newName = newName.Trim();
 
-        if (playerName == newName)
+        if (newName.Length > MaxNameLength)
+            newName = newName.Substring(0, MaxNameLength).TrimEnd();
+
+        if (playerName == newName && hasChosenName)
             return;
 
         string previousName = playerName;
+        bool previousChosen = hasChosenName;
         playerName = newName;
+        hasChosenName = true;
 
         if (!SavePlayerData())
         {
             playerName = previousName;
+            hasChosenName = previousChosen;
             return;
         }
 
@@ -399,6 +412,7 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         }
 
         progression.LevelUp();
+        Objectives.Report(ObjectiveType.UpgradeCharacters, 1);
 
         if (!SavePlayerData())
         {
@@ -641,6 +655,7 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         PlayerSaveData data = new PlayerSaveData
         {
             playerName = playerName,
+            hasChosenName = hasChosenName,
             playerExp = playerExp,
 
             ownedCharacterIds = characterOwned
@@ -687,6 +702,8 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         playerName = string.IsNullOrWhiteSpace(data.playerName)
             ? "Player"
             : data.playerName.Trim();
+
+        hasChosenName = data.hasChosenName;
 
         playerExp = Mathf.Max(0, data.playerExp);
 

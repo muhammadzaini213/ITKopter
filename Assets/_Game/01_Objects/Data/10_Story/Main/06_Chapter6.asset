@@ -1,0 +1,206 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4877fb6ffc62fe90d83c8e4d3d4cb55f, type: 3}
+  m_Name: 06_Chapter6
+  m_EditorClassIdentifier: Assembly-CSharp::StoryData
+  storyId: story_main_06
+  storyName: War Never Misses a Fight
+  storyDescription: 'Battle: Warlock, Noz and Bokusu vs. Tren, Trady and Cashino.
+    Learn counter mechanics.'
+  chapterLabel: CHAPTER 6
+  previousStory: {fileID: 11400000, guid: 5d3618b71b7cc23e299055b24f810ab1, type: 2}
+  storyPrefab: {fileID: 0}
+  segments:
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Warlock notices the ongoing conflict and decides to join.
+      blackScreen: 0
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: He is not assigned by the Council, nor does he have any particular reason
+        to help Fajar.
+      blackScreen: 0
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: He simply likes fighting.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HEY! YOU GUYS FIGHTING?!
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Yes?
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: NICE. I'M IN.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: "Wait, that's not\u2014"
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: TOO LATE!
+      blackScreen: 0
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Warlock joins the battle.
+      blackScreen: 0
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 1
+    lines: []
+    level: {fileID: 11400000, guid: 4f7994c475646cde1abba1cc20343061, type: 2}
+    team:
+    - {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+    - {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    - {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts:
+    - time: 2
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      text: 'Hierarchies counter each other: Abstract beats Simple, Simple beats
+        Special, Special beats Abstract.'
+      duration: 5.5
+    - time: 10
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      text: Warlock and I are Abstract. Tren and Cashino are Simple. Hit them with
+        us for double damage.
+      duration: 5.5
+    - time: 19
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      text: Bokusu is Simple and Trady is Abstract. Keep him off her; his attacks
+        barely scratch her.
+      duration: 5.5
+    - time: 30
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      text: COME ON!!! HIT ME HARDER!!!
+      duration: 4.5
+    - time: 36
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      text: Please stop encouraging them.
+      duration: 4.5
+    - time: 44
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      text: Focus on their weaknesses. That's the important part.
+      duration: 4.5
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Tren, Trady and Cashino fall back.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: THAT WAS GREAT! LET'S DO IT AGAIN SOMETIME!
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Please don't.
+      blackScreen: 0
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  background: {fileID: 3398196857506778724, guid: c93c1b04ce0f2defab9de04cca50dd4c,
+    type: 3}
+  storyRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+    amount: 2000
+  - reward: {fileID: 11400000, guid: 6134dd6d0ecfb3b96b55175db641717b, type: 2}
+    amount: 10
+  - reward: {fileID: 11400000, guid: e442fae7597d100deac5d91e425d4f49, type: 2}
+    amount: 10
+  - reward: {fileID: 11400000, guid: 17e3c74c9b42ed40e87e4ac4008bf67e, type: 2}
+    amount: 10
+  nextStory: {fileID: 11400000, guid: 81e55da408f5fb8f9b56a7d249bcc294, type: 2}
+  afterScene: {fileID: 0}
+  afterSceneToasts: []
+  afterGachaPullToasts: []
+  timeLimitSeconds: 600
+  storyMusic: {fileID: 11400000, guid: 4b1fa867380b439deb875767a04db9f4, type: 2}

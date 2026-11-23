@@ -19,8 +19,73 @@ public class GameplayManager : MonoBehaviour
 
     private Coroutine returnToMenuCoroutine;
 
+    private void Awake()
+    {
+        // Story battles: StoryBattleController handles toasts, scripted losses and the result.
+        if (StorySystem.Instance != null && StorySystem.Instance.IsInStoryBattle &&
+            GetComponent<StoryBattleController>() == null)
+        {
+            gameObject.AddComponent<StoryBattleController>();
+        }
+    }
+
+    private bool bossIntroShown;
+
+    private void Start()
+    {
+        // Regular stages: optional speaker tips during the battle.
+        LevelData level = LevelSystem.Instance != null ? LevelSystem.Instance.CurrentLevel : null;
+
+        if (StoryBattleController.Active == null && level != null &&
+            level.BattleToasts != null && level.BattleToasts.Length > 0)
+        {
+            StartCoroutine(PlayBattleToasts(level.BattleToasts));
+        }
+    }
+
+    private IEnumerator PlayBattleToasts(StoryToastLine[] toasts)
+    {
+        StoryToastLine[] ordered = (StoryToastLine[])toasts.Clone();
+        System.Array.Sort(ordered, (a, b) => a.time.CompareTo(b.time));
+
+        float clock = 0f;
+
+        foreach (StoryToastLine toast in ordered)
+        {
+            if (toast == null)
+                continue;
+
+            while (clock < toast.time && !IsLevelCompleted)
+            {
+                clock += Time.deltaTime;
+                yield return null;
+            }
+
+            if (IsLevelCompleted)
+                yield break;
+
+            StorySystem.Instance?.Toasts?.Show(toast);
+        }
+    }
+
+    private void HandleBossAppeared(EnemyBoss boss)
+    {
+        if (bossIntroShown || IsLevelCompleted)
+            return;
+
+        LevelData level = LevelSystem.Instance != null ? LevelSystem.Instance.CurrentLevel : null;
+
+        if (level == null || level.BossIntroToasts == null || level.BossIntroToasts.Length == 0)
+            return;
+
+        bossIntroShown = true;
+        StorySystem.Instance?.Toasts?.PlaySequence(level.BossIntroToasts);
+    }
+
     private void OnEnable()
     {
+        EnemyBoss.OnBossAppeared += HandleBossAppeared;
+
         if (enemyWaveManager != null)
         {
             enemyWaveManager.OnLevelWon += HandleLevelWon;
@@ -29,6 +94,8 @@ public class GameplayManager : MonoBehaviour
 
     private void OnDisable()
     {
+        EnemyBoss.OnBossAppeared -= HandleBossAppeared;
+
         if (enemyWaveManager != null)
         {
             enemyWaveManager.OnLevelWon -= HandleLevelWon;
@@ -58,6 +125,12 @@ public class GameplayManager : MonoBehaviour
 
         IsLevelCompleted = true;
 
+        if (StoryBattleController.Active != null)
+        {
+            StoryBattleController.Active.HandleVictory();
+            return;
+        }
+
         LevelData completedLevel = levelSystem.CurrentLevel;
         RewardData[] levelRewards = completedLevel.LevelRewards;
 
@@ -65,14 +138,22 @@ public class GameplayManager : MonoBehaviour
             $"[GameplayManager] Level '{completedLevel.LevelName}' completed.",
             this);
 
-        GrantLevelRewards(levelRewards);
+        // Unlocks the next stage (LevelData.previousLevel chain).
+        if (PlayerSystem.Instance != null)
+            PlayerSystem.Instance.CompleteLevel(completedLevel.LevelId);
+
+        Objectives.Report(ObjectiveType.ClearStages, 1);
+
+        GrantLevelRewards(levelRewards, completedLevel.RewardEntries);
 
         returnToMenuCoroutine = StartCoroutine(ReturnToMainMenu());
     }
 
-    private void GrantLevelRewards(RewardData[] levelRewards)
+    private void GrantLevelRewards(RewardData[] levelRewards, StoryRewardEntry[] rewardEntries)
     {
-        if (levelRewards == null || levelRewards.Length == 0)
+        bool hasEntries = rewardEntries != null && rewardEntries.Length > 0;
+
+        if ((levelRewards == null || levelRewards.Length == 0) && !hasEntries)
         {
             Debug.Log(
                 "[GameplayManager] This level has no rewards.",
@@ -93,7 +174,16 @@ public class GameplayManager : MonoBehaviour
 
         List<RewardGrantRequest> requests = new();
 
-        foreach (RewardData reward in levelRewards)
+        if (hasEntries)
+        {
+            foreach (StoryRewardEntry entry in rewardEntries)
+            {
+                if (entry != null && entry.reward != null)
+                    requests.Add(new RewardGrantRequest(entry.reward, Mathf.Max(1, entry.amount)));
+            }
+        }
+
+        foreach (RewardData reward in levelRewards ?? new RewardData[0])
         {
             if (reward == null)
             {
@@ -118,6 +208,7 @@ public class GameplayManager : MonoBehaviour
 
         bool allGranted = true;
         List<RewardData> grantedRewards = new();
+        List<int> grantedAmounts = new();
 
         foreach (RewardGrantResult result in results)
         {
@@ -145,11 +236,12 @@ public class GameplayManager : MonoBehaviour
                 this);
 
             grantedRewards.Add(result.Reward);
+            grantedAmounts.Add(result.GrantedAmount);
         }
 
         if (grantedRewards.Count > 0)
         {
-            rewardSystem.ShowRewardPopup(grantedRewards);
+            rewardSystem.ShowRewardPopup(grantedRewards, grantedAmounts);
         }
 
         if (!allGranted)

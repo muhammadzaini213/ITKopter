@@ -1,0 +1,213 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4877fb6ffc62fe90d83c8e4d3d4cb55f, type: 3}
+  m_Name: 04_Chapter4
+  m_EditorClassIdentifier: Assembly-CSharp::StoryData
+  storyId: story_main_04
+  storyName: A Familiar Victim
+  storyDescription: 'Battle: Ei-Pi and Noz vs. Anon. Reward: Noz joins the roster.'
+  chapterLabel: CHAPTER 4
+  previousStory: {fileID: 11400000, guid: 621f00404863a5dbea20debba0833bf5, type: 2}
+  storyPrefab: {fileID: 0}
+  segments:
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Noz arrives after the first encounter.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Sorry for being late. Your Majesty.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I will guide you to use support roles like me in Concept Clash.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Please brace yourself. We're going to attack that black one again.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Again?
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WAIT, WHAT?!
+      blackScreen: 0
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Noz calmly explains how Support characters work and how they can assist
+        the active unit.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: As a Support, I can provide assistance without needing to remain on the
+        battlefield. You can switch between your party members to make use of their
+        abilities.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: I THOUGHT YOU WERE HERE TO HELP ME?!
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I'm afraid not.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: ROUND TWO!!! LET'S GOOOOOO!!!
+      blackScreen: 0
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 1
+    lines: []
+    level: {fileID: 11400000, guid: d0cb4f0ddecd5b5d19578fdf7d6c5fc3, type: 2}
+    team:
+    - {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    - {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts:
+    - time: 1.5
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      text: Press 1 or 2 to switch who is on the field, Your Majesty. Switching has
+        a short cooldown.
+      duration: 4.5
+    - time: 9
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      text: 'Switch to me and press K. My EX skill marks the enemies: the whole party
+        deals more damage to them.'
+      duration: 4.5
+    - time: 18
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      text: Defeat a marked enemy and the party recovers some health. Then switch
+        back to Ei-Pi.
+      duration: 4.5
+    - time: 30
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      text: TEAMWORK!!! I'M THE LOUD PART!!!
+      duration: 4.5
+    - time: 44
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      text: WHY IS IT ALWAYS ME?!
+      duration: 4.5
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Anon is defeated again.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Well done. You learn quickly, Your Majesty. I will stay by your side.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: I'm going home. Wherever that is.
+      blackScreen: 0
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  background: {fileID: -893397679091061275, guid: 9ecbe3e1c621a47749a87aa34c6fc4bd,
+    type: 3}
+  storyRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    amount: 1
+  nextStory: {fileID: 11400000, guid: 5d3618b71b7cc23e299055b24f810ab1, type: 2}
+  afterScene: {fileID: 0}
+  afterSceneToasts: []
+  afterGachaPullToasts: []
+  timeLimitSeconds: 600
+  storyMusic: {fileID: 11400000, guid: ddb213e2f669869688b5ad431f9b95e2, type: 2}

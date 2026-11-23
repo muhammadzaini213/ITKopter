@@ -110,6 +110,13 @@ public class GameOverTrigger : MonoBehaviour
 
         IsGameOver = true;
 
+        // Scripted story losses continue the story instead of showing Game Over.
+        if (StoryBattleController.Active != null &&
+            StoryBattleController.Active.HandleDefeat())
+        {
+            return;
+        }
+
         Debug.Log(
             "[GameOverTrigger] Game Over.",
             this);

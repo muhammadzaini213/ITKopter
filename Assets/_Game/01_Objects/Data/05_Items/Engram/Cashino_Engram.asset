@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52237fa38844ca055b77e8a4c725c069, type: 3}
   m_Name: Cashino_Engram
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  rarity: 0
+  rarity: 3
   icon: {fileID: 7371024335030756639, guid: a72326c019146c055bdbc84acfb0a9eb, type: 3}
   itemId: cashino_engram
   itemName: Cashino Engram
