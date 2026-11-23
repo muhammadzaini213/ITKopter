@@ -74,7 +74,8 @@ public class PlayerAutoShooter : MonoBehaviour
 
         bulletSpawner.Fire(
             firePoint,
-            character.BulletSpeed
+            character.BulletSpeed,
+            character.EffectiveAttackPower
         );
     }
 
