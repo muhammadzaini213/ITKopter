@@ -117,7 +117,11 @@ public class BurstExSkill : ExSkill
             firePoint.rotation
         );
 
-        bulletSpawner.Fire(pointTransform, Owner.BulletSpeed);
+        bulletSpawner.Fire(
+            pointTransform,
+            Owner.BulletSpeed,
+            Owner.EffectiveAttackPower
+        );
 
         Destroy(temporaryPoint);
     }

@@ -44,6 +44,14 @@ public class Health : MonoBehaviour, IDamageable
     public event Action OnDamaged;
     public event Action OnDeath;
 
+    // Static: fires for ANY Health in the scene with the actual HP loss
+    // (after shield/defense). Fires with 0 when a hit is fully blocked —
+    // consumers: damage popup systems, analytics.
+    public static event Action<Health, float> OnAnyDamaged;
+
+    // Static: fires for ANY Health on actual HP gain (popup systems).
+    public static event Action<Health, float> OnAnyHealed;
+
     private void Awake()
     {
         maxHealth = Mathf.Max(1f, maxHealth);
@@ -74,18 +82,27 @@ public class Health : MonoBehaviour, IDamageable
             shield.Absorb(ref amount);
 
         if (amount <= 0f)
+        {
+            // Fully blocked by shield — HP unchanged, but show a "0".
+            OnAnyDamaged?.Invoke(this, 0f);
             return;
+        }
 
         amount *= IncomingDamageMultiplier;
 
         float finalDamage = Mathf.Max(0f, amount - defensePower);
 
         if (finalDamage <= 0f)
+        {
+            // Fully blocked by defense — HP unchanged, but show a "0".
+            OnAnyDamaged?.Invoke(this, 0f);
             return;
+        }
 
         currentHealth = Mathf.Max(0f, currentHealth - finalDamage);
 
         OnDamaged?.Invoke();
+        OnAnyDamaged?.Invoke(this, finalDamage);
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
         if (currentHealth <= 0f)
@@ -101,7 +118,10 @@ public class Health : MonoBehaviour, IDamageable
         currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
 
         if (!Mathf.Approximately(previousHealth, currentHealth))
+        {
+            OnAnyHealed?.Invoke(this, currentHealth - previousHealth);
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        }
     }
 
     public void SetMaxHealth(
