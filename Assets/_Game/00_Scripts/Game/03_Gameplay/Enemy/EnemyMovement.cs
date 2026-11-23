@@ -179,6 +179,39 @@ public class EnemyMovement : MonoBehaviour
             blinkTimer = blinkInterval;
     }
 
+    // Data-only apply from EnemyDataBinder (runs before this Awake).
+    // Scene refs (spinTarget/facingTarget) stay prefab-side and untouched.
+    public void ApplyData(EnemyData data)
+    {
+        movementType = data.movementType;
+        holdY = data.holdY;
+        speed = data.speed;
+        rangeX = data.rangeX;
+        idleTime = data.idleTime;
+        diveSpeed = data.diveSpeed;
+        retreatSpeed = data.retreatSpeed;
+        enterSpeed = data.enterSpeed;
+        stayTime = data.stayTime;
+        exitSpeed = data.hitAndRunExitSpeed;
+        descendSpeed = data.descendSpeed;
+        moveDownSpeed = data.moveDownSpeed;
+        amplitudeX = data.amplitudeX;
+        frequency = data.frequency;
+        targetPoint = data.targetPoint;
+        moveToSpeed = data.moveToSpeed;
+        lateralSpeed = data.lateralSpeed;
+        switchInterval = Mathf.Max(0.01f, data.switchInterval);
+        blinkInterval = data.blinkInterval;
+        fadeTime = data.fadeTime;
+        mirrorX = data.mirrorX;
+        center = data.center;
+        radius = data.radius;
+        angularSpeed = data.angularSpeed;
+        spinSpeed = data.spinSpeed;
+        facingMode = data.facingMode;
+        facingSpeed = data.facingSpeed;
+    }
+
     // Stops all behavior (used on death so corpses do not keep moving).
     public void StopMoving() => stopped = true;
 

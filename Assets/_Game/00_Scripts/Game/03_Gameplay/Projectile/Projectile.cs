@@ -27,6 +27,7 @@ public class Projectile : MonoBehaviour, IPoolable
 
     private LayerMask hitMask;
     private Action<Projectile> returnToPool;
+    private CharacterType? attackerType;
 
     private float lifetimeTimer;
     private bool isInitialized;
@@ -40,6 +41,13 @@ public class Projectile : MonoBehaviour, IPoolable
     public void SetOwner(Character owner)
     {
         ownerCharacter = owner;
+    }
+
+    // Hierarchy of the shooter (resolved by the spawner at spawn time).
+    // null = unknown → neutral matchup.
+    public void SetAttackerType(CharacterType? type)
+    {
+        attackerType = type;
     }
 
     public void Initialize(
@@ -109,13 +117,17 @@ public class Projectile : MonoBehaviour, IPoolable
             IDamageable damageable =
                 hit.collider.GetComponentInParent<IDamageable>();
 
+            // Counter Mechanics: hierarchy matchup scales the hit.
+            float appliedDamage = damage * CounterMechanics.GetMultiplier(
+                attackerType, ResolveTargetType(hit.collider));
+
             if (damageable != null)
-                damageable.TakeDamage(damage);
+                damageable.TakeDamage(appliedDamage);
 
             bool wasKilled = wasAliveBefore &&
                 targetHealth != null && targetHealth.IsDead;
 
-            OnHit?.Invoke(ownerCharacter, targetHealth, damage, wasKilled);
+            OnHit?.Invoke(ownerCharacter, targetHealth, appliedDamage, wasKilled);
 
             if (wasKilled && targetCharacter != null && ownerCharacter != null)
                 CombatEventBus.InvokeEnemyDiedMarked(ownerCharacter, targetCharacter);
@@ -132,6 +144,29 @@ public class Projectile : MonoBehaviour, IPoolable
     }
 
     protected virtual Vector2 GetMovementDirection() => transform.up;
+
+    // Target hierarchy: EnemyDataBinder + SO first (explicit enemy config,
+    // wins if the enemy also carries a Character), else the Character
+    // component (player). Missing both → null → neutral matchup.
+    private static CharacterType? ResolveTargetType(Collider2D hitCollider)
+    {
+        if (hitCollider == null)
+            return null;
+
+        EnemyDataBinder binder =
+            hitCollider.GetComponentInParent<EnemyDataBinder>();
+
+        if (binder != null && binder.Data != null)
+            return binder.Data.characterType;
+
+        Character character =
+            hitCollider.GetComponentInParent<Character>();
+
+        if (character != null)
+            return character.CharacterType;
+
+        return null;
+    }
 
     public void ReturnToPool()
     {

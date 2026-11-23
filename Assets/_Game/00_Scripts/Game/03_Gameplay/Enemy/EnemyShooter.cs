@@ -90,6 +90,10 @@ public class EnemyPatternSlot
     [System.NonSerialized] public float angleAccum;
     [System.NonSerialized] public int cycleIndex;
     [System.NonSerialized] public bool bursting;
+
+    // Shallow copy is enough (value fields only) — used so EnemyData assets
+    // are never mutated: every spawned enemy gets its own slot instances.
+    public EnemyPatternSlot Clone() => (EnemyPatternSlot)MemberwiseClone();
 }
 
 public class EnemyShooter : MonoBehaviour
@@ -161,6 +165,33 @@ public class EnemyShooter : MonoBehaviour
 
     // Cancels every pending timer/burst (death, despawn — spec 5.4).
     public void StopShooting() => stopped = true;
+
+    // Data-only apply from EnemyDataBinder (runs before this Awake, which
+    // then derives rng/active patterns from the applied values).
+    // Patterns are deep-copied: living enemies must not share slot state
+    // through a common EnemyData asset.
+    public void ApplyData(EnemyData data)
+    {
+        alwaysAimAtPlayer = data.alwaysAimAtPlayer;
+        fireOnlyOnScreen = data.fireOnlyOnScreen;
+        randomSeed = data.randomSeed;
+        patterns = CloneSlots(data.patterns);
+        phase2Threshold = data.phase2Threshold;
+        phase2Patterns = CloneSlots(data.phase2Patterns);
+    }
+
+    private static EnemyPatternSlot[] CloneSlots(EnemyPatternSlot[] source)
+    {
+        if (source == null)
+            return new EnemyPatternSlot[0];
+
+        EnemyPatternSlot[] clone = new EnemyPatternSlot[source.Length];
+
+        for (int i = 0; i < source.Length; i++)
+            clone[i] = source[i] != null ? source[i].Clone() : null;
+
+        return clone;
+    }
 
     private void HandleHealthChanged(float current, float max)
     {

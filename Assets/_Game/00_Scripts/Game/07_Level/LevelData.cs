@@ -24,6 +24,11 @@ public class LevelData : ScriptableObject
     [Header("Music")]
     [SerializeField] private MusicReference levelMusic;
 
+    [Header("Enemy Scaling")]
+    [SerializeField, Min(0.01f),
+     Tooltip("Scales enemy combat stats in this level: Max Health, Defense and Projectile Damage. 1 = unchanged, 2 = double. Movement/pattern timing untouched.")]
+    private float enemyStatMultiplier = 1f;
+
     public string LevelId => levelId;
     public string LevelName => levelName;
     public LevelData PreviousLevel => previousLevel;
@@ -33,4 +38,5 @@ public class LevelData : ScriptableObject
     public MusicReference LevelMusic => levelMusic;
 
     public int TimeLimitSeconds => timeLimitSeconds;
+    public float EnemyStatMultiplier => enemyStatMultiplier;
 }

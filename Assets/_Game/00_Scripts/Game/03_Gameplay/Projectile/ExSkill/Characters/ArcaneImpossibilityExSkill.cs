@@ -79,7 +79,9 @@ public class ArcaneImpossibilityExSkill : ExSkill
                 if (health == null || enchantedEnemies.Contains(health))
                     continue;
 
-                health.TakeDamage(Owner.EffectiveAttackPower * markDamageMultiplier);
+                CounterMechanics.Damage(
+                    Owner, health,
+                    Owner.EffectiveAttackPower * markDamageMultiplier);
 
                 StatusEffectSystem.Instance.Add(
                     health.gameObject,
@@ -117,7 +119,7 @@ public class ArcaneImpossibilityExSkill : ExSkill
         foreach (var health in alive)
         {
             if ((new Vector2(health.transform.position.x, health.transform.position.y) - center).sqrMagnitude <= explosionRadius * explosionRadius)
-                health.TakeDamage(damage);
+                CounterMechanics.Damage(Owner, health, damage);
         }
 
         enchantedEnemies.Clear();
@@ -154,7 +156,9 @@ public class ArcaneImpossibilityExSkill : ExSkill
         }
 
         if (nearest != null)
-            nearest.TakeDamage(Owner.EffectiveAttackPower * explosionDamageMultiplier);
+            CounterMechanics.Damage(
+                Owner, nearest,
+                Owner.EffectiveAttackPower * explosionDamageMultiplier);
     }
 
     public override void Cancel()

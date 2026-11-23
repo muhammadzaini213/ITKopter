@@ -83,7 +83,7 @@ public class TotalWarfareExSkill : ExSkill
             if (health == null)
                 continue;
 
-            health.TakeDamage(damage);
+            CounterMechanics.Damage(Owner, health, damage);
 
             if (health == highestHpTarget)
                 successfulHits++;
@@ -150,7 +150,7 @@ public class TotalWarfareExSkill : ExSkill
             if (health == null)
                 continue;
 
-            health.TakeDamage(bonus);
+            CounterMechanics.Damage(Owner, health, bonus);
         }
     }
 
