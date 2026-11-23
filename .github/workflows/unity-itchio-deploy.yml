@@ -171,19 +171,17 @@ jobs:
       # ========================================================
 
       - name: Setup Unity
-        uses: buildalon/unity-setup@v2
+        uses: buildalon/unity-setup@v3
         with:
           version-file: ${{ env.UNITY_PROJECT_PATH }}/ProjectSettings/ProjectVersion.txt
 
           # IMPORTANT:
-          # Ask buildalon to install the module required by
-          # the current matrix target, on a matching host OS.
+          # Ask Buildalon to install the module required by
+          # the current matrix target on a matching host OS.
           build-targets: ${{ matrix.target }}
 
-          # Speed: cache the editor install between runs (skips the big download)
-          # and skip re-updating Unity Hub every run.
+          # Speed: cache the editor install between runs (skips the big download).
           cache-installation: true
-          auto-update-hub: false
 
 
       # ========================================================
@@ -191,9 +189,9 @@ jobs:
       # ========================================================
 
       - name: Activate Unity license
-        uses: buildalon/activate-unity-license@v2
+        uses: buildalon/activate-unity-license@v3
         with:
-          license: Personal
+          license: personal
           username: ${{ secrets.UNITY_EMAIL }}
           password: ${{ secrets.UNITY_PASSWORD }}
 
@@ -263,7 +261,7 @@ jobs:
       # ========================================================
 
       - name: Build Unity project
-        uses: buildalon/unity-action@v3
+        uses: buildalon/unity-action@v4
         with:
           args: >-
             -quit
