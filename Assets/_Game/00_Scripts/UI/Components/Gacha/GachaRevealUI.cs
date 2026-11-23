@@ -39,6 +39,10 @@ public class GachaRevealUI : MonoBehaviour
     [SerializeField] private GameObject featuredTag;
     [SerializeField] private Image typeIcon;
     [SerializeField] private Image roleIcon;
+    [Tooltip("Label under the hierarchy icon, e.g. ABSTRACT.")]
+    [SerializeField] private TMP_Text typeText;
+    [Tooltip("Label under the role icon, e.g. ATTACKER.")]
+    [SerializeField] private TMP_Text roleText;
     [Tooltip("Hierarchy icons indexed by CharacterType (Abstract, Simple, Special, Primordial, Anomaly).")]
     [SerializeField] private Sprite[] typeSprites = new Sprite[5];
     [Tooltip("Role icons indexed by CharacterRole.")]
@@ -365,6 +369,8 @@ public class GachaRevealUI : MonoBehaviour
 
         SetIcon(typeIcon, isCharacter ? GetSprite(typeSprites, (int)character.CharacterType) : null);
         SetIcon(roleIcon, isCharacter ? GetSprite(roleSprites, (int)character.CharacterRole) : null);
+        SetLabel(typeText, isCharacter ? character.CharacterType.ToString().ToUpperInvariant() : null);
+        SetLabel(roleText, isCharacter ? character.CharacterRole.ToString().ToUpperInvariant() : null);
 
         HideDuplicate();
     }
@@ -549,6 +555,15 @@ public class GachaRevealUI : MonoBehaviour
     private static Sprite GetSprite(Sprite[] sprites, int index)
     {
         return sprites != null && index >= 0 && index < sprites.Length ? sprites[index] : null;
+    }
+
+    private static void SetLabel(TMP_Text label, string text)
+    {
+        if (label == null)
+            return;
+
+        label.text = text ?? string.Empty;
+        label.gameObject.SetActive(!string.IsNullOrEmpty(text));
     }
 
     private static void SetIcon(Image image, Sprite sprite)

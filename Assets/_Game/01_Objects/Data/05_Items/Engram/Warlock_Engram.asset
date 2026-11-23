@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52237fa38844ca055b77e8a4c725c069, type: 3}
   m_Name: Warlock_Engram
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  rarity: 0
+  rarity: 1
   icon: {fileID: 3506885005020266119, guid: fc764d4b021dd73cc921f9ccbfc252b6, type: 3}
   itemId: warlock_engram
   itemName: Warlock Engram

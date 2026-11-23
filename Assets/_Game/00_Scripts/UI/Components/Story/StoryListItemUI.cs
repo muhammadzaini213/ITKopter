@@ -43,7 +43,12 @@ public class StoryListItemUI : MonoBehaviour
             return;
 
         if (storyNameText != null)
-            storyNameText.text = storyData.StoryName;
+        {
+            // "CHAPTER 3  The Loudest Thing in the Room" — label small and cyan.
+            storyNameText.text = string.IsNullOrWhiteSpace(storyData.ChapterLabel)
+                ? storyData.StoryName
+                : $"<size=60%><color=#19F0FF>{storyData.ChapterLabel}</color></size>  {storyData.StoryName}";
+        }
 
         if (lockedIndicator != null)
             lockedIndicator.SetActive(!isUnlocked);

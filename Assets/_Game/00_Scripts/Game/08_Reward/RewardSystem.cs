@@ -30,6 +30,8 @@ public class RewardSystem : GameSystem<RewardSystem>
 
     #region Reward Popup
 
+    public bool IsPopupOpen => rewardPopupUI != null && rewardPopupUI.IsOpen;
+
     public void ShowRewardPopup(IReadOnlyList<RewardData> rewards)
     {
         if (rewardPopupUI == null)

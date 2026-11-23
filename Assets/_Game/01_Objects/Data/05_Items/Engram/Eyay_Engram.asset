@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52237fa38844ca055b77e8a4c725c069, type: 3}
   m_Name: Eyay_Engram
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  rarity: 0
+  rarity: 3
   icon: {fileID: 2273927412582211609, guid: 899efcd70bce4ec409d89cfa325c80b7, type: 3}
   itemId: eyay_engram
   itemName: Eyay Engram

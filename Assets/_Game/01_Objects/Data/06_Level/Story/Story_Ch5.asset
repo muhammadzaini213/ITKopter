@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac675d8ddabc928f1b698d0b0c54c207, type: 3}
+  m_Name: Story_Ch5
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelId: story_ch5_battle
+  levelName: An Unprofitable Encounter
+  previousLevel: {fileID: 0}
+  levelParts:
+  - {fileID: 11400000, guid: 58e50e8725619308dbf5734c95cb644d, type: 2}
+  - {fileID: 11400000, guid: 97351483cc2013b008a45d8b92499fbd, type: 2}
+  levelRewards: []
+  energyCost: 0
+  timeLimitSeconds: 45
+  levelMusic: {fileID: 11400000, guid: 540c3b832df087d4e9021dfd0b105df5, type: 2}
+  enemyStatMultiplier: 1.6
+  enemyTint: {r: 0.95, g: 0.9165268, b: 0.2375, a: 1}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52237fa38844ca055b77e8a4c725c069, type: 3}
   m_Name: Bokusu_Engram
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  rarity: 0
+  rarity: 1
   icon: {fileID: 5067148913002030883, guid: 0435bf42de2efe324b8effb063e1df2f, type: 3}
   itemId: bokusu_engram
   itemName: Bokusu Engram

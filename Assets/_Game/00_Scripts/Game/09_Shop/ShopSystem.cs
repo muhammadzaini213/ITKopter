@@ -190,6 +190,7 @@ public class ShopSystem : GameSystem<ShopSystem>
             $"Purchased {quantity}x {entry.EntryName} ({grantedAmount} granted) " +
             $"from {shop.ShopName} for {totalCost} Coins.");
 
+        Objectives.Report(ObjectiveType.ShopPurchases, quantity);
         return true;
     }
 

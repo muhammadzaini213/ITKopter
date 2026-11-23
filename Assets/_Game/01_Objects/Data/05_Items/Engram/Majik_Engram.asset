@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52237fa38844ca055b77e8a4c725c069, type: 3}
   m_Name: Majik_Engram
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  rarity: 0
+  rarity: 2
   icon: {fileID: -8298220815779365818, guid: 3f069897e1283621f8a2721f558cb3cc, type: 3}
   itemId: majik_engram
   itemName: Majik Engram

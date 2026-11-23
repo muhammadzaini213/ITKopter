@@ -10,6 +10,8 @@ public class MainMenuShowcaseUI : MonoBehaviour
     [SerializeField] private Image characterImage;
     [Tooltip("Frame drawn over the character (like the Character detail panel). Hidden with the image.")]
     [SerializeField] private GameObject border;
+    [Tooltip("Profile bar icon: shows the showcase character's Icon (the _1 face sprite).")]
+    [SerializeField] private Image profileIcon;
 
     private PlayerSystem playerSystem;
 
@@ -67,5 +69,12 @@ public class MainMenuShowcaseUI : MonoBehaviour
 
         if (border != null)
             border.SetActive(characterImage.enabled);
+
+        if (profileIcon != null)
+        {
+            profileIcon.sprite = character != null ? character.Icon : null;
+            profileIcon.preserveAspect = true;
+            profileIcon.enabled = profileIcon.sprite != null;
+        }
     }
 }

@@ -3449,6 +3449,7 @@ GameObject:
   - component: {fileID: 2112490639}
   - component: {fileID: 2112490638}
   - component: {fileID: 2112490640}
+  - component: {fileID: 2112490641}
   m_Layer: 5
   m_Name: 02_StageSelectPanel
   m_TagString: Untagged
@@ -3528,11 +3529,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelectionUI
   levels:
-  - {fileID: 11400000, guid: 56ffee809fc513f5499d082616b3472b, type: 2}
+  - {fileID: 11400000, guid: c12c8ae39a57e40599409dc108e22af1, type: 2}
+  - {fileID: 11400000, guid: 34b32b34a07b2c923968ff3975c558fb, type: 2}
+  - {fileID: 11400000, guid: 26acfe46b3e693fe5952c43b45d4f818, type: 2}
+  - {fileID: 11400000, guid: 0d36e9eb73315fca9a1f5e0eae33ba5d, type: 2}
+  - {fileID: 11400000, guid: bc3bbd5ec6cb9f19ea43ba434ca3db4f, type: 2}
+  - {fileID: 11400000, guid: e24501c89a01d6c6d94cae00c8f92056, type: 2}
+  - {fileID: 11400000, guid: b263a89b6830e575cbb89f1a917f837c, type: 2}
+  - {fileID: 11400000, guid: d646cddb84c7f31fabffdc759dfbf258, type: 2}
+  - {fileID: 11400000, guid: 892cd83e4c679c4c3b5229ee6347acd1, type: 2}
+  - {fileID: 11400000, guid: f9c39c1369667f412a80a82767a40fdd, type: 2}
+  - {fileID: 11400000, guid: bd1c06968823c8ca0b7d56a739f1d97f, type: 2}
+  - {fileID: 11400000, guid: 287f38355bf78882790dcdb8d428d346, type: 2}
   levelListRoot: {fileID: 1080642823}
   levelItemPrefab: {fileID: 4533517387847946242, guid: 8ccb37108eedf56f5b14c27d5d6bca4a,
     type: 3}
   teamSelectionPopup: {fileID: 1027983790}
+--- !u!114 &2112490641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112490636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c363820b433cb3c8d7785b8bc4498d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageSelectTutorial
+  levelSelection: {fileID: 2112490640}
+  levelListRoot: {fileID: 1080642823}
+  teamPopup: {fileID: 1027983786}
+  eiPi: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+  noz: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
 --- !u!1 &2145954704
 GameObject:
   m_ObjectHideFlags: 0

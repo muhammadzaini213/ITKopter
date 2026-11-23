@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac675d8ddabc928f1b698d0b0c54c207, type: 3}
+  m_Name: Stage_09
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelId: stage_09
+  levelName: Stage 9 - BOSS
+  previousLevel: {fileID: 11400000, guid: d646cddb84c7f31fabffdc759dfbf258, type: 2}
+  levelParts:
+  - {fileID: 11400000, guid: 150c2767290a9a80daec2e6cab5464bb, type: 2}
+  - {fileID: 11400000, guid: 15005e220443e27f5893716bbe1d12f9, type: 2}
+  levelRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+    amount: 1200
+  - reward: {fileID: 11400000, guid: 5b228f6276d163bbf8f4ba4aea0ee88d, type: 2}
+    amount: 6
+  - reward: {fileID: 11400000, guid: be7247212fc676597840f894079075dc, type: 2}
+    amount: 3
+  - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+    amount: 160
+  battleToasts: []
+  bossIntroToasts:
+  - time: 0.5
+    speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+    speakerName: 
+    text: Impossible? That word only applies to you, little King.
+    duration: 5
+  energyCost: 10
+  timeLimitSeconds: 300
+  levelMusic: {fileID: 11400000, guid: 1f17b27403c9cfc3cb22aab4c2e3ca94, type: 2}
+  enemyStatMultiplier: 1.8
+  enemyTint: {r: 0.98, g: 0.245, b: 0.47804892, a: 1}

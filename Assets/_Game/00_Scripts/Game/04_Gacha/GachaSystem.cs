@@ -87,6 +87,9 @@ public class GachaSystem : GameSystem<GachaSystem>
 
     #region Pull API
 
+    /// <summary>Raised after a successful pull (gems spent, rewards granted).</summary>
+    public event System.Action<GachaData, GachaPullResult[]> OnPullCompleted;
+
     public bool PullSingle(
         GachaData gacha,
         out GachaPullResult[] results)
@@ -235,6 +238,8 @@ public class GachaSystem : GameSystem<GachaSystem>
         SaveGachaData();
 
         results = rolledResults.ToArray();
+
+        OnPullCompleted?.Invoke(gacha, results);
 
         if (!showPopup)
             return true;

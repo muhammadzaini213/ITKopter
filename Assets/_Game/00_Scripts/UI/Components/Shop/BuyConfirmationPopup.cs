@@ -92,8 +92,7 @@ public class BuyConfirmationPopupUI : MonoBehaviour
                 ? entry.RewardData.Icon
                 : null;
 
-            iconImage.sprite = icon;
-            iconImage.enabled = icon != null;
+            ShowIcon(icon);
         }
 
         if (nameText != null)
@@ -115,6 +114,16 @@ public class BuyConfirmationPopupUI : MonoBehaviour
     }
 
     /// <summary>Opens the popup for a material conversion instead of a coin purchase.</summary>
+    // The scene's ItemIcon placeholder is fully transparent; force it visible.
+    private void ShowIcon(Sprite icon)
+    {
+        iconImage.sprite = icon;
+        iconImage.color = Color.white;
+        iconImage.type = Image.Type.Simple;
+        iconImage.preserveAspect = true;
+        iconImage.enabled = icon != null;
+    }
+
     public void OpenConversion(ConversionOffer offer)
     {
         if (offer == null || ShopSystem.Instance == null)
@@ -129,8 +138,7 @@ public class BuyConfirmationPopupUI : MonoBehaviour
         if (iconImage != null)
         {
             Sprite icon = offer.Output != null ? offer.Output.Icon : null;
-            iconImage.sprite = icon;
-            iconImage.enabled = icon != null;
+            ShowIcon(icon);
         }
 
         if (nameText != null)

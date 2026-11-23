@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456a7ecd4b97e5f2590828cfda681910, type: 3}
+  m_Name: S_Toksi
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  characterType: 3
+  maxHealth: 900
+  defensePower: 0
+  projectileDamage: 40
+  projectileSpeed: 15
+  movementType: 5
+  holdY: 4
+  speed: 1.5
+  rangeX: 3
+  idleTime: 2
+  diveSpeed: 9
+  retreatSpeed: 3
+  enterSpeed: 4
+  stayTime: 3
+  hitAndRunExitSpeed: 4
+  descendSpeed: 0.8
+  moveDownSpeed: 0.5
+  amplitudeX: 1.2
+  frequency: 0.4
+  targetPoint: {x: 0, y: 3}
+  moveToSpeed: 1
+  lateralSpeed: 4
+  switchInterval: 0.6
+  blinkInterval: 3
+  fadeTime: 0.2
+  mirrorX: 1
+  center: {x: 0, y: 3}
+  radius: 2.5
+  angularSpeed: 40
+  spinSpeed: 0
+  facingMode: 0
+  facingSpeed: 360
+  alwaysAimAtPlayer: 1
+  fireOnlyOnScreen: 1
+  randomSeed: 0
+  patterns:
+  - enabled: 1
+    pattern: 5
+    startDelay: 1
+    interval: 1.9
+    cooldown: 2
+    burstDelay: 0.12
+    repeat: 1
+    repeatDelay: 0.6
+    count: 5
+    spread: 0
+    arc: 50
+    aimed: 1
+    arms: 1
+    angleStep: 12
+    speed: 3.5
+    speedMin: 2
+    speedMax: 5
+    scale: 1
+    spacingX: 0.6
+    randomGap: 0
+    offsetX: 0.6
+    amplitude: 0.6
+    frequency: 2
+    cone: 120
+  phase2Threshold: 0
+  phase2Patterns: []
+  infiniteLifetime: 0
+  lifetime: 20
+  lifetimeExitSpeed: 4

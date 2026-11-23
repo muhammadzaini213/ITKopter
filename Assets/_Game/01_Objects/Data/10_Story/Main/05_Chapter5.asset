@@ -1,0 +1,226 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4877fb6ffc62fe90d83c8e4d3d4cb55f, type: 3}
+  m_Name: 05_Chapter5
+  m_EditorClassIdentifier: Assembly-CSharp::StoryData
+  storyId: story_main_05
+  storyName: An Unprofitable Encounter
+  storyDescription: 'Battle: Tren and Trady. Twice. Reward: Bokusu joins the roster.'
+  chapterLabel: CHAPTER 5
+  previousStory: {fileID: 11400000, guid: 9ee80f1694c103f3a8ade00d19956f4b, type: 2}
+  storyPrefab: {fileID: 0}
+  segments:
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar encounters Tren and Trady. The situation escalates into a battle.
+      blackScreen: 0
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 1
+    lines: []
+    level: {fileID: 11400000, guid: c6fdbd8c77594199fb8e0473567e673c, type: 2}
+    team:
+    - {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    - {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    scriptedLoss: 1
+    scriptedLossSeconds: 45
+    battleToasts:
+    - time: 2
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      text: THEY'RE STRONG!!! LIKE, REALLY STRONG!!! JUST SURVIVE!!!
+      duration: 4.5
+    - time: 13
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      text: Awww, is that all you've got?
+      duration: 4.5
+    - time: 27
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      text: Oh my, what a disappointing performance. I expected a little more from
+        the new King.
+      duration: 5.5
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The battle is lost.
+      blackScreen: 0
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: After the battle, Bokusu appears and introduces himself as a Protector.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...You look like you could use a shield.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: FINALLY!!! SOMEONE WHO CAN KEEP US ALIVE!!!
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's... technically my job.
+      blackScreen: 0
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar gets another chance to fight Tren and Trady, now with Bokusu in
+        the party.
+      blackScreen: 0
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 1
+    lines: []
+    level: {fileID: 11400000, guid: c6fdbd8c77594199fb8e0473567e673c, type: 2}
+    team:
+    - {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    - {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    - {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+    scriptedLoss: 1
+    scriptedLossSeconds: 45
+    battleToasts:
+    - time: 1.5
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      text: Press 3 to bring me in when the bullets get thick. Taking hits is my
+        job.
+      duration: 4.5
+    - time: 10
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      text: 'Press K for my EX skill: a barrier that blocks enemy fire for a few
+        seconds.'
+      duration: 4.5
+    - time: 20
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      text: Keep whoever is on the field alive. Swap them out before they fall.
+      duration: 4.5
+    - time: 30
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      text: STILL LOSING!!! BUT LOSING SLOWER!!! PROGRESS!!!
+      duration: 4.5
+    - time: 38
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      text: Diversifying your portfolio won't save you, dear.
+      duration: 4.5
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The battle is lost again.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...We lost twice.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: At least we learned something.
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I LEARNED THAT THEY'RE REALLY ANNOYING!!!
+      blackScreen: 0
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Aww, don't look so disappointed. Losing is just another opportunity to
+        make a better investment!
+      blackScreen: 0
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  background: {fileID: 1336809692955082325, guid: c8d7e2b6086e9e1fc90306b30071b685,
+    type: 3}
+  storyRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+    amount: 1
+  nextStory: {fileID: 11400000, guid: b2b20b1b20889d1c885487efbc334c35, type: 2}
+  afterScene: {fileID: 0}
+  afterSceneToasts: []
+  afterGachaPullToasts: []
+  timeLimitSeconds: 600
+  storyMusic: {fileID: 11400000, guid: 540c3b832df087d4e9021dfd0b105df5, type: 2}

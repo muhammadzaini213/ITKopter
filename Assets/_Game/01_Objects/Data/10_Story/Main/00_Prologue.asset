@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4877fb6ffc62fe90d83c8e4d3d4cb55f, type: 3}
+  m_Name: 00_Prologue
+  m_EditorClassIdentifier: Assembly-CSharp::StoryData
+  storyId: story_main_00
+  storyName: Three Rules
+  storyDescription: A faint voice explains the rules of the Concept World.
+  chapterLabel: PROLOGUE
+  previousStory: {fileID: 0}
+  storyPrefab: {fileID: 0}
+  segments:
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A faint voice begins speaking.
+      blackScreen: 1
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council
+      rightSide: 0
+      label: 
+      heading: 
+      text: Before you enter the Concept World, there are three rules you must understand.
+      blackScreen: 1
+      effect: 0
+    - style: 2
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: RULE 01
+      heading: CONCEPT SPIRITS ARE NOT HUMAN.
+      text: 'If you need an analogy, think of them as animals.
+
+
+        They may
+        look familiar, speak like humans, or even behave like them. But do not mistake
+        their appearance for what they truly are.'
+      blackScreen: 1
+      effect: 0
+    - style: 2
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: RULE 02
+      heading: CONCEPT SPIRITS WILL ALWAYS SEEK WAYS TO MAINTAIN OR INCREASE THEIR
+        RELEVANCE.
+      text: 'They will constantly seek ways to remain relevant and strengthen their
+        position.
+
+
+        Their actions are driven by the concepts they represent
+        and humanity''s collective understanding of them.'
+      blackScreen: 1
+      effect: 0
+    - style: 2
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: RULE 03
+      heading: THERE IS NO SUCH THING AS GOOD OR EVIL AMONG CONCEPT SPIRITS.
+      text: 'Do not judge them using human morality.
+
+
+        Their actions may
+        benefit some concepts while harming others. This does not make them good
+        or evil.'
+      blackScreen: 1
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 1
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council
+      rightSide: 0
+      label: 
+      heading: 
+      text: Remember these rules, Your Majesty.
+      blackScreen: 1
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council
+      rightSide: 0
+      label: 
+      heading: 
+      text: You are about to enter a world that does not operate according to human
+        principles.
+      blackScreen: 1
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  background: {fileID: 0}
+  storyRewards: []
+  rewardEntries: []
+  nextStory: {fileID: 11400000, guid: 1dfb5eff8c92c56219bc0f921d9b8c4a, type: 2}
+  afterScene: {fileID: 0}
+  afterSceneToasts: []
+  afterGachaPullToasts: []
+  timeLimitSeconds: 600
+  storyMusic: {fileID: 11400000, guid: f680c4805bb4409a0bcbf080bf857926, type: 2}

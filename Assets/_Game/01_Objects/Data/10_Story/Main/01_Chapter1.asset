@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4877fb6ffc62fe90d83c8e4d3d4cb55f, type: 3}
+  m_Name: 01_Chapter1
+  m_EditorClassIdentifier: Assembly-CSharp::StoryData
+  storyId: story_main_01
+  storyName: A Button I Shouldn't Have Clicked
+  storyDescription: A freelance job, an empty token budget, and one very suspicious
+    button.
+  chapterLabel: CHAPTER 1
+  previousStory: {fileID: 11400000, guid: c41e8e45ffb5a5e7dabe474018348ef2, type: 2}
+  storyPrefab: {fileID: 0}
+  segments:
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar is working on a freelance programming project.
+      blackScreen: 0
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: His AI coding assistant runs out of tokens. Rather than waiting for the
+        limit to reset, he continues working manually.
+      blackScreen: 0
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: After some time, he encounters an unusual button related to his new assignment.
+      blackScreen: 0
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: He clicks it.
+      blackScreen: 0
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The screen flashes.
+      blackScreen: 0
+      effect: 1
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar suddenly finds himself somewhere unfamiliar.
+      blackScreen: 1
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  background: {fileID: -6984098700311272525, guid: 216ee3602f02a18b7ae01d5c579d1cfe,
+    type: 3}
+  storyRewards: []
+  rewardEntries: []
+  nextStory: {fileID: 11400000, guid: 47b7920ce3ed0536288f9dc6be308054, type: 2}
+  afterScene: {fileID: 0}
+  afterSceneToasts: []
+  afterGachaPullToasts: []
+  timeLimitSeconds: 600
+  storyMusic: {fileID: 11400000, guid: f680c4805bb4409a0bcbf080bf857926, type: 2}

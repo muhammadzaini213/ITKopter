@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2f316b7afe41de89f5538cf0760972, type: 3}
+  m_Name: Story_Ch4_Part1
+  m_EditorClassIdentifier: Assembly-CSharp::LevelPartData
+  partName: Story_Ch4_Part1
+  areaPrefab: {fileID: 1642783251020503190, guid: 8b72f537f5dbbb57f8bf1f399a71842c,
+    type: 3}
+  enemyWaves:
+  - {fileID: 11400000, guid: 40c6fb304b20c5dc3884cead30b9683d, type: 2}
+  - {fileID: 11400000, guid: f6d62d3d2067925908993e42029dd835, type: 2}

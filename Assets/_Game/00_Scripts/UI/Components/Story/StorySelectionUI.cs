@@ -165,8 +165,16 @@ public class StorySelectionUI : MonoBehaviour
         Debug.Log(
             $"[StorySelectionUI] Start requested for {story.StoryName}.");
 
-        StorySession.Selected = story;
         OnStoryStartRequested?.Invoke(story);
+
+        // Replays from the story menu: no onboarding chaining, return here afterwards.
+        if (StorySystem.Instance != null)
+        {
+            StorySystem.Instance.StartStory(story, false);
+            return;
+        }
+
+        StorySession.Selected = story;
         SceneSystem.Load(storyScene);
     }
 }
