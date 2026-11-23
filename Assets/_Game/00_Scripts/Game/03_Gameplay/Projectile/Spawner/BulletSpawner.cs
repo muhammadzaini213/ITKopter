@@ -35,6 +35,12 @@ public abstract class BulletSpawner : MonoBehaviour
     private bool ownsPoolParent;
     private Character ownerCharacter;
 
+    // Hierarchy of the shooter (Counter Mechanics), resolved lazily on the
+    // first spawn: player bullets from their Character, enemy bullets from
+    // the EnemyDataBinder on the prefab root. Unknown → null → neutral.
+    private CharacterType? attackerType;
+    private bool attackerTypeCached;
+
     public Character OwnerCharacter
     {
         set => ownerCharacter = value;
@@ -150,6 +156,7 @@ public abstract class BulletSpawner : MonoBehaviour
             return null;
 
         projectile.SetOwner(ownerCharacter);
+        projectile.SetAttackerType(ResolveAttackerType());
         projectile.SetReturnCallback(ReturnProjectile);
 
         float finalDamage = damageOverride > 0f
@@ -165,6 +172,38 @@ public abstract class BulletSpawner : MonoBehaviour
         );
 
         return projectile;
+    }
+
+    // External config (EnemyDataBinder). Damage <= 0 or speed <= 0 keeps
+    // the current Inspector value.
+    public void ApplyProjectileStats(float damage, float speed)
+    {
+        if (damage > 0f)
+            projectileDamage = damage;
+
+        if (speed > 0f)
+            projectileSpeed = speed;
+    }
+
+    private CharacterType? ResolveAttackerType()
+    {
+        // Player bullets: the owning Character (its type never changes).
+        if (ownerCharacter != null)
+            return ownerCharacter.CharacterType;
+
+        // Enemy bullets: hierarchy lives on the EnemyData asset.
+        if (!attackerTypeCached)
+        {
+            EnemyDataBinder binder =
+                GetComponentInParent<EnemyDataBinder>();
+
+            if (binder != null && binder.Data != null)
+                attackerType = binder.Data.characterType;
+
+            attackerTypeCached = true;
+        }
+
+        return attackerType;
     }
 
     private void ReturnProjectile(Projectile projectile)

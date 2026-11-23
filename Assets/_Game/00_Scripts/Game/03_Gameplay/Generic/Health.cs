@@ -44,6 +44,10 @@ public class Health : MonoBehaviour, IDamageable
     public event Action OnDamaged;
     public event Action OnDeath;
 
+    // Set by consumers that want to play their own death sequence first
+    // (EnemyLifecycle: spin+shrink, then SpawnDeathVFX()). Default false.
+    public bool DeferDeathVFX { get; set; }
+
     // Static: fires for ANY Health in the scene with the actual HP loss
     // (after shield/defense). Fires with 0 when a hit is fully blocked —
     // consumers: damage popup systems, analytics.
@@ -162,11 +166,19 @@ public class Health : MonoBehaviour, IDamageable
         if (deathSfx != null)
             Audio.PlaySFX2D(deathSfx);
 
-        if (deathVfxPrefab != null)
-            Instantiate(deathVfxPrefab, transform.position, Quaternion.identity);
+        if (!DeferDeathVFX)
+            SpawnDeathVFX();
 
         OnDeath?.Invoke();
 
         Debug.Log($"[{gameObject.name}] has been defeated.", this);
+    }
+
+    // Spawns the death VFX at the entity's current position. Safe to call
+    // once even when DeferDeathVFX is on (callers decide the timing).
+    public void SpawnDeathVFX()
+    {
+        if (deathVfxPrefab != null)
+            Instantiate(deathVfxPrefab, transform.position, Quaternion.identity);
     }
 }

@@ -62,7 +62,7 @@ public class SignalOverloadExSkill : ExSkill
             if (health == null || markedEnemies.Contains(health))
                 continue;
 
-            health.TakeDamage(damage);
+            CounterMechanics.Damage(Owner, health, damage);
 
             StatusEffectSystem.Instance.Add(
                 health.gameObject,
@@ -104,7 +104,7 @@ public class SignalOverloadExSkill : ExSkill
 
             foreach (var health in alive)
             {
-                health.TakeDamage(damagePerTarget);
+                CounterMechanics.Damage(Owner, health, damagePerTarget);
             }
         }
 

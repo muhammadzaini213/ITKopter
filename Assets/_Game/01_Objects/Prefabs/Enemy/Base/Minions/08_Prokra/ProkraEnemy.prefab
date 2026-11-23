@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 407244345378784522}
+  - component: {fileID: 1855176006365122591}
+  - component: {fileID: 9116378312703448607}
   - component: {fileID: 3875429174131816299}
   - component: {fileID: 1471732863545896052}
-  - component: {fileID: 9116378312703448607}
   - component: {fileID: 4238724070304598404}
   m_Layer: 7
-  m_Name: 01_Rumo
+  m_Name: ProkraEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,6 +41,38 @@ Transform:
   - {fileID: 7975170406838231712}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1855176006365122591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464671755519043520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc555a0e4b30aec3498a684d708ffa95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDataBinder
+  data: {fileID: 11400000, guid: a1147f8a9311a95b58c77cd1db58495c, type: 2}
+  applyOnAwake: 1
+--- !u!114 &9116378312703448607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464671755519043520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a798e329d33867606bda546cf72fa416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLifecycle
+  infiniteLifetime: 0
+  lifetime: 20
+  exitSpeed: 4
+  movement: {fileID: 4238724070304598404}
+  shooter: {fileID: 4737027585684682214}
+  health: {fileID: 3875429174131816299}
 --- !u!114 &3875429174131816299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,24 +137,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
---- !u!114 &9116378312703448607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1464671755519043520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a798e329d33867606bda546cf72fa416, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyLifecycle
-  infiniteLifetime: 0
-  lifetime: 20
-  exitSpeed: 4
-  movement: {fileID: 4238724070304598404}
-  shooter: {fileID: 4737027585684682214}
-  health: {fileID: 3875429174131816299}
 --- !u!114 &4238724070304598404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43299a1af52280232a2b08343e63a6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatternSpawner
-  projectilePrefab: {fileID: -8587339824780129367, guid: 4d0cbf05983f7738d9d4aaec310c8b62,
+  projectilePrefab: {fileID: 2265358204879073181, guid: 4a4db245ba3a8cf5e93417cf1572f15a,
     type: 3}
   projectileSpeed: 15
   projectileDamage: 10
@@ -358,7 +373,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1555994800, guid: 20b4b3fa2c32838cea53f1a6697b7d27, type: 3}
+  m_Sprite: {fileID: -446339312, guid: 20b4b3fa2c32838cea53f1a6697b7d27, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
