@@ -40,6 +40,8 @@ public class CharacterMenuUI : MonoBehaviour
             SelectPreviousCharacter,
             SelectNextCharacter);
 
+        detailUI.SetUpgradeCallback(UpgradeSelectedCharacter);
+
         TrySubscribe();
         RefreshFromPlayer();
     }
@@ -212,7 +214,9 @@ public class CharacterMenuUI : MonoBehaviour
         detailUI.ShowCharacter(
             character,
             playerSystem.GetCharacterProgression(character),
-            characters.Count > 1);
+            characters.Count > 1,
+            playerSystem.GetUpgradeCost(character),
+            playerSystem.CanUpgradeCharacter(character));
     }
 
     public void SelectNextCharacter()
@@ -236,10 +240,18 @@ public class CharacterMenuUI : MonoBehaviour
         ShowSelectedCharacter();
     }
 
-    public void AddExpToCharacter(string characterId, int amount)
+    public void UpgradeSelectedCharacter()
     {
-        if (playerSystem != null)
-            playerSystem.AddCharacterExp(characterId, amount);
+        if (playerSystem == null ||
+            selectedIndex < 0 ||
+            selectedIndex >= characters.Count)
+        {
+            return;
+        }
+
+        // Success raises OnCharacterProgressionChanged, which refreshes the list and panel.
+        if (!playerSystem.UpgradeCharacter(characters[selectedIndex]))
+            ShowSelectedCharacter();
     }
 
     public void AddAffectionToCharacter(string characterId, int amount)

@@ -143,7 +143,7 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
     }
 
     /// <summary>
-    /// Clear semua objectives (untuk reset total / quit ke main menu).
+    /// Clear all objectives (for a full reset / quitting to the main menu).
     /// </summary>
     public void ClearObjectives()
     {
@@ -152,9 +152,9 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
     }
 
     /// <summary>
-    /// Clear hanya objectives dari scene tertentu.
-    /// Dipanggil saat retry/reset supaya objectives dari scene lain tetap ada.
-    /// Script di scene yang reload akan re-add objectives awal secara otomatis.
+    /// Clear only the objectives from a specific scene.
+    /// Called on retry/reset so objectives from other scenes are kept.
+    /// Scripts in the reloaded scene re-add their initial objectives automatically.
     /// </summary>
     public void ResetSceneObjectives(string sceneName)
     {

@@ -116,6 +116,16 @@ public class GachaSystem : GameSystem<GachaSystem>
         int pullCount,
         out GachaPullResult[] results)
     {
+        return Pull(gacha, pullCount, true, out results);
+    }
+
+    /// <param name="showPopup">False when the caller shows the results itself (e.g. the reveal overlay).</param>
+    public bool Pull(
+        GachaData gacha,
+        int pullCount,
+        bool showPopup,
+        out GachaPullResult[] results)
+    {
         results = new GachaPullResult[0];
 
         if (!ValidateBanner(
@@ -145,6 +155,9 @@ public class GachaSystem : GameSystem<GachaSystem>
         List<RewardGrantRequest> grantRequests =
             new List<RewardGrantRequest>(pullCount);
 
+        // Characters already owned, or pulled earlier in this batch, become duplicates.
+        HashSet<string> pulledCharacterIds = new HashSet<string>();
+
         // Roll rewards.
         for (int i = 0; i < pullCount; i++)
         {
@@ -162,12 +175,21 @@ public class GachaSystem : GameSystem<GachaSystem>
                 return false;
             }
 
+            if (rolled.Reward is CharacterData character)
+            {
+                bool owned = PlayerSystem.Instance != null &&
+                             PlayerSystem.Instance.IsCharacterOwned(character);
+
+                if (owned || !pulledCharacterIds.Add(character.CharacterId))
+                    rolled.MarkDuplicate(GetDuplicateConversion(character));
+            }
+
             rolledResults.Add(rolled);
 
             grantRequests.Add(
                 new RewardGrantRequest(
                     rolled.Reward,
-                    1
+                    rolled.Amount
                 )
             );
         }
@@ -214,24 +236,47 @@ public class GachaSystem : GameSystem<GachaSystem>
 
         results = rolledResults.ToArray();
 
+        if (!showPopup)
+            return true;
+
         // Prepare popup.
         List<RewardData> popupRewards =
             new List<RewardData>(results.Length);
+        List<int> popupAmounts =
+            new List<int>(results.Length);
 
         foreach (GachaPullResult result in results)
         {
             if (result != null && result.Reward != null)
+            {
                 popupRewards.Add(result.Reward);
+                popupAmounts.Add(result.Amount);
+            }
         }
 
         RewardSystem.Instance.ShowRewardPopup(
-            popupRewards
+            popupRewards,
+            popupAmounts
         );
 
         return true;
     }
 
     #endregion
+
+    // Same materials RewardSystem.ConvertDuplicateCharacter grants.
+    private static List<RewardAmount> GetDuplicateConversion(CharacterData character)
+    {
+        List<RewardAmount> converted = new List<RewardAmount>();
+
+        if (character.DuplicateDust != null && character.DuplicateDustAmount > 0)
+            converted.Add(new RewardAmount(character.DuplicateDust, character.DuplicateDustAmount));
+
+        if (character.DuplicateEngram != null && character.DuplicateEngramAmount > 0)
+            converted.Add(new RewardAmount(character.DuplicateEngram, character.DuplicateEngramAmount));
+
+        return converted;
+    }
 
     #region Validation
 
@@ -319,7 +364,17 @@ public class GachaSystem : GameSystem<GachaSystem>
                     entry.LowInterval > entry.HighInterval)
                 {
                     error =
-                        $"Invalid interval: {entry.RewardData.name}";
+                        $"Invalid amount range: {entry.RewardData.name}";
+
+                    return false;
+                }
+
+                // RewardSystem grants characters one at a time.
+                if (entry.RewardData is CharacterData &&
+                    entry.MaxAmount > 1)
+                {
+                    error =
+                        $"Character entries cannot give more than 1: {entry.RewardData.name}";
 
                     return false;
                 }
@@ -496,31 +551,33 @@ public class GachaSystem : GameSystem<GachaSystem>
         // Hard pity.
         if (pityCount >= gacha.PityThreshold)
         {
-            RewardData pityReward = PickRewardByRarity(
+            GachaEntry pityEntry = PickEntryByRarity(
                 gacha,
                 gacha.PityRarity
             );
 
-            if (pityReward == null)
+            if (pityEntry == null)
                 return null;
 
             pityCount = 0;
 
             return new GachaPullResult(
-                pityReward,
-                true
+                pityEntry.RewardData,
+                true,
+                RollAmount(pityEntry),
+                GetEffectiveRarity(pityEntry)
             );
         }
 
         // Roll rarity.
         RewardRarity rarity = RollRarity(gacha);
 
-        RewardData reward = PickRewardByRarity(
+        GachaEntry entry = PickEntryByRarity(
             gacha,
             rarity
         );
 
-        if (reward == null)
+        if (entry == null)
         {
             Debug.LogError(
                 $"No reward found for rarity {rarity}."
@@ -529,135 +586,145 @@ public class GachaSystem : GameSystem<GachaSystem>
             return null;
         }
 
-        // Reset pity when effective rarity reaches pity rarity.
-        if (GetEffectiveRarity(gacha, reward) == gacha.PityRarity)
+        // Reset pity when the picked entry reaches pity rarity.
+        if (GetEffectiveRarity(entry) == gacha.PityRarity)
             pityCount = 0;
 
         return new GachaPullResult(
-            reward,
-            false
+            entry.RewardData,
+            false,
+            RollAmount(entry),
+            GetEffectiveRarity(entry)
         );
     }
 
-    private RewardRarity GetEffectiveRarity(
-        GachaData gacha,
-        RewardData reward)
+    // Amount range is inclusive on both ends.
+    private static int RollAmount(GachaEntry entry)
     {
-        foreach (GachaEntry entry in gacha.GachaEntries)
-        {
-            if (entry.RewardData == reward)
-                return GetEffectiveRarity(entry);
-        }
-
-        return reward.Rarity;
+        return Random.Range(entry.MinAmount, entry.MaxAmount + 1);
     }
 
     #endregion
 
     #region Reward Selection
 
-    private RewardData PickRewardByRarity(
+    private List<GachaEntry> GetCandidates(
         GachaData gacha,
         RewardRarity rarity)
     {
         List<GachaEntry> candidates =
             new List<GachaEntry>();
 
-        List<GachaEntry> intervalCandidates =
-            new List<GachaEntry>();
-
         foreach (GachaEntry entry in gacha.GachaEntries)
         {
-            if (entry.RewardData == null)
+            if (entry == null || entry.RewardData == null)
                 continue;
 
-            if (GetEffectiveRarity(entry) != rarity)
-                continue;
-
-            candidates.Add(entry);
-
-            if (entry.UseInterval)
-                intervalCandidates.Add(entry);
+            if (GetEffectiveRarity(entry) == rarity)
+                candidates.Add(entry);
         }
+
+        return candidates;
+    }
+
+    private GachaEntry FindFeaturedEntry(
+        GachaData gacha,
+        List<GachaEntry> urCandidates)
+    {
+        if (gacha.FeaturedReward == null)
+            return null;
+
+        return urCandidates.Find(
+            entry => entry.RewardData == gacha.FeaturedReward
+        );
+    }
+
+    private GachaEntry PickEntryByRarity(
+        GachaData gacha,
+        RewardRarity rarity)
+    {
+        List<GachaEntry> candidates = GetCandidates(gacha, rarity);
 
         if (candidates.Count == 0)
             return null;
 
         // Featured reward selection for UR.
-        if (rarity == RewardRarity.UR &&
-            gacha.FeaturedReward != null)
+        if (rarity == RewardRarity.UR)
         {
-            if (Random.Range(0f, 100f) < FeaturedChance)
-                return gacha.FeaturedReward;
+            GachaEntry featured = FindFeaturedEntry(gacha, candidates);
+
+            if (featured != null &&
+                Random.Range(0f, 100f) < FeaturedChance)
+            {
+                return featured;
+            }
         }
 
-        // Interval selection.
-        if (intervalCandidates.Count > 0)
+        // Every entry of the rolled rarity is equally likely.
+        return candidates[
+            Random.Range(0, candidates.Count)
+        ];
+    }
+
+    #endregion
+
+    #region Displayed Rates
+
+    /// <summary>
+    /// Chance of each reward entry on a single (non-pity) pull, in percent.
+    /// Mirrors RollRarity + PickEntryByRarity: rarity rate, then the featured
+    /// 50% on UR, then an even split between the rarity's entries.
+    /// </summary>
+    public List<GachaRateEntry> GetRewardRates(GachaData gacha)
+    {
+        List<GachaRateEntry> rates = new List<GachaRateEntry>();
+
+        if (gacha == null || gacha.GachaEntries == null)
+            return rates;
+
+        RewardRarity[] order = { RewardRarity.UR, RewardRarity.SR, RewardRarity.R, RewardRarity.N };
+
+        foreach (RewardRarity rarity in order)
         {
-            int roll = Random.Range(
-                IntervalMin,
-                IntervalMax + 1
-            );
+            List<GachaEntry> candidates = GetCandidates(gacha, rarity);
 
-            List<GachaEntry> matchedEntries =
-                new List<GachaEntry>();
+            if (candidates.Count == 0)
+                continue;
 
-            foreach (GachaEntry entry in intervalCandidates)
-            {
-                if (roll >= entry.LowInterval &&
-                    roll <= entry.HighInterval)
-                {
-                    matchedEntries.Add(entry);
-                }
-            }
+            float rarityRate = GetRarityRate(gacha, rarity);
+            GachaEntry featured = rarity == RewardRarity.UR
+                ? FindFeaturedEntry(gacha, candidates)
+                : null;
 
-            if (matchedEntries.Count > 0)
-            {
-                GachaEntry selected =
-                    matchedEntries[
-                        Random.Range(
-                            0,
-                            matchedEntries.Count
-                        )
-                    ];
-
-                return selected.RewardData;
-            }
-
-            // If no interval matches, select from
-            // non-interval entries.
-            List<GachaEntry> normalCandidates =
-                new List<GachaEntry>();
+            double featuredDirect = featured != null ? FeaturedChance / 100.0 : 0.0;
+            double evenShare = (1.0 - featuredDirect) / candidates.Count;
 
             foreach (GachaEntry entry in candidates)
             {
-                if (!entry.UseInterval)
-                    normalCandidates.Add(entry);
-            }
+                double withinRarity = evenShare + (entry == featured ? featuredDirect : 0.0);
 
-            if (normalCandidates.Count > 0)
-            {
-                return normalCandidates[
-                    Random.Range(
-                        0,
-                        normalCandidates.Count
-                    )
-                ].RewardData;
+                rates.Add(new GachaRateEntry(
+                    entry.RewardData,
+                    rarity,
+                    (float)(rarityRate * withinRarity),
+                    entry == featured,
+                    entry.MinAmount,
+                    entry.MaxAmount));
             }
-
-            // If every entry uses intervals and none match,
-            // use all candidates as fallback.
         }
 
-        GachaEntry randomEntry =
-            candidates[
-                Random.Range(
-                    0,
-                    candidates.Count
-                )
-            ];
+        return rates;
+    }
 
-        return randomEntry.RewardData;
+    public static float GetRarityRate(GachaData gacha, RewardRarity rarity)
+    {
+        switch (rarity)
+        {
+            case RewardRarity.N: return gacha.NRate;
+            case RewardRarity.R: return gacha.RRate;
+            case RewardRarity.SR: return gacha.SRRate;
+            default: return gacha.URRate;
+        }
     }
 
     #endregion

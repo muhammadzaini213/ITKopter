@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,10 @@ public class GachaComponentUI : MonoBehaviour
     {
         public GachaData gachaData;
         public Button selectButton;
+        [Tooltip("Shows the featured character's icon (the _1 face sprite).")]
+        public Image iconImage;
+        [Tooltip("Shows the banner name.")]
+        public TMP_Text nameText;
     }
 
     [Header("Gacha Banners")]
@@ -20,18 +25,41 @@ public class GachaComponentUI : MonoBehaviour
 
     [Header("Gacha UI")]
     [SerializeField] private TextMeshProUGUI gachaNameText;
+    [Tooltip("Banner description (GachaData.Description), shown under the name.")]
+    [SerializeField] private TMP_Text gachaDescriptionText;
     [SerializeField] private TextMeshProUGUI singlePullPriceText;
     [SerializeField] private TextMeshProUGUI tenPullPriceText;
     private TextMeshProUGUI gemsText;
+
+    [Header("Featured Character")]
+    [Tooltip("Shows the selected banner's featured (rate-up) character.")]
+    [SerializeField] private Image featuredCharacterImage;
+    [Tooltip("Frame drawn over the character; hidden when the banner has no featured character.")]
+    [SerializeField] private GameObject featuredCharacterBorder;
 
     [Header("Pull Buttons")]
     [SerializeField] private Button singlePullButton;
     [SerializeField] private Button tenPullButton;
 
+    [Header("Rates")]
+    [SerializeField] private Button ratesButton;
+    [SerializeField] private GachaRatesPopupUI ratesPopup;
+
+    [Header("Reveal")]
+    [Tooltip("Pull reveal overlay. Leave empty to show the reward popup straight away.")]
+    [SerializeField] private GachaRevealUI revealOverlay;
+
+    [Header("Confirmation")]
+    [Tooltip("Asks before spending gems. Leave empty to pull immediately.")]
+    [SerializeField] private GachaConfirmationPopupUI confirmationPopup;
+
     private GachaSystem gachaSystem;
     private CurrencySystem currencySystem;
 
     private GachaData currentGacha;
+
+    public RewardData CurrentFeaturedReward =>
+        currentGacha != null ? currentGacha.FeaturedReward : null;
     private int currentBannerIndex = -1;
     private int lastKnownGems = int.MinValue;
 
@@ -61,6 +89,10 @@ public class GachaComponentUI : MonoBehaviour
         }
 
         RegisterBannerButtons();
+        RefreshBannerButtons();
+
+        if (ratesButton != null)
+            ratesButton.onClick.AddListener(OpenRates);
 
         if (singlePullButton != null)
         {
@@ -105,6 +137,35 @@ public class GachaComponentUI : MonoBehaviour
                 banners[i].selectButton.onClick.AddListener(
                     () => SelectBanner(index)
                 );
+            }
+        }
+    }
+
+    // Label each banner button with its name and featured character icon.
+    private void RefreshBannerButtons()
+    {
+        if (banners == null)
+            return;
+
+        foreach (GachaBannerSlot banner in banners)
+        {
+            if (banner == null)
+                continue;
+
+            GachaData data = banner.gachaData;
+
+            if (banner.nameText != null)
+                banner.nameText.text = data != null ? data.GachaName : string.Empty;
+
+            if (banner.iconImage != null)
+            {
+                Sprite icon = data != null && data.FeaturedReward != null
+                    ? data.FeaturedReward.Icon
+                    : null;
+
+                banner.iconImage.sprite = icon;
+                banner.iconImage.preserveAspect = true;
+                banner.iconImage.enabled = icon != null;
             }
         }
     }
@@ -179,6 +240,11 @@ public class GachaComponentUI : MonoBehaviour
         if (gachaNameText != null)
             gachaNameText.text = currentGacha.GachaName;
 
+        if (gachaDescriptionText != null)
+            gachaDescriptionText.text = currentGacha.Description;
+
+        RefreshFeaturedCharacter();
+
         if (singlePullPriceText != null)
         {
             singlePullPriceText.text =
@@ -192,6 +258,34 @@ public class GachaComponentUI : MonoBehaviour
         }
 
         RefreshCurrencyUI();
+    }
+
+    public void OpenRates()
+    {
+        if (ratesPopup != null && currentGacha != null)
+            ratesPopup.Open(currentGacha);
+    }
+
+    private void RefreshFeaturedCharacter()
+    {
+        if (featuredCharacterImage == null)
+            return;
+
+        RewardData featured = currentGacha != null ? currentGacha.FeaturedReward : null;
+
+        // Characters use their full card art; any other featured reward falls back to its icon.
+        Sprite sprite = featured is CharacterData character && character.CharacterPortrait != null
+            ? character.CharacterPortrait
+            : featured != null ? featured.Icon : null;
+
+        featuredCharacterImage.sprite = sprite;
+        featuredCharacterImage.type = Image.Type.Simple;
+        featuredCharacterImage.preserveAspect = true;
+        featuredCharacterImage.color = Color.white;
+        featuredCharacterImage.enabled = sprite != null;
+
+        if (featuredCharacterBorder != null)
+            featuredCharacterBorder.SetActive(sprite != null);
     }
 
     private void RefreshCurrencyUI()
@@ -253,7 +347,7 @@ public class GachaComponentUI : MonoBehaviour
 
     public void OnSinglePullClicked()
     {
-        PerformPull(1);
+        RequestPull(1);
     }
 
     public void OnTenPullClicked()
@@ -261,7 +355,35 @@ public class GachaComponentUI : MonoBehaviour
         if (currentGacha == null)
             return;
 
-        PerformPull(currentGacha.MultiPullCount);
+        RequestPull(currentGacha.MultiPullCount);
+    }
+
+    private void RequestPull(int pullCount)
+    {
+        if (currentGacha == null || currencySystem == null)
+            return;
+
+        if (confirmationPopup == null)
+        {
+            PerformPull(pullCount);
+            return;
+        }
+
+        // Lock in the banner chosen now, even if the player switches banners behind the popup.
+        GachaData gacha = currentGacha;
+
+        confirmationPopup.Open(
+            gacha,
+            pullCount,
+            CalculateCost(pullCount),
+            currencySystem.Gems,
+            () =>
+            {
+                if (currentGacha != gacha)
+                    return;
+
+                PerformPull(pullCount);
+            });
     }
 
     private void PerformPull(int pullCount)
@@ -301,6 +423,7 @@ public class GachaComponentUI : MonoBehaviour
         bool success = gachaSystem.Pull(
             currentGacha,
             pullCount,
+            revealOverlay == null,
             out results
         );
 
@@ -323,6 +446,33 @@ public class GachaComponentUI : MonoBehaviour
         LogPullResults(results);
 
         RefreshCurrencyUI();
+
+        // Reveal one by one, then show the summary popup.
+        if (revealOverlay != null)
+        {
+            GachaPullResult[] pulled = results;
+            revealOverlay.Play(pulled, currentGacha.FeaturedReward, () => ShowSummary(pulled));
+        }
+    }
+
+    private void ShowSummary(GachaPullResult[] results)
+    {
+        if (RewardSystem.Instance == null || results == null)
+            return;
+
+        List<RewardData> rewards = new List<RewardData>(results.Length);
+        List<int> amounts = new List<int>(results.Length);
+
+        foreach (GachaPullResult result in results)
+        {
+            if (result == null || result.Reward == null)
+                continue;
+
+            rewards.Add(result.Reward);
+            amounts.Add(result.Amount);
+        }
+
+        RewardSystem.Instance.ShowRewardPopup(rewards, amounts);
     }
 
     private void LogPullResults(GachaPullResult[] results)
@@ -376,6 +526,9 @@ public class GachaComponentUI : MonoBehaviour
                 }
             }
         }
+
+        if (ratesButton != null)
+            ratesButton.onClick.RemoveListener(OpenRates);
 
         if (singlePullButton != null)
         {

@@ -56,7 +56,8 @@ public class TradyExchangeChoiceUI : MonoBehaviour
         if (!isOpen)
             return;
 
-        timeoutTimer -= Time.deltaTime;
+        // The popup pauses the game (timeScale 0), so count down in real time.
+        timeoutTimer -= Time.unscaledDeltaTime;
 
         if (timeoutTimer <= 0f)
             Close();
@@ -85,9 +86,9 @@ public class TradyExchangeChoiceUI : MonoBehaviour
 
         if (descriptionText != null)
             descriptionText.text =
-                "Fair Exchange: pilih salah satu pertukaran.\n" +
-                "Defense: serangannya dilemukan, pertahanan bertambah sangat tinggi.\n" +
-                "Attack: pertahanan dilemukan, serangannya bertambah sangat besar.";
+                "Fair Exchange: choose one trade.\n" +
+                "Defense: weaken your attack to greatly boost your defense.\n" +
+                "Attack: weaken your defense to massively boost your attack.";
 
         if (popupRoot != null)
             popupRoot.SetActive(true);

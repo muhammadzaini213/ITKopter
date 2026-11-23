@@ -35,10 +35,10 @@ namespace Slafurry.Core.Abstract
             OnSingletonDestroyed();
         }
 
-        /// <summary>Hook Awake untuk subclass. GameSystem&lt;T&gt; pakai ini buat DontDestroyOnLoad.</summary>
+        /// <summary>Awake hook for subclasses. GameSystem&lt;T&gt; uses this for DontDestroyOnLoad.</summary>
         protected abstract void OnSingletonAwake();
 
-        /// <summary>Hook OnDestroy opsional untuk subclass.</summary>
+        /// <summary>Optional OnDestroy hook for subclasses.</summary>
         protected virtual void OnSingletonDestroyed() { }
 
         public abstract IEnumerator Initialize();

@@ -7,23 +7,23 @@ using UnityEngine.Events;
 namespace Slafurry.Systems.Bootstrap
 {
     /// <summary>
-    /// Diletakkan di Bootstrap scene (scene paling pertama di Build Settings).
-    /// Tugasnya: pastikan semua GameSystem<T> (SceneLoader, AudioSystem, dll.)
-    /// sudah selesai Initialize() + PostInitialize(), baru pindah ke scene tujuan.
+    /// Lives in the Bootstrap scene (the first scene in Build Settings).
+    /// Its job: make sure every GameSystem<T> (SceneLoader, AudioSystem, etc.)
+    /// has finished Initialize() + PostInitialize() before moving to the target scene.
     /// </summary>
     public class BootstrapLoader : MonoBehaviour
     {
         [Header("Target")]
-        [Tooltip("Nama scene yang akan dimuat setelah semua system siap.")]
+        [Tooltip("Scene to load once all systems are ready.")]
         [SerializeField] private SceneReference targetSceneName;
 
         [Header("Systems To Wait For")]
-        [Tooltip("Referensi ke semua GameSystem yang harus siap sebelum pindah scene. " +
-                 "Drag komponennya di sini (SceneLoader, AudioSystem, dst).")]
+        [Tooltip("References to every GameSystem that must be ready before changing scene. " +
+                 "Drag the components here (SceneLoader, AudioSystem, etc.).")]
         [SerializeField] private MonoBehaviour[] systemsToWaitFor;
 
         [Header("Optional")]
-        [Tooltip("Delay tambahan (detik) setelah semua system siap, sebelum load scene. Berguna untuk splash screen minimal duration.")]
+        [Tooltip("Extra delay (seconds) after all systems are ready, before loading the scene. Useful for a minimum splash screen duration.")]
         [SerializeField] private float minimumDelay = 0f;
 
         [Header("Event")]
@@ -36,8 +36,8 @@ namespace Slafurry.Systems.Bootstrap
 
         private IEnumerator BootstrapRoutine()
         {
-            // Tunggu 1 frame supaya semua Awake()/OnSingletonAwake() dari system lain
-            // (yang di-set lewat Script Execution Order lebih awal) selesai duluan.
+            // Wait 1 frame so every other system's Awake()/OnSingletonAwake()
+            // (set earlier via Script Execution Order) finishes first.
             yield return null;
 
             // Inisialisasi setiap system secara berurutan.
@@ -45,7 +45,7 @@ namespace Slafurry.Systems.Bootstrap
             {
                 if (systemObj == null)
                 {
-                    Debug.LogWarning("[BootstrapLoader] Ada slot system yang kosong di inspector, dilewati.");
+                    Debug.LogWarning("[BootstrapLoader] A system slot in the Inspector is empty, skipped.");
                     continue;
                 }
 
@@ -56,18 +56,18 @@ namespace Slafurry.Systems.Bootstrap
                 }
                 else
                 {
-                    Debug.LogWarning($"[BootstrapLoader] {systemObj.GetType().Name} bukan GameSystem, dilewati dari lifecycle wait.");
+                    Debug.LogWarning($"[BootstrapLoader] {systemObj.GetType().Name} is not a GameSystem, skipped from the lifecycle wait.");
                 }
             }
 
             if (minimumDelay > 0f)
                 yield return new WaitForSecondsRealtime(minimumDelay);
 
-            Debug.Log($"[BootstrapLoader] Semua system siap. Pindah ke scene '{targetSceneName}'.");
+            Debug.Log($"[BootstrapLoader] All systems ready. Moving to scene '{targetSceneName}'.");
 
             if (targetSceneName == null)
             {
-                Debug.LogError("[BootstrapLoader] targetSceneName kosong! Set di inspector.");
+                Debug.LogError("[BootstrapLoader] targetSceneName is empty! Set it in the Inspector.");
                 yield break;
             }
 
@@ -81,9 +81,9 @@ namespace Slafurry.Systems.Bootstrap
 
 
     /// <summary>
-    /// Interface bantu supaya BootstrapLoader bisa memanggil Initialize()/PostInitialize()
-    /// tanpa harus tahu tipe generik T dari GameSystem<T>.
-    /// Implementasikan ini di GameSystem<T> (lihat catatan di bawah).
+    /// Helper interface so BootstrapLoader can call Initialize()/PostInitialize()
+    /// without knowing the generic type T of GameSystem<T>.
+    /// Implement this on GameSystem<T> (see the note below).
     /// </summary>
     public interface IGameSystemLifecycle
     {

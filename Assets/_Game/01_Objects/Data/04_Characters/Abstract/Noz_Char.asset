@@ -16,6 +16,10 @@ MonoBehaviour:
   icon: {fileID: -114355208, guid: 4e92644fa698beeb5995d46de15112bf, type: 3}
   characterId: char_3_noz
   characterName: Noz
+  alias: Abstract Concept Of Notes
+  description: Noz is a calm, meticulous Concept Spirit who loves neatly organized
+    information. Unlike Ei-Pi, Noz prefers to explain things bit by bit so they're
+    easy to follow. In battle, Noz's notes help the team spot the enemy's weaknesses.
   characterPortrait: {fileID: -6864745941820863187, guid: 4e92644fa698beeb5995d46de15112bf,
     type: 3}
   health: 800
@@ -34,3 +38,9 @@ MonoBehaviour:
   duplicateEngramAmount: 1
   dustMaterial: {fileID: 11400000, guid: f7f10a0a4c87a2d5892f1a7d6bdb4663, type: 2}
   engramMaterial: {fileID: 11400000, guid: e442fae7597d100deac5d91e425d4f49, type: 2}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 1000
+  upgradeCoinPerLevel: 3.2

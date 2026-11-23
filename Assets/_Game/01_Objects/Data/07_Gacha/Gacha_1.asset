@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GachaData
   gachaId: artificial_order_gacha_1
   gachaName: Artificial Order
+  description: 'Featuring EyaY, the anomaly support.
+
+    Half of every UR result
+    is EyaY.
+
+    Guaranteed UR within 200 pulls.'
   gachaCost: 160
   gachaDiscount: 0
   singlePullCount: 1

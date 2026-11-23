@@ -16,6 +16,11 @@ MonoBehaviour:
   icon: {fileID: 516786597, guid: a1bec6a6cd32a8873ae2fc8b33c6e1d8, type: 3}
   characterId: char_2_bokusu
   characterName: Bokusu
+  alias: Simple Concept Of Box
+  description: 'Bokusu is the embodiment of the concept of a box: something that
+    looks simple but has countless uses. To Bokusu, boundaries aren''t only for keeping
+    things apart, but also for protecting what lies inside. Bokusu shields teammates
+    with sturdy box-shaped barriers.'
   characterPortrait: {fileID: -6584996585943759632, guid: a1bec6a6cd32a8873ae2fc8b33c6e1d8,
     type: 3}
   health: 1450
@@ -34,3 +39,9 @@ MonoBehaviour:
   duplicateEngramAmount: 1
   dustMaterial: {fileID: 11400000, guid: 7b1e503074c0e22ba8291973dc096bc4, type: 2}
   engramMaterial: {fileID: 11400000, guid: 17e3c74c9b42ed40e87e4ac4008bf67e, type: 2}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 1.2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 1000
+  upgradeCoinPerLevel: 3.2

@@ -43,6 +43,26 @@ public class Projectile : MonoBehaviour, IPoolable
         ownerCharacter = owner;
     }
 
+    private static int playerLayer = -2;
+
+    /// <summary>
+    /// True while this projectile is live and aimed at the Player layer (i.e. an enemy bullet).
+    /// Projectiles have no colliders, so physics overlap queries can't find them — use this instead.
+    /// </summary>
+    public bool IsHostileToPlayer
+    {
+        get
+        {
+            if (!isInitialized || hasHit)
+                return false;
+
+            if (playerLayer == -2)
+                playerLayer = LayerMask.NameToLayer("Player");
+
+            return playerLayer >= 0 && (hitMask.value & (1 << playerLayer)) != 0;
+        }
+    }
+
     // Hierarchy of the shooter (resolved by the spawner at spawn time).
     // null = unknown → neutral matchup.
     public void SetAttackerType(CharacterType? type)

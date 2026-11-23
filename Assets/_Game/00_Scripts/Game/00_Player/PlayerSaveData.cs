@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class CharacterProgressionSaveData
 {
     public string characterId;
-    public int totalExp;
+    public int level = 1;
     public int affectionPoints;
 }
 
@@ -19,6 +19,7 @@ public class PlayerSaveData
     public List<string> ownedCharacterIds = new();
     public List<string> completedLevelIds = new();
     public List<string> lastTeamCharacterIds = new();
+    public string showcaseCharacterId;
 
     public List<CharacterProgressionSaveData> characterProgressions = new();
     public List<InventoryItemSaveData> inventoryItems = new();

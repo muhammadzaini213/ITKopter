@@ -16,6 +16,10 @@ MonoBehaviour:
   icon: {fileID: -2105807380, guid: 8291a005f23a5caf9b45413d33a3a9f3, type: 3}
   characterId: char_8_tren
   characterName: Tren
+  alias: Simple Concept Of Trend
+  description: Tren is always chasing whatever is popular right now. Tren can gain
+    huge influence in an instant, but lose relevance just as quickly. Though Tren
+    often disappears and comes back, the search for the next big moment never stops.
   characterPortrait: {fileID: 1191103080720577264, guid: 8291a005f23a5caf9b45413d33a3a9f3,
     type: 3}
   health: 600
@@ -34,3 +38,9 @@ MonoBehaviour:
   duplicateEngramAmount: 1
   dustMaterial: {fileID: 11400000, guid: 7b1e503074c0e22ba8291973dc096bc4, type: 2}
   engramMaterial: {fileID: 11400000, guid: 0c436f1b446f5542c802931be519caa6, type: 2}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 1000
+  upgradeCoinPerLevel: 3.2

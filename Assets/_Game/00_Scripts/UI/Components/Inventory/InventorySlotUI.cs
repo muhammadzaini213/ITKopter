@@ -28,7 +28,7 @@ public class InventorySlotUI : MonoBehaviour
             itemNameText.text = item.ItemName;
 
         if (itemAmountText != null)
-            itemAmountText.text = amount.ToString();
+            itemAmountText.text = $"x{amount}";
     }
 
     public void Clear()

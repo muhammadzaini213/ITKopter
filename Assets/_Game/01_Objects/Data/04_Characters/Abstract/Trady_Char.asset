@@ -16,6 +16,11 @@ MonoBehaviour:
   icon: {fileID: -1716582223, guid: 75314c323dd4b00fe90ecfeceb6e7535, type: 3}
   characterId: char_5_trady
   characterName: Trady
+  alias: Abstract Concept Of Trade
+  description: Trady is a seasoned merchant who always puts a profitable deal first.
+    Trady never attacks enemies directly, but will gladly provide protection or offensive
+    power to anyone who accepts the terms. To Trady, even safety and strength have
+    a price.
   characterPortrait: {fileID: -1382697778907519323, guid: 75314c323dd4b00fe90ecfeceb6e7535,
     type: 3}
   health: 1900
@@ -34,3 +39,9 @@ MonoBehaviour:
   duplicateEngramAmount: 1
   dustMaterial: {fileID: 11400000, guid: f7f10a0a4c87a2d5892f1a7d6bdb4663, type: 2}
   engramMaterial: {fileID: 11400000, guid: 66aabe718522424b9a360e69c59040bf, type: 2}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 1000
+  upgradeCoinPerLevel: 3.2

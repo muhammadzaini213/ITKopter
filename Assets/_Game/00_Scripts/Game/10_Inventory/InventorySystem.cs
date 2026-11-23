@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,12 @@ public class InventorySystem : GameSystem<InventorySystem>
 
     public bool IsDatabaseReady =>
         itemDatabase != null;
+
+    /// <summary>
+    /// Raised after AddItem / RemoveItem change an amount (not on load).
+    /// PlayerSystem listens to persist the inventory.
+    /// </summary>
+    public event Action OnInventoryChanged;
 
     public override IEnumerator Initialize()
     {
@@ -88,6 +95,7 @@ public class InventorySystem : GameSystem<InventorySystem>
 
         inventory[itemId] = currentAmount + amount;
 
+        OnInventoryChanged?.Invoke();
         return true;
     }
 
@@ -124,6 +132,7 @@ public class InventorySystem : GameSystem<InventorySystem>
         else
             inventory[itemId] = remaining;
 
+        OnInventoryChanged?.Invoke();
         return true;
     }
 

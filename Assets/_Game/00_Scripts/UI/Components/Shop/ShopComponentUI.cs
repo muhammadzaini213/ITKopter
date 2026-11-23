@@ -54,7 +54,15 @@ public class ShopComponentUI : MonoBehaviour
         }
 
         RegisterShopButtons();
+        shopSystem.OnConversionCompleted += HandleConversionCompleted;
         SelectInitialShop();
+    }
+
+    private void HandleConversionCompleted()
+    {
+        // Owned materials, daily counts and unlockable characters all changed.
+        if (currentShop != null && currentShop.IsConversionShop)
+            RefreshShopItems();
     }
 
     private void RegisterShopButtons()
@@ -138,11 +146,17 @@ public class ShopComponentUI : MonoBehaviour
     {
         ClearShopItems();
 
-        if (currentShop == null ||
-            currentShop.ItemsForSale == null)
+        if (currentShop == null)
+            return;
+
+        if (currentShop.IsConversionShop)
         {
+            RefreshConversionItems();
             return;
         }
+
+        if (currentShop.ItemsForSale == null)
+            return;
 
         foreach (ShopItemEntry entry in currentShop.ItemsForSale)
         {
@@ -161,6 +175,25 @@ public class ShopComponentUI : MonoBehaviour
                 () => OpenPurchaseConfirmation(
                     selectedShop,
                     selectedEntry));
+
+            spawnedItems.Add(item);
+        }
+    }
+
+    private void RefreshConversionItems()
+    {
+        InventorySystem inventory = InventorySystem.Instance;
+
+        foreach (ConversionOffer offer in shopSystem.GetConversionOffers(currentShop))
+        {
+            ShopItemUI item = Instantiate(itemPrefab, itemContentRoot);
+            ConversionOffer selectedOffer = offer;
+
+            item.SetupConversion(
+                offer,
+                inventory != null ? inventory.GetItemAmount(offer.InputItem) : 0,
+                shopSystem.GetRemainingToday(offer),
+                () => confirmationPopup.OpenConversion(selectedOffer));
 
             spawnedItems.Add(item);
         }
@@ -194,6 +227,9 @@ public class ShopComponentUI : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (shopSystem != null)
+            shopSystem.OnConversionCompleted -= HandleConversionCompleted;
+
         if (shops == null)
             return;
 

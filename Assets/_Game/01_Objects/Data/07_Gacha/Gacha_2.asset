@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GachaData
   gachaId: regulation_protocol_gacha_2
   gachaName: Regulation Protocol
+  description: 'Featuring Regu, the special protector.
+
+    Half of every UR result
+    is Regu.
+
+    Guaranteed UR within 200 pulls.'
   gachaCost: 160
   gachaDiscount: 0
   singlePullCount: 1
