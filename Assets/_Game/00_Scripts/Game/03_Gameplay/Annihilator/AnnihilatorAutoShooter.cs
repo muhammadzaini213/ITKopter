@@ -10,14 +10,30 @@ public class AnnihilatorAutoShooter : MonoBehaviour
     [SerializeField, Min(0.01f)] private float fireInterval = 0.2f;
     [SerializeField, Min(0f)] private float bulletSpeed = 10f;
 
+    [Header("Aim Sweep")]
+    [SerializeField, Min(0f), Tooltip("Degrees the aim swings either side of AimAngle, so the gaps between cannons get hit too.")]
+    private float sweepAmplitude = 9f;
+
+    [SerializeField, Min(0f), Tooltip("Sweep speed (radians per second).")]
+    private float sweepSpeed = 2.4f;
+
     private float fireTimer;
+    private float sweepTime;
     private bool hasLoggedMissingReference;
+    private Quaternion baseAimRotation = Quaternion.identity;
+    private bool baseAimCaptured;
 
     /// <summary>Damage per bullet set by AnnihilatorManifestation (0 = spawner default).</summary>
     public float DamageOverride { get; set; }
 
     /// <summary>Fire interval multiplier (&lt; 1 = faster), from the player's level.</summary>
     public float IntervalMultiplier { get; set; } = 1f;
+
+    /// <summary>Fan angle in degrees (+ = left), set by AnnihilatorManifestation.</summary>
+    public float AimAngle { get; set; }
+
+    /// <summary>Sweep phase offset so neighbouring cannons don't swing in sync.</summary>
+    public float SweepPhase { get; set; }
 
     private void Awake()
     {
@@ -29,6 +45,11 @@ public class AnnihilatorAutoShooter : MonoBehaviour
             Debug.LogError(
                 "[AnnihilatorAutoShooter] Firepoint is missing.",
                 this);
+        }
+        else
+        {
+            baseAimRotation = firePoint.transform.localRotation;
+            baseAimCaptured = true;
         }
 
         if (bulletSpawner == null)
@@ -45,6 +66,7 @@ public class AnnihilatorAutoShooter : MonoBehaviour
             return;
 
         fireTimer += Time.deltaTime;
+        sweepTime += Time.deltaTime;
 
         float interval = Mathf.Max(0.03f, fireInterval * Mathf.Max(0.1f, IntervalMultiplier));
 
@@ -52,6 +74,9 @@ public class AnnihilatorAutoShooter : MonoBehaviour
             return;
 
         fireTimer = Mathf.Min(fireTimer - interval, interval);
+
+        float angle = AimAngle + Mathf.Sin(sweepTime * sweepSpeed + SweepPhase) * sweepAmplitude;
+        firePoint.transform.localRotation = baseAimRotation * Quaternion.Euler(0f, 0f, angle);
 
         bulletSpawner.Fire(
             firePoint.transform,
@@ -85,5 +110,9 @@ public class AnnihilatorAutoShooter : MonoBehaviour
     private void OnDisable()
     {
         fireTimer = 0f;
+        sweepTime = 0f;
+
+        if (baseAimCaptured && firePoint != null)
+            firePoint.transform.localRotation = baseAimRotation;
     }
 }

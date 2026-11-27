@@ -49,6 +49,12 @@ public class AnnihilatorManifestation : MonoBehaviour
     [SerializeField, Min(0.05f)]
     private float riseDuration = 0.45f;
 
+    [SerializeField, Range(0f, 80f), Tooltip("Outermost cannons aim this many degrees off vertical; the rest fan out evenly between.")]
+    private float spreadAngle = 50f;
+
+    [SerializeField, Tooltip("Centre the body on the play area (between the border walls) when it appears.")]
+    private bool centerOnPlayArea = true;
+
     [SerializeField]
     private Color manifestColor = new Color(1f, 0.25f, 0.35f);
 
@@ -165,11 +171,47 @@ public class AnnihilatorManifestation : MonoBehaviour
         float damage = BulletDamage;
         float interval = IntervalMultiplier;
 
-        foreach (var shooter in annihilatorObject.GetComponentsInChildren<AnnihilatorAutoShooter>(true))
+        var shooters = annihilatorObject.GetComponentsInChildren<AnnihilatorAutoShooter>(true);
+
+        // Fan the cannons out left to right so the whole width gets shot,
+        // not just the column above the body.
+        System.Array.Sort(shooters, (a, b) => a.transform.position.x.CompareTo(b.transform.position.x));
+
+        for (int i = 0; i < shooters.Length; i++)
         {
-            shooter.DamageOverride = damage;
-            shooter.IntervalMultiplier = interval;
+            float t = shooters.Length > 1 ? i / (float)(shooters.Length - 1) : 0.5f;
+
+            shooters[i].DamageOverride = damage;
+            shooters[i].IntervalMultiplier = interval;
+            shooters[i].AimAngle = Mathf.Lerp(spreadAngle, -spreadAngle, t);
+            shooters[i].SweepPhase = i * 0.9f;
         }
+    }
+
+    // Local offset that puts the sprite's horizontal centre on the play
+    // area's centre. The authored position was off to the right, past the
+    // right wall, leaving an empty strip on the left.
+    private Vector3 PlayAreaCenterOffset()
+    {
+        if (!centerOnPlayArea)
+            return Vector3.zero;
+
+        var fit = FindFirstObjectByType<PlayAreaCameraFit>();
+        if (fit == null || fit.PlayArea.width <= 0.01f)
+            return Vector3.zero;
+
+        var sprite = annihilatorObject.GetComponent<SpriteRenderer>();
+        if (sprite == null)
+            sprite = annihilatorObject.GetComponentInChildren<SpriteRenderer>();
+        if (sprite == null)
+            return Vector3.zero;
+
+        float delta = fit.PlayArea.center.x - sprite.bounds.center.x;
+        Transform parent = annihilatorObject.transform.parent;
+
+        return parent != null
+            ? parent.InverseTransformVector(new Vector3(delta, 0f, 0f))
+            : new Vector3(delta, 0f, 0f);
     }
 
     private IEnumerator ManifestationRoutine()
@@ -202,8 +244,10 @@ public class AnnihilatorManifestation : MonoBehaviour
         // Entry: rise from below in a slow-mo cut-in.
         Transform body = annihilatorObject.transform;
         Vector3 rest = restCaptured ? restLocalPosition : body.localPosition;
-        body.localPosition = rest + Vector3.down * riseDistance;
+        body.localPosition = rest;
         annihilatorObject.SetActive(true);
+        rest += PlayAreaCenterOffset();
+        body.localPosition = rest + Vector3.down * riseDistance;
 
         SayFajarLine();
 
