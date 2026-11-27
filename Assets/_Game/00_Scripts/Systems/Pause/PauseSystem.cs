@@ -8,13 +8,15 @@ namespace Slafurry.Systems.Pause
 {
     public static class Pause
     {
-        public static void On(string key = "Global") => PauseSystem.Instance.Pause(key);
-        public static void Off(string key = "Global") => PauseSystem.Instance.Resume(key);
-        public static void Toggle(string key = "Global") => PauseSystem.Instance.Toggle(key);
+        // Null-safe: OnDestroy callers (e.g. GameplayPauseMenu) run while
+        // exiting Play mode, after PauseSystem itself is gone.
+        public static void On(string key = "Global") => PauseSystem.Instance?.Pause(key);
+        public static void Off(string key = "Global") => PauseSystem.Instance?.Resume(key);
+        public static void Toggle(string key = "Global") => PauseSystem.Instance?.Toggle(key);
 
-        public static bool IsPaused => PauseSystem.Instance.IsPaused;
-        public static bool IsPausedBy(string key) => PauseSystem.Instance.IsPausedBy(key);
-        public static void ForceResume() => PauseSystem.Instance.ForceResumeAll();
+        public static bool IsPaused => PauseSystem.Instance != null && PauseSystem.Instance.IsPaused;
+        public static bool IsPausedBy(string key) => PauseSystem.Instance != null && PauseSystem.Instance.IsPausedBy(key);
+        public static void ForceResume() => PauseSystem.Instance?.ForceResumeAll();
     }
 
     public class PauseSystem : GameSystem<PauseSystem>
