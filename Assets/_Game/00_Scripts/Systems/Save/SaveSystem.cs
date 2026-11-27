@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using Newtonsoft.Json;
 using Slafurry.Core.Abstract;
@@ -16,7 +17,77 @@ namespace Slafurry.Systems.Save
     
     public class SaveSystem : GameSystem<SaveSystem>
     {
-        private string SaveFolder => Application.persistentDataPath;
+#if UNITY_WEBGL && !UNITY_EDITOR
+        [DllImport("__Internal")] private static extern void PersistentStorage_Sync();
+#endif
+
+        // WebGL: Application.persistentDataPath is "/idbfs/<hash of the page URL>",
+        // and every itch.io upload gets a new URL, so each deploy started from an
+        // empty save. Use a fixed folder under /idbfs instead.
+        private const string WebSaveFolderName = "ConceptWars";
+
+        private string saveFolder;
+
+        private string SaveFolder
+        {
+            get
+            {
+                if (saveFolder == null)
+                    saveFolder = ResolveSaveFolder();
+
+                return saveFolder;
+            }
+        }
+
+        private static string ResolveSaveFolder()
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            string legacy = Application.persistentDataPath;
+            string root = Path.GetDirectoryName(legacy.TrimEnd('/'));
+            string folder = string.IsNullOrEmpty(root) ? legacy : root.Replace('\\', '/') + "/" + WebSaveFolderName;
+
+            try
+            {
+                Directory.CreateDirectory(folder);
+                MigrateLegacySaves(legacy, folder);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[SaveSystem] Can't use '{folder}', falling back to '{legacy}': {e}");
+                return legacy;
+            }
+
+            return folder;
+#else
+            return Application.persistentDataPath;
+#endif
+        }
+
+        // Copy saves from the old URL-hashed folder the first time only.
+        private static void MigrateLegacySaves(string from, string to)
+        {
+            if (from == to || !Directory.Exists(from) || Directory.GetFiles(to, "*.json").Length > 0)
+                return;
+
+            bool copied = false;
+
+            foreach (string file in Directory.GetFiles(from, "*.json"))
+            {
+                File.Copy(file, Path.Combine(to, Path.GetFileName(file)), true);
+                copied = true;
+            }
+
+            if (copied)
+                Flush();
+        }
+
+        /// <summary>Persists pending file writes (WebGL: to IndexedDB). No-op elsewhere.</summary>
+        public static void Flush()
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            PersistentStorage_Sync();
+#endif
+        }
 
         public event Action<string> OnSaved;
         public event Action<string> OnLoaded;
@@ -36,6 +107,7 @@ namespace Slafurry.Systems.Save
                 string path = GetPath(fileName);
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
                 File.WriteAllText(path, json);
+                Flush();
                 OnSaved?.Invoke(fileName);
             }
             catch (Exception e)
@@ -69,6 +141,7 @@ namespace Slafurry.Systems.Save
         {
             string path = GetPath(fileName);
             if (File.Exists(path)) File.Delete(path);
+            Flush();
         }
 
         private string GetPath(string fileName) => Path.Combine(SaveFolder, $"{fileName}.json");
