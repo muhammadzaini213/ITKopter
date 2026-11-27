@@ -1,0 +1,12 @@
+{
+  "currency": "IDR",
+  "products": [
+    { "productId": "gems_300", "name": "Mini Gems Pack", "category": "Gems", "price": 15000 },
+    { "productId": "gems_1000", "name": "Standard Gems Pack", "category": "Gems", "price": 49000 },
+    { "productId": "gems_2100", "name": "Premium Gems Pack", "category": "Gems", "price": 99000 },
+    { "productId": "gems_4500", "name": "Mega Gems Pack", "category": "Gems", "price": 199000 },
+    { "productId": "pack_eyay", "name": "EyaY Neural Pack", "category": "Pack", "price": 29000 },
+    { "productId": "pack_regu", "name": "Regu Regulation Pack", "category": "Pack", "price": 29000 },
+    { "productId": "pack_eyay_regu", "name": "AI and Regulation Pack", "category": "Pack", "price": 79000 }
+  ]
+}

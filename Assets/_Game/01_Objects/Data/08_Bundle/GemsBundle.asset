@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BundleData
   bundleCategory: Gems
   bundles:
-  - bundleName: Mini Gems Pack
+  - productId: gems_300
+    bundleName: Mini Gems Pack
     description: A small bundle containing 300 Gems. Perfect for a few extra pulls
       or topping up your remaining balance.
     icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
@@ -22,7 +23,8 @@ MonoBehaviour:
     rewards:
     - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
       amount: 300
-  - bundleName: Standard Gems Pack
+  - productId: gems_1000
+    bundleName: Standard Gems Pack
     description: A standard bundle containing 1,000 Gems. Ideal for regular players
       who want several pulls to keep their collection growing.
     icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
@@ -30,7 +32,8 @@ MonoBehaviour:
     rewards:
     - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
       amount: 1000
-  - bundleName: Premium Gems Pack
+  - productId: gems_2100
+    bundleName: Premium Gems Pack
     description: A premium bundle containing 2,100 Gems. Stock up on Gems and get
       closer to your next big acquisition.
     icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
@@ -38,7 +41,8 @@ MonoBehaviour:
     rewards:
     - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
       amount: 2100
-  - bundleName: Mega Gems Pack
+  - productId: gems_4500
+    bundleName: Mega Gems Pack
     description: The largest bundle containing 4,500 Gems. Get a substantial supply
       of Gems for extended summoning sessions and major collection goals.
     icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}

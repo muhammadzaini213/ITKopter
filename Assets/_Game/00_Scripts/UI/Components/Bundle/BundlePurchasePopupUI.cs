@@ -1,5 +1,4 @@
 
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -99,61 +98,60 @@ public class BundlePurchasePopupUI : MonoBehaviour
             return;
         }
 
-        if (confirmButton != null)
-            confirmButton.interactable = false;
+        SetBusy(true);
 
-        bool success = BundleSystem.Instance.PurchaseBundle(
-            currentBundleData,
-            currentBundle,
-            out string error);
+        BundleEntry bundle = currentBundle;
 
-        if (!success)
+        BundleSystem.Instance.BeginPurchase(currentBundleData, bundle, (state, message) =>
         {
-            ShowError(string.IsNullOrEmpty(error)
-                ? "Purchase failed."
-                : error);
+            switch (state)
+            {
+                case BundleSystem.PurchaseState.CreatingOrder:
+                case BundleSystem.PurchaseState.WaitingForPayment:
+                    ShowStatus(message);
+                    break;
 
-            if (confirmButton != null)
-                confirmButton.interactable = true;
+                case BundleSystem.PurchaseState.Granted:
+                    SetBusy(false);
+                    BundleSystem.Instance.ShowGrantedPopup(bundle);
+                    Close();
+                    break;
 
-            return;
-        }
+                case BundleSystem.PurchaseState.PendingPayment:
+                    SetBusy(false);
+                    ShowStatus(message);
+                    break;
 
-        ShowGrantedRewards(currentBundle);
-        Close();
+                case BundleSystem.PurchaseState.Cancelled:
+                    SetBusy(false);
+                    ShowStatus(message);
+                    break;
+
+                default:
+                    SetBusy(false);
+                    ShowError(string.IsNullOrEmpty(message) ? "Purchase failed." : message);
+                    break;
+            }
+        });
     }
 
-    private void ShowGrantedRewards(BundleEntry entry)
+    private void SetBusy(bool busy)
     {
-        if (RewardSystem.Instance == null)
+        if (confirmButton != null)
+            confirmButton.interactable = !busy;
+
+        // Closing mid-payment is fine (the order is resumed in the background),
+        // but keep it explicit while the order is being created.
+        if (cancelButton != null)
+            cancelButton.interactable = true;
+    }
+
+    private void ShowStatus(string message)
+    {
+        if (errorText != null)
         {
-            Debug.LogWarning(
-                "[BundlePurchasePopupUI] RewardSystem is unavailable.");
-            return;
-        }
-
-        List<RewardData> popupRewards = new List<RewardData>();
-
-        if (entry.Rewards != null)
-        {
-            foreach (BundleReward bundleReward in entry.Rewards)
-            {
-                if (bundleReward == null ||
-                    bundleReward.Reward == null)
-                {
-                    continue;
-                }
-
-                for (int i = 0; i < bundleReward.Amount; i++)
-                {
-                    popupRewards.Add(bundleReward.Reward);
-                }
-            }
-        }
-
-        if (popupRewards.Count > 0)
-        {
-            RewardSystem.Instance.ShowRewardPopup(popupRewards);
+            errorText.color = new Color(0.55f, 0.95f, 1f);
+            errorText.text = message ?? string.Empty;
         }
     }
 
@@ -163,7 +161,10 @@ public class BundlePurchasePopupUI : MonoBehaviour
             $"[BundlePurchasePopupUI] {message}");
 
         if (errorText != null)
+        {
+            errorText.color = new Color(1f, 0.45f, 0.45f);
             errorText.text = message;
+        }
     }
 
     public void Close()

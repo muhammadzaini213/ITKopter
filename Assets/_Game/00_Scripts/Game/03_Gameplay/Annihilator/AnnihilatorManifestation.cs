@@ -78,6 +78,9 @@ public class AnnihilatorManifestation : MonoBehaviour
 
     public bool IsManifesting => isManifesting;
 
+    /// <summary>Keyboard shortcut shown on the button (set by GameplayHotkeys).</summary>
+    public string HotkeyLabel { get; set; }
+
     public float CooldownRemaining => cooldownTimer;
 
     public float CooldownDuration => cooldownDuration;
@@ -337,7 +340,9 @@ public class AnnihilatorManifestation : MonoBehaviour
             else if (cooldownTimer > 0f)
                 cooldownText.text = $"Cooldown: {Mathf.CeilToInt(cooldownTimer)}s";
             else
-                cooldownText.text = $"READY  Lv{PlayerLevel}";
+                cooldownText.text = string.IsNullOrEmpty(HotkeyLabel)
+                    ? $"READY  Lv{PlayerLevel}"
+                    : $"READY [{HotkeyLabel}]\n<size=70%>Lv{PlayerLevel}</size>";
         }
 
         if (manifestationButton != null)

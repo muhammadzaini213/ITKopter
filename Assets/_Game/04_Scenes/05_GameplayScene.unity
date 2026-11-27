@@ -2679,6 +2679,8 @@ MonoBehaviour:
   retreatDuration: 0.2
   spreadDuration: 0.35
   mergeDuration: 0.35
+  forcedSwapInvulnerability: 1.2
+  switchInInvulnerability: 0.35
   onActiveCharacterChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4811,6 +4813,11 @@ MonoBehaviour:
   useCharacterCooldown: 1
   exSkillChildName: ExSkill
   cooldownDebug: []
+  slowMoOnActivate: 1
+  slowMoDuration: 0.75
+  slowMoTimeScale: 0.15
+  showSkillDialogue: 1
+  skillDialogueDuration: 2.6
 --- !u!1 &726125804
 GameObject:
   m_ObjectHideFlags: 0
@@ -4837,7 +4844,7 @@ Transform:
   m_GameObject: {fileID: 726125804}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6738105, y: 0.12837029, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5072,8 +5079,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameplayHotkeys
   characterSwitcher: {fileID: 399829673}
   exSkillController: {fileID: 695964235}
+  annihilator: {fileID: 0}
   switchKeys: 290000002a0000002b000000
   exSkillKey: 25
+  annihilatorKey: 26
 --- !u!1 &756638224
 GameObject:
   m_ObjectHideFlags: 0
@@ -6112,7 +6121,7 @@ Transform:
   m_GameObject: {fileID: 973673144}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6738105, y: 0.12837029, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6669,6 +6678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWaveManager
   enemyContainer: {fileID: 1205925594}
   waveProgressSlider: {fileID: 1801368879}
+  waveTitleText: {fileID: 0}
   delayBetweenWaves: 1
   delayBetweenParts: 1
 --- !u!1 &1213389212
@@ -10769,6 +10779,16 @@ MonoBehaviour:
   cooldownText: {fileID: 626701156}
   manifestationDuration: 5
   cooldownDuration: 60
+  baseBulletDamage: 40
+  damagePerLevel: 0.12
+  fireRatePerLevel: 0.03
+  minIntervalMultiplier: 0.45
+  durationPerLevel: 0.2
+  maxBonusDuration: 5
+  riseDistance: 4
+  riseDuration: 0.45
+  manifestColor: {r: 1, g: 0.25, b: 0.35, a: 1}
+  summonLines: []
 --- !u!1 &1985761100
 GameObject:
   m_ObjectHideFlags: 0

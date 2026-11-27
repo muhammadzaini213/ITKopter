@@ -63,6 +63,14 @@ public class CharacterSwitcher : MonoBehaviour
 
     private Coroutine switchCoroutine;
 
+    // The Units collider is sized for the 3-character switch formation.
+    // Outside a switch only one character is on screen, so it is shrunk to
+    // that character; otherwise an invisible margin kept the player away
+    // from the play-area walls.
+    private Vector2 formationColliderSize;
+    private Vector2 formationColliderOffset;
+    private bool formationColliderCaptured;
+
     public int ActiveCharacterIndex => activeCharacterIndex;
 
     public GameObject ActiveCharacter =>
@@ -189,6 +197,10 @@ public class CharacterSwitcher : MonoBehaviour
 
         isInitialized = true;
 
+        formationColliderSize = parentCollider.size;
+        formationColliderOffset = parentCollider.offset;
+        formationColliderCaptured = true;
+
         activeCharacterIndex =
             lifeController.FindNextLivingCharacter(
                 characters.Length > 0
@@ -210,6 +222,7 @@ public class CharacterSwitcher : MonoBehaviour
 
         RefreshAutoShoot();
         RefreshButtons();
+        FitColliderToActiveCharacter();
 
         onActiveCharacterChanged?.Invoke(activeCharacterIndex);
         onCooldownChanged?.Invoke(cooldownTimer);
@@ -442,6 +455,7 @@ public class CharacterSwitcher : MonoBehaviour
     private IEnumerator SwitchRoutine(int targetIndex)
     {
         isSwitching = true;
+        RestoreFormationCollider();
 
         RefreshAutoShoot();
         RefreshButtons();
@@ -605,6 +619,7 @@ public class CharacterSwitcher : MonoBehaviour
 
         RefreshAutoShoot();
         RefreshButtons();
+        FitColliderToActiveCharacter();
         PlaySwitchInFeel(targetIndex, switchInInvulnerability, forced: false);
 
         onActiveCharacterChanged?.Invoke(activeCharacterIndex);
@@ -704,6 +719,7 @@ public class CharacterSwitcher : MonoBehaviour
         if (forcedSwap)
             PlaySwitchInFeel(activeCharacterIndex, forcedSwapInvulnerability, forced: true);
 
+        FitColliderToActiveCharacter();
         isHandlingDeath = false;
     }
 
@@ -777,6 +793,39 @@ public class CharacterSwitcher : MonoBehaviour
             c.a = 1f;
             sr.color = c;
         }
+    }
+
+    /// <summary>Shrinks the movement collider to the active character (no switch running).</summary>
+    private void FitColliderToActiveCharacter()
+    {
+        if (!formationColliderCaptured || parentCollider == null || isSwitching)
+            return;
+
+        if (activeCharacterIndex < 0 || activeCharacterIndex >= characters.Length)
+            return;
+
+        BoxCollider2D child = childColliders[activeCharacterIndex];
+        Transform childTransform = characters[activeCharacterIndex].transform;
+
+        if (child == null)
+            return;
+
+        Vector2 scale = new Vector2(Mathf.Abs(childTransform.localScale.x), Mathf.Abs(childTransform.localScale.y));
+        Vector2 size = Vector2.Scale(child.size, scale) + Vector2.one * 0.06f;
+        Vector2 center = (Vector2)childTransform.localPosition + Vector2.Scale(child.offset, scale);
+
+        parentCollider.size = size;
+        parentCollider.offset = center;
+    }
+
+    /// <summary>Back to the full formation size while characters spread out.</summary>
+    private void RestoreFormationCollider()
+    {
+        if (!formationColliderCaptured || parentCollider == null)
+            return;
+
+        parentCollider.size = formationColliderSize;
+        parentCollider.offset = formationColliderOffset;
     }
 
     private Vector3 ClampChildLocalPosition(
@@ -875,6 +924,7 @@ public class CharacterSwitcher : MonoBehaviour
         onActiveCharacterChanged?.Invoke(activeCharacterIndex);
         onCooldownChanged?.Invoke(cooldownTimer);
         onSwitchingWindowChanged?.Invoke(false);
+        FitColliderToActiveCharacter();
     }
 
     public float GetEffectiveMovementSpeed()

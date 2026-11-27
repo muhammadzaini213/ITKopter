@@ -27,6 +27,10 @@ public class GameplayManager : MonoBehaviour
         {
             gameObject.AddComponent<StoryBattleController>();
         }
+
+        // Line the playable column up with the gap between the HUD side
+        // panels at any screen aspect (WebGL / itch.io window sizes).
+        PlayAreaCameraFit.Ensure();
     }
 
     private bool bossIntroShown;

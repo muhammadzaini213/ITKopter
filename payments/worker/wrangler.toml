@@ -1,0 +1,23 @@
+name = "itkopter-payments"
+main = "src/index.js"
+compatibility_date = "2025-06-01"
+
+# KV namespace for orders. Create it once and paste the ids here:
+#   wrangler kv namespace create ORDERS
+#   wrangler kv namespace create ORDERS --preview
+[[kv_namespaces]]
+binding = "ORDERS"
+id = "8fe8b0c98ebd41b88695f212679d35ef"
+preview_id = "b1387417b75d4e109b922e0c3551f954"
+
+[vars]
+# "true" only after switching to Midtrans production keys.
+MIDTRANS_PRODUCTION = "false"
+# Comma-separated origins allowed to call the API. itch.io serves HTML5
+# games from *.itch.zone; keep localhost for local WebGL builds.
+ALLOWED_ORIGINS = "*.itch.zone,http://localhost:8000,http://localhost:8080"
+# Optional page Midtrans redirects to after payment (Snap redirect mode).
+FINISH_URL = ""
+
+# Secret (never commit it):
+#   wrangler secret put MIDTRANS_SERVER_KEY
