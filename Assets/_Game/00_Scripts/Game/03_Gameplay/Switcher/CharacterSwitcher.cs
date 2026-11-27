@@ -73,6 +73,49 @@ public class CharacterSwitcher : MonoBehaviour
 
     public int ActiveCharacterIndex => activeCharacterIndex;
 
+    private SwitchRewards rewards;
+
+    /// <summary>Tag-in burst / perfect switch / fresh-in buff / counter tag-in.</summary>
+    public SwitchRewards Rewards
+    {
+        get
+        {
+            if (rewards == null)
+                rewards = GetComponent<SwitchRewards>();
+
+            if (rewards == null)
+                rewards = gameObject.AddComponent<SwitchRewards>();
+
+            return rewards;
+        }
+    }
+
+    /// <summary>Give back a share (0..1) of the full switch cooldown.</summary>
+    public void RefundCooldown(float fraction)
+    {
+        if (cooldownTimer <= 0f || fraction <= 0f)
+            return;
+
+        cooldownTimer = Mathf.Max(0f, cooldownTimer - switchCooldown * Mathf.Clamp01(fraction));
+        onCooldownChanged?.Invoke(cooldownTimer);
+        RefreshButtons();
+    }
+
+    /// <summary>
+    /// Raised after the on-field character changes (manual switch, forced
+    /// swap after a defeat, revive). Team skills use it to move their
+    /// effect onto whoever is now fighting. Null = nobody on the field.
+    /// </summary>
+    public static event Action<Character> FieldCharacterChanged;
+
+    private void NotifyActiveCharacterChanged()
+    {
+        onActiveCharacterChanged?.Invoke(activeCharacterIndex);
+
+        GameObject active = ActiveCharacter;
+        FieldCharacterChanged?.Invoke(active != null ? active.GetComponent<Character>() : null);
+    }
+
     public GameObject ActiveCharacter =>
         isInitialized &&
         characters != null &&
@@ -111,6 +154,8 @@ public class CharacterSwitcher : MonoBehaviour
 
     private void Start()
     {
+        _ = Rewards;
+
         if (gameplayInitializer == null)
         {
             Debug.LogError(
@@ -224,7 +269,7 @@ public class CharacterSwitcher : MonoBehaviour
         RefreshButtons();
         FitColliderToActiveCharacter();
 
-        onActiveCharacterChanged?.Invoke(activeCharacterIndex);
+        NotifyActiveCharacterChanged();
         onCooldownChanged?.Invoke(cooldownTimer);
         onSwitchingWindowChanged?.Invoke(false);
     }
@@ -448,6 +493,9 @@ public class CharacterSwitcher : MonoBehaviour
         if (!lifeController.IsAlive(targetIndex))
             return;
 
+        GameObject outgoing = ActiveCharacter;
+        Rewards.OnManualSwitchStarted(outgoing != null ? outgoing.GetComponent<Character>() : null);
+
         switchCoroutine = StartCoroutine(
             SwitchRoutine(targetIndex));
     }
@@ -621,8 +669,9 @@ public class CharacterSwitcher : MonoBehaviour
         RefreshButtons();
         FitColliderToActiveCharacter();
         PlaySwitchInFeel(targetIndex, switchInInvulnerability, forced: false);
+        Rewards.OnManualSwitchCompleted(characters[targetIndex].GetComponent<Character>());
 
-        onActiveCharacterChanged?.Invoke(activeCharacterIndex);
+        NotifyActiveCharacterChanged();
         onCooldownChanged?.Invoke(cooldownTimer);
         onSwitchingWindowChanged?.Invoke(false);
 
@@ -652,6 +701,10 @@ public class CharacterSwitcher : MonoBehaviour
 
         bool wasSwitching = isSwitching;
         isSwitching = false;
+
+        // An interrupted switch or the on-field character falling: no rewards.
+        if (wasSwitching || characterIndex == activeCharacterIndex)
+            Rewards.OnForcedSwap();
 
         // A defeat mid-switch used to leave the spread-out teammates active
         // (visible and hittable but not shooting). Settle the formation.
@@ -707,7 +760,7 @@ public class CharacterSwitcher : MonoBehaviour
         RefreshAutoShoot();
         RefreshButtons();
 
-        onActiveCharacterChanged?.Invoke(activeCharacterIndex);
+        NotifyActiveCharacterChanged();
         onCooldownChanged?.Invoke(cooldownTimer);
         onSwitchingWindowChanged?.Invoke(false);
 
@@ -921,7 +974,7 @@ public class CharacterSwitcher : MonoBehaviour
         RefreshAutoShoot();
         RefreshButtons();
 
-        onActiveCharacterChanged?.Invoke(activeCharacterIndex);
+        NotifyActiveCharacterChanged();
         onCooldownChanged?.Invoke(cooldownTimer);
         onSwitchingWindowChanged?.Invoke(false);
         FitColliderToActiveCharacter();
