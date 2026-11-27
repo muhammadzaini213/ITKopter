@@ -1619,6 +1619,7 @@ GameObject:
   - component: {fileID: 675795919}
   - component: {fileID: 675795921}
   - component: {fileID: 675795920}
+  - component: {fileID: 675795922}
   m_Layer: 5
   m_Name: 07_CharImage
   m_TagString: Untagged
@@ -1684,6 +1685,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675795918}
   m_CullTransparentMesh: 1
+--- !u!114 &675795922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675795918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e7d12918b5947e2bccf9d9582750f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTapDialogue
+  context: 1
+  character: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+  useShowcaseCharacter: 0
+  customLines: []
+  lineDuration: 3
+  cooldown: 2.2
+  tapSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
 --- !u!1 &684963845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,7 +2121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 1, b: 0.9248905, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

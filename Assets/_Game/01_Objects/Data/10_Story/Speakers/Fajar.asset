@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28b817bb14ed2fbab9bc7adaf76ac79, type: 3}
+  m_Name: Fajar
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  rarity: 0
+  icon: {fileID: -2075644722, guid: 74abcd93573d7b14782fd3de0ee4a043, type: 3}
+  characterId: npc_fajar
+  characterName: Fajar
+  alias: King of All Concepts
+  description: Fajar, the King of All Concepts. Commands the Annihilator. Not a playable
+    unit (not in the CharacterDatabase).
+  characterPortrait: {fileID: 1318178845505617968, guid: 74abcd93573d7b14782fd3de0ee4a043,
+    type: 3}
+  health: 0
+  attackPower: 0
+  defensePower: 0
+  exSkillCooldown: 0
+  movementSpeed: 0
+  bulletSpeed: 0
+  characterType: 0
+  characterRole: 0
+  characterPrefab: {fileID: 0}
+  duplicateDust: {fileID: 0}
+  duplicateEngram: {fileID: 0}
+  duplicateDustAmount: 3
+  duplicateEngramAmount: 1
+  dustMaterial: {fileID: 0}
+  engramMaterial: {fileID: 0}
+  upgradeDustBase: 10
+  upgradeDustPerLevel: 2
+  upgradeEngramBase: 3
+  upgradeEngramPerLevel: 1.5
+  upgradeCoinBase: 1000
+  upgradeCoinPerLevel: 3.2

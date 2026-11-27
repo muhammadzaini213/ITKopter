@@ -38,6 +38,23 @@ public class EnergySystem : GameSystem<EnergySystem>
 
     public event Action<int> OnEnergyChanged;
 
+    public int RecoveryIntervalMinutes => Mathf.Max(1, recoveryIntervalMinutes);
+
+    /// <summary>Time until energy is full again (zero when already full).</summary>
+    public TimeSpan TimeUntilFull
+    {
+        get
+        {
+            int missing = EnergyMissing;
+
+            if (missing <= 0)
+                return TimeSpan.Zero;
+
+            return TimeUntilNextEnergy +
+                   TimeSpan.FromMinutes(RecoveryIntervalMinutes * (double)(missing - 1));
+        }
+    }
+
     public TimeSpan TimeUntilNextEnergy
     {
         get

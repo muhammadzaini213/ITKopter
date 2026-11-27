@@ -1,4 +1,4 @@
-
+using System.Collections;
 using UnityEngine;
 using Slafurry.Systems.Audio;
 
@@ -6,6 +6,13 @@ public abstract class ExSkill : MonoBehaviour
 {
     [Header("EX Skill Settings")]
     [SerializeField] private string skillName;
+
+    [SerializeField, Tooltip("Signature colour for this skill's visuals. Alpha 0 = use the skill's default.")]
+    private Color skillColor = new Color(0f, 0f, 0f, 0f);
+
+    [Header("Activation Dialogue")]
+    [SerializeField, TextArea(1, 2), Tooltip("Lines the character says (speaker toast) when the skill fires. Empty = built-in defaults.")]
+    private string[] activationLines = new string[0];
 
     [Header("Audio")]
     [SerializeField] private SFXReference activationSfx;
@@ -18,6 +25,42 @@ public abstract class ExSkill : MonoBehaviour
     public float Cooldown => owner != null
         ? owner.ExSkillCooldown
         : 0f;
+
+    /// <summary>Colour used by all of this skill's visuals.</summary>
+    public Color SkillColor => skillColor.a > 0f ? skillColor : DefaultColor;
+
+    protected virtual Color DefaultColor => new Color(0.098f, 0.941f, 1f);
+
+    /// <summary>
+    /// Team / field skills keep running after the owner is switched out
+    /// (their routines run on the scene's CombatFeel runner). Self skills
+    /// end when their owner leaves the field.
+    /// </summary>
+    protected virtual bool PersistsWhenBenched => false;
+
+    /// <summary>Built-in quips used when no lines are set in the Inspector.</summary>
+    protected virtual string[] DefaultActivationLines => null;
+
+    public string PickActivationLine()
+    {
+        string[] lines = activationLines != null && activationLines.Length > 0
+            ? activationLines
+            : DefaultActivationLines;
+
+        if (lines == null || lines.Length == 0)
+            return null;
+
+        return lines[Random.Range(0, lines.Length)];
+    }
+
+    /// <summary>Whether the controller should play the generic activation burst.</summary>
+    public virtual bool PlayDefaultActivationFeel => true;
+
+    /// <summary>Anchor that follows whichever party member is on the field.</summary>
+    protected Transform TeamAnchor =>
+        owner != null && owner.transform.parent != null
+            ? owner.transform.parent
+            : owner != null ? owner.transform : transform;
 
     public virtual void Initialize(Character character)
     {
@@ -43,5 +86,105 @@ public abstract class ExSkill : MonoBehaviour
 
     public virtual void Cancel()
     {
+    }
+
+    // ---- description (character detail "EX Skill" info) ----------------
+
+    /// <summary>
+    /// Rich-text description built from this skill's own values. attack /
+    /// defense are the character's stats at the level being viewed (0 = hide
+    /// the "~N" estimates).
+    /// </summary>
+    public virtual string Describe(float attack, float defense)
+    {
+        return "No description yet.";
+    }
+
+    protected static string AtkPct(float multiplier, float attack)
+    {
+        string pct = $"<color=#FFD447>{multiplier * 100f:0}% ATK</color>";
+        return attack > 0f
+            ? $"{pct} <color=#8FA9B5>(~{Mathf.RoundToInt(multiplier * attack)})</color>"
+            : pct;
+    }
+
+    protected static string DefPct(float multiplier, float defense)
+    {
+        string pct = $"<color=#5FB8FF>{multiplier * 100f:0}% DEF</color>";
+        return defense > 0f
+            ? $"{pct} <color=#8FA9B5>(~{Mathf.RoundToInt(multiplier * defense)})</color>"
+            : pct;
+    }
+
+    /// <summary>A plain percentage (e.g. per-stack bonuses).</summary>
+    protected static string Pct(float fraction) => $"<color=#19F0FF>{fraction * 100f:0}%</color>";
+
+    protected static string Num(float value, string unit = "") => $"<color=#19F0FF>{value:0.#}{unit}</color>";
+
+    protected static string Seconds(float value) => Num(value, "s");
+
+    // ---- routine helpers ------------------------------------------------
+
+    protected Coroutine StartSkillRoutine(IEnumerator routine)
+    {
+        if (routine == null)
+            return null;
+
+        return PersistsWhenBenched
+            ? CombatFeel.Run(routine)
+            : StartCoroutine(routine);
+    }
+
+    protected void StopSkillRoutine(ref Coroutine routine)
+    {
+        if (routine == null)
+            return;
+
+        if (PersistsWhenBenched)
+            CombatFeel.Stop(routine);
+        else
+            StopCoroutine(routine);
+
+        routine = null;
+    }
+
+    protected virtual void OnDisable()
+    {
+        // Self skills end when the owner is benched / defeated.
+        if (!PersistsWhenBenched)
+            Cancel();
+    }
+
+    protected virtual void OnDestroy()
+    {
+        Cancel();
+    }
+
+    // ---- stat helpers ---------------------------------------------------
+
+    protected static void ApplyAttack(Character target, object source, float flat)
+    {
+        if (target != null) target.SetAttackModifier(source, flat);
+    }
+
+    protected static void ApplyDefense(Character target, object source, float flat)
+    {
+        if (target != null) target.SetDefenseModifier(source, flat);
+    }
+
+    protected static void ApplyFireInterval(Character target, object source, float multiplier)
+    {
+        if (target != null) target.SetFireIntervalModifier(source, multiplier);
+    }
+
+    protected static void ClearModifiers(Character target, object source)
+    {
+        if (target != null) target.RemoveModifiers(source);
+    }
+
+    protected void ClearPartyModifiers(object source)
+    {
+        foreach (var member in SkillTargets.Party)
+            ClearModifiers(member, source);
     }
 }

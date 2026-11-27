@@ -429,6 +429,7 @@ GameObject:
   - component: {fileID: 235312022}
   - component: {fileID: 235312021}
   - component: {fileID: 235312024}
+  - component: {fileID: 235312025}
   m_Layer: 5
   m_Name: 06_CharacterImage
   m_TagString: Untagged
@@ -553,6 +554,25 @@ MonoBehaviour:
   characterImage: {fileID: 235312022}
   border: {fileID: 397988009}
   profileIcon: {fileID: 2103972850}
+--- !u!114 &235312025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235312019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e7d12918b5947e2bccf9d9582750f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTapDialogue
+  context: 0
+  character: {fileID: 0}
+  useShowcaseCharacter: 1
+  customLines: []
+  lineDuration: 3
+  cooldown: 2.2
+  tapSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
 --- !u!1 &268744976
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,6 +29,9 @@ public class Projectile : MonoBehaviour, IPoolable
     private Action<Projectile> returnToPool;
     private CharacterType? attackerType;
 
+    public float Damage => damage;
+    public Character OwnerCharacter => ownerCharacter;
+
     private float lifetimeTimer;
     private bool isInitialized;
     private bool hasHit;
@@ -133,6 +136,7 @@ public class Projectile : MonoBehaviour, IPoolable
                 targetHealth != null ? targetHealth.GetComponent<Character>() : null;
 
             bool wasAliveBefore = targetHealth != null && !targetHealth.IsDead;
+            float hpBefore = targetHealth != null ? targetHealth.CurrentHealth : 0f;
 
             IDamageable damageable =
                 hit.collider.GetComponentInParent<IDamageable>();
@@ -148,6 +152,8 @@ public class Projectile : MonoBehaviour, IPoolable
                 targetHealth != null && targetHealth.IsDead;
 
             OnHit?.Invoke(ownerCharacter, targetHealth, appliedDamage, wasKilled);
+
+            CombatEventBus.ReportDamage(ownerCharacter, targetHealth, hpBefore, wasAliveBefore);
 
             if (wasKilled && targetCharacter != null && ownerCharacter != null)
                 CombatEventBus.InvokeEnemyDiedMarked(ownerCharacter, targetCharacter);

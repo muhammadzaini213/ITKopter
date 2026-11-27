@@ -8231,6 +8231,7 @@ GameObject:
   - component: {fileID: 1825518395}
   - component: {fileID: 1825518394}
   - component: {fileID: 1825518393}
+  - component: {fileID: 1825518396}
   m_Layer: 5
   m_Name: 06_CharacterImage
   m_TagString: Untagged
@@ -8340,6 +8341,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825518390}
   m_CullTransparentMesh: 1
+--- !u!114 &1825518396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825518390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e7d12918b5947e2bccf9d9582750f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTapDialogue
+  context: 3
+  character: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+  useShowcaseCharacter: 0
+  customLines: []
+  lineDuration: 3
+  cooldown: 2.2
+  tapSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
 --- !u!1 &1857248054
 GameObject:
   m_ObjectHideFlags: 0

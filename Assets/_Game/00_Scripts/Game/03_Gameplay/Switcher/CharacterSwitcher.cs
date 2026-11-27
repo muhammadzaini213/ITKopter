@@ -37,6 +37,13 @@ public class CharacterSwitcher : MonoBehaviour
     [SerializeField, Min(0.01f)] private float spreadDuration = 0.35f;
     [SerializeField, Min(0.01f)] private float mergeDuration = 0.35f;
 
+    [Header("Feel")]
+    [SerializeField, Min(0f), Tooltip("I-frames for the character forced onto the field after a teammate falls.")]
+    private float forcedSwapInvulnerability = 1.2f;
+
+    [SerializeField, Min(0f), Tooltip("I-frames for the incoming character after a manual switch.")]
+    private float switchInInvulnerability = 0.35f;
+
     [Header("Events")]
     [SerializeField] private UnityEvent<int> onActiveCharacterChanged;
     [SerializeField] private UnityEvent<float> onCooldownChanged;
@@ -86,6 +93,7 @@ public class CharacterSwitcher : MonoBehaviour
 
     public bool CanSwitch =>
         isInitialized &&
+        !AnnihilatorManifestation.IsAnyManifesting &&
         characters != null &&
         characters.Length > 1 &&
         !isSwitching &&
@@ -169,6 +177,9 @@ public class CharacterSwitcher : MonoBehaviour
             defeatedCharacters);
 
         lifeController.CharacterDefeated += HandleCharacterDeath;
+        lifeController.CharacterRevived += HandleCharacterRevived;
+
+        CombatFeel.Ensure();
 
         combatController.Initialize(
             characters,
@@ -417,6 +428,10 @@ public class CharacterSwitcher : MonoBehaviour
         if (targetIndex == activeCharacterIndex)
             return;
 
+        // No living active character (everyone down) — nothing to switch from.
+        if (activeCharacterIndex < 0 || activeCharacterIndex >= characters.Length)
+            return;
+
         if (!lifeController.IsAlive(targetIndex))
             return;
 
@@ -447,6 +462,14 @@ public class CharacterSwitcher : MonoBehaviour
         {
             if (i == targetIndex)
                 continue;
+
+            // Defeated members don't take a slot (a living teammate used to
+            // end up on the far slot next to an empty one).
+            if (!lifeController.IsAlive(i))
+            {
+                formationTargets[i] = characters[i].transform.localPosition;
+                continue;
+            }
 
             formationTargets[i] =
                 remainingPositionIndex == 0
@@ -582,6 +605,7 @@ public class CharacterSwitcher : MonoBehaviour
 
         RefreshAutoShoot();
         RefreshButtons();
+        PlaySwitchInFeel(targetIndex, switchInInvulnerability, forced: false);
 
         onActiveCharacterChanged?.Invoke(activeCharacterIndex);
         onCooldownChanged?.Invoke(cooldownTimer);
@@ -611,9 +635,25 @@ public class CharacterSwitcher : MonoBehaviour
             switchCoroutine = null;
         }
 
+        bool wasSwitching = isSwitching;
         isSwitching = false;
 
-        if (characterIndex == activeCharacterIndex)
+        // A defeat mid-switch used to leave the spread-out teammates active
+        // (visible and hittable but not shooting). Settle the formation.
+        if (wasSwitching && characterIndex != activeCharacterIndex &&
+            lifeController.IsAlive(activeCharacterIndex))
+        {
+            for (int i = 0; i < characters.Length; i++)
+                characters[i].SetActive(i == activeCharacterIndex);
+
+            characters[activeCharacterIndex].transform.localPosition =
+                ClampChildLocalPosition(activeCharacterIndex, frontPosition.localPosition);
+        }
+
+        bool forcedSwap = false;
+
+        if (characterIndex == activeCharacterIndex ||
+            !lifeController.IsAlive(activeCharacterIndex))
         {
             int nextIndex =
                 lifeController.FindNextLivingCharacter(
@@ -628,8 +668,11 @@ public class CharacterSwitcher : MonoBehaviour
                         nextIndex,
                         frontPosition.localPosition);
 
-                characters[nextIndex].SetActive(true);
+                for (int i = 0; i < characters.Length; i++)
+                    characters[i].SetActive(i == nextIndex);
+
                 cooldownTimer = 0f;
+                forcedSwap = true;
             }
             else
             {
@@ -653,7 +696,87 @@ public class CharacterSwitcher : MonoBehaviour
         onCooldownChanged?.Invoke(cooldownTimer);
         onSwitchingWindowChanged?.Invoke(false);
 
+        // Losing a teammate should land hard.
+        CombatFeel.HitStop(0.2f, 0.02f);
+        CombatFeel.Shake(0.45f, 0.45f);
+        CombatFeel.Flash(new Color(1f, 0.1f, 0.1f, 0.35f), 0.35f);
+
+        if (forcedSwap)
+            PlaySwitchInFeel(activeCharacterIndex, forcedSwapInvulnerability, forced: true);
+
         isHandlingDeath = false;
+    }
+
+    private void HandleCharacterRevived(int characterIndex)
+    {
+        if (!isInitialized)
+            return;
+
+        // Revived members stay benched until switched in.
+        if (characterIndex != activeCharacterIndex && !isSwitching &&
+            characterIndex >= 0 && characterIndex < characters.Length)
+        {
+            characters[characterIndex].SetActive(false);
+        }
+
+        RefreshAutoShoot();
+        RefreshButtons();
+    }
+
+    private void PlaySwitchInFeel(int index, float invulnerability, bool forced)
+    {
+        if (index < 0 || index >= characters.Length || characters[index] == null)
+            return;
+
+        GameObject character = characters[index];
+        Vector3 pos = character.transform.position;
+        float radius = SkillVFX.GetVisualRadius(character.transform);
+        Color color = forced ? new Color(1f, 0.45f, 0.35f) : new Color(0.098f, 0.941f, 1f);
+
+        SkillVFX.Ghost(character.transform, color.WithAlpha(0.7f), 0.3f, 1.5f);
+        SkillVFX.Ring(pos, color, radius * 0.5f, radius * 2.6f, 0.3f, 0.08f);
+        SkillVFX.Sparks(pos, color, 10, 4f, 0.3f);
+
+        if (!forced)
+            CombatFeel.Shake(0.08f, 0.12f);
+
+        if (invulnerability > 0f && characterHealths[index] != null)
+        {
+            characterHealths[index].SetInvulnerable(invulnerability);
+            StartCoroutine(InvulnerabilityBlink(index, invulnerability));
+        }
+    }
+
+    private IEnumerator InvulnerabilityBlink(int index, float duration)
+    {
+        GameObject character = characters[index];
+        SpriteRenderer[] sprites = character.GetComponentsInChildren<SpriteRenderer>(true);
+        float elapsed = 0f;
+        bool dim = false;
+
+        while (elapsed < duration && character != null && character.activeInHierarchy)
+        {
+            dim = !dim;
+
+            foreach (var sr in sprites)
+            {
+                if (sr == null) continue;
+                Color c = sr.color;
+                c.a = dim ? 0.35f : 1f;
+                sr.color = c;
+            }
+
+            yield return new WaitForSeconds(0.07f);
+            elapsed += 0.07f;
+        }
+
+        foreach (var sr in sprites)
+        {
+            if (sr == null) continue;
+            Color c = sr.color;
+            c.a = 1f;
+            sr.color = c;
+        }
     }
 
     private Vector3 ClampChildLocalPosition(
@@ -784,7 +907,10 @@ public class CharacterSwitcher : MonoBehaviour
         }
 
         if (lifeController != null)
+        {
             lifeController.CharacterDefeated -= HandleCharacterDeath;
+            lifeController.CharacterRevived -= HandleCharacterRevived;
+        }
 
         if (switchCoroutine != null)
         {

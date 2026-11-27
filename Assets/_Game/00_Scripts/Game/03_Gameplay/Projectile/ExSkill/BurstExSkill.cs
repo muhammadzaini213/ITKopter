@@ -179,7 +179,7 @@ public class BurstExSkill : ExSkill
         gameObject.SetActive(false);
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
         if (durationRoutine != null)
         {

@@ -656,6 +656,10 @@ MonoBehaviour:
   coinsText: {fileID: 4531298497037055500}
   gemsText: {fileID: 2175290193472442576}
   energyText: {fileID: 1456643390073824577}
+  energyButton: {fileID: 0}
+  energyClickSfx: {fileID: 11400000, guid: a247ef5ea398efdb6b48e237b08ef786, type: 2}
+  energyBarTemplate: {fileID: 5983847454496142587, guid: 3537291d1a0103837984c5d5b10d1da4,
+    type: 3}
 --- !u!1 &9181214246882694966
 GameObject:
   m_ObjectHideFlags: 0

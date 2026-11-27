@@ -96,6 +96,12 @@ public static class CounterMechanics
                 targetType = targetCharacter.CharacterType;
         }
 
+        bool wasAlive = !target.IsDead;
+        float hpBefore = target.CurrentHealth;
+
         target.TakeDamage(amount * GetMultiplier(attackerType, targetType));
+
+        // EX skill damage feeds the same team-damage / kill events as bullets.
+        CombatEventBus.ReportDamage(attacker, target, hpBefore, wasAlive);
     }
 }

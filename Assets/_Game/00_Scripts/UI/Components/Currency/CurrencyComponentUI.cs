@@ -1,6 +1,8 @@
 
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using Slafurry.Systems.Audio;
 
 public class CurrencyComponentUI : MonoBehaviour
 {
@@ -8,6 +10,15 @@ public class CurrencyComponentUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinsText;
     [SerializeField] private TextMeshProUGUI gemsText;
     [SerializeField] private TextMeshProUGUI energyText;
+
+    [Header("Energy Recovery Popup")]
+    [SerializeField, Tooltip("Tap target that opens the energy recovery popup. Empty = the energy bar (energy text's parent) becomes the button.")]
+    private Button energyButton;
+
+    [SerializeField] private SFXReference energyClickSfx;
+
+    [SerializeField, Tooltip("Slider asset for the popup's energy bar (the profile EXP slider, from PlayerExpBar.prefab).")]
+    private Slider energyBarTemplate;
 
     private CurrencySystem currencySystem;
     private EnergySystem energySystem;
@@ -26,6 +37,8 @@ public class CurrencyComponentUI : MonoBehaviour
             return;
         }
 
+        SetupEnergyButton();
+
         currencySystem.OnCoinsChanged += UpdateCoins;
         currencySystem.OnGemsChanged += UpdateGems;
         energySystem.OnEnergyChanged += UpdateEnergy;
@@ -34,6 +47,41 @@ public class CurrencyComponentUI : MonoBehaviour
         UpdateCoins(currencySystem.Coins);
         UpdateGems(currencySystem.Gems);
         UpdateEnergy(energySystem.Energy);
+    }
+
+    private void SetupEnergyButton()
+    {
+        if (energyButton == null && energyText != null)
+        {
+            // Prefer the bar (parent) so the whole bar is tappable.
+            GameObject target = energyText.transform.parent != null &&
+                                energyText.transform.parent.GetComponent<Graphic>() != null
+                ? energyText.transform.parent.gameObject
+                : energyText.gameObject;
+
+            energyButton = target.GetComponent<Button>();
+
+            if (energyButton == null)
+            {
+                energyButton = target.AddComponent<Button>();
+                energyButton.transition = Selectable.Transition.ColorTint;
+            }
+
+            Graphic graphic = target.GetComponent<Graphic>();
+            if (graphic != null)
+            {
+                graphic.raycastTarget = true;
+                energyButton.targetGraphic = graphic;
+            }
+        }
+
+        if (energyButton != null)
+            energyButton.onClick.AddListener(OpenEnergyPopup);
+    }
+
+    private void OpenEnergyPopup()
+    {
+        EnergyRecoveryPopupUI.Show(energyClickSfx, energyBarTemplate);
     }
 
     private void UpdateCoins(int value)
@@ -56,6 +104,9 @@ public class CurrencyComponentUI : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (energyButton != null)
+            energyButton.onClick.RemoveListener(OpenEnergyPopup);
+
         if (currencySystem != null)
         {
             currencySystem.OnCoinsChanged -= UpdateCoins;

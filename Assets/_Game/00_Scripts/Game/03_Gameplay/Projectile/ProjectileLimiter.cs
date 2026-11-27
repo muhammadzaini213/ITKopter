@@ -23,6 +23,9 @@ public class ProjectileLimiter : MonoBehaviour
 
     public int MaxEnemyProjectiles => maxEnemyProjectiles;
 
+    /// <summary>When set, culled bullets burst into sparks of this colour.</summary>
+    public Color? CullColor { get; set; }
+
     private void Update()
     {
         timer -= Time.deltaTime;
@@ -51,7 +54,16 @@ public class ProjectileLimiter : MonoBehaviour
             var excess = enemyProjectiles[last];
 
             if (excess != null)
+            {
+                if (CullColor.HasValue)
+                {
+                    Vector3 pos = excess.transform.position;
+                    SkillVFX.Sparks(pos, CullColor.Value, 5, 3f, 0.25f, 0.08f);
+                    SkillVFX.Ring(pos, CullColor.Value, 0.05f, 0.4f, 0.18f, 0.04f, 4, 1, 0f);
+                }
+
                 excess.ReturnToPool();
+            }
 
             enemyProjectiles.RemoveAt(last);
         }

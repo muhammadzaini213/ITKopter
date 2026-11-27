@@ -22,6 +22,10 @@ public class RewardPopupUI : MonoBehaviour
     [Tooltip("Optional sound per item.")]
     [SerializeField] private SFXReference punchSfx;
 
+    [Header("Player EXP")]
+    [Tooltip("Profile EXP bar shown after a level clear (hidden when there is no EXP gain).")]
+    [SerializeField] private ExpGainBarUI expGainBar;
+
     private readonly List<RewardItemUI> spawnedItems = new();
     private Coroutine revealRoutine;
 
@@ -64,8 +68,14 @@ public class RewardPopupUI : MonoBehaviour
 
         ClearRewards();
 
-        if (rewards == null || rewards.Count == 0)
+        bool hasExp = expGainBar != null &&
+                      PlayerSystem.Instance != null &&
+                      PlayerSystem.Instance.HasPendingExpGain;
+
+        if ((rewards == null || rewards.Count == 0) && !hasExp)
             return;
+
+        rewards ??= System.Array.Empty<RewardData>();
 
         Dictionary<RewardData, int> amounts = new();
         List<RewardData> orderedRewards = new();
@@ -104,6 +114,9 @@ public class RewardPopupUI : MonoBehaviour
         }
 
         popupRoot.SetActive(true);
+
+        if (expGainBar != null)
+            expGainBar.PlayPendingGain();
 
         if (revealRoutine != null)
             StopCoroutine(revealRoutine);

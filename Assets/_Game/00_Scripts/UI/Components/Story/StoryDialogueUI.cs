@@ -25,6 +25,15 @@ public class StoryDialogueUI : MonoBehaviour
     [SerializeField] private Color activePortraitColor = Color.white;
     [SerializeField] private Color inactivePortraitColor = new Color(0.35f, 0.38f, 0.45f, 1f);
 
+    [Header("Portrait Border (same as the character detail menu)")]
+    [SerializeField] private Sprite portraitBorderSprite;
+    [SerializeField] private Color portraitBorderColor = new Color(0f, 0.98f, 1f, 1f);
+    [Tooltip("Border height relative to its width (detail menu: 512 / 467).")]
+    [SerializeField, Min(0.1f)] private float portraitBorderAspect = 512f / 467f;
+
+    private Image leftBorder;
+    private Image rightBorder;
+
     [Header("Dialogue Box")]
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private GameObject namePlate;
@@ -297,12 +306,16 @@ public class StoryDialogueUI : MonoBehaviour
 
     private void ShowSpeaker(StoryLine line)
     {
-        CharacterData speaker = line.speaker;
+        // Named speakers without a playable unit (Fajar, the King of All
+        // Concepts) resolve by name to their portrait data.
+        CharacterData speaker = StorySystem.Instance != null
+            ? StorySystem.Instance.ResolveSpeaker(line.speaker, line.speakerName)
+            : line.speaker;
         Sprite portrait = speaker != null ? speaker.CharacterPortrait : null;
 
         if (portrait == null)
         {
-            // Off-screen speaker (Fajar, Council): keep whoever is on stage, dimmed.
+            // Off-screen speaker (Council, ...): keep whoever is on stage, dimmed.
             DimPortraits();
             return;
         }
@@ -340,6 +353,59 @@ public class StoryDialogueUI : MonoBehaviour
         image.preserveAspect = true;
         image.enabled = sprite != null;
         image.color = active ? activePortraitColor : inactivePortraitColor;
+
+        Image border = GetBorder(image);
+
+        if (border != null)
+        {
+            border.gameObject.SetActive(sprite != null);
+
+            // Dim with the portrait so the speaking side stands out.
+            border.color = active
+                ? portraitBorderColor
+                : portraitBorderColor * inactivePortraitColor;
+        }
+    }
+
+    // Detail-menu style bracket border over each portrait (drawn on top,
+    // like 04_CharBorder over 03_CharPortrait), created on first use as the
+    // portrait's next sibling so it isn't hidden by the portrait's toggling.
+    private Image GetBorder(Image portrait)
+    {
+        if (portraitBorderSprite == null || portrait == null)
+            return null;
+
+        bool left = portrait == leftPortrait;
+        Image existing = left ? leftBorder : rightBorder;
+
+        if (existing != null)
+            return existing;
+
+        var go = new GameObject(portrait.name + "Border", typeof(RectTransform));
+        go.transform.SetParent(portrait.transform.parent, false);
+        go.transform.SetSiblingIndex(portrait.transform.GetSiblingIndex() + 1);
+
+        var border = go.AddComponent<Image>();
+        border.sprite = portraitBorderSprite;
+        border.raycastTarget = false;
+        border.preserveAspect = false;
+
+        var src = portrait.rectTransform;
+        var rect = border.rectTransform;
+        rect.anchorMin = src.anchorMin;
+        rect.anchorMax = src.anchorMax;
+        rect.pivot = new Vector2(0.5f, 0f);
+
+        // Bottom-aligned like the detail menu: full width, shorter than the art.
+        float width = src.rect.width;
+        rect.sizeDelta = new Vector2(width, width * portraitBorderAspect);
+        rect.anchoredPosition = src.anchoredPosition +
+                                new Vector2((0.5f - src.pivot.x) * width, -src.pivot.y * src.rect.height);
+
+        if (left) leftBorder = border;
+        else rightBorder = border;
+
+        return border;
     }
 
     private void HideAllPanels()

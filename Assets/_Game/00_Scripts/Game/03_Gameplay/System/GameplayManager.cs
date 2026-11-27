@@ -125,6 +125,10 @@ public class GameplayManager : MonoBehaviour
 
         IsLevelCompleted = true;
 
+        // Player EXP (first clear doubles) — granted before CompleteLevel so
+        // the first-clear check still sees the level as uncleared.
+        GrantPlayerExp(levelSystem.CurrentLevel);
+
         if (StoryBattleController.Active != null)
         {
             StoryBattleController.Active.HandleVictory();
@@ -146,7 +150,22 @@ public class GameplayManager : MonoBehaviour
 
         GrantLevelRewards(levelRewards, completedLevel.RewardEntries);
 
+        // A level with no item rewards still shows the popup for its EXP bar.
+        if (RewardSystem.Instance != null && !RewardSystem.Instance.IsPopupOpen &&
+            PlayerSystem.Instance != null && PlayerSystem.Instance.HasPendingExpGain)
+        {
+            RewardSystem.Instance.ShowRewardPopup(System.Array.Empty<RewardData>(), System.Array.Empty<int>());
+        }
+
         returnToMenuCoroutine = StartCoroutine(ReturnToMainMenu());
+    }
+
+    // Grants the clear EXP. The reward popup's profile EXP bar
+    // (ExpGainBarUI) animates the gain, level-ups included.
+    private void GrantPlayerExp(LevelData level)
+    {
+        if (PlayerSystem.Instance != null && level != null)
+            PlayerSystem.Instance.GrantLevelExp(level);
     }
 
     private void GrantLevelRewards(RewardData[] levelRewards, StoryRewardEntry[] rewardEntries)

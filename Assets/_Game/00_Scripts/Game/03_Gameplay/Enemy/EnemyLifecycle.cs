@@ -1,5 +1,7 @@
 
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 // Lifetime exit + death/despawn cleanup (spec section 5):
@@ -39,6 +41,17 @@ public class EnemyLifecycle : MonoBehaviour
     [SerializeField] private EnemyShooter shooter;
     [SerializeField] private Health health;
 
+    // Registry of live enemies — EX skills use it instead of scanning every
+    // Health in the scene (which also finds the player's characters).
+    private static readonly List<EnemyLifecycle> active = new List<EnemyLifecycle>();
+    public static IReadOnlyList<EnemyLifecycle> Active => active;
+
+    /// <summary>Fires once per enemy, the moment it dies.</summary>
+    public static event Action<EnemyLifecycle> OnAnyEnemyDied;
+
+    public Health Health => health;
+    public bool IsAlive => health != null && !health.IsDead && !finished;
+
     private float timer;
     private bool exiting;
     private bool finished;
@@ -74,6 +87,9 @@ public class EnemyLifecycle : MonoBehaviour
 
     private void OnEnable()
     {
+        if (!active.Contains(this))
+            active.Add(this);
+
         if (movement != null)
             movement.OnLeftScreen += HandleLeftScreen;
 
@@ -83,6 +99,8 @@ public class EnemyLifecycle : MonoBehaviour
 
     private void OnDisable()
     {
+        active.Remove(this);
+
         if (movement != null)
             movement.OnLeftScreen -= HandleLeftScreen;
 
@@ -129,6 +147,8 @@ public class EnemyLifecycle : MonoBehaviour
 
             if (GetComponent<EnemyBoss>() != null)
                 Objectives.Report(ObjectiveType.DefeatBosses, 1);
+
+            OnAnyEnemyDied?.Invoke(this);
         }
 
         // Stop everything — the corpse no longer moves or shoots.
@@ -181,7 +201,7 @@ public class EnemyLifecycle : MonoBehaviour
     private IEnumerator DeathSpinRoutine()
     {
         Vector3 startScale = transform.localScale;
-        float direction = Random.value < 0.5f ? -1f : 1f;
+        float direction = UnityEngine.Random.value < 0.5f ? -1f : 1f;
         float time = 0f;
 
         while (time < deathSpinDuration)
