@@ -1,0 +1,1159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4877fb6ffc62fe90d83c8e4d3d4cb55f, type: 3}
+  m_Name: 11_Chapter11
+  m_EditorClassIdentifier: Assembly-CSharp::StoryData
+  storyId: story_main_11
+  storyName: The Easiest Way Out
+  storyDescription: 'The Council explains Concept Erasure. Battle: Regu, the Special
+    Concept of Regulation.'
+  chapterLabel: CHAPTER 11
+  previousStory: {fileID: 11400000, guid: c2303977e22bd8bb7b781ef76466a4df, type: 2}
+  requiredLevel: {fileID: 11400000, guid: 287f38355bf78882790dcdb8d428d346, type: 2}
+  storyPrefab: {fileID: 0}
+  segments:
+  - type: 0
+    lines:
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Your performance has been satisfactory so far, Fajar.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Thanks, I guess.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: There is something important we need to explain before your next assignment.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What's that?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Your authority as King grants you access to an ability known as Concept
+        Erasure.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Concept... Erasure?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yes. It allows you to erase a concept from existence.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That sounds pretty straightforward.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: That is precisely why it is dangerous.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Concept Erasure is one of the easiest abilities for a King to activate.
+        However, controlling its consequences is an entirely different matter.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What happens if I erase something?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: That depends on what you erase. Concepts are connected to one another
+        through countless dependencies. Removing one may affect many others.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Imagine removing a single component from a system without knowing what
+        depends on it. The consequences may extend far beyond your original intention.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So I could accidentally break something much bigger?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Exactly.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then why give me that ability in the first place?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Because it is necessary for the King to maintain balance. Some situations
+        cannot be resolved through ordinary Concept Clashes.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: But you must not use it carelessly. Especially while your understanding
+        of Concept World is still limited.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Got it. Don't delete things just because I can.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: That is a good way to put it.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A short pause.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Now, we have another assignment for you.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...I knew it.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: We want you to weaken the Special Concept of Regulation.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regulation? Is that another recurring assignment?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Not exactly. This is a special investigation.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What's special about it?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: We want to measure how deeply your mind can process conceptual abstraction.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Your ability to perceive Ei-Pi on your first day was unusual. We want
+        to know whether you can handle more complex concepts.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: And Regulation is the test?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yes. Regu is currently one of the closest concepts we have found to the
+        idea of authoritarianism.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Why not just find the Concept Spirit of Dictatorship?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: We have not been able to locate one.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regulation is not the same as Dictatorship. However, when Regulation
+        becomes excessively dominant, it can be used to justify oppressive systems.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu is also periodically weakened to prevent her relevance from becoming
+        dangerous.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So, just like Vio?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Similar in principle.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Alright. I'll take the assignment.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: CONCEPT WORLD
+      heading: GREEN LAB
+      text: 
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar and Noz arrive in an area filled with abstract panels, documents,
+        and rigid geometric structures.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: This is where Regu is most likely to be found.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Looks like an office.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: An understandable interpretation.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Please tell me she isn't going to make me fill out paperwork.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I cannot guarantee that.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A voice comes from behind a stack of documents.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Excuse me. Do you have an appointment?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu steps forward, holding a folder.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Are you Regu?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: That depends. Who is asking?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: This is Fajar, the newly appointed King of All Concepts.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Oh! The new King. I see.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: "I'm here to\u2014"
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Please wait. Before proceeding, I need to verify whether this interaction
+        complies with the current regulations.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Seriously?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Naturally. Rules exist for a reason.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I'm here to weaken your relevance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Ah. I see. Then I suppose we can skip the paperwork.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's convenient.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Not really. I was looking forward to making you fill it out.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu smiles.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Well, Your Majesty. Let's see whether you can enforce your authority
+        against mine.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 1
+    lines: []
+    level: {fileID: 11400000, guid: c81c6de30ae22ef60ac2eaf74951f5fb, type: 2}
+    team:
+    - {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    - {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    - {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu lowers her folder.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Well, that was rather inconvenient.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Sorry about that.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: No need to apologize. I suppose I'll have to revise a few things.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The assignment is complete. Regu's relevance has been reduced.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Until next time, Your Majesty. Please remember to follow the proper procedures.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yeah, sure.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar and Noz leave.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: CONCEPT WORLD
+      heading: WHITE FIELD
+      text: 
+      blackScreen: 0
+      background: {fileID: -2227176189160616940, guid: 0b0ce7031ad60871fa6b57113d8933da,
+        type: 3}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That should be the last assignment for today, right?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: According to the current instructions, yes.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Great. Let's head back.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: As they walk, Fajar notices a familiar figure standing nearby.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Hey. You!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The white figure turns around. This time, she doesn't immediately run.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You're the one I saw earlier, aren't you?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Oh?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Who is she?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I believe I recognize her.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...Hello?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: You're a Concept Spirit?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Yes. I think so.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You think so?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Well, I was born recently. I'm still trying to understand what I am.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Interesting. A newly reincarnated Concept Spirit.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What concept?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Artificial Intelligence.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Artificial Intelligence?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: That's me!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Before Fajar can ask anything else, another voice interrupts.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Well, well! There you are!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Trady approaches EyaY.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Come along, dear. There's something interesting waiting for us.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Huh? Where?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: You'll find out soon enough.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Do you know her?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Oh, Your Majesty! Fancy seeing you here.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yeah. I was just talking to her.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Wonderful! Then I won't keep you any longer. I have somewhere to be.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Wait, what are we going to do?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Something interesting, of course!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Trady takes EyaY away.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Well, that was strange.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Indeed. A newly reincarnated Anomaly Concept of Artificial Intelligence.
+        We should keep that in mind.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Sure. Let's go home.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  background: {fileID: 3398196857506778724, guid: c93c1b04ce0f2defab9de04cca50dd4c,
+    type: 3}
+  storyRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+    amount: 3000
+  - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+    amount: 160
+  nextStory: {fileID: 11400000, guid: a35ce0dd54cd9d3a3b0b6239e73d3188, type: 2}
+  afterScene: {fileID: 0}
+  afterSceneToasts: []
+  afterGachaPullToasts: []
+  afterAction: 0
+  afterActionToasts: []
+  followUpLines: []
+  timeLimitSeconds: 600
+  storyMusic: {fileID: 11400000, guid: 4b1fa867380b439deb875767a04db9f4, type: 2}

@@ -90,6 +90,20 @@ public class CharacterSwitcher : MonoBehaviour
         }
     }
 
+    /// <summary>Raised when a manual switch starts (the switching window opens).</summary>
+    public static event Action ManualSwitchStarted;
+
+    /// <summary>Tutorials: make switching available right now.</summary>
+    public void ResetCooldown()
+    {
+        if (cooldownTimer <= 0f)
+            return;
+
+        cooldownTimer = 0f;
+        onCooldownChanged?.Invoke(cooldownTimer);
+        RefreshButtons();
+    }
+
     /// <summary>Give back a share (0..1) of the full switch cooldown.</summary>
     public void RefundCooldown(float fraction)
     {
@@ -495,6 +509,7 @@ public class CharacterSwitcher : MonoBehaviour
 
         GameObject outgoing = ActiveCharacter;
         Rewards.OnManualSwitchStarted(outgoing != null ? outgoing.GetComponent<Character>() : null);
+        ManualSwitchStarted?.Invoke();
 
         switchCoroutine = StartCoroutine(
             SwitchRoutine(targetIndex));

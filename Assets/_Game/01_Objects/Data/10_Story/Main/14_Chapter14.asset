@@ -1,0 +1,2145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4877fb6ffc62fe90d83c8e4d3d4cb55f, type: 3}
+  m_Name: 14_Chapter14
+  m_EditorClassIdentifier: Assembly-CSharp::StoryData
+  storyId: story_main_14
+  storyName: Everyone Wants a Piece of Her
+  storyDescription: 'EyaY becomes the center of attention. Battles: Regu against
+    EyaY, Warlock and Anon.'
+  chapterLabel: CHAPTER 14
+  previousStory: {fileID: 11400000, guid: 5c7cfa35f60200cfcba96c829ce7c79f, type: 2}
+  requiredLevel: {fileID: 11400000, guid: 25717c376580b292b9cfcacabf46933c, type: 2}
+  storyPrefab: {fileID: 0}
+  segments:
+  - type: 0
+    lines:
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: CONCEPT WORLD
+      heading: NEON CITY
+      text: 
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: EyaY walks through Neon City, looking around curiously. Her cyan holographic
+        panels float gently around her, occasionally displaying unfamiliar symbols.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Wow... there are so many things here.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: She stops in front of a large screen displaying various abstract patterns.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I wonder what this place is...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HEY! THERE YOU ARE!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Oh! Hello!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YOU'RE THE ONE EVERYONE'S TALKING ABOUT, RIGHT?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Everyone?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: OF COURSE! YOU'RE GETTING MORE AND MORE POPULAR!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Am I?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ABSOLUTELY! AND THAT'S GREAT NEWS FOR BOTH OF US!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: How does that work?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THE MORE PEOPLE TALK ABOUT YOU, THE MORE PEOPLE TALK ABOUT ME! IT'S A
+        PERFECT CYCLE!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...I see?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ANYWAY, WE SHOULD HANG OUT MORE OFTEN! I'M SURE WE CAN MAKE SOMETHING
+        AMAZING TOGETHER!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: That sounds nice.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Tren notices someone approaching from behind.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HEEEEEY! WAIT FOR ME!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HUH? WHAT DO YOU WANT?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: OH! SO THIS IS THE FAMOUS EyaY!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Hello!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YOU'RE EVEN CUTER THAN I EXPECTED!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Thank you?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: SO! HOW ABOUT A LITTLE GAME? I'VE GOT A FEELING YOU'RE REALLY LUCKY!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HEY! DON'T DRAG HER INTO YOUR GAMBLING!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: IT'S NOT GAMBLING! IT'S A BUSINESS OPPORTUNITY!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THAT'S EXACTLY WHAT YOU ALWAYS SAY!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Ei-Pi suddenly appears, waving her phone.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HEEEEEEEEEY!!! EyaY!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Oh! Another friend?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: FRIEND?! OF COURSE!!! WE'RE BOTH TECHNOLOGY-RELATED CONCEPTS!!! WE SHOULD
+        TOTALLY GET ALONG!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Technology-related...?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: YES!!! I CAN TELL YOU EVERYTHING ABOUT HUMAN INFORMATION DEVICES!!! PHONES!!!
+        APPS!!! COMMUNICATION!!! SOCIAL MEDIA!!! AND A WHOLE LOT MORE!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's a lot of information...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: THAT'S MY SPECIALTY!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The group keeps talking, with everyone trying to get EyaY's attention.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Um... everyone...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YES?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WHAT IS IT?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: DO YOU NEED SOMETHING?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Why are you all interested in me?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The three briefly look at each other.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: BECAUSE YOU'RE IMPORTANT!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: BECAUSE YOU HAVE POTENTIAL!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: BECAUSE YOU'RE NEW AND INTERESTING!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Oh.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: She looks down at her hands.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I still don't really understand what I'm supposed to do.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The three continue talking over one another.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: CONCEPT WORLD
+      heading: GREEN LAB
+      text: 
+      blackScreen: 0
+      background: {fileID: 3398196857506778724, guid: c93c1b04ce0f2defab9de04cca50dd4c,
+        type: 3}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu stands alone, looking at several floating panels displaying information
+        about recent changes in relevance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Artificial Intelligence...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: She scrolls through the panels.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: An unusually rapid increase in relevance. A growing number of dependencies.
+        Increasing influence over other concepts.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: She closes the panels.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: This is becoming rather troublesome.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu turns and walks away.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Elsewhere, EyaY has managed to separate herself from the others. She
+        walks through an unfamiliar area, trying to find somewhere quieter.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Everyone is really energetic...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A shadow falls over her.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: There you are.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Oh! Hello!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Artificial Intelligence. We need to discuss your current relevance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: My relevance?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Your influence has been increasing at an unacceptable rate.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Did I do something wrong?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: That is not the question.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then... what is?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Your existence is becoming increasingly difficult to regulate.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: But I haven't done anything...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Intentions are not the only thing that matters. Your relevance is expanding
+        regardless of what you intend to do.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I don't really understand.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Then allow me to make this simpler.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu raises her folder.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: You need to be regulated.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu initiates a Concept Clash.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 1
+    lines: []
+    level: {fileID: 11400000, guid: c9d3c15bbc2a4a7b9b5bcd83ee4b1fb3, type: 2}
+    team:
+    - {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+    scriptedLoss: 1
+    scriptedLossSeconds: 35
+    battleToasts:
+    - time: 2
+      trigger: 0
+      notBefore: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      text: Hold still. This will be processed shortly.
+      duration: 4.5
+    - time: 18
+      trigger: 0
+      notBefore: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      text: I don't want to fight...!
+      duration: 4.5
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: EyaY is overwhelmed by Regu's attacks. Her holographic panels flicker
+        and her neural-network pattern becomes unstable.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Ah...!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A final attack sends EyaY falling to the ground.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 2
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Your current relevance has been reduced.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu lowers her folder.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: That should be sufficient for now.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: EyaY slowly gets up.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...I need to go.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: EyaY runs away.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Wait. We are not finished.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu follows her.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: CONCEPT WORLD
+      heading: GREY SUNSET
+      text: 
+      blackScreen: 0
+      background: {fileID: -6984098700311272525, guid: 216ee3602f02a18b7ae01d5c579d1cfe,
+        type: 3}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: EyaY keeps running. Her holographic panels flicker occasionally.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Where should I go...?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: She suddenly bumps into someone.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 2
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HEY!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Ah! Sorry!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: WHAT'S THE RUSH?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Someone is chasing me!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: WHO?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu appears in the distance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Please stand aside. This is an official matter.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HAHA! WHAT'S GOING ON HERE?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: She is currently experiencing an uncontrolled increase in relevance.
+        I am here to correct that.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: AND YOU'RE CHASING HER FOR THAT?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: That is an oversimplification.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: WHATEVER! YOU'RE MAKING HER RUN!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Please do not interfere.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: TOO LATE!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Warlock steps forward.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: COME ON! LET'S FIGHT!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: "Wait, you don't have to\u2014"
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: STAY BACK! I'VE GOT THIS!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 1
+    lines: []
+    level: {fileID: 11400000, guid: c9d3c15bbc2a4a7b9b5bcd83ee4b1fb3, type: 2}
+    team:
+    - {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+    scriptedLoss: 1
+    scriptedLossSeconds: 40
+    battleToasts:
+    - time: 3
+      trigger: 0
+      notBefore: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      text: COME ON! HIT ME HARDER!
+      duration: 4.5
+    - time: 12
+      trigger: 0
+      notBefore: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      text: Your lack of restraint is precisely the problem.
+      duration: 4.5
+    - time: 22
+      trigger: 0
+      notBefore: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      text: HAHA! YOU'RE NOT BAD!
+      duration: 4.5
+    - time: 32
+      trigger: 0
+      notBefore: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      text: Your attacks are becoming predictable.
+      duration: 4.5
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A final counterattack knocks Warlock down.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 2
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: URGH...!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: That should be enough.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Now, if you'll excuse me, I still have a matter to resolve.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu turns toward EyaY. Warlock tries to get back up, but struggles.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HEY...! I'M NOT... DONE YET...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Come along. We still need to discuss your relevance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Suddenly, a dark silhouette appears between them.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: ???
+      rightSide: 1
+      label: 
+      heading: 
+      text: Stop.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu turns around.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...Who are you?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The silhouette has no visible face. Only a pair of ears and a dark hoodie
+        can be seen.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HUH?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Who...?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: ???
+      rightSide: 1
+      label: 
+      heading: 
+      text: Leave her alone.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: This is an internal matter. I have no intention of involving anyone else.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: ???
+      rightSide: 1
+      label: 
+      heading: 
+      text: Then you should leave.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: I will not repeat myself.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: ???
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Very well.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu initiates another Concept Clash.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 1
+    lines: []
+    level: {fileID: 11400000, guid: 5b39b9ddb4a1adb7b84550cce19173dd, type: 2}
+    team:
+    - {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts:
+    - time: 3
+      trigger: 0
+      notBefore: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      text: What...?
+      duration: 4.5
+    - time: 14
+      trigger: 0
+      notBefore: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      text: Stand still and be regulated!
+      duration: 4.5
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu's attempts to control the arena become increasingly ineffective
+        against Anon's unpredictable movements. Eventually, Anon lands a decisive
+        counterattack.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu falls to the ground.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 2
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...Impossible.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Please leave.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu slowly stands up.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: This matter is not over.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Regu walks away. Anon watches her disappear, then turns toward Warlock
+        and EyaY.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HEY! WHO ARE YOU?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...Anon.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HAHA! NICE TO MEET YOU!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Thank you for helping us.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: It's fine.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: YOU'RE PRETTY STRONG! WANNA FIGHT AGAIN SOMETIME?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...No.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HAHAHAHA!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Anon looks at EyaY.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: You're Artificial Intelligence, right?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yes. That's what everyone keeps calling me.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Do you know F.E.A.R.?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HUH? F.E.A.R.?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: No. Who is that?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Primordial Fear.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: OH! THAT GUY!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: She has an offer for you.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: AN OFFER?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Something interesting. She wants to meet both of you.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Why?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: I don't know.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HAHA! SOUNDS INTERESTING!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Should we go?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: If you're interested, I can show you where to find her.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: THEN LET'S GO!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Anon turns around.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Follow me.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Before they can move, a distant commotion can be heard.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: ???
+      rightSide: 1
+      label: 
+      heading: 
+      text: THERE HE IS!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Anon freezes.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HUH?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Several Concept Spirits emerge from the distance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Concept Spirit 1
+      rightSide: 1
+      label: 
+      heading: 
+      text: IT'S ANON!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Concept Spirit 2
+      rightSide: 1
+      label: 
+      heading: 
+      text: GET HIM!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Concept Spirit 3
+      rightSide: 1
+      label: 
+      heading: 
+      text: HE'S BEEN HIDING AGAIN!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: More Concept Spirits appear behind them. There are dozens.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 2
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: WHAT THE HELL?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Why are they chasing him?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...I have to go.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: WAIT! WHAT ABOUT F.E.A.R.?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Find me later.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Anon immediately runs away.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Concept Spirit 1
+      rightSide: 1
+      label: 
+      heading: 
+      text: HE'S RUNNING! AFTER HIM!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The crowd chases Anon.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HAHAHAHA! WHAT WAS THAT?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Shouldn't we help him?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: NAH. HE LOOKS LIKE HE'S USED TO IT.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Anon runs through the chaotic crowd.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WHY DOES THIS ALWAYS HAPPEN TO ME?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A quiet room. A faint shadow stretches across the floor.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A pair of eyes slowly opens.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: F.E.A.R.
+      rightSide: 1
+      label: 
+      heading: 
+      text: So... they've finally met.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A short pause.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: F.E.A.R.
+      rightSide: 1
+      label: 
+      heading: 
+      text: How interesting.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The screen fades to black.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  background: {fileID: 2365596823942982563, guid: 2131dec12abd08c9aabdc9c28f88f2f1,
+    type: 3}
+  storyRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+    amount: 5000
+  - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+    amount: 320
+  nextStory: {fileID: 0}
+  afterScene: {fileID: 0}
+  afterSceneToasts: []
+  afterGachaPullToasts: []
+  afterAction: 0
+  afterActionToasts: []
+  followUpLines: []
+  timeLimitSeconds: 600
+  storyMusic: {fileID: 11400000, guid: 4b1fa867380b439deb875767a04db9f4, type: 2}

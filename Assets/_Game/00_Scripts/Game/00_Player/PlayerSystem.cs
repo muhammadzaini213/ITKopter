@@ -305,6 +305,22 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         return amount;
     }
 
+    /// <summary>Sweep: the clear EXP of an already-cleared stage, times <paramref name="count"/>, shown as one gain.</summary>
+    public int GrantSweepExp(LevelData level, int count)
+    {
+        if (level == null || count <= 0)
+            return 0;
+
+        int amount = Mathf.RoundToInt(level.ExpReward) * count;
+        int before = playerExp;
+        AddExp(amount);
+
+        if (amount > 0)
+            pendingExpGain = new ExpGain { ExpBefore = before, Amount = amount, RealTime = Time.realtimeSinceStartup };
+
+        return amount;
+    }
+
     public void AddExp(int amount)
     {
         if (amount <= 0 || !isPlayerDataLoaded)

@@ -17,6 +17,7 @@ MonoBehaviour:
   storyDescription: 'Battle: Ei-Pi vs. Anon. Reward: Ei-Pi joins the roster.'
   chapterLabel: CHAPTER 3
   previousStory: {fileID: 11400000, guid: 47b7920ce3ed0536288f9dc6be308054, type: 2}
+  requiredLevel: {fileID: 0}
   storyPrefab: {fileID: 0}
   segments:
   - type: 0
@@ -27,8 +28,9 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Ei-Pi immediately starts talking at an unreasonable speed.
+      text: A small figure approaches Fajar at incredible speed.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
@@ -36,10 +38,19 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: HEEEEEEEEEEEEEEEEY!!! NEW KING!!! FINALLYYYYY!!! I'M EIPI!!! YOUR HANDHELD
-        INFORMATION DEVICE!!! YOU KNOW HOW TO USE A PHONE RIGHT??? OF COURSE YOU
-        DO!!!
+      text: HEEEEEEEEEEEEEEEEY!!! NEW KING!!! FINALLYYYY!!!
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...What?
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
@@ -47,9 +58,19 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: OKAYLISTENCAREFULLY!!! YOU CAN MOVE USING THE LEFT STICK AND ATTACK USING
-        THE ATTACK BUTTON!!! SUPER SIMPLE!!!
+      text: I'M EIPI!!! YOUR HANDHELD INFORMATION DEVICE!!!
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Handheld what?
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
@@ -57,9 +78,140 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: NOW LOOK OVER THERE!!! THAT'S ANON!!! HE'S THE BLACK ONE!!! NO NOT THAT
-        BLACK ONE!!! THE OTHER BLACK ONE!!! JUST SHOOT HIM!!! PROBABLY!!!
+      text: YOU KNOW HOW TO USE A PHONE RIGHT???
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I mean, yes?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: GREAT!!! THAT'S ALL I NEED!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's all you need for what?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: TO HELP YOU SURVIVE!!! OBVIOUSLY!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Ei-Pi circles around Fajar.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: OKAY!!! FIRST, YOU NEED TO KNOW HOW TO MOVE!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: YOU CAN MOVE USING THE LEFT STICK!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Okay.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: AND YOU ATTACK USING THE ATTACK BUTTON!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Wait, attack who?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: THAT'S ANON!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Ei-Pi points toward a black silhouette standing a short distance away.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HE'S THE BLACK ONE!!! NO NOT THAT BLACK ONE!!! THE OTHER BLACK ONE!!!
+        JUST SHOOT HIM!!! PROBABLY!!!
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 0}
@@ -69,6 +221,7 @@ MonoBehaviour:
       heading: 
       text: ...What are you talking about?
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
@@ -76,8 +229,19 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: DON'T WORRY!!! I'LL EXPLAIN EVERYTHING WHILE WE'RE MOVING!!!
+      text: I'LL EXPLAIN EVERYTHING WHILE WE'RE MOVING!!!
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's not how explaining works!
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 1
       speaker: {fileID: 0}
@@ -85,8 +249,9 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Anon notices Fajar and Ei-Pi looking at him.
+      text: The black silhouette notices them.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
@@ -94,8 +259,139 @@ MonoBehaviour:
       rightSide: 1
       label: 
       heading: 
-      text: Huh? Wait... why are you looking at me?
+      text: Huh?
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Anon looks behind himself.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Wait... why are you looking at me?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HEY ANON!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...No.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: COME HERE!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: NO!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: WE HAVE A NEW KING!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: GOOD FOR YOU?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HE NEEDS A TARGET!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WHAT?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Hold on. Why are we fighting him?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: DON'T WORRY ABOUT IT!!! HE'S FINE!!! PROBABLY!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: I'M RIGHT HERE!!!
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
@@ -106,6 +402,7 @@ MonoBehaviour:
       text: I JUST ESCAPED AFTER GETTING BEATEN UP BY SAINZ AND NAWLEG! CAN'T I HAVE
         A BREAK?!
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
@@ -113,8 +410,9 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: OH!!! PERFECT!!! YOU'RE ALREADY WARMED UP!!!
+      text: PERFECT!!! YOU'RE ALREADY WARMED UP!!!
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
@@ -124,6 +422,27 @@ MonoBehaviour:
       heading: 
       text: THAT'S NOT WHAT THAT MEANS!!!
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Is everyone here like this?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: PRETTY MUCH!!!
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     level: {fileID: 0}
     team: []
@@ -139,27 +458,36 @@ MonoBehaviour:
     scriptedLossSeconds: 45
     battleToasts:
     - time: 1.5
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
       speakerName: 
-      text: MOVE WITH WASD OR THE ARROW KEYS!!! THAT'S THE "LEFT STICK"!!! CLOSE
-        ENOUGH!!!
+      text: Move with WASD / arrow keys!
       duration: 4.5
     - time: 8
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
       speakerName: 
-      text: YOU SHOOT ALL BY YOURSELF!!! JUST STAY IN FRONT OF THEM!!!
+      text: You shoot automatically. Just focus on moving!
       duration: 4.5
     - time: 16
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
       speakerName: 
-      text: SEE THOSE BULLETS??? DON'T TOUCH THEM!!! SLIP THROUGH THE GAPS!!!
+      text: Don't touch bullets! Slip through the gaps!
       duration: 4.5
     - time: 26
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
       speakerName: 
-      text: WHEN MY EX SKILL IS READY, PRESS K!!! DO IT!!! DO IT NOW!!!
+      text: Press K to activate your EX Skill!
       duration: 4.5
     - time: 48
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
       speakerName: 
       text: STOP SHOOTING AT ME!!! I'M INJURED!!!
@@ -172,18 +500,9 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Anon is defeated.
+      text: Anon falls to the ground.
       blackScreen: 0
-      effect: 0
-    - style: 0
-      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
-      speakerName: 
-      rightSide: 0
-      label: 
-      heading: 
-      text: WE WON!!! I KNEW YOU COULD DO IT!!! I'M COMING WITH YOU, BY THE WAY!!!
-        NO TAKEBACKS!!!
-      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
@@ -191,8 +510,310 @@ MonoBehaviour:
       rightSide: 1
       label: 
       heading: 
-      text: ...Why does this keep happening to me?
+      text: ...
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Are you okay?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: DO I LOOK OKAY?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Well, you are still talking.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THAT DOESN'T MEAN I'M FINE!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: WE WON!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I don't think he agrees.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: WHO CARES!!! WE DID IT!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: I hate this place.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So, you're a phone?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: YES!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: And you can talk?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: OBVIOUSLY!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: How?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I'M A CONCEPT SPIRIT!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Right.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: YOU'RE GOING TO HAVE TO GET USED TO THIS!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I suppose I don't have much choice.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: EXACTLY!!! I'M COMING WITH YOU, BY THE WAY!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Wait, what?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: NO TAKEBACKS!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Why are you following me?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: BECAUSE YOU'RE THE NEW KING!!! AND YOU CLEARLY NEED SOMEONE WHO KNOWS
+        WHAT'S GOING ON!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Do you?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A brief silence.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...SOME OF IT!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Can I leave now?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I think you should.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THANK YOU!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Anon disappears into the distance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: ANYWAY!!! LET'S GO!!!
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     level: {fileID: 0}
     team: []
@@ -209,5 +830,8 @@ MonoBehaviour:
   afterScene: {fileID: 0}
   afterSceneToasts: []
   afterGachaPullToasts: []
+  afterAction: 0
+  afterActionToasts: []
+  followUpLines: []
   timeLimitSeconds: 600
   storyMusic: {fileID: 11400000, guid: 26db864fe6bd0e8fcadcf2d09fb71af5, type: 2}

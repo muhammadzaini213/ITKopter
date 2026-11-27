@@ -55,6 +55,9 @@ public class ObjectiveSystem : GameSystem<ObjectiveSystem>
     /// <summary>Any progress or claim changed.</summary>
     public event Action OnObjectivesChanged;
 
+    /// <summary>Raised after one or more objectives were claimed.</summary>
+    public event Action OnObjectiveClaimed;
+
     public override IEnumerator Initialize()
     {
         Load();
@@ -221,6 +224,7 @@ public class ObjectiveSystem : GameSystem<ObjectiveSystem>
         if (showPopup && granted.Count > 0 && RewardSystem.Instance != null)
             RewardSystem.Instance.ShowRewardPopup(granted, amounts);
 
+        OnObjectiveClaimed?.Invoke();
         return true;
     }
 
@@ -256,6 +260,8 @@ public class ObjectiveSystem : GameSystem<ObjectiveSystem>
 
             if (granted.Count > 0 && RewardSystem.Instance != null)
                 RewardSystem.Instance.ShowRewardPopup(granted, amounts);
+
+            OnObjectiveClaimed?.Invoke();
         }
 
         return claimed;

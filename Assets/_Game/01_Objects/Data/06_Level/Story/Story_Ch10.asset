@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac675d8ddabc928f1b698d0b0c54c207, type: 3}
+  m_Name: Story_Ch10
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelId: story_ch10_battle
+  levelName: An Unusual King
+  previousLevel: {fileID: 0}
+  levelParts:
+  - {fileID: 11400000, guid: ed0238453ec0a9502ad179d1b968aa60, type: 2}
+  - {fileID: 11400000, guid: b96f90e1061883aab8a24d4a885383b6, type: 2}
+  levelRewards: []
+  rewardEntries: []
+  battleToasts: []
+  bossIntroToasts:
+  - time: 0.5
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+    speakerName: 
+    text: Finally, someone worth hitting. Try not to break too fast.
+    duration: 5
+  energyCost: 0
+  expReward: 0
+  timeLimitSeconds: 300
+  levelMusic: {fileID: 11400000, guid: 2996197edcc378b02b174629f47c86e3, type: 2}
+  enemyStatMultiplier: 0.85
+  enemyTint: {r: 0.95, g: 0.171, b: 0.171, a: 1}

@@ -17,6 +17,7 @@ MonoBehaviour:
   storyDescription: 'Battle: Ei-Pi and Noz vs. Anon. Reward: Noz joins the roster.'
   chapterLabel: CHAPTER 4
   previousStory: {fileID: 11400000, guid: 621f00404863a5dbea20debba0833bf5, type: 2}
+  requiredLevel: {fileID: 0}
   storyPrefab: {fileID: 0}
   segments:
   - type: 0
@@ -27,8 +28,161 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Noz arrives after the first encounter.
+      text: Fajar follows Ei-Pi through the Concept World.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The landscape slowly changes. Abstract patterns become more structured,
+        resembling a laboratory made of geometric shapes and floating panels.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Ei-Pi keeps talking without taking a breath.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: AND THEN THERE'S THIS PLACE!!! IT'S CALLED GREEN LAB!!! I THINK!!! OR
+        MAYBE IT'S THE OTHER ONE!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You don't know where we're going?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I KNOW WHERE WE'RE GOING!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Where?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: FORWARD!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So, about that fight earlier.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: WHAT ABOUT IT?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Why did we attack that black creature?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: BECAUSE HE WAS THERE!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's not a reason.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: IT'S A VERY CONVENIENT REASON!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I really need someone else to explain this place.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
@@ -36,8 +190,29 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Sorry for being late. Your Majesty.
+      text: Sorry for being late, Your Majesty.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A quiet figure approaches.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...And you are?
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
@@ -45,8 +220,19 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: I will guide you to use support roles like me in Concept Clash.
+      text: Noz. I was supposed to guide you through the basics of Concept Clash.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: NOZ!!! YOU'RE LATE!!!
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
@@ -54,8 +240,222 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Please brace yourself. We're going to attack that black one again.
+      text: I can see that.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Concept Clash?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Conflicts between Concept Spirits. You will encounter them quite frequently.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So all those fights I saw earlier were Concept Clashes?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Some of them, yes.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: And I have to participate in them?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Not necessarily. But you should understand how to handle yourself when
+        a fight becomes unavoidable.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's not particularly reassuring.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I apologize.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Noz looks toward a distant black silhouette.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: For now, I will guide you through the use of Support roles like me.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Support?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Some Concept Spirits specialize in helping their allies. They don't need
+        to remain on the battlefield to provide their abilities.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So I can switch between characters?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Correct. You can switch between your party members to use their abilities.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: AND YOU CAN SWITCH BACK TO ME WHENEVER YOU WANT!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Provided the switching cooldown has finished.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That sounds useful.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: It is. But you must learn when to switch and which character should be
+        active.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Now, let's practice.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Practice what?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: We're going to attack that black one again.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 0}
@@ -65,6 +465,7 @@ MonoBehaviour:
       heading: 
       text: ...Again?
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
@@ -74,27 +475,17 @@ MonoBehaviour:
       heading: 
       text: WAIT, WHAT?!
       blackScreen: 0
-      effect: 0
-    - style: 1
-      speaker: {fileID: 0}
-      speakerName: 
-      rightSide: 0
-      label: 
-      heading: 
-      text: Noz calmly explains how Support characters work and how they can assist
-        the active unit.
-      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
-      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
       speakerName: 
       rightSide: 0
       label: 
       heading: 
-      text: As a Support, I can provide assistance without needing to remain on the
-        battlefield. You can switch between your party members to make use of their
-        abilities.
+      text: ROUND TWO!!!
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
@@ -102,8 +493,9 @@ MonoBehaviour:
       rightSide: 1
       label: 
       heading: 
-      text: I THOUGHT YOU WERE HERE TO HELP ME?!
+      text: I THOUGHT YOU WERE DONE!!!
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
@@ -113,15 +505,37 @@ MonoBehaviour:
       heading: 
       text: I'm afraid not.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
-      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: I THOUGHT YOU WERE HERE TO HELP ME?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
       speakerName: 
       rightSide: 0
       label: 
       heading: 
-      text: ROUND TWO!!! LET'S GOOOOOO!!!
+      text: I'm afraid not.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You two are surprisingly consistent.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     level: {fileID: 0}
     team: []
@@ -138,29 +552,43 @@ MonoBehaviour:
     scriptedLossSeconds: 45
     battleToasts:
     - time: 1.5
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
       speakerName: 
-      text: Press 1 or 2 to switch who is on the field, Your Majesty. Switching has
-        a short cooldown.
+      text: Press 1 / 2 to switch characters. Switching has a cooldown.
       duration: 4.5
     - time: 9
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
       speakerName: 
-      text: 'Switch to me and press K. My EX skill marks the enemies: the whole party
-        deals more damage to them.'
+      text: Activate my EX Skill to increase party ATK based on my own ATK.
       duration: 4.5
     - time: 18
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
       speakerName: 
-      text: Defeat a marked enemy and the party recovers some health. Then switch
-        back to Ei-Pi.
+      text: My EX effect remains active even after you switch to another character.
       duration: 4.5
-    - time: 30
+    - time: 25
+      trigger: 0
+      notBefore: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      text: Switch to Ei-Pi while the buff is active!
+      duration: 4.5
+    - time: 34
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
       speakerName: 
       text: TEAMWORK!!! I'M THE LOUD PART!!!
       duration: 4.5
     - time: 44
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
       speakerName: 
       text: WHY IS IT ALWAYS ME?!
@@ -173,8 +601,49 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Anon is defeated again.
+      text: Anon lies face-down on the ground.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You really don't have much luck, do you?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: STOP TALKING TO ME!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: WE WON AGAIN!!!
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
@@ -182,8 +651,120 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Well done. You learn quickly, Your Majesty. I will stay by your side.
+      text: Well done, Your Majesty.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I think I'm starting to understand the switching system.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Good. Remember that Support abilities can continue benefiting your party
+        after you switch away.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So I don't need to keep you active all the time?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Precisely.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: THAT MEANS I GET TO BE ACTIVE MORE OFTEN!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's not quite what I meant.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Still, it's useful.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: You learn quickly. I will stay by your side.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Thanks. I could use someone who explains things properly.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HEY!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I appreciate that.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: c56d01f7147e2fe3bb19ffecd321267b, type: 2}
@@ -193,13 +774,24 @@ MonoBehaviour:
       heading: 
       text: I'm going home. Wherever that is.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Anon disappears.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     level: {fileID: 0}
     team: []
     scriptedLoss: 0
     scriptedLossSeconds: 45
     battleToasts: []
-  background: {fileID: -893397679091061275, guid: 9ecbe3e1c621a47749a87aa34c6fc4bd,
+  background: {fileID: 3398196857506778724, guid: c93c1b04ce0f2defab9de04cca50dd4c,
     type: 3}
   storyRewards: []
   rewardEntries:
@@ -209,5 +801,8 @@ MonoBehaviour:
   afterScene: {fileID: 0}
   afterSceneToasts: []
   afterGachaPullToasts: []
+  afterAction: 0
+  afterActionToasts: []
+  followUpLines: []
   timeLimitSeconds: 600
   storyMusic: {fileID: 11400000, guid: ddb213e2f669869688b5ad431f9b95e2, type: 2}

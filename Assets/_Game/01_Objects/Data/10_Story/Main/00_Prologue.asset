@@ -17,6 +17,7 @@ MonoBehaviour:
   storyDescription: A faint voice explains the rules of the Concept World.
   chapterLabel: PROLOGUE
   previousStory: {fileID: 0}
+  requiredLevel: {fileID: 0}
   storyPrefab: {fileID: 0}
   segments:
   - type: 0
@@ -29,6 +30,18 @@ MonoBehaviour:
       heading: 
       text: A faint voice begins speaking.
       blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: There is no music. No visible environment. Only a voice explaining something
+        that sounds almost like an instruction manual.
+      blackScreen: 1
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 0}
@@ -38,6 +51,18 @@ MonoBehaviour:
       heading: 
       text: Before you enter the Concept World, there are three rules you must understand.
       blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council
+      rightSide: 0
+      label: 
+      heading: 
+      text: These rules are not suggestions. They are the foundation of how you must
+        understand everything you encounter there.
+      blackScreen: 1
+      background: {fileID: 0}
       effect: 0
     - style: 2
       speaker: {fileID: 0}
@@ -45,13 +70,21 @@ MonoBehaviour:
       rightSide: 0
       label: RULE 01
       heading: CONCEPT SPIRITS ARE NOT HUMAN.
-      text: 'If you need an analogy, think of them as animals.
-
-
-        They may
-        look familiar, speak like humans, or even behave like them. But do not mistake
-        their appearance for what they truly are.'
+      text: Think of them as animals. They may look, speak, or behave like humans,
+        but don't mistake their appearance for what they are.
       blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council
+      rightSide: 0
+      label: 
+      heading: 
+      text: Their personalities, bodies, and behaviors are merely how your mind interprets
+        something that would otherwise be incomprehensible.
+      blackScreen: 1
+      background: {fileID: 0}
       effect: 0
     - style: 2
       speaker: {fileID: 0}
@@ -60,13 +93,32 @@ MonoBehaviour:
       label: RULE 02
       heading: CONCEPT SPIRITS WILL ALWAYS SEEK WAYS TO MAINTAIN OR INCREASE THEIR
         RELEVANCE.
-      text: 'They will constantly seek ways to remain relevant and strengthen their
-        position.
-
-
-        Their actions are driven by the concepts they represent
-        and humanity''s collective understanding of them.'
+      text: Their actions are driven by the concepts they represent and humanity's
+        collective understanding of them.
       blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council
+      rightSide: 0
+      label: 
+      heading: 
+      text: Some may cooperate. Others may compete. Their interests can overlap,
+        contradict, or even depend on one another.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council
+      rightSide: 0
+      label: 
+      heading: 
+      text: Do not assume that their actions are motivated by the same reasons as
+        yours.
+      blackScreen: 1
+      background: {fileID: 0}
       effect: 0
     - style: 2
       speaker: {fileID: 0}
@@ -74,13 +126,21 @@ MonoBehaviour:
       rightSide: 0
       label: RULE 03
       heading: THERE IS NO SUCH THING AS GOOD OR EVIL AMONG CONCEPT SPIRITS.
-      text: 'Do not judge them using human morality.
-
-
-        Their actions may
-        benefit some concepts while harming others. This does not make them good
-        or evil.'
+      text: Don't judge them by human morality. Helping some concepts while harming
+        others doesn't make them good or evil.
       blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council
+      rightSide: 0
+      label: 
+      heading: 
+      text: A Concept Spirit may cause something terrible without understanding it
+        as an act of cruelty. Another may help you for reasons you would never expect.
+      blackScreen: 1
+      background: {fileID: 0}
       effect: 0
     - style: 1
       speaker: {fileID: 0}
@@ -90,6 +150,37 @@ MonoBehaviour:
       heading: 
       text: ...
       blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...That's quite a lot to remember.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council
+      rightSide: 0
+      label: 
+      heading: 
+      text: You will understand eventually.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Eventually? That's reassuring.
+      blackScreen: 1
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 0}
@@ -99,6 +190,17 @@ MonoBehaviour:
       heading: 
       text: Remember these rules, Your Majesty.
       blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Wait. Your Majesty?
+      blackScreen: 1
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 0}
@@ -109,7 +211,28 @@ MonoBehaviour:
       text: You are about to enter a world that does not operate according to human
         principles.
       blackScreen: 1
+      background: {fileID: 0}
       effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The sound of a digital interface hums to life.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: "Hold on. I haven't even agreed to\u2014"
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 1
     level: {fileID: 0}
     team: []
     scriptedLoss: 0
@@ -122,5 +245,8 @@ MonoBehaviour:
   afterScene: {fileID: 0}
   afterSceneToasts: []
   afterGachaPullToasts: []
+  afterAction: 0
+  afterActionToasts: []
+  followUpLines: []
   timeLimitSeconds: 600
   storyMusic: {fileID: 11400000, guid: f680c4805bb4409a0bcbf080bf857926, type: 2}

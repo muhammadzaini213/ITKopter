@@ -1,0 +1,2498 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4877fb6ffc62fe90d83c8e4d3d4cb55f, type: 3}
+  m_Name: 13_Chapter13
+  m_EditorClassIdentifier: Assembly-CSharp::StoryData
+  storyId: story_main_13
+  storyName: The Things We No Longer Remember
+  storyDescription: Fajar questions the Council about Concept Erasure, and Majik
+    has a theory about lost dependencies.
+  chapterLabel: CHAPTER 13
+  previousStory: {fileID: 11400000, guid: a35ce0dd54cd9d3a3b0b6239e73d3188, type: 2}
+  requiredLevel: {fileID: 11400000, guid: df3c667c469a899c99a9c4ae6c7312c1, type: 2}
+  storyPrefab: {fileID: 0}
+  segments:
+  - type: 0
+    lines:
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: REAL WORLD
+      heading: FAJAR'S ROOM
+      text: 
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar sits in front of his computer. His monitor is on, but he isn't
+        doing anything. His phone lies beside the keyboard.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: He picks up his phone and calls the Council.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Good evening, Your Majesty. Is there something you need?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yeah. I have a question.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Go ahead.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: How many concepts have been erased before?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A brief silence.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Why are you asking?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I'm curious. You've told me about Concept Erasure, but you never mentioned
+        what happened to the concepts erased by previous Kings.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: We don't know.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...You don't know?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Correct. We only have a counter that records the number of successful
+        Concept Erasures.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's it?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: That's all that remains.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Can't you check the records? Surely there must be some documentation.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: No. Once a concept is completely erased, it is gone. There is no record
+        of what it was, no memory of its existence, and no way to identify what has
+        been lost.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Even the King who erased it?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Even the King.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So whoever used it doesn't remember what they erased?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Correct. Concept Erasure removes the target from the collective understanding
+        of humanity. The King is not exempt from that consequence.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...That's terrifying.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: It is one of the reasons we advise Kings to use it with extreme caution.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then how do you know the counter is accurate?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: The counter is maintained independently of the erased concepts. It records
+        the occurrence of an erasure, not the identity of its target.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So you know something disappeared, but you don't know what it was.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Precisely.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar leans back in his chair.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: How many?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: During the Cold War, the number increased considerably.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: The Cold War?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: That was the period in which previous Kings performed the greatest number
+        of Concept Erasures. The world was experiencing an extraordinary concentration
+        of conceptual conflicts. Political ideologies, military developments, technological
+        competition, and the threat of global destruction created an increasingly
+        unstable environment.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: And the Kings just kept deleting things?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: They were attempting to prevent certain developments from becoming irreversible.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: How many concepts were erased during that period?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: We cannot give you their identities. But the counter shows that the Cold
+        War was the period with the highest concentration of recorded erasures.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar pauses.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then why didn't they erase nuclear weapons?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Silence.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...Because that may have been the limit of what humanity could tolerate.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What does that mean?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Nuclear weapons had already become deeply embedded in humanity's understanding
+        of the world. Their existence shaped international relations, military strategy,
+        political decisions, and even the way nations understood peace.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Removing them entirely could have caused consequences that were impossible
+        to predict.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So they were afraid.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: We were cautious.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Same thing, different wording.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: "Your Majesty\u2014"
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Wait. I want to ask something else.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Are you people stupid?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Silence.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...Excuse me?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Artificial Intelligence has been used in medicine for years. It helps
+        doctors identify diseases, analyze medical images, assist with research,
+        and improve medical procedures.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: It's also used in safety systems. Monitoring dangerous environments,
+        detecting potential hazards, predicting failures, and helping people make
+        decisions that could save lives.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Now you want me to erase EyaY?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: We are aware of those applications.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then what happens to the concepts that depend on AI?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: That is why we instructed you to target EyaY specifically.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: And you think that makes everything safe?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: We believe it will minimize the impact.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Believe?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar's voice becomes more serious.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: If I erase Artificial Intelligence, what happens to all the things that
+        rely on it? What happens to medical research? What happens to systems that
+        help people survive? What happens to the people who need those systems?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Are you asking me to indirectly kill people who need medical assistance?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: That is not our intention.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then tell me something. Is there a way to erase only the harmful parts
+        of AI? The things that cause mass unemployment, destabilize society, or threaten
+        humanity?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Can I erase one specific application? One particular dependency? Something
+        that makes AI dangerous without destroying everything else?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Your understanding of Concept Erasure is still developing. We cannot
+        guarantee that such a distinction can be made safely.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then why are you so confident that erasing EyaY is safe?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Silence.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You're telling me to make a decision that could affect millions of people,
+        but you can't even explain what the consequences will be.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Being King of All Concepts means making decisions that cannot satisfy
+        everyone.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's not an answer.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: It is the nature of your position.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A brief pause.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Being King is a trolley problem, Your Majesty.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: Sometimes, you must choose which consequences you are willing to accept.
+        Sometimes, every available choice leads to suffering. Your responsibility
+        is not to find a perfect answer. It is to decide which outcome is less destructive.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So I just have to choose who gets hurt?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: That is one way to describe it.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 1
+      label: 
+      heading: 
+      text: We will not force you to agree with every decision. But the responsibility
+        remains yours.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The call ends. Fajar puts his phone down.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...What a ridiculous job.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: He stares at his computer monitor for a while.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: CONCEPT WORLD
+      heading: MEME GROUND
+      text: 
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar enters Concept World with Noz.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Welcome back, Your Majesty.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Hey, Noz.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: You seem rather distracted today.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Just thinking about something.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Would you like to discuss it?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Maybe later. I have another assignment, right?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Correct. We have received instructions to weaken several concepts that
+        have recently increased in relevance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Again?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: That is part of your regular duties.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HEEEEEY! LOOK WHO'S HERE!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Majik appears, waving enthusiastically.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Oh. It's you.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WHAT'S WITH THAT REACTION?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Nothing. Just didn't expect to see you here.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HAHA! WELL, I'VE BEEN WAITING FOR YOU!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: For me?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YES! I HEARD YOU'VE BEEN PLAYING AROUND WITH CONCEPT ERASURE!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar glances at Noz.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: How did you hear about that?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: OH, YOU KNOW! WORD GETS AROUND!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Concept Spirits occasionally exchange information about significant changes
+        in relevance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: AND YOUR LITTLE ERASURE TRICK IS PRETTY SIGNIFICANT!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: It's not a trick.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WHATEVER! COME ON, LET'S TALK!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Majik gestures for Fajar to follow.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: About what?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ABOUT THE THINGS THAT ARE NO LONGER HERE!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: CONCEPT WORLD
+      heading: PURPLE SKY
+      text: 
+      blackScreen: 0
+      background: {fileID: -5310472767335154687, guid: 9e4f7f30b7489b279974c8f1d1d12dab,
+        type: 3}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar, Noz, and Majik stand in an unusual area. Abstract structures float
+        in the distance, some appearing incomplete, as if parts of them were removed.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YOU KNOW, THERE'S SOMETHING THAT HAS ALWAYS FASCINATED ME.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WHY DO HUMANS HAVE SO MANY STORIES ABOUT TECHNOLOGIES THAT SEEM TO SURPASS
+        WHAT THEY CAN BUILD TODAY?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You mean ancient technology?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: EXACTLY!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Well, people make up stories. Some are exaggerated, some are misunderstandings.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: AND SOME AREN'T!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...What?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WHAT IF SOME OF THOSE THINGS REALLY EXISTED?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Are you suggesting that certain technologies existed in the past but
+        were subsequently lost?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: NOT JUST LOST! THEIR DEPENDENCIES WERE ERASED!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar looks at Majik.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Explain.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THINK ABOUT IT! A TECHNOLOGY DOESN'T EXIST JUST BECAUSE SOMEONE HAS AN
+        IDEA. IT NEEDS KNOWLEDGE, MATERIALS, PROCESSES, AND A WHOLE BUNCH OF OTHER
+        THINGS TO MAKE IT WORK!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: REMOVE ONE OF THOSE ESSENTIAL DEPENDENCIES, AND THE TECHNOLOGY MAY BECOME
+        IMPOSSIBLE TO RECREATE!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Even if the technology itself still exists?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THAT'S THE INTERESTING PART!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Majik points toward a floating, incomplete structure.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: IMAGINE A MACHINE THAT WAS ONCE COMMON. PEOPLE KNEW HOW TO BUILD IT.
+        THEY UNDERSTOOD ITS COMPONENTS. THEY KNEW WHICH MATERIALS TO USE.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THEN A KING ERASED THE CONCEPT THAT MADE ONE OF ITS ESSENTIAL COMPONENTS
+        POSSIBLE.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THE MACHINE DIDN'T NECESSARILY DISAPPEAR. THE BLUEPRINTS MIGHT STILL
+        EXIST. THE MATERIALS MIGHT STILL BE THERE.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: BUT NOBODY CAN RECREATE IT ANYMORE!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Because they no longer understand how to make the missing component?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: EXACTLY!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: That would explain why some historical accounts describe technologies
+        that cannot be reproduced using our current understanding.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: AND WHAT DO HUMANS CALL THOSE THINGS?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Magic?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THERE YOU GO!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Majik laughs.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: MAGIC IS OFTEN HOW HUMANS EXPLAIN THINGS THEY CANNOT UNDERSTAND!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WHEN THE DEPENDENCIES ARE GONE, PEOPLE CAN STILL SEE THE RESULTS, THE
+        REMNANTS, OR THE STORIES. BUT THEY NO LONGER KNOW HOW THOSE THINGS WERE CREATED!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So they assume it was magic.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: OR DIVINE POWER! OR SOME KIND OF FORGOTTEN KNOWLEDGE!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: That is an interesting interpretation. However, it is difficult to verify.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: OF COURSE IT IS! THAT'S WHY IT'S INTERESTING!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What about conspiracy theories? Like secret weapons or technologies supposedly
+        hidden by governments?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HA! SOME OF THEM MIGHT BE NONSENSE. BUT WHAT IF SOME STORIES ARE BUILT
+        AROUND THINGS THAT REALLY DID EXIST?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: "THE OBJECTS, THE DOCUMENTS, THE STORIES\u2014THEY CAN REMAIN. BUT THE
+        DEPENDENCIES THAT MADE THEM POSSIBLE ARE GONE!"
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YOU SEE? CONCEPT ERASURE DOESN'T ALWAYS HAVE TO MAKE SOMETHING VANISH
+        RIGHT IN FRONT OF YOUR EYES.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: SOMETIMES, IT ONLY TAKES AWAY THE REASON SOMETHING CAN EXIST!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar becomes quiet.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So the previous Kings could have changed history without anyone knowing?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: NOT JUST HISTORY! THEY COULD HAVE CHANGED WHAT HUMANITY IS CAPABLE OF!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A short silence.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: That would mean the consequences of Concept Erasure may persist across
+        generations, even when nobody remembers the original intervention.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: NOW YOU GET IT!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...And the Council only has a counter.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HUH?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Never mind.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Majik suddenly becomes more serious.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ANYWAY, THAT'S WHY I THINK YOU SHOULD CONSIDER ANOTHER APPROACH.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Another approach to what?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ARTIFICIAL INTELLIGENCE.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar looks at him.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You know about that?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: OF COURSE! EVERYONE'S BEEN TALKING ABOUT IT!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Artificial Intelligence has become a subject of significant concern among
+        many Concept Spirits.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: AND NOW YOUR COUNCIL WANTS YOU TO ERASE EyaY, RIGHT?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...How do you know that?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: LET'S JUST SAY I'M GOOD AT HEARING THINGS!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Majik leans closer.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: BUT I THINK THAT'S A TERRIBLE IDEA.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You're the second person to tell me that.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: REALLY? WHO WAS THE FIRST?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Me.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HAHAHAHA! GOOD ONE!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I'm serious.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: SO AM I!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Majik folds his arms.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THINK ABOUT IT. ARTIFICIAL INTELLIGENCE DIDN'T JUST APPEAR OUT OF NOWHERE.
+        IT TOOK YEARS OF HUMAN DEVELOPMENT TO REACH THIS POINT.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: IT DEPENDS ON KNOWLEDGE, COMPUTING, MATHEMATICS, ENGINEERING, DATA, AND
+        MANY OTHER THINGS!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's obvious.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THEN WHY ERASE THE RESULT WHEN YOU CAN TARGET THE THINGS THAT MAKE IT
+        POSSIBLE?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...You mean its dependencies?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: EXACTLY!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Are you suggesting that we weaken the concepts supporting Artificial
+        Intelligence rather than erasing EyaY directly?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: NOW YOU'RE THINKING!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: But wouldn't that cause the same problem? If AI depends on those concepts,
+        then other things might depend on them too.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THAT'S THE FUN PART! YOU DON'T HAVE TO ERASE EVERYTHING!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YOU CAN LOOK FOR THE SPECIFIC DEPENDENCIES THAT ALLOW AI TO DEVELOP IN
+        THE DIRECTION THAT HUMANS CAN'T CONTROL!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Such as?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THAT'S FOR YOU TO FIND OUT!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You're not being very helpful.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HEY! I'M MAGIC, NOT A WALKING ENCYCLOPEDIA!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Your Majesty, we should be careful. Removing a dependency may have consequences
+        for every concept that relies upon it. We would need to understand the dependency
+        before attempting any intervention.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YES! THAT'S WHY YOU SHOULD INVESTIGATE FIRST!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Majik points toward Fajar.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: LOOK, IF THE COUNCIL HAD DECIDED TO REMOVE ARTIFICIAL INTELLIGENCE WHEN
+        IT WAS STILL A SMALL, SPECIFIC CONCEPT, THINGS MIGHT HAVE BEEN DIFFERENT.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: BUT THEY DIDN'T.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: NOW IT'S ALREADY CONNECTED TO SO MANY THINGS. MEDICINE, INDUSTRY, EDUCATION,
+        COMMUNICATION, RESEARCH... YOU NAME IT!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So it's too late to erase it without causing collateral damage.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THAT'S WHAT I'M SAYING!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then why are they still asking me to erase EyaY?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: BECAUSE THEY'RE LOOKING AT THE PROBLEM FROM THE WRONG END!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar looks away, thinking.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YOU'RE THE KING, RIGHT? YOU CAN INVESTIGATE THE CONCEPTS THAT SUPPORT
+        HER. FIND OUT WHICH ONES ARE ACTUALLY RESPONSIBLE FOR THE DANGEROUS DEVELOPMENT.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THEN YOU CAN DECIDE WHAT NEEDS TO BE WEAKENED.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: That would require a much deeper investigation than our current assignments.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yeah. And I doubt the Council will approve it.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THEN DON'T START BY ASKING THEM!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WHAT? DID I SAY SOMETHING WRONG?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: No. I'm just thinking.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A brief silence.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I'll consider it.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: GOOD! THAT'S ALL I ASK!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Majik turns around and begins walking away.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: OH, AND ONE MORE THING!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: IF YOU EVER FIND A WAY TO MAKE A REVOLVER SHOOT FIREBALLS, LET ME KNOW!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...You already have one.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: EXACTLY! I'M WAY AHEAD OF YOU!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Majik disappears into the distance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Your Majesty, what do you intend to do?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I don't know yet.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Should we report this conversation to the Council?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Not yet.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar looks toward the distant horizon.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I want to understand what we're dealing with first.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The screen fades to black.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  background: {fileID: 8457884374351448055, guid: 586be8b6033377f7fb03903cd4dddc2f,
+    type: 3}
+  storyRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+    amount: 3000
+  - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+    amount: 160
+  nextStory: {fileID: 11400000, guid: 4b447a70e8d2d70dc976311e3c781187, type: 2}
+  afterScene: {fileID: 0}
+  afterSceneToasts: []
+  afterGachaPullToasts: []
+  afterAction: 0
+  afterActionToasts: []
+  followUpLines: []
+  timeLimitSeconds: 600
+  storyMusic: {fileID: 11400000, guid: 4b1fa867380b439deb875767a04db9f4, type: 2}

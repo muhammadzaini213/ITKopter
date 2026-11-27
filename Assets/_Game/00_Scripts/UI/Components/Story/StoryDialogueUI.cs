@@ -203,6 +203,16 @@ public class StoryDialogueUI : MonoBehaviour
 
     private IEnumerator ShowLine(StoryLine line)
     {
+        // Scene change: fade out, swap the background; the fade-in below brings it back.
+        if (line.background != null && backgroundImage != null && backgroundImage.sprite != line.background)
+        {
+            if (blackOverlay != null && blackOverlay.alpha < 1f)
+                yield return Fade(blackOverlay, blackOverlay.alpha, 1f);
+
+            backgroundImage.sprite = line.background;
+            backgroundImage.color = new Color(0.55f, 0.55f, 0.6f, 1f);
+        }
+
         // Background: black screen lines fade the scene out, others fade it back in.
         float black = line.blackScreen || line.style == StoryLineStyle.Title ? 1f : 0f;
 

@@ -18,6 +18,7 @@ MonoBehaviour:
     pulls.'
   chapterLabel: CHAPTER 8
   previousStory: {fileID: 11400000, guid: 81e55da408f5fb8f9b56a7d249bcc294, type: 2}
+  requiredLevel: {fileID: 0}
   storyPrefab: {fileID: 0}
   segments:
   - type: 0
@@ -28,8 +29,51 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Cashino introduces the Gacha system.
+      text: After leaving the shop, Fajar notices a brightly decorated building nearby.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Several Concept Spirits are gathered around it. Some look excited. Others
+        look disappointed. A few are staring at the results of something on their
+        screens.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What's that place?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: OH!!! THAT'S THE GACHA!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Gacha?
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
@@ -37,9 +81,109 @@ MonoBehaviour:
       rightSide: 1
       label: 
       heading: 
-      text: ALRIGHT!!! TIME FOR THE FUN PART!!! YOU WANNA GET MORE CHARACTERS, RIGHT???
-        THEN LET'S ROLL!!!
+      text: OHHHH!!! YOU FOUND IT!!!
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Cashino rushes toward Fajar.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THE BEST PLACE IN THE ENTIRE CONCEPT WORLD!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: That's a rather questionable claim.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: IT'S THE GACHA!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What does it do?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YOU CAN GET MORE CHARACTERS!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: More Concept Spirits?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YES!!! NEW FRIENDS!!! NEW TEAMMATES!!! NEW POSSIBILITIES!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: And occasionally, a lot of duplicates.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: DUPLICATES ARE USEFUL TOO!!!
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 0}
@@ -49,6 +193,7 @@ MonoBehaviour:
       heading: 
       text: Is this gambling?
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
@@ -58,6 +203,7 @@ MonoBehaviour:
       heading: 
       text: IT'S CHARACTER ACQUISITION!!!
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
@@ -67,6 +213,17 @@ MonoBehaviour:
       heading: 
       text: That's a very convenient way to describe it.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I don't like where this is going.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
@@ -74,49 +231,379 @@ MonoBehaviour:
       rightSide: 1
       label: 
       heading: 
-      text: HERE!!! FREE GEMS!!! ENOUGH FOR A 10x PULL!!! CHARACTERS, ENGRAMS, DUST,
-        ALL IN THERE!!!
+      text: DON'T WORRY!!! I'LL GIVE YOU FREE GEMS!!!
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: How generous of you.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ENOUGH FOR A 10x PULL!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Free?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: FREE!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: For now.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I heard that.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HERE!!! TAKE THEM!!!
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     level: {fileID: 0}
     team: []
     scriptedLoss: 0
     scriptedLossSeconds: 45
     battleToasts: []
-  background: {fileID: 8457884374351448055, guid: 586be8b6033377f7fb03903cd4dddc2f,
+  background: {fileID: 2365596823942982563, guid: 2131dec12abd08c9aabdc9c28f88f2f1,
     type: 3}
   storyRewards: []
   rewardEntries:
   - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
     amount: 1600
-  nextStory: {fileID: 0}
+  nextStory: {fileID: 11400000, guid: 089b62fa179edbf0b82e33ae02d0a4de, type: 2}
   afterScene: {fileID: 11400000, guid: 77f990fd911530582b7b862d30e3a1b7, type: 2}
   afterSceneToasts:
-  - time: 0.8
+  - time: 1.5
+    trigger: 0
+    notBefore: 0
     speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
     speakerName: 
-    text: PICK A BANNER AND HIT 10x!!! YOU'VE GOT EXACTLY ENOUGH GEMS!!!
-    duration: 5
-  - time: 0.4
-    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
-    speakerName: 
-    text: DUPLICATE CHARACTERS TURN INTO ENGRAMS!!! NOTHING IS WASTED!!! PROBABLY!!!
-    duration: 5
-  afterGachaPullToasts:
-  - time: 2.5
-    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
-    speakerName: 
-    text: DID YOU GET SOMETHING GOOD??? DID YOU??? DID YOU???
-    duration: 4
-  - time: 0.3
-    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
-    speakerName: 
-    text: Oh, don't mind her. She's always like this when there's money involved.
+    text: Pick a banner to see which characters and rewards are available.
     duration: 4.5
   - time: 0.3
+    trigger: 0
+    notBefore: 0
     speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
     speakerName: 
+    text: A single pull costs 160 Gems.
+    duration: 4.5
+  - time: 0.3
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    text: Or use 1,600 Gems for a 10x pull!
+    duration: 4.5
+  - time: 0.8
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    text: Some rewards may be duplicates. Don't waste them.
+    duration: 4.5
+  - time: 0.3
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    text: DUPLICATES TURN INTO ENGRAMS!!!
+    duration: 4.5
+  - time: 0.8
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    text: NOW HIT THAT 10x BUTTON!!!
+    duration: 4.5
+  afterGachaPullToasts: []
+  afterAction: 2
+  afterActionToasts:
+  - time: 2.5
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    text: WOOO!!! WHEN YOU'RE DONE LOOKING, HEAD BACK TO THE MAIN MENU!!!
+    duration: 4.5
+  followUpLines:
+  - style: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: DID YOU GET SOMETHING GOOD???
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: ...I got some duplicates.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: THAT'S STILL SOMETHING!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: How?
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: Duplicates turn into Engrams. You can use them to strengthen the corresponding
+      character.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: So even if I get a character I already have, I still receive something
+      useful?
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: Precisely.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: SEE?! NOTHING IS WASTED!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: And I can keep pulling until I get the character I want?
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: OF COURSE!!! THERE'S EVEN A PITY SYSTEM!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: Don't let her excitement make you forget that it still costs Gems.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: YOU'RE RUINING THE MOMENT!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: I'm providing financial advice.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: ...I think I've had enough gambling for today.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: IT'S NOT GAMBLING!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: She's always like this when there's money involved.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
     text: I'M NOT SCREAMING!!! I'M CELEBRATING!!!
-    duration: 4
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: So... I've learned how to fight, how to use my authority, how to spend
+      money, and how to gamble.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: An impressive list of accomplishments.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: I wouldn't call all of them accomplishments.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: Your Majesty. There is one more thing you should learn.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: ...There's more?
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: I'm afraid so.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
   timeLimitSeconds: 600
   storyMusic: {fileID: 11400000, guid: d8bb118ed9afc98ecb6078abc6c0d285, type: 2}

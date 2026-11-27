@@ -1559,6 +1559,9 @@ MonoBehaviour:
   messageText: {fileID: 2077006896}
   startButton: {fileID: 645664302}
   closeButton: {fileID: 2145954706}
+  guideButton: {fileID: 0}
+  guideClickSfx: {fileID: 0}
+  enemiesButton: {fileID: 0}
   gameplayScene: {fileID: 11400000, guid: 82dc3e3cce79197f8a4de62cb99d6fdb, type: 2}
 --- !u!1 &1080642822
 GameObject:
@@ -3541,6 +3544,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f9c39c1369667f412a80a82767a40fdd, type: 2}
   - {fileID: 11400000, guid: bd1c06968823c8ca0b7d56a739f1d97f, type: 2}
   - {fileID: 11400000, guid: 287f38355bf78882790dcdb8d428d346, type: 2}
+  - {fileID: 11400000, guid: ee3997e123d5c8ad992d609d9fb7f9ee, type: 2}
+  - {fileID: 11400000, guid: f8c88790afb517025b7afd39633d8703, type: 2}
+  - {fileID: 11400000, guid: ba502034f3104a89bad863d99893c000, type: 2}
+  - {fileID: 11400000, guid: ccb63030ce682ef87a5caf6cec947faa, type: 2}
+  - {fileID: 11400000, guid: c231275022c60e288b00fdef728e0c65, type: 2}
+  - {fileID: 11400000, guid: 4ced6d7fc6abdc8b3a9752f608c41dcb, type: 2}
+  - {fileID: 11400000, guid: b984caae61b0164618122827673b17d9, type: 2}
+  - {fileID: 11400000, guid: a5b8c14e834cbc436a379eca7f61a0ed, type: 2}
+  - {fileID: 11400000, guid: 2b9e3a7806bb71444bb346b9048fe4c5, type: 2}
+  - {fileID: 11400000, guid: b65d937d78136591a936be79cede3149, type: 2}
+  - {fileID: 11400000, guid: 464275f53e8781775b6880c4ecc2192d, type: 2}
+  - {fileID: 11400000, guid: df3c667c469a899c99a9c4ae6c7312c1, type: 2}
+  - {fileID: 11400000, guid: c951e852d5fb18c038e465c461b3d3d1, type: 2}
+  - {fileID: 11400000, guid: 4dce17ebb826d19ad85dede04865279a, type: 2}
+  - {fileID: 11400000, guid: 7632479649bac616f935f4d69ea0d85e, type: 2}
+  - {fileID: 11400000, guid: 4d353558e8ada28cebaaf139d1303c7f, type: 2}
+  - {fileID: 11400000, guid: 811f0b7378d2ad9da98aa8079e4254bf, type: 2}
+  - {fileID: 11400000, guid: 25717c376580b292b9cfcacabf46933c, type: 2}
   levelListRoot: {fileID: 1080642823}
   levelItemPrefab: {fileID: 4533517387847946242, guid: 8ccb37108eedf56f5b14c27d5d6bca4a,
     type: 3}

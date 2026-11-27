@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac675d8ddabc928f1b698d0b0c54c207, type: 3}
+  m_Name: Stage_21
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelId: stage_21
+  levelName: Stage 21 - BOSS
+  previousLevel: {fileID: 11400000, guid: a5b8c14e834cbc436a379eca7f61a0ed, type: 2}
+  levelParts:
+  - {fileID: 11400000, guid: 150c2767290a9a80daec2e6cab5464bb, type: 2}
+  - {fileID: 11400000, guid: f183a6f5764bb535280b1d0471b8144f, type: 2}
+  levelRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+    amount: 2400
+  - reward: {fileID: 11400000, guid: 5b228f6276d163bbf8f4ba4aea0ee88d, type: 2}
+    amount: 6
+  - reward: {fileID: 11400000, guid: be7247212fc676597840f894079075dc, type: 2}
+    amount: 3
+  - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+    amount: 360
+  battleToasts: []
+  bossIntroToasts:
+  - time: 0.5
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: 1fcc612448021e71491ea8237a9351f8, type: 2}
+    speakerName: 
+    text: Unregistered King detected. Commencing emergency regulation.
+    duration: 5
+  energyCost: 18
+  expReward: 0
+  timeLimitSeconds: 300
+  levelMusic: {fileID: 11400000, guid: 1f17b27403c9cfc3cb22aab4c2e3ca94, type: 2}
+  enemyStatMultiplier: 4.45
+  enemyTint: {r: 0.32961026, g: 0.9, b: 0.17999998, a: 1}

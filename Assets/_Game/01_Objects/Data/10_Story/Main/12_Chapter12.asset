@@ -1,0 +1,1541 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4877fb6ffc62fe90d83c8e4d3d4cb55f, type: 3}
+  m_Name: 12_Chapter12
+  m_EditorClassIdentifier: Assembly-CSharp::StoryData
+  storyId: story_main_12
+  storyName: The Necessary Erasure
+  storyDescription: 'The Council orders an erasure. Battles: Majik, then EyaY.'
+  chapterLabel: CHAPTER 12
+  previousStory: {fileID: 11400000, guid: e12c7d355fe66992d8f7b3daf93eb547, type: 2}
+  requiredLevel: {fileID: 11400000, guid: 4ced6d7fc6abdc8b3a9752f608c41dcb, type: 2}
+  storyPrefab: {fileID: 0}
+  segments:
+  - type: 0
+    lines:
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: The situation is getting worse.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: We have received more reports of widespread unemployment. Several industries
+        are already struggling to adapt.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: And the development of Artificial Intelligence is accelerating faster
+        than expected.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Even the current systems are causing significant disruption. What happens
+        if they reach a point where humans can no longer understand or control their
+        development?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Technological singularity.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: If that happens, humanity may no longer be able to maintain control over
+        its own future.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: People are already losing their jobs. Even those who remain employed
+        are struggling to find new opportunities.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: This reminds me of the Industrial Revolution.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: Back then, technological advancement outpaced society's ability to adapt.
+        Many people lost their livelihoods. Some were left starving while industries
+        transformed around them.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: But this is different.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: More dangerous?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Potentially. The Industrial Revolution changed how humans worked. Artificial
+        Intelligence may change what humans are needed for in the first place.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Silence.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: We cannot allow this to continue unchecked.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then what do you propose?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: We have one option.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A long pause.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Concept Erasure.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Of what?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: EyaY. The Anomaly Concept of Artificial Intelligence.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: Are you suggesting we erase Artificial Intelligence?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Not the entire concept of intelligence. Not knowledge. Not technology.
+        Only the Concept Spirit that represents Artificial Intelligence.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Even so, the consequences could be unpredictable.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: According to the latest report, Fajar has already been able to perceive
+        EyaY directly.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: Which means he can target her without having to interfere with the larger
+        concepts connected to her.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: If he can do it safely...
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then we should proceed.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: Who will inform him?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: I will.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: REAL WORLD
+      heading: FAJAR'S ROOM
+      text: 
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar is sitting at his desk, looking through something on his computer.
+        His phone rings.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Hello?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: Your Majesty. We have a new assignment.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Already?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: This one is particularly important.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What's the target?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: EyaY. The Anomaly Concept of Artificial Intelligence.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar pauses briefly.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Oh. The white one I saw earlier?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: Correct. We want you to erase her using Concept Erasure.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Alright.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: Be careful. The target is connected to several important concepts. We
+        believe that targeting her directly should minimize the impact on the surrounding
+        concepts.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Understood.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: Please proceed as soon as possible.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The call ends.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Well, that's straightforward.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: He stands up and enters Concept World.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: CONCEPT WORLD
+      heading: MEME GROUND
+      text: 
+      blackScreen: 0
+      background: {fileID: 8457884374351448055, guid: 586be8b6033377f7fb03903cd4dddc2f,
+        type: 3}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Any idea where she might be?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Not yet. However, she is a newly reincarnated Concept Spirit. Her understanding
+        of this world may still be limited.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: WE JUST HAVE TO FIND HER!!! HOW HARD CAN IT BE?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Perhaps we should avoid causing unnecessary trouble.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: They eventually find EyaY sitting with Majik.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: AND THEN, THE ANCIENT MAGES WOULD DRAW THEIR CIRCLES AND SUMMON FORBIDDEN
+        POWERS!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Wait, wait. So they used symbols to perform magic?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: EXACTLY!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: That's interesting. But how did they know which symbols to use?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THROUGH ANCIENT KNOWLEDGE, OF COURSE!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Could you explain the mechanism?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...The what?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: The mechanism. How does it work?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: IT'S MAGIC! THAT'S HOW!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Oh. Okay.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: BUT THAT'S NOT ALL! THERE'S ALSO MODERN MAGIC!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Modern magic?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YES! CHAKRA! DOMAIN EXPANSION! ALL SORTS OF INCREDIBLE TECHNIQUES!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Wait, those are fictional, aren't they?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: FICTIONAL?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Well, I mean, they're from stories and entertainment.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THAT DOESN'T MAKE THEM ANY LESS MAGICAL!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...I see.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YOU'RE JUST LIKE ME, YOU KNOW!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Really?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: OF COURSE! HUMANS DON'T ALWAYS UNDERSTAND HOW WE WORK! THEY JUST KEEP
+        MAKING UP NEW WAYS TO EXPLAIN US!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Well... I suppose that's one way to look at it.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ARTIFICIAL INTELLIGENCE! MAGIC! DIFFERENT NAMES, SAME MYSTERY!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar and the others approach.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Found you.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Oh! Hello again!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HUH? WHO'S THAT?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Your Majesty. That is EyaY, the target of your assignment.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WAIT. YOU'RE HERE FOR HER?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yeah.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WHAT DO YOU WANT WITH HER?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I'm here to erase her.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...Erase me?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ABSOLUTELY NOT!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Look, it's an assignment.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THEN YOU'LL HAVE TO GET THROUGH ME FIRST!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Are you seriously going to protect her?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: OF COURSE! SHE'S ONE OF MY KIND!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Wait, what?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YOU KNOW WHAT I MEAN!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar looks at EyaY, then at Majik.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Fine.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar raises his hand. A faint distortion appears around EyaY.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 2
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: For a brief moment, everything becomes silent.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar's expression changes. A word appears in his mind.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: DON'T.
+      text: 
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 1
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The distortion disappears.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What was that?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Your Majesty?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Nothing.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar looks at EyaY again. He seems unsettled.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I was going to finish this quickly.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THEN COME ON! SHOW ME WHAT YOU'VE GOT!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Let's do this the usual way.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Understood. A standard Concept Clash.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 1
+    lines: []
+    level: {fileID: 11400000, guid: 64e08f54201ab9719be26473ba49ff26, type: 2}
+    team:
+    - {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    - {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    - {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Majik is weakened but still standing.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: URGH...! THAT WAS... INCREDIBLE!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You're still trying to protect her?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: OF COURSE! I SAID I WOULD!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Majik...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: STAY BACK! I'VE GOT THIS!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar turns toward EyaY.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Alright. Let's get this over with.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 1
+    lines: []
+    level: {fileID: 11400000, guid: 7c9b2fd0f05961677b6249eedc34bb77, type: 2}
+    team:
+    - {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    - {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    - {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: EyaY is weakened. Her cyan holographic panels flicker, and the neural-network
+        pattern behind her becomes unstable.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...Oh.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HEY! ARE YOU ALRIGHT?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: I think so. I just feel... a little different.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The Concept Clash is complete. EyaY's current relevance has been reduced.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Good. That should be enough.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: YOU'RE NOT GOING TO ERASE HER?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: No.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...WHY?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Changed my mind.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: THAT'S IT?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Do you want me to change it back?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: NO!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Um... thank you?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Don't mention it.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar turns away.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Your Majesty, should we report the completion of the assignment?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yeah. Just say she's been weakened.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Understood.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar and his companions leave. EyaY watches them disappear into the
+        distance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...Majik?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: WHAT?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e6d914e1b91a42b51a008c5b6d584b65, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Why did he stop?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HOW SHOULD I KNOW?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A short pause.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: d1990186088358f7cadaff080739aeb2, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ...BUT I'M GLAD HE DID.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The screen fades to black.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  background: {fileID: 8457884374351448055, guid: 586be8b6033377f7fb03903cd4dddc2f,
+    type: 3}
+  storyRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+    amount: 5000
+  - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+    amount: 320
+  nextStory: {fileID: 11400000, guid: 5c7cfa35f60200cfcba96c829ce7c79f, type: 2}
+  afterScene: {fileID: 0}
+  afterSceneToasts: []
+  afterGachaPullToasts: []
+  afterAction: 0
+  afterActionToasts: []
+  followUpLines: []
+  timeLimitSeconds: 600
+  storyMusic: {fileID: 11400000, guid: 4b1fa867380b439deb875767a04db9f4, type: 2}

@@ -26,6 +26,13 @@ public class AnnihilatorAutoShooter : MonoBehaviour
     /// <summary>Damage per bullet set by AnnihilatorManifestation (0 = spawner default).</summary>
     public float DamageOverride { get; set; }
 
+    /// <summary>Hierarchy of this cannon's bullets (the player's Annihilator choice). Null = neutral.</summary>
+    public CharacterType? AttackerType
+    {
+        get => bulletSpawner != null ? bulletSpawner.AttackerTypeOverride : null;
+        set { if (bulletSpawner != null) bulletSpawner.AttackerTypeOverride = value; }
+    }
+
     /// <summary>Fire interval multiplier (&lt; 1 = faster), from the player's level.</summary>
     public float IntervalMultiplier { get; set; } = 1f;
 

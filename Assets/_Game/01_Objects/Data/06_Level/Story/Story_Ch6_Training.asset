@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac675d8ddabc928f1b698d0b0c54c207, type: 3}
+  m_Name: Story_Ch6_Training
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelId: story_ch6_training
+  levelName: Manifestation Training
+  previousLevel: {fileID: 0}
+  levelParts:
+  - {fileID: 11400000, guid: ad9f8321d347d92489168ac78576ff34, type: 2}
+  - {fileID: 11400000, guid: 4d2e994f5223388909cc8d7a56d2ced5, type: 2}
+  levelRewards: []
+  rewardEntries: []
+  battleToasts: []
+  bossIntroToasts: []
+  energyCost: 0
+  expReward: 0
+  timeLimitSeconds: 240
+  levelMusic: {fileID: 11400000, guid: 26db864fe6bd0e8fcadcf2d09fb71af5, type: 2}
+  enemyStatMultiplier: 0.6
+  enemyTint: {r: 0.5113274, g: 0.17999998, b: 0.9, a: 1}

@@ -32,6 +32,9 @@ public class TeamSelectionPopupUI : MonoBehaviour
     [Tooltip("Shows this level's enemies, their hierarchy and suggested counters. Empty = cloned from Cancel.")]
     [SerializeField] private Button enemiesButton;
 
+    [SerializeField, Tooltip("Sweep (instant re-clear) for cleared stages. Empty = created at runtime.")]
+    private Button sweepButton;
+
     [Header("Scene")]
     [SerializeField] private SceneReference gameplayScene;
 
@@ -69,7 +72,13 @@ public class TeamSelectionPopupUI : MonoBehaviour
                     closeButton, closeButton.transform.parent, "EnemiesButton", "Enemies", null);
             }
 
-            // Stack Enemies and Type Guide evenly between Start and Cancel.
+            if (sweepButton == null)
+            {
+                sweepButton = InfoPopupUI.CloneButton(
+                    closeButton, closeButton.transform.parent, "SweepButton", "Sweep", null);
+            }
+
+            // Stack Sweep, Enemies and Type Guide evenly between Start and Cancel.
             if (startButton != null &&
                 startButton.transform.parent == closeButton.transform.parent)
             {
@@ -78,19 +87,51 @@ public class TeamSelectionPopupUI : MonoBehaviour
                 Vector3 start = startButton.transform.localPosition;
                 Vector3 close = closeButton.transform.localPosition;
 
-                if (enemiesButton != null)
-                    enemiesButton.transform.localPosition = Vector3.Lerp(start, close, 1f / 3f);
-
-                if (guideButton != null)
-                    guideButton.transform.localPosition = Vector3.Lerp(start, close, 2f / 3f);
+                PlaceBetween(sweepButton, start, close, 1f / 4f);
+                PlaceBetween(enemiesButton, start, close, 2f / 4f);
+                PlaceBetween(guideButton, start, close, 3f / 4f);
             }
         }
+
+        if (sweepButton != null)
+            sweepButton.onClick.AddListener(OpenSweep);
 
         if (guideButton != null)
             guideButton.onClick.AddListener(OpenHierarchyGuide);
 
         if (enemiesButton != null)
             enemiesButton.onClick.AddListener(OpenEnemyIntel);
+    }
+
+    // Three buttons now share the gap between Start and Cancel: make them a
+    // little shorter so they don't touch.
+    private static void PlaceBetween(Button button, Vector3 start, Vector3 close, float t)
+    {
+        if (button == null)
+            return;
+
+        button.transform.localPosition = Vector3.Lerp(start, close, t);
+
+        if (button.transform is RectTransform rt)
+            rt.sizeDelta = new Vector2(rt.sizeDelta.x, rt.sizeDelta.y * 0.8f);
+    }
+
+    private void OpenSweep()
+    {
+        if (selectedLevel == null || !StageSweep.IsSweepable(selectedLevel))
+            return;
+
+        StageSweepPopupUI.Show(selectedLevel, () =>
+        {
+            SetMessage(string.Empty);
+            RefreshSelectionUI();
+        });
+    }
+
+    private void RefreshSweepButton()
+    {
+        if (sweepButton != null)
+            sweepButton.gameObject.SetActive(StageSweep.IsSweepable(selectedLevel));
     }
 
     private void OpenEnemyIntel()
@@ -152,6 +193,7 @@ public class TeamSelectionPopupUI : MonoBehaviour
         gameObject.SetActive(true);
 
         SetMessage(string.Empty);
+        RefreshSweepButton();
         RefreshCharacterList();
         RefreshSelectionUI();
     }

@@ -1473,6 +1473,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b2b20b1b20889d1c885487efbc334c35, type: 2}
   - {fileID: 11400000, guid: 81e55da408f5fb8f9b56a7d249bcc294, type: 2}
   - {fileID: 11400000, guid: e37f85c34b98be2d5b320c70fd1d9919, type: 2}
+  - {fileID: 11400000, guid: 089b62fa179edbf0b82e33ae02d0a4de, type: 2}
+  - {fileID: 11400000, guid: c2303977e22bd8bb7b781ef76466a4df, type: 2}
+  - {fileID: 11400000, guid: e12c7d355fe66992d8f7b3daf93eb547, type: 2}
+  - {fileID: 11400000, guid: a35ce0dd54cd9d3a3b0b6239e73d3188, type: 2}
+  - {fileID: 11400000, guid: 5c7cfa35f60200cfcba96c829ce7c79f, type: 2}
+  - {fileID: 11400000, guid: 4b447a70e8d2d70dc976311e3c781187, type: 2}
   storyListRoot: {fileID: 1770037261}
   storyItemPrefab: {fileID: 5651770991152915951, guid: 00863d84825f889c2b3d0c8731039f69,
     type: 3}

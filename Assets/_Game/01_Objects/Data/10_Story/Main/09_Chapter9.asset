@@ -1,0 +1,652 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4877fb6ffc62fe90d83c8e4d3d4cb55f, type: 3}
+  m_Name: 09_Chapter9
+  m_EditorClassIdentifier: Assembly-CSharp::StoryData
+  storyId: story_main_09
+  storyName: A King's Daily Duties
+  storyDescription: 'Noz explains Daily Objectives. Reward: Gems for your first claim.'
+  chapterLabel: CHAPTER 9
+  previousStory: {fileID: 11400000, guid: e37f85c34b98be2d5b320c70fd1d9919, type: 2}
+  requiredLevel: {fileID: 0}
+  storyPrefab: {fileID: 0}
+  segments:
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Noz approaches the group carrying a small collection of documents. They
+        contain several tasks and records.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What are those?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Your daily assignments.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: My what?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Daily Objectives. There are several tasks you can complete to receive
+        additional resources.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: More work?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: MORE REWARDS!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's not what I asked.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Completing these objectives will help you develop your party and gather
+        supplies.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Are they mandatory?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: No. But they are useful if you want to make steady progress.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Think of them as small investments that reward consistency.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: AND YOU GET FREE STUFF!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You two really have a way of describing everything.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: There are different objectives available. Some can be completed by participating
+        in Concept Clashes, while others may involve using your characters or visiting
+        certain facilities.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So I just complete the tasks and receive the rewards?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Correct. However, completing an objective does not automatically transfer
+        its reward to you. You must claim it yourself.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Why?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: That is simply how the system works.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Of course it is.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Please open the Daily Objectives menu.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  background: {fileID: 2365596823942982563, guid: 2131dec12abd08c9aabdc9c28f88f2f1,
+    type: 3}
+  storyRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+    amount: 300
+  nextStory: {fileID: 11400000, guid: c2303977e22bd8bb7b781ef76466a4df, type: 2}
+  afterScene: {fileID: 11400000, guid: c6c12e2b07f2f40cab35afbc1d93b560, type: 2}
+  afterSceneToasts:
+  - time: 1.5
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    text: Here you can see the objectives available for today.
+    duration: 4.5
+  - time: 0.3
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    text: Each objective has its own requirements and rewards.
+    duration: 4.5
+  - time: 0.3
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    text: Objectives you've completed will become available to claim.
+    duration: 4.5
+  - time: 0.8
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    text: Select the completed objective to claim its reward.
+    duration: 4.5
+  - time: 0.3
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    text: Good. Now press the Claim button.
+    duration: 4.5
+  afterGachaPullToasts: []
+  afterAction: 3
+  afterActionToasts:
+  - time: 1.2
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    text: Well done, Your Majesty. The reward has been added to your inventory.
+    duration: 4.5
+  - time: 0.3
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    text: Return to the main menu when you're ready.
+    duration: 4.5
+  followUpLines:
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: So I need to remember to claim them myself?
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: Exactly. Completing the task is only half the process.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: DON'T FORGET YOUR REWARDS!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: I think I can remember that.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: There may also be additional rewards for completing several objectives
+      within the same day.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: So the more objectives I complete, the more rewards I can receive?
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: Correct. Be sure to check your progress.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: And these objectives reset every day?
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: Yes. New objectives will become available after the daily reset.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: Consistency is a valuable investment.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: AND DON'T FORGET TO COME BACK TOMORROW!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: I was hoping for a day off.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: You are the King of All Concepts, Your Majesty.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: That doesn't mean I can't take a break.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: BUT YOU CAN GET MORE REWARDS!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: ...I knew you were going to say that.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: So, that's everything?
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: For now, yes.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: Fighting, switching, using my authority, shopping, gacha, and daily assignments.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: You've learned quite a lot.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: AND YOU HAVE US!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: AND YOU CAN ALWAYS COME BACK FOR MORE PULLS!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: Please don't encourage her.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: c3e64c97bdf51dc37bfd93cf40728166, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: DID SOMEONE SAY FIGHTING?!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: ...Where did he come from?
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: I believe we should get going.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: Wait. I still need to find a way home.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 1
+    speaker: {fileID: 0}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: A brief silence.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: Of course. But first, there are things you need to understand about this
+      world.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: Like what?
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: Everything.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 1
+    speaker: {fileID: 0}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: 'The camera slowly pulls away from the group. Around them, Concept Spirits
+      carry on: some argue, some trade, and some fight.'
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 1
+    speaker: {fileID: 0}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: The Concept World is vast.
+    blackScreen: 1
+    background: {fileID: 0}
+    effect: 0
+  - style: 1
+    speaker: {fileID: 0}
+    speakerName: 
+    rightSide: 0
+    label: 
+    heading: 
+    text: And this is only the beginning.
+    blackScreen: 1
+    background: {fileID: 0}
+    effect: 0
+  timeLimitSeconds: 600
+  storyMusic: {fileID: 11400000, guid: d8bb118ed9afc98ecb6078abc6c0d285, type: 2}
