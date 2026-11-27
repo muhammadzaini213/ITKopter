@@ -17,6 +17,7 @@ MonoBehaviour:
   storyDescription: 'Battle: Tren and Trady. Twice. Reward: Bokusu joins the roster.'
   chapterLabel: CHAPTER 5
   previousStory: {fileID: 11400000, guid: 9ee80f1694c103f3a8ade00d19956f4b, type: 2}
+  requiredLevel: {fileID: 0}
   storyPrefab: {fileID: 0}
   segments:
   - type: 0
@@ -27,8 +28,422 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Fajar encounters Tren and Trady. The situation escalates into a battle.
+      text: The group continues traveling through the Concept World.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar has started to get used to the strange surroundings. He still doesn't
+        understand how this world works, but at least he knows the creatures around
+        him aren't ordinary people.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Noz, can I ask you something?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Certainly, Your Majesty.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You said every Concept Spirit represents something understood by humanity.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Correct.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Does that mean there are Concept Spirits for everything?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Not necessarily everything. But many things that humanity understands
+        can have a representation here.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Even something as specific as a phone?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HEY!!! THAT'S ME!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yes. Although the nature and relevance of each concept differ considerably.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: And what happens when people stop understanding something?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Its relevance may change. But that is a more complicated subject.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...I see.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: OH!!! LOOK!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Two Concept Spirits are standing nearby.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Oh? What's this?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: A new face?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Well, well. Isn't this interesting?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Who are you?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Tren. Trend, if you prefer the full name.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: And I'm Trady. Trade.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Are you two together?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Not exactly.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: We simply happen to share an interest in seeing how things turn out.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's reassuring.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: So you're the new King?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Apparently.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: I've heard quite a lot about you.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Hopefully nothing embarrassing.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Oh, nothing particularly interesting yet.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Let's see what you can do.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Your Majesty, I would advise caution.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Why?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Their concepts are not particularly easy to deal with.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Awww. Don't be so serious.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: We only want to see whether our new King is worth the attention.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: THEY LOOK STRONG!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You keep saying that.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: BECAUSE THEY KEEP LOOKING STRONG!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Let's have some fun!
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     level: {fileID: 0}
     team: []
@@ -45,21 +460,33 @@ MonoBehaviour:
     scriptedLossSeconds: 45
     battleToasts:
     - time: 2
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
       speakerName: 
-      text: THEY'RE STRONG!!! LIKE, REALLY STRONG!!! JUST SURVIVE!!!
+      text: THEY'RE REALLY STRONG!!! JUST SURVIVE!!!
       duration: 4.5
     - time: 13
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
       speakerName: 
       text: Awww, is that all you've got?
       duration: 4.5
     - time: 27
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
       speakerName: 
-      text: Oh my, what a disappointing performance. I expected a little more from
-        the new King.
-      duration: 5.5
+      text: What a disappointing performance. I expected more from the new King.
+      duration: 4.5
+    - time: 38
+      trigger: 0
+      notBefore: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      text: Stay focused, Your Majesty. Don't let them overwhelm you.
+      duration: 4.5
   - type: 0
     lines:
     - style: 1
@@ -68,8 +495,9 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: The battle is lost.
+      text: The battle ends in defeat.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 1
       speaker: {fileID: 0}
@@ -77,8 +505,80 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: After the battle, Bokusu appears and introduces himself as a Protector.
+      text: Fajar and his party barely manage to stand. Tren and Trady don't seem
+        particularly impressed.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...We lost.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: THEY'RE REALLY STRONG!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I noticed.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Their attacks are too overwhelming for our current formation.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So what do we do?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: We need a way to withstand their attacks.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A small box-shaped Spirit approaches.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
@@ -88,6 +588,27 @@ MonoBehaviour:
       heading: 
       text: ...You look like you could use a shield.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: And you are?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Bokusu. Box.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
@@ -97,6 +618,7 @@ MonoBehaviour:
       heading: 
       text: FINALLY!!! SOMEONE WHO CAN KEEP US ALIVE!!!
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
@@ -106,6 +628,139 @@ MonoBehaviour:
       heading: 
       text: That's... technically my job.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You're a Protector?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Correct. I can create a barrier to protect the active unit.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Can you protect the whole party?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Not directly. My barrier protects whoever is currently active.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: That should be enough to give us some breathing room.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So we can use your barrier when things get dangerous, then switch to
+        another character?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Exactly. But don't rely on it forever. It has limited durability and
+        duration.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: WE HAVE A BOX NOW!!! WE'RE UNSTOPPABLE!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I wouldn't go that far.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Let's try again.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Are you sure?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: We won't get anywhere if we keep running away.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then I'll do my best to protect everyone.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 1
       speaker: {fileID: 0}
@@ -113,9 +768,59 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Fajar gets another chance to fight Tren and Trady, now with Bokusu in
-        the party.
+      text: Tren and Trady are still nearby.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Oh? You're trying again?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: How persistent.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: We're not finished.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: How admirable.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Let's see how long you last this time!
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     level: {fileID: 0}
     team: []
@@ -133,28 +838,36 @@ MonoBehaviour:
     scriptedLossSeconds: 45
     battleToasts:
     - time: 1.5
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
       speakerName: 
-      text: Press 3 to bring me in when the bullets get thick. Taking hits is my
-        job.
+      text: Press 3 to switch to me when the bullets get thick.
       duration: 4.5
     - time: 10
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
       speakerName: 
-      text: 'Press K for my EX skill: a barrier that blocks enemy fire for a few
-        seconds.'
+      text: Press K to activate my EX Skill and create a protective barrier.
       duration: 4.5
     - time: 20
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
       speakerName: 
-      text: Keep whoever is on the field alive. Swap them out before they fall.
+      text: The barrier protects the active unit. Switch carefully when it is active.
       duration: 4.5
     - time: 30
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
       speakerName: 
       text: STILL LOSING!!! BUT LOSING SLOWER!!! PROGRESS!!!
       duration: 4.5
     - time: 38
+      trigger: 0
+      notBefore: 0
       speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
       speakerName: 
       text: Diversifying your portfolio won't save you, dear.
@@ -167,8 +880,9 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: The battle is lost again.
+      text: The battle ends.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 0}
@@ -176,17 +890,19 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: ...We lost twice.
+      text: ...
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
-      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
-      speakerName: 
+      speaker: {fileID: 0}
+      speakerName: Fajar
       rightSide: 0
       label: 
       heading: 
-      text: At least we learned something.
+      text: We lost twice.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
@@ -194,8 +910,120 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: I LEARNED THAT THEY'RE REALLY ANNOYING!!!
+      text: TWICE!!!
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You don't have to repeat it.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: At least we learned something. We now understand how to use a Protector.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: And we should probably avoid fighting opponents without understanding
+        their strengths.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's fair.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Tren approaches.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Awww. Don't look so disappointed.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I'm not disappointed.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Really?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I'm just tired.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: That's even worse!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Trady smiles.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
@@ -203,16 +1031,116 @@ MonoBehaviour:
       rightSide: 1
       label: 
       heading: 
-      text: Aww, don't look so disappointed. Losing is just another opportunity to
-        make a better investment!
+      text: Losing is just another opportunity to make a better investment!
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...I don't think I like either of them.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Oh, you'll get used to us.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: We should leave for now. There is no reason to continue this fight.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 861c91e0066ee5902b97918f4a0a639a, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Sure! See you around, King!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Tren and Trady leave.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Should we follow them?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Not yet.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then let's get stronger before trying again.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: AND NEXT TIME WE'LL WIN!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Let's not get ahead of ourselves.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     level: {fileID: 0}
     team: []
     scriptedLoss: 0
     scriptedLossSeconds: 45
     battleToasts: []
-  background: {fileID: 1336809692955082325, guid: c8d7e2b6086e9e1fc90306b30071b685,
+  background: {fileID: 5291437818912269135, guid: 8839eba03a7528360a597f1d71a1b2df,
     type: 3}
   storyRewards: []
   rewardEntries:
@@ -222,5 +1150,8 @@ MonoBehaviour:
   afterScene: {fileID: 0}
   afterSceneToasts: []
   afterGachaPullToasts: []
+  afterAction: 0
+  afterActionToasts: []
+  followUpLines: []
   timeLimitSeconds: 600
   storyMusic: {fileID: 11400000, guid: 540c3b832df087d4e9021dfd0b105df5, type: 2}

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Slafurry.Systems.Pause;
 
 // The Annihilator: a giant ally that rises from the bottom of the screen
 // and fires every cannon for a few seconds. Its power grows with the
@@ -58,6 +59,13 @@ public class AnnihilatorManifestation : MonoBehaviour
     [SerializeField]
     private Color manifestColor = new Color(1f, 0.25f, 0.35f);
 
+    [Header("Hierarchy Choice")]
+    [SerializeField, Tooltip("Pause and let the player pick ABSTRACT / SIMPLE / SPECIAL for the attack (counter multipliers apply).")]
+    private bool chooseHierarchy = true;
+
+    [SerializeField, Tooltip("Frame for the choice popup. Empty = the project's 9Slice_0 sprite.")]
+    private Sprite choiceFrame;
+
     [Header("Fajar's Lines")]
     [SerializeField, TextArea(1, 2), Tooltip("What Fajar (the King of All Concepts) says on manifesting. Empty = built-in lines.")]
     private string[] summonLines = new string[0];
@@ -78,6 +86,22 @@ public class AnnihilatorManifestation : MonoBehaviour
     private bool restCaptured;
     private VfxRing aura;
     private VfxText label;
+
+    private const string ChoicePauseKey = "AnnihilatorChoice";
+
+    private AnnihilatorHierarchyChoiceUI choiceUI;
+    private CharacterType? chosenType;
+
+    /// <summary>Raised when the hierarchy choice opens (story tutorials).</summary>
+    public static event System.Action HierarchyChoiceOpened;
+
+    /// <summary>Raised when the Annihilator manifests.</summary>
+    public static event System.Action Manifested;
+
+    /// <summary>The hierarchy of the current manifestation's attack (null = neutral).</summary>
+    public CharacterType? ChosenType => chosenType;
+
+    public bool IsChoosing => choiceUI != null;
 
     /// <summary>True while any Annihilator is on the field (switching / EX skills lock).</summary>
     public static bool IsAnyManifesting { get; private set; }
@@ -106,6 +130,7 @@ public class AnnihilatorManifestation : MonoBehaviour
 
     public bool CanManifest =>
         !isManifesting &&
+        choiceUI == null &&
         cooldownTimer <= 0f &&
         annihilatorObject != null &&
         characterSwitcher != null &&
@@ -163,6 +188,38 @@ public class AnnihilatorManifestation : MonoBehaviour
         if (!CanManifest || manifestationCoroutine != null)
             return;
 
+        if (!chooseHierarchy)
+        {
+            BeginManifestation(null);
+            return;
+        }
+
+        Pause.On(ChoicePauseKey);
+
+        choiceUI = AnnihilatorHierarchyChoiceUI.Show(
+            cooldownText != null ? cooldownText.font : null,
+            choiceFrame,
+            AnnihilatorHierarchyChoiceUI.RecommendedForField(),
+            type => { CloseChoice(); BeginManifestation(type); },
+            CloseChoice);
+
+        RefreshUI();
+        HierarchyChoiceOpened?.Invoke();
+    }
+
+    private void CloseChoice()
+    {
+        choiceUI = null;
+        Pause.Off(ChoicePauseKey);
+        RefreshUI();
+    }
+
+    private void BeginManifestation(CharacterType? type)
+    {
+        if (!CanManifest || manifestationCoroutine != null)
+            return;
+
+        chosenType = type;
         manifestationCoroutine = StartCoroutine(ManifestationRoutine());
     }
 
@@ -181,6 +238,7 @@ public class AnnihilatorManifestation : MonoBehaviour
         {
             float t = shooters.Length > 1 ? i / (float)(shooters.Length - 1) : 0.5f;
 
+            shooters[i].AttackerType = chosenType;
             shooters[i].DamageOverride = damage;
             shooters[i].IntervalMultiplier = interval;
             shooters[i].AimAngle = Mathf.Lerp(spreadAngle, -spreadAngle, t);
@@ -250,6 +308,7 @@ public class AnnihilatorManifestation : MonoBehaviour
         body.localPosition = rest + Vector3.down * riseDistance;
 
         SayFajarLine();
+        Manifested?.Invoke();
 
         CombatFeel.SlowMo(0.9f, 0.25f, letterbox: true);
         CombatFeel.Flash(manifestColor.WithAlpha(0.45f), 0.4f);
@@ -259,6 +318,12 @@ public class AnnihilatorManifestation : MonoBehaviour
         SkillVFX.Sparks(partyPosition, manifestColor, 40, 10f, 0.7f);
         SkillVFX.Text(partyPosition + Vector3.up * 2f, $"ANNIHILATOR  Lv{level}", manifestColor, 6f, 1.6f, 1f);
         SkillVFX.Text(partyPosition + Vector3.up * 1.2f, $"POWER x{DamageMultiplier:0.0#}", Color.white, 3.5f, 1.6f, 0.8f);
+
+        if (chosenType.HasValue)
+        {
+            Color typeColor = ColorUtility.TryParseHtmlString(HierarchyGuide.Color(chosenType.Value), out Color c) ? c : manifestColor;
+            SkillVFX.Text(partyPosition + Vector3.up * 0.4f, chosenType.Value.ToString(), typeColor, 4f, 1.6f, 0.8f);
+        }
 
         yield return MoveBody(body, rest, riseDuration);
 
@@ -307,7 +372,7 @@ public class AnnihilatorManifestation : MonoBehaviour
         CharacterData king = story.PlayerAvatar;
         string[] lines = summonLines != null && summonLines.Length > 0 ? summonLines : DefaultSummonLines;
 
-        story.Toasts.Show(new StoryToastLine
+        story.Toasts.ShowPriority(new StoryToastLine
         {
             speaker = king,
             speakerName = king != null ? king.CharacterName : "Fajar",
@@ -361,6 +426,10 @@ public class AnnihilatorManifestation : MonoBehaviour
             }
         }
 
+        foreach (var shooter in annihilatorObject.GetComponentsInChildren<AnnihilatorAutoShooter>(true))
+            shooter.AttackerType = null;
+
+        chosenType = null;
         isManifesting = false;
         IsAnyManifesting = false;
         manifestationCoroutine = null;
@@ -379,7 +448,9 @@ public class AnnihilatorManifestation : MonoBehaviour
 
         if (cooldownText != null)
         {
-            if (isManifesting)
+            if (choiceUI != null)
+                cooldownText.text = "CHOOSING...";
+            else if (isManifesting)
                 cooldownText.text = "MANIFESTING";
             else if (cooldownTimer > 0f)
                 cooldownText.text = $"Cooldown: {Mathf.CeilToInt(cooldownTimer)}s";
@@ -403,5 +474,12 @@ public class AnnihilatorManifestation : MonoBehaviour
 
         if (isManifesting)
             IsAnyManifesting = false;
+
+        if (choiceUI != null)
+        {
+            choiceUI.Cancel();
+            choiceUI = null;
+            Pause.Off(ChoicePauseKey);
+        }
     }
 }

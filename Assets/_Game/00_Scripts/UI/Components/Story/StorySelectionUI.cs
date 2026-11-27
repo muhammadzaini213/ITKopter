@@ -103,27 +103,14 @@ public class StorySelectionUI : MonoBehaviour
                 story,
                 unlocked,
                 completed,
-                HandleStorySelected);
+                HandleStorySelected,
+                StoryProgress.IsNew(story, player),
+                unlocked ? null : StoryProgress.LockReason(story, player));
         }
     }
 
-    private static bool IsStoryUnlocked(StoryData story, PlayerSystem player)
-    {
-        if (story == null)
-            return false;
-
-        if (story.PreviousStory == null)
-            return true;
-
-        if (player == null ||
-            !player.IsPlayerDataLoaded ||
-            string.IsNullOrWhiteSpace(story.PreviousStory.StoryId))
-        {
-            return false;
-        }
-
-        return player.IsLevelCompleted(story.PreviousStory.StoryId);
-    }
+    private static bool IsStoryUnlocked(StoryData story, PlayerSystem player) =>
+        StoryProgress.IsUnlocked(story, player);
 
     private void HandleStorySelected(StoryData story)
     {

@@ -63,6 +63,20 @@ public class StorySystem : GameSystem<StorySystem>
     private StoryToastLine[] pendingSceneToasts;
     private StoryToastLine[] pendingGachaToasts;
 
+    // Onboarding after-scene action (buy / pull / claim) and its follow-up dialogue.
+    private StoryAfterAction pendingAfterAction;
+    private StoryToastLine[] pendingActionToasts;
+    private StoryData pendingFollowUp;
+    private string pendingFollowUpScene;
+    private bool followUpReady;
+    private bool followUpLoading;
+
+    /// <summary>The chapter whose follow-up dialogue the story scene is playing (null otherwise).</summary>
+    public StoryData FollowUpStory { get; private set; }
+
+    /// <summary>A story, or a chapter's follow-up dialogue, is running or about to.</summary>
+    public bool IsBusy => CurrentStory != null || FollowUpStory != null || followUpLoading;
+
     public StoryData CurrentStory { get; private set; }
     public int SegmentIndex { get; private set; }
     public bool IsOnboardingRun { get; private set; }
@@ -97,6 +111,12 @@ public class StorySystem : GameSystem<StorySystem>
 
         if (GachaSystem.Instance != null)
             GachaSystem.Instance.OnPullCompleted += HandleGachaPull;
+
+        if (ShopSystem.Instance != null)
+            ShopSystem.Instance.OnItemPurchased += HandleShopPurchase;
+
+        if (ObjectiveSystem.Instance != null)
+            ObjectiveSystem.Instance.OnObjectiveClaimed += HandleObjectiveClaimed;
     }
 
     protected override void OnSingletonDestroyed()
@@ -106,6 +126,12 @@ public class StorySystem : GameSystem<StorySystem>
 
         if (GachaSystem.Instance != null)
             GachaSystem.Instance.OnPullCompleted -= HandleGachaPull;
+
+        if (ShopSystem.Instance != null)
+            ShopSystem.Instance.OnItemPurchased -= HandleShopPurchase;
+
+        if (ObjectiveSystem.Instance != null)
+            ObjectiveSystem.Instance.OnObjectiveClaimed -= HandleObjectiveClaimed;
     }
 
     #region Onboarding
@@ -314,6 +340,12 @@ public class StorySystem : GameSystem<StorySystem>
             if (story.AfterGachaPullToasts != null && story.AfterGachaPullToasts.Length > 0)
                 pendingGachaToasts = story.AfterGachaPullToasts;
 
+            pendingAfterAction = story.AfterAction;
+            pendingActionToasts = story.AfterActionToasts;
+            pendingFollowUp = story.HasFollowUp ? story : null;
+            pendingFollowUpScene = story.AfterScene.SceneName;
+            followUpReady = story.AfterAction == StoryAfterAction.None;
+
             ClearCurrentStory();
             LoadScene(story.AfterScene);
             yield break;
@@ -392,6 +424,23 @@ public class StorySystem : GameSystem<StorySystem>
 
     private void HandleSceneLoaded(string sceneName)
     {
+        if (followUpLoading && IsStoryScene(sceneName))
+            followUpLoading = false;
+
+        // Left the onboarding after-scene: play its follow-up dialogue if
+        // the player did what the chapter asked (bought / pulled / claimed).
+        if (pendingFollowUpScene != null && sceneName != pendingFollowUpScene && !IsStoryScene(sceneName))
+        {
+            StoryData followUp = followUpReady ? pendingFollowUp : null;
+            ClearAfterAction();
+
+            if (followUp != null)
+            {
+                StartFollowUp(followUp);
+                return;
+            }
+        }
+
         // Leaving a story battle any other way (pause menu, game over exit) abandons the story.
         if (battleInProgress && (gameplayScene == null || sceneName != gameplayScene.SceneName))
             AbortStory();
@@ -409,8 +458,71 @@ public class StorySystem : GameSystem<StorySystem>
         }
     }
 
+    private void HandleShopPurchase(ShopItemEntry entry) => HandleAfterAction(StoryAfterAction.ShopPurchase);
+
+    private void HandleObjectiveClaimed() => HandleAfterAction(StoryAfterAction.ObjectiveClaim);
+
+    private void HandleAfterAction(StoryAfterAction action)
+    {
+        if (action == StoryAfterAction.None || pendingAfterAction != action)
+            return;
+
+        pendingAfterAction = StoryAfterAction.None;
+        followUpReady = true;
+
+        StoryToastLine[] toasts = pendingActionToasts;
+        pendingActionToasts = null;
+
+        if (toastUI != null && toasts != null && toasts.Length > 0)
+        {
+            // The how-to tips are done with once the player has acted.
+            toastUI.HideAll();
+            toastUI.PlaySequence(toasts);
+        }
+    }
+
+    private void ClearAfterAction()
+    {
+        pendingAfterAction = StoryAfterAction.None;
+        pendingActionToasts = null;
+        pendingFollowUp = null;
+        pendingFollowUpScene = null;
+        followUpReady = false;
+    }
+
+    private void StartFollowUp(StoryData story)
+    {
+        FollowUpStory = story;
+        followUpLoading = true;
+        StorySession.Selected = story;
+        ResetTime();
+
+        Debug.Log($"[StorySystem] Playing the follow-up of '{story.StoryName}'.");
+        LoadScene(storyScene);
+    }
+
+    /// <summary>Called by the story scene when a follow-up dialogue has finished.</summary>
+    public void CompleteFollowUp()
+    {
+        FollowUpStory = null;
+        followUpLoading = false;
+        StorySession.Clear();
+
+        StoryData next = NextOnboardingChapter;
+
+        if (next != null)
+        {
+            StartStory(next, true);
+            return;
+        }
+
+        LoadScene(mainMenuScene);
+    }
+
     private void HandleGachaPull(GachaData gacha, GachaPullResult[] results)
     {
+        HandleAfterAction(StoryAfterAction.GachaPull);
+
         if (pendingGachaToasts == null)
             return;
 

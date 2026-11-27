@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac675d8ddabc928f1b698d0b0c54c207, type: 3}
+  m_Name: Stage_13
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelId: stage_13
+  levelName: Stage 13
+  previousLevel: {fileID: 11400000, guid: 287f38355bf78882790dcdb8d428d346, type: 2}
+  levelParts:
+  - {fileID: 11400000, guid: ab8d2b7320d999519b12b3c771afaee5, type: 2}
+  - {fileID: 11400000, guid: 2f6fdba854bdcb22bb9da58a4897a6b8, type: 2}
+  levelRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+    amount: 1600
+  - reward: {fileID: 11400000, guid: 35922ea8f99da01adb6e1fb0f904baab, type: 2}
+    amount: 3
+  battleToasts:
+  - time: 2
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    speakerName: 
+    text: CLEAR EVERY WAVE TO WIN!!! THE WAVE BAR ON THE RIGHT SHOWS HOW FAR YOU
+      ARE!!!
+    duration: 5
+  - time: 12
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    speakerName: 
+    text: IF YOUR WHOLE TEAM FALLS, IT'S GAME OVER!!! SWITCH OUT HURT UNITS!!!
+    duration: 5
+  - time: 24
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    speakerName: 
+    text: WIN TO UNLOCK THE NEXT STAGE!!! AND GET REWARDS!!! LOTS OF THEM!!!
+    duration: 5
+  bossIntroToasts: []
+  energyCost: 12
+  expReward: 0
+  timeLimitSeconds: 240
+  levelMusic: {fileID: 11400000, guid: 4f9da37c97c80ad6d827842196fa3b76, type: 2}
+  enemyStatMultiplier: 2.7
+  enemyTint: {r: 0.32961026, g: 0.9, b: 0.17999998, a: 1}

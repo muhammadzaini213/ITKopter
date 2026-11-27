@@ -34,7 +34,9 @@ public class StoryListItemUI : MonoBehaviour
         StoryData data,
         bool isUnlocked,
         bool isCompleted,
-        Action<StoryData> startCallback)
+        Action<StoryData> startCallback,
+        bool isNew = false,
+        string lockReason = null)
     {
         storyData = data;
         onStartClicked = startCallback;
@@ -48,6 +50,14 @@ public class StoryListItemUI : MonoBehaviour
             storyNameText.text = string.IsNullOrWhiteSpace(storyData.ChapterLabel)
                 ? storyData.StoryName
                 : $"<size=60%><color=#19F0FF>{storyData.ChapterLabel}</color></size>  {storyData.StoryName}";
+
+            // Unlocked by a stage clear and not played yet.
+            if (isNew)
+                storyNameText.text += "  <size=60%><color=#FFD447>NEW!</color></size>";
+
+            // Locked: say what unlocks it.
+            if (!isUnlocked && !string.IsNullOrEmpty(lockReason))
+                storyNameText.text += $"\n<size=55%><color=#FF8A8A>{lockReason}</color></size>";
         }
 
         if (lockedIndicator != null)

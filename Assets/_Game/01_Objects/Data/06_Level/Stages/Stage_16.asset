@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac675d8ddabc928f1b698d0b0c54c207, type: 3}
+  m_Name: Stage_16
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelId: stage_16
+  levelName: Stage 16
+  previousLevel: {fileID: 11400000, guid: ba502034f3104a89bad863d99893c000, type: 2}
+  levelParts:
+  - {fileID: 11400000, guid: 0760c8251ac86398c97d40b580385bd1, type: 2}
+  - {fileID: 11400000, guid: 94766647ae623bd7fab5d88d16e6ded1, type: 2}
+  levelRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+    amount: 1900
+  - reward: {fileID: 11400000, guid: 7efdbe2d3c4bd48b0a8eca3d2b4641ac, type: 2}
+    amount: 3
+  battleToasts: []
+  bossIntroToasts: []
+  energyCost: 14
+  expReward: 0
+  timeLimitSeconds: 240
+  levelMusic: {fileID: 11400000, guid: 2996197edcc378b02b174629f47c86e3, type: 2}
+  enemyStatMultiplier: 3.3
+  enemyTint: {r: 0.95, g: 0.171, b: 0.171, a: 1}

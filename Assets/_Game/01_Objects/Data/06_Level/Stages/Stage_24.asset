@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac675d8ddabc928f1b698d0b0c54c207, type: 3}
+  m_Name: Stage_24
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelId: stage_24
+  levelName: Stage 24 - BOSS
+  previousLevel: {fileID: 11400000, guid: 464275f53e8781775b6880c4ecc2192d, type: 2}
+  levelParts:
+  - {fileID: 11400000, guid: cbaacd2906403326dac9e56f18bfd72b, type: 2}
+  - {fileID: 11400000, guid: b96f90e1061883aab8a24d4a885383b6, type: 2}
+  levelRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+    amount: 2700
+  - reward: {fileID: 11400000, guid: f7f10a0a4c87a2d5892f1a7d6bdb4663, type: 2}
+    amount: 6
+  - reward: {fileID: 11400000, guid: e1879c82a8d88f34796f68bee58ae117, type: 2}
+    amount: 3
+  - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+    amount: 400
+  battleToasts: []
+  bossIntroToasts:
+  - time: 0.5
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+    speakerName: 
+    text: Finally, someone worth hitting. Try not to break too fast.
+    duration: 5
+  energyCost: 20
+  expReward: 0
+  timeLimitSeconds: 300
+  levelMusic: {fileID: 11400000, guid: 051e3162ea7202407846564382ca569d, type: 2}
+  enemyStatMultiplier: 5.05
+  enemyTint: {r: 0.95, g: 0.171, b: 0.171, a: 1}

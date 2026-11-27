@@ -32,6 +32,9 @@ public class ShopSystem : GameSystem<ShopSystem>
     /// <summary>Raised after a successful conversion so shop UIs can refresh.</summary>
     public event Action OnConversionCompleted;
 
+    /// <summary>Raised after any successful Coins purchase.</summary>
+    public event Action<ShopItemEntry> OnItemPurchased;
+
     public override IEnumerator Initialize()
     {
         LoadDailyCounts();
@@ -191,6 +194,7 @@ public class ShopSystem : GameSystem<ShopSystem>
             $"from {shop.ShopName} for {totalCost} Coins.");
 
         Objectives.Report(ObjectiveType.ShopPurchases, quantity);
+        OnItemPurchased?.Invoke(entry);
         return true;
     }
 

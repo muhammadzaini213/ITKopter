@@ -1,0 +1,1112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4877fb6ffc62fe90d83c8e4d3d4cb55f, type: 3}
+  m_Name: 10_Chapter10
+  m_EditorClassIdentifier: Assembly-CSharp::StoryData
+  storyId: story_main_10
+  storyName: An Unusual King
+  storyDescription: 'The Council discusses its new King. Battle: Vio, the Primordial
+    Concept of Violence.'
+  chapterLabel: CHAPTER 10
+  previousStory: {fileID: 11400000, guid: 089b62fa179edbf0b82e33ae02d0a4de, type: 2}
+  requiredLevel: {fileID: 11400000, guid: e24501c89a01d6c6d94cae00c8f92056, type: 2}
+  storyPrefab: {fileID: 0}
+  segments:
+  - type: 0
+    lines:
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: SOMEWHERE
+      heading: COUNCIL CHAMBER
+      text: 
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Has the latest observation report arrived?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: It has. The new King has completed his first day in Concept World.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: And? How did he perform?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Remarkably well. He was able to perceive and interact with Ei-Pi almost
+        immediately.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Ei-Pi? The Special Concept?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Correct.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A brief silence.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: On his first day?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yes. He even managed to initiate a Concept Clash.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's... unusual.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: Most Kings barely managed to perceive Simple Concepts during their early
+        days. Some never progressed beyond that hierarchy.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: And yet Fajar has already reached a Special Concept.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Perhaps we finally have a prodigy.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: Or perhaps we're witnessing something we don't fully understand.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: We should remember the circumstances surrounding his appointment. We
+        had almost exhausted our candidates.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Especially in this era.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: The widespread dependence on AI has changed the way people think. Independent
+        reasoning is becoming increasingly uncommon. Our candidates have been deteriorating
+        in quality for years.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: We cannot keep expecting someone to become King if they can no longer
+        think independently.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Then we should make good use of the one we have.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: Eventually, he'll need to investigate the newer concepts emerging from
+        humanity's understanding. Especially the one we've been monitoring.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 2
+      rightSide: 0
+      label: 
+      heading: 
+      text: You mean Artificial Intelligence?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 3
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yes. But not yet. He needs to become familiar with Concept World first.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member 1
+      rightSide: 0
+      label: 
+      heading: 
+      text: Let's see how far this new King can go.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: REAL WORLD
+      heading: UNIVERSITY CAMPUS, AFTERNOON
+      text: 
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar walks out of the campus building, carrying his bag. His phone rings.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Hm?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Hello?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: Good afternoon, Your Majesty.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Can we skip the formalities? I'm outside.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: Of course. We are calling to inform you that your compensation has been
+        transferred.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Already?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yes. It should be more than sufficient for your living expenses.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar checks his banking application.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Wait.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's a lot.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: We expect you to focus on your responsibilities as King. You should no
+        longer need to spend your time taking freelance assignments.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So I can finally stop worrying about clients asking for revisions at
+        midnight?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: That would be advisable.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Well, that's one problem solved.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: Speaking of responsibilities, we have another assignment for you.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Of course there is.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: We need you to enter Concept World and weaken the Primordial Concept
+        of Violence.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Violence?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: Her name is Vio. She is a recurring concern for the balance of Concept
+        World. As King of All Concepts, periodically weakening her relevance is part
+        of your duties.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So, basically, I have to make sure violence doesn't become too dominant?
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: That is a reasonable simplification.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Alright. I'll do it.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Council Member
+      rightSide: 0
+      label: 
+      heading: 
+      text: Thank you, Your Majesty.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The call ends.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Well, at least this job pays better than freelancing.
+      blackScreen: 1
+      background: {fileID: 0}
+      effect: 0
+    - style: 3
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: CONCEPT WORLD
+      heading: NO PLACE
+      text: 
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar appears in Concept World. Noz approaches him.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Welcome back, Your Majesty.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Hey, Noz.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: I have received your assignment. We need to locate Vio.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Do you know where she is?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Not precisely. However, she tends to spend her time around areas where
+        conflicts are occurring.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That sounds... convenient.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Indeed. We should begin looking around.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The group travels through Concept World.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Eventually, they find Vio sitting casually in an open area. She notices
+        Fajar and waves enthusiastically.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: OH! HEY!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...That's her?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yes. The Primordial Concept of Violence.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: You're the new King, right? Fajar?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yeah. That's me.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Nice! I've heard about you!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Hopefully nothing bad.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Well, I heard you're pretty interesting! Wanna hang out?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Actually, I'm here for an assignment.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Oh?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: We have been instructed to reduce your current relevance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Ahhh. That again.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You seem awfully relaxed about it.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Well, it happens every now and then. It's not like I can stop being Violence
+        just because someone tells me to.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Your understanding is correct.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: So, are we fighting?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Looks like it.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: ALRIGHT! LET'S GO!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Vio gets up, excitedly stretching her arms.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Don't hold back, okay?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I'll try.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 1
+    lines: []
+    level: {fileID: 11400000, guid: cd104ec11c54e91bfba48333e6235563, type: 2}
+    team:
+    - {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+    - {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+    - {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  - type: 0
+    lines:
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Vio is weakened and sits down.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Ahhh... that was fun!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: You're taking this surprisingly well.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Of course! It's not my first time.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The assignment is complete. Her relevance has been reduced to an acceptable
+        level.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8ea60203385c3436b89ba2e8fe49ef60, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: See you around, Fajar!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Yeah. Take care.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: As Fajar and Noz leave, another figure watches them from a distance.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A white silhouette with cyan details stands partially hidden behind an
+        abstract structure. A faint neural-network pattern floats behind her.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The figure looks at Fajar. Fajar briefly turns his head.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Hm?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The figure immediately runs away.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: "Did someone just\u2014"
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Is something wrong, Your Majesty?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Never mind. I thought I saw someone.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: HUH? DID YOU SAY SOMETHING?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Nothing.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Perhaps we should continue, Your Majesty.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Neither Ei-Pi nor Bokusu seems particularly concerned.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    level: {fileID: 0}
+    team: []
+    scriptedLoss: 0
+    scriptedLossSeconds: 45
+    battleToasts: []
+  background: {fileID: -7377295934022830490, guid: 19247b60b0e7d1b67a7879c075e62f0a,
+    type: 3}
+  storyRewards: []
+  rewardEntries:
+  - reward: {fileID: 11400000, guid: ca045a363525551379ed4a6e01ed1d9d, type: 2}
+    amount: 3000
+  - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
+    amount: 160
+  nextStory: {fileID: 11400000, guid: e12c7d355fe66992d8f7b3daf93eb547, type: 2}
+  afterScene: {fileID: 0}
+  afterSceneToasts: []
+  afterGachaPullToasts: []
+  afterAction: 0
+  afterActionToasts: []
+  followUpLines: []
+  timeLimitSeconds: 600
+  storyMusic: {fileID: 11400000, guid: 4b1fa867380b439deb875767a04db9f4, type: 2}

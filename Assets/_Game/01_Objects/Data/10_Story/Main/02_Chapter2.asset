@@ -17,6 +17,7 @@ MonoBehaviour:
   storyDescription: Abstract landscapes, bizarre creatures, and nobody seems concerned.
   chapterLabel: CHAPTER 2
   previousStory: {fileID: 11400000, guid: 1dfb5eff8c92c56219bc0f921d9b8c4a, type: 2}
+  requiredLevel: {fileID: 0}
   storyPrefab: {fileID: 0}
   segments:
   - type: 0
@@ -27,9 +28,9 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Fajar looks around. The environment is strange, filled with abstract
-        landscapes and bizarre-looking creatures.
+      text: Fajar slowly opens his eyes. He is standing in a strange environment.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 1
       speaker: {fileID: 0}
@@ -37,8 +38,11 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: He notices several Concept Spirits behaving in ways he cannot understand.
+      text: The landscape stretches in directions that don't seem to make sense.
+        The ground is covered in abstract patterns, and the sky has an unfamiliar
+        color.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 1
       speaker: {fileID: 0}
@@ -46,10 +50,11 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: One is running away while being chased by several others. Another is
-        casually throwing projectiles at someone nearby. Two more are arguing loudly,
-        and their argument somehow turns into a bullet hell fight.
+      text: One Concept Spirit is being chased by several others. Another throws
+        projectiles at someone who seems completely uninterested. Two more are arguing,
+        and their argument has somehow turned into a bullet-hell fight.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 1
       speaker: {fileID: 0}
@@ -57,8 +62,9 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Nobody seems particularly concerned about the chaos.
+      text: Nobody seems particularly concerned.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 0}
@@ -66,8 +72,19 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: ...What?
+      text: ...
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What?
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 1
       speaker: {fileID: 0}
@@ -75,8 +92,70 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: A projectile flies past him.
+      text: A small creature passes by, carrying something that resembles a giant
+        pencil.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Is that... a person?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The creature disappears behind a strange structure.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: No. Never mind.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Spirit A
+      rightSide: 0
+      label: 
+      heading: 
+      text: YOU TOOK IT!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Spirit B
+      rightSide: 1
+      label: 
+      heading: 
+      text: I DIDN'T TAKE ANYTHING!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: A projectile flies past Fajar.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 2
     - style: 0
       speaker: {fileID: 0}
@@ -86,6 +165,7 @@ MonoBehaviour:
       heading: 
       text: Okay. Nope.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 1
       speaker: {fileID: 0}
@@ -93,8 +173,51 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: He turns around and tries to find a way out.
+      text: Another projectile hits the ground nearby.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 2
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: WHAT WAS THAT?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Are they seriously fighting with projectiles?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: The surrounding Concept Spirits carry on as if nothing unusual is happening.
+        Some walk past the fight. Others watch for a moment, then go back to what
+        they were doing.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Fajar takes a few steps backward.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 0}
@@ -104,15 +227,7 @@ MonoBehaviour:
       heading: 
       text: I shouldn't have clicked that button.
       blackScreen: 0
-      effect: 0
-    - style: 1
-      speaker: {fileID: 0}
-      speakerName: 
-      rightSide: 0
-      label: 
-      heading: 
-      text: He watches another group of Concept Spirits fighting in the distance.
-      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 0}
@@ -120,9 +235,29 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: I already understand how vibe coding works, but I didn't expect I'd participate
-        in vibe chaos.
+      text: Phone? Gone.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Wallet? Gone.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Great. No phone, no internet, no familiar landmarks...
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 1
       speaker: {fileID: 0}
@@ -130,9 +265,19 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: He continues looking for an exit, only to realize that he has absolutely
-        no idea where he is or how to get back.
+      text: A nearby Spirit suddenly crashes into the ground.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 2
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: And apparently, no safety regulations.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 1
       speaker: {fileID: 0}
@@ -140,15 +285,67 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: Suddenly, someone approaches him.
+      text: Fajar walks toward what looks like a path. After several minutes, he
+        realizes the scenery doesn't change in any predictable way.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Wait.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Didn't I just pass this place?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Okay. That's not good.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: ???
+      rightSide: 1
+      label: 
+      heading: 
+      text: HEEEEEEEEEEEEY!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...Oh, great.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     level: {fileID: 0}
     team: []
     scriptedLoss: 0
     scriptedLossSeconds: 45
     battleToasts: []
-  background: {fileID: -5310472767335154687, guid: 9e4f7f30b7489b279974c8f1d1d12dab,
+  background: {fileID: -7377295934022830490, guid: 19247b60b0e7d1b67a7879c075e62f0a,
     type: 3}
   storyRewards: []
   rewardEntries: []
@@ -156,5 +353,8 @@ MonoBehaviour:
   afterScene: {fileID: 0}
   afterSceneToasts: []
   afterGachaPullToasts: []
+  afterAction: 0
+  afterActionToasts: []
+  followUpLines: []
   timeLimitSeconds: 600
   storyMusic: {fileID: 11400000, guid: f680c4805bb4409a0bcbf080bf857926, type: 2}

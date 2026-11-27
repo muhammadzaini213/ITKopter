@@ -83,6 +83,23 @@ public class SwitchRewards : MonoBehaviour
     private Coroutine buffRoutine;
     private VfxRing buffAura;
 
+    /// <summary>Raised on every perfect switch (story tutorials listen for it).</summary>
+    public static event System.Action PerfectSwitchPerformed;
+
+    /// <summary>Raised on every counter tag-in.</summary>
+    public static event System.Action CounterTagInPerformed;
+
+    private float perfectWindowUntil = -1f;
+
+    /// <summary>
+    /// Tutorial: for the next <paramref name="seconds"/> (real time) any manual
+    /// switch counts as perfect, even with no bullet close enough.
+    /// </summary>
+    public void OpenPerfectWindow(float seconds)
+    {
+        perfectWindowUntil = Time.unscaledTime + Mathf.Max(0f, seconds);
+    }
+
     /// <summary>True when the switch in progress was started as a perfect switch.</summary>
     public bool PendingPerfect => pendingPerfect;
 
@@ -104,11 +121,15 @@ public class SwitchRewards : MonoBehaviour
         pendingPerfect = false;
         EndBuff();
 
-        if (!perfectEnabled || outgoing == null || !IsBulletAbout(outgoing))
+        bool forced = Time.unscaledTime < perfectWindowUntil;
+
+        if (!perfectEnabled || outgoing == null || !(forced || IsBulletAbout(outgoing)))
             return;
 
+        perfectWindowUntil = -1f;
         pendingPerfect = true;
         PerfectCount++;
+        PerfectSwitchPerformed?.Invoke();
 
         Vector3 pos = outgoing.transform.position;
 
@@ -134,7 +155,10 @@ public class SwitchRewards : MonoBehaviour
 
         bool counter = counterEnabled && CountersField(incoming);
         if (counter)
+        {
             CounterCount++;
+            CounterTagInPerformed?.Invoke();
+        }
 
         Vector3 pos = incoming.transform.position;
         float power = (perfect ? perfectBurstMultiplier : 1f) * (counter ? counterMultiplier : 1f);

@@ -17,6 +17,7 @@ MonoBehaviour:
   storyDescription: 'Trady opens her shop. Reward: free Coins and Shop items.'
   chapterLabel: CHAPTER 7
   previousStory: {fileID: 11400000, guid: b2b20b1b20889d1c885487efbc334c35, type: 2}
+  requiredLevel: {fileID: 0}
   storyPrefab: {fileID: 0}
   segments:
   - type: 0
@@ -27,8 +28,162 @@ MonoBehaviour:
       rightSide: 0
       label: 
       heading: 
-      text: After the battle, Trady and Cashino introduce their respective services.
+      text: After the encounter, the group reaches a more populated area.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 1
+      speaker: {fileID: 0}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Unlike the previous locations, this place has some kind of organized
+        activity. Concept Spirits walk around, exchange goods, and gather near several
+        shops.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Finally. Somewhere that looks somewhat normal.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: NORMAL?! THIS PLACE IS NEVER NORMAL!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Compared to some other areas, this is relatively peaceful.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 2427568e74d898eb2a009073ab81c9c4, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: There are many Concept Spirits here.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: Do they all live here?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: Not necessarily. Concept World is not organized like the human world.
+        Some Spirits gather in particular areas because of their conceptual relationships.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: So this place is more like a gathering point?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f030c5b604997dacfaea867d37529fce, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: You could say that.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: What's that building?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: OH!!! THAT'S A SHOP!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: A shop?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: YES!!! YOU CAN BUY THINGS THERE!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I know what a shop is.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: e5a4c2003775679f7b6197557d77e1fb, type: 2}
+      speakerName: 
+      rightSide: 0
+      label: 
+      heading: 
+      text: GREAT!!! THEN YOU KNOW WHAT TO DO!!!
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
@@ -38,6 +193,7 @@ MonoBehaviour:
       heading: 
       text: Well, well. Look who's still standing! Welcome to my shop, Your Majesty!
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 0}
@@ -47,6 +203,7 @@ MonoBehaviour:
       heading: 
       text: You run a shop?
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
@@ -56,6 +213,7 @@ MonoBehaviour:
       heading: 
       text: Naturally! Someone has to make a profit around here.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 0}
@@ -65,6 +223,7 @@ MonoBehaviour:
       heading: 
       text: Do you always charge people for everything?
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
@@ -75,6 +234,7 @@ MonoBehaviour:
       text: Of course not! Sometimes I charge them for things they don't even know
         they need.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
@@ -84,6 +244,7 @@ MonoBehaviour:
       heading: 
       text: HEY! THAT'S MY LINE!!!
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
@@ -91,9 +252,9 @@ MonoBehaviour:
       rightSide: 1
       label: 
       heading: 
-      text: Oh, please. You wouldn't know a good business opportunity if it hit you
-        in the face.
+      text: You wouldn't know a good business opportunity if it hit you in the face.
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
@@ -103,6 +264,7 @@ MonoBehaviour:
       heading: 
       text: I KNOW GAMBLING!!!
       blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
@@ -112,6 +274,17 @@ MonoBehaviour:
       heading: 
       text: Exactly my point.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...You two are related, aren't you?
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     - style: 0
       speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
@@ -119,15 +292,146 @@ MonoBehaviour:
       rightSide: 1
       label: 
       heading: 
-      text: Here. Some Coins and a few samples, on the house. Go and try buying something!
+      text: Unfortunately.
       blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: HEY!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I see.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Anyway, Your Majesty, you seem to be in need of supplies.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: I don't have much money.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Oh, don't worry. Consider this an investment in a potential future customer.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: SHE'S GIVING AWAY FREE STUFF?!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Some Coins and samples on the house. Go try buying something!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: ...You're giving me money?
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Think of it as a welcome gift.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 0}
+      speakerName: Fajar
+      rightSide: 0
+      label: 
+      heading: 
+      text: That's surprisingly generous.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: Don't get used to it.
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: SHE'S NICE SOMETIMES!!!
+      blackScreen: 0
+      background: {fileID: 0}
+      effect: 0
+    - style: 0
+      speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+      speakerName: 
+      rightSide: 1
+      label: 
+      heading: 
+      text: I can still hear you.
+      blackScreen: 0
+      background: {fileID: 0}
       effect: 0
     level: {fileID: 0}
     team: []
     scriptedLoss: 0
     scriptedLossSeconds: 45
     battleToasts: []
-  background: {fileID: -2227176189160616940, guid: 0b0ce7031ad60871fa6b57113d8933da,
+  background: {fileID: 2365596823942982563, guid: 2131dec12abd08c9aabdc9c28f88f2f1,
     type: 3}
   storyRewards: []
   rewardEntries:
@@ -142,21 +446,205 @@ MonoBehaviour:
   nextStory: {fileID: 11400000, guid: e37f85c34b98be2d5b320c70fd1d9919, type: 2}
   afterScene: {fileID: 11400000, guid: d23eab0e998ddf54aacae1b3dea3e23d, type: 2}
   afterSceneToasts:
+  - time: 1.5
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    text: Tap an item to view its details.
+    duration: 4.5
+  - time: 0.3
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    text: Confirm your purchase to exchange Coins for the item.
+    duration: 4.5
+  - time: 0.3
+    trigger: 0
+    notBefore: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    text: Dust and Engrams can be used to strengthen your characters.
+    duration: 4.5
   - time: 0.8
+    trigger: 0
+    notBefore: 0
     speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
     speakerName: 
-    text: Go on, spend those Coins! Tap an item, then confirm the purchase.
-    duration: 5
-  - time: 0.4
-    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
-    speakerName: 
-    text: Spare Dust and Engrams can be converted here too. Very good business.
-    duration: 5
-  - time: 0.4
+    text: Spare Dust and Engrams can also be converted here.
+    duration: 4.5
+  - time: 0.3
+    trigger: 0
+    notBefore: 0
     speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
     speakerName: 
-    text: WHEN YOU'RE DONE, HEAD BACK TO THE MAIN MENU!!! I'LL BE WAITING!!!
-    duration: 5
+    text: WHEN YOU'RE DONE, HEAD BACK TO THE MAIN MENU!!!
+    duration: 4.5
   afterGachaPullToasts: []
+  afterAction: 1
+  afterActionToasts: []
+  followUpLines:
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: So this is how you trade here.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: Precisely. Everything has value. The trick is knowing what to exchange
+      and when.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: And what's your trick?
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: Making sure the other person thinks they're getting the better deal.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: That doesn't sound very honest.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: Honesty is important. Profit is also important.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: SHE'S JUST SAYING SHE WANTS MONEY!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: And you're saying that as if you don't.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: I WANT MORE MONEY!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: Exactly my point.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: I think I'll leave before this turns into another argument.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: Aww, leaving already?
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 0}
+    speakerName: Fajar
+    rightSide: 0
+    label: 
+    heading: 
+    text: I have other things to do.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: Very well. Come back whenever you need supplies, Your Majesty.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: 8dd8fff2790dd37228cfea376b6e24d5, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: AND COME BACK WHEN YOU WANT TO GAMBLE!!!
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
+  - style: 0
+    speaker: {fileID: 11400000, guid: f84f736e81305891196beccef0305ec9, type: 2}
+    speakerName: 
+    rightSide: 1
+    label: 
+    heading: 
+    text: Please stop calling it that.
+    blackScreen: 0
+    background: {fileID: 0}
+    effect: 0
   timeLimitSeconds: 600
   storyMusic: {fileID: 11400000, guid: d8bb118ed9afc98ecb6078abc6c0d285, type: 2}

@@ -9,6 +9,9 @@ public class ObjectiveBadgeUI : MonoBehaviour
 
     private ObjectiveSystem system;
 
+    /// <summary>The badge object (StoryBadgeUI copies it so both badges match).</summary>
+    public GameObject Badge => badge;
+
     private void Start()
     {
         system = ObjectiveSystem.Instance;

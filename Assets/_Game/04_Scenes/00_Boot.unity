@@ -937,6 +937,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b2b20b1b20889d1c885487efbc334c35, type: 2}
   - {fileID: 11400000, guid: 81e55da408f5fb8f9b56a7d249bcc294, type: 2}
   - {fileID: 11400000, guid: e37f85c34b98be2d5b320c70fd1d9919, type: 2}
+  - {fileID: 11400000, guid: 089b62fa179edbf0b82e33ae02d0a4de, type: 2}
   toastUI: {fileID: 449696956}
   namedSpeakers:
   - {fileID: 11400000, guid: 0c3eb1d248f5ada91be7f6e405a49c19, type: 2}

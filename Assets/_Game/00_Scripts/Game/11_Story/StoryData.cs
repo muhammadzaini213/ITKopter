@@ -13,6 +13,9 @@ public class StoryData : ScriptableObject
     [Tooltip("Leave empty if this story is unlocked from the beginning.")]
     [SerializeField] private StoryData previousStory;
 
+    [Tooltip("Stage that must be cleared before this chapter unlocks (empty = no stage requirement). Stage-gated chapters show a NEW badge once unlocked.")]
+    [SerializeField] private LevelData requiredLevel;
+
     [Header("Content")]
     [Tooltip("Prefab instantiated by StorySceneController inside 11_StoryScene.")]
     [SerializeField] private GameObject storyPrefab;
@@ -40,8 +43,17 @@ public class StoryData : ScriptableObject
     [Tooltip("Onboarding: toasts shown in the After Scene.")]
     [SerializeField] private StoryToastLine[] afterSceneToasts = new StoryToastLine[0];
 
-    [Tooltip("Onboarding: toasts shown after the player's first gacha pull (reactions).")]
+    [Tooltip("Onboarding (legacy): toasts shown after the player's first gacha pull. Prefer After Action = GachaPull + After Action Toasts.")]
     [SerializeField] private StoryToastLine[] afterGachaPullToasts = new StoryToastLine[0];
+
+    [Tooltip("Onboarding: what the player does in the After Scene (buy, pull, claim). Triggers After Action Toasts and unlocks the Follow-up dialogue.")]
+    [SerializeField] private StoryAfterAction afterAction = StoryAfterAction.None;
+
+    [Tooltip("Onboarding: toasts shown right after the After Action.")]
+    [SerializeField] private StoryToastLine[] afterActionToasts = new StoryToastLine[0];
+
+    [Tooltip("Onboarding: dialogue played in the story scene when the player leaves the After Scene (after doing the After Action). Then the next chapter starts.")]
+    [SerializeField] private StoryLine[] followUpLines = new StoryLine[0];
 
     [Header("Time Limit")]
     [Tooltip("Maximum time allowed to complete this story, in seconds.")]
@@ -62,7 +74,12 @@ public class StoryData : ScriptableObject
     public SceneReference AfterScene => afterScene;
     public StoryToastLine[] AfterSceneToasts => afterSceneToasts;
     public StoryToastLine[] AfterGachaPullToasts => afterGachaPullToasts;
+    public StoryAfterAction AfterAction => afterAction;
+    public StoryToastLine[] AfterActionToasts => afterActionToasts;
+    public StoryLine[] FollowUpLines => followUpLines;
+    public bool HasFollowUp => followUpLines != null && followUpLines.Length > 0;
     public StoryData PreviousStory => previousStory;
+    public LevelData RequiredLevel => requiredLevel;
     public GameObject StoryPrefab => storyPrefab;
     public RewardData[] StoryRewards => storyRewards;
     public int TimeLimitSeconds => timeLimitSeconds;

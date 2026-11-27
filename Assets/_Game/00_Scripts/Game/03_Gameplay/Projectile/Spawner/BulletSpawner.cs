@@ -46,6 +46,9 @@ public abstract class BulletSpawner : MonoBehaviour
         set => ownerCharacter = value;
     }
 
+    /// <summary>Forces the hierarchy of this spawner's bullets (e.g. the Annihilator's chosen type). Null = normal resolution.</summary>
+    public CharacterType? AttackerTypeOverride { get; set; }
+
     protected bool PoolReady => poolReady;
     protected float DefaultProjectileSpeed => projectileSpeed;
 
@@ -187,6 +190,9 @@ public abstract class BulletSpawner : MonoBehaviour
 
     private CharacterType? ResolveAttackerType()
     {
+        if (AttackerTypeOverride.HasValue)
+            return AttackerTypeOverride;
+
         // Player bullets: the owning Character (its type never changes).
         if (ownerCharacter != null)
             return ownerCharacter.CharacterType;

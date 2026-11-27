@@ -29,6 +29,19 @@ public class StorySceneController : LocalSingleton<StorySceneController>
     private void Start()
     {
         storySystem = StorySystem.Instance;
+
+        // Onboarding follow-up dialogue (after the Shop / Gacha / Objectives step).
+        if (storySystem != null && storySystem.FollowUpStory != null && dialogueUI != null)
+        {
+            StoryData source = storySystem.FollowUpStory;
+
+            if (source.StoryMusic != null && AudioSystem.Instance != null)
+                Audio.PlayMusic(source.StoryMusic);
+
+            dialogueUI.Play(source, source.FollowUpLines, null, storySystem.CompleteFollowUp);
+            return;
+        }
+
         StoryData story = storySystem != null && storySystem.CurrentStory != null
             ? storySystem.CurrentStory
             : StorySession.Selected;

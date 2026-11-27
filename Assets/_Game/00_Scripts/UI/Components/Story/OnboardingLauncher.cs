@@ -49,7 +49,7 @@ public class OnboardingLauncher : MonoBehaviour
 
         if (launched || story == null || playerSystem == null ||
             !playerSystem.IsPlayerDataLoaded || playerSystem.NeedsNameEntry ||
-            story.CurrentStory != null)
+            story.IsBusy)
         {
             return;
         }

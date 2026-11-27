@@ -25,6 +25,9 @@ public class StoryToastUI : MonoBehaviour
     [SerializeField] private Color defeatColor = new Color(1f, 0.35f, 0.35f, 1f);
 
     private readonly Queue<(StoryToastLine line, float delay)> queue = new();
+
+    // Reactions to what just happened (battle cues) jump ahead of timed tips.
+    private readonly List<(StoryToastLine line, float delay)> priority = new();
     private Coroutine toastRoutine;
     private Coroutine bannerRoutine;
 
@@ -41,6 +44,37 @@ public class StoryToastUI : MonoBehaviour
             return;
 
         queue.Enqueue((line, 0f));
+        EnsureRunning();
+    }
+
+    /// <summary>
+    /// Shows a toast right away, cutting the current one short; anything
+    /// queued plays after it. For time-critical prompts ("Now! Switch!").
+    /// </summary>
+    public void Interrupt(StoryToastLine line)
+    {
+        if (line == null || string.IsNullOrWhiteSpace(line.text))
+            return;
+
+        // The cut-off toast is dropped: replaying it later would be out of context.
+        priority.Insert(0, (line, 0f));
+
+        if (toastRoutine != null)
+        {
+            StopCoroutine(toastRoutine);
+            toastRoutine = null;
+        }
+
+        EnsureRunning();
+    }
+
+    /// <summary>Shows a toast after the current one, ahead of everything queued with Show / PlaySequence.</summary>
+    public void ShowPriority(StoryToastLine line)
+    {
+        if (line == null || string.IsNullOrWhiteSpace(line.text))
+            return;
+
+        priority.Add((line, 0f));
         EnsureRunning();
     }
 
@@ -62,6 +96,7 @@ public class StoryToastUI : MonoBehaviour
     public void HideAll()
     {
         queue.Clear();
+        priority.Clear();
 
         if (toastRoutine != null)
         {
@@ -108,9 +143,21 @@ public class StoryToastUI : MonoBehaviour
 
     private IEnumerator ToastLoop()
     {
-        while (queue.Count > 0)
+        while (priority.Count > 0 || queue.Count > 0)
         {
-            (StoryToastLine line, float delay) = queue.Dequeue();
+            (StoryToastLine line, float delay) next;
+
+            if (priority.Count > 0)
+            {
+                next = priority[0];
+                priority.RemoveAt(0);
+            }
+            else
+            {
+                next = queue.Dequeue();
+            }
+
+            (StoryToastLine line, float delay) = next;
 
             if (delay > 0f)
                 yield return new WaitForSecondsRealtime(delay);
