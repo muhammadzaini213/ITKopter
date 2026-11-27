@@ -1,0 +1,246 @@
+/* =====================================================================
+   CONCEPT WARS: itch.io custom CSS
+   Paste into: Edit game -> Edit theme -> CSS (custom CSS access).
+   Matches the in-game UI: deep navy, cyan pixel frames, magenta accents.
+   If itch strips the @import, pick "Silkscreen" / "Pixelify Sans" in the
+   theme editor's font menus instead.
+   ===================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=Silkscreen:wght@400;700&display=swap");
+
+:root {
+  --cw-bg: #050d16;
+  --cw-panel: #0a1a26;
+  --cw-panel-2: #0d2233;
+  --cw-cyan: #19f0ff;
+  --cw-cyan-soft: #8cf2ff;
+  --cw-cyan-dim: #1d6f80;
+  --cw-magenta: #c77dff;
+  --cw-pink: #ff5a9e;
+  --cw-text: #e6faff;
+  --cw-muted: #8fa9b5;
+}
+
+/* ---- page ------------------------------------------------------------ */
+
+#wrapper,
+.view_game_page {
+  background-color: var(--cw-bg) !important;
+}
+
+.view_game_page .inner_column {
+  background: var(--cw-panel) !important;
+  color: var(--cw-text) !important;
+  border: 3px solid var(--cw-cyan) !important;
+  box-shadow:
+    0 0 0 3px var(--cw-bg),
+    0 0 0 6px var(--cw-cyan-dim),
+    0 0 28px rgba(25, 240, 255, 0.25) !important;
+  font-family: "Pixelify Sans", "Trebuchet MS", sans-serif !important;
+}
+
+.view_game_page a {
+  color: var(--cw-cyan) !important;
+}
+
+.view_game_page a:hover {
+  color: var(--cw-magenta) !important;
+}
+
+/* ---- description ---------------------------------------------------- */
+
+.formatted_description {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--cw-text);
+}
+
+.formatted_description h1 {
+  font-family: "Silkscreen", monospace;
+  font-weight: 700;
+  font-size: 46px;
+  letter-spacing: 4px;
+  text-align: center;
+  color: var(--cw-cyan);
+  text-shadow:
+    3px 3px 0 var(--cw-magenta),
+    0 0 18px rgba(25, 240, 255, 0.55);
+  margin: 6px 0 22px;
+}
+
+.formatted_description h2 {
+  font-family: "Silkscreen", monospace;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cw-cyan);
+  margin: 30px 0 12px;
+  padding: 6px 12px;
+  background: var(--cw-panel-2);
+  border-left: 6px solid var(--cw-cyan);
+  box-shadow: 4px 4px 0 var(--cw-cyan-dim);
+}
+
+.formatted_description p {
+  margin: 0 0 12px;
+}
+
+.formatted_description strong {
+  color: var(--cw-cyan-soft);
+  font-weight: 600;
+}
+
+.formatted_description em {
+  color: var(--cw-magenta);
+  font-style: normal;
+}
+
+/* The three rules: a terminal-style "briefing" panel. */
+.formatted_description blockquote {
+  margin: 0 0 22px;
+  padding: 16px 20px;
+  background: #02070c;
+  border: 2px solid var(--cw-cyan-dim);
+  border-left: 6px solid var(--cw-magenta);
+  font-family: "Silkscreen", monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--cw-muted);
+}
+
+.formatted_description blockquote strong {
+  color: var(--cw-cyan);
+}
+
+/* Pixel-square bullets. */
+.formatted_description ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 14px;
+}
+
+.formatted_description ul li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 8px;
+}
+
+.formatted_description ul li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.62em;
+  width: 8px;
+  height: 8px;
+  background: var(--cw-cyan);
+  box-shadow: 2px 2px 0 var(--cw-magenta);
+}
+
+/* Roster / controls tables. */
+.formatted_description table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 6px 0 14px;
+  border: 2px solid var(--cw-cyan);
+  box-shadow: 5px 5px 0 var(--cw-cyan-dim);
+  background: var(--cw-panel-2);
+}
+
+.formatted_description th {
+  font-family: "Silkscreen", monospace;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--cw-bg);
+  background: var(--cw-cyan);
+  padding: 8px 12px;
+}
+
+.formatted_description td {
+  padding: 7px 12px;
+  border-top: 1px solid rgba(25, 240, 255, 0.18);
+}
+
+.formatted_description tbody tr:nth-child(even) td {
+  background: rgba(25, 240, 255, 0.05);
+}
+
+.formatted_description tbody tr:hover td {
+  background: rgba(199, 125, 255, 0.14);
+}
+
+/* Dashed "scanline" divider. */
+.formatted_description hr {
+  border: 0;
+  height: 4px;
+  margin: 28px 0;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--cw-cyan) 0 14px,
+    transparent 14px 22px
+  );
+  opacity: 0.7;
+}
+
+/* ---- buttons, side column, misc ------------------------------------- */
+
+.view_game_page .button,
+.view_game_page .buy_btn,
+.view_game_page .button.buy_btn {
+  font-family: "Silkscreen", monospace !important;
+  background: var(--cw-bg) !important;
+  color: var(--cw-cyan) !important;
+  border: 2px solid var(--cw-cyan) !important;
+  border-radius: 0 !important;
+  box-shadow: 4px 4px 0 var(--cw-magenta) !important;
+  text-shadow: none !important;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.view_game_page .button:hover,
+.view_game_page .buy_btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--cw-magenta) !important;
+}
+
+.view_game_page .screenshot_list a img,
+.view_game_page .screenshot_list img {
+  border: 2px solid var(--cw-cyan-dim);
+  transition: border-color 0.12s ease, transform 0.12s ease;
+}
+
+.view_game_page .screenshot_list a:hover img {
+  border-color: var(--cw-cyan);
+  transform: scale(1.02);
+}
+
+.view_game_page .game_frame,
+.view_game_page .iframe_placeholder {
+  border: 3px solid var(--cw-cyan) !important;
+  box-shadow: 0 0 24px rgba(25, 240, 255, 0.3);
+}
+
+.view_game_page .more_information_toggle,
+.view_game_page .game_info_panel_widget {
+  color: var(--cw-text) !important;
+}
+
+.view_game_page .game_info_panel_widget td:first-child {
+  color: var(--cw-muted) !important;
+}
+
+.view_game_page .game_comments_widget,
+.view_game_page .community_post {
+  color: var(--cw-text);
+}
+
+/* Narrow screens. */
+@media (max-width: 700px) {
+  .formatted_description h1 { font-size: 30px; letter-spacing: 2px; }
+  .formatted_description h2 { font-size: 17px; }
+  .formatted_description { font-size: 16px; }
+}

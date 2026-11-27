@@ -1922,6 +1922,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789619cedfe9cb1ff9f7190fd6c5c9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BundleSystem
+  catalogs:
+  - {fileID: 11400000, guid: 6952014d8116657dbbb85e55d37ea62a, type: 2}
+  - {fileID: 11400000, guid: 05690edd6ad49f54daf750eb11eb53c5, type: 2}
+  paymentServerUrl: https://itkopter-payments.slafurrystudios.workers.dev
+  midtransClientKey: 
+  midtransProduction: 0
+  allowDummyPayments: 0
+  pollInterval: 3
+  checkoutTimeoutSeconds: 900
+  backgroundPollInterval: 20
 --- !u!4 &1043244356
 Transform:
   m_ObjectHideFlags: 0
