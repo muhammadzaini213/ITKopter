@@ -148,6 +148,73 @@ public abstract class ExSkill : MonoBehaviour
         routine = null;
     }
 
+    // ---- following the on-field character ------------------------------
+
+    /// <summary>
+    /// The party member currently carrying this skill's effect. Starts as
+    /// the owner; with <see cref="BeginFollowField"/> it moves to whoever is
+    /// switched in, so buffs and shields aren't lost by switching.
+    /// </summary>
+    protected Character FieldHolder { get; private set; }
+
+    private bool followingField;
+
+    protected void BeginFollowField()
+    {
+        FieldHolder = owner;
+
+        if (followingField)
+            return;
+
+        followingField = true;
+        CharacterSwitcher.FieldCharacterChanged += HandleFieldCharacterChanged;
+    }
+
+    protected void EndFollowField()
+    {
+        if (followingField)
+            CharacterSwitcher.FieldCharacterChanged -= HandleFieldCharacterChanged;
+
+        followingField = false;
+        FieldHolder = null;
+    }
+
+    private void HandleFieldCharacterChanged(Character next)
+    {
+        if (next == null || next == FieldHolder)
+            return;
+
+        Character previous = FieldHolder;
+        FieldHolder = next;
+        OnFieldHolderChanged(previous, next);
+
+        SkillVFX.Ring(next.transform.position, SkillColor, 0.3f, 2.2f, 0.3f, 0.08f);
+        SkillVFX.Text(next.transform.position + Vector3.up * 1.4f, "INHERITED", SkillColor, 3f, 0.8f);
+    }
+
+    /// <summary>Move this skill's effect from <paramref name="previous"/> to <paramref name="next"/>.</summary>
+    protected virtual void OnFieldHolderChanged(Character previous, Character next)
+    {
+    }
+
+    /// <summary>Hand an active shield over to another party member.</summary>
+    protected static Health MoveShield(Shield shield, Health from, Character to)
+    {
+        if (shield == null || to == null)
+            return from;
+
+        if (from != null && from.Shield == shield)
+            from.RemoveShield();
+
+        shield.transform.SetParent(to.transform, false);
+
+        Health next = to.GetComponent<Health>();
+        if (next != null && next.Shield == null)
+            next.AssignShield(shield);
+
+        return next;
+    }
+
     protected virtual void OnDisable()
     {
         // Self skills end when the owner is benched / defeated.
@@ -158,6 +225,7 @@ public abstract class ExSkill : MonoBehaviour
     protected virtual void OnDestroy()
     {
         Cancel();
+        EndFollowField();
     }
 
     // ---- stat helpers ---------------------------------------------------

@@ -35,8 +35,8 @@ public class EmergencyRegulationExSkill : ExSkill
     public override string Describe(float attack, float defense)
     {
         return $"For {Seconds(duration)}, at most {Num(maxEnemyProjectiles)} enemy bullets may exist on screen; the rest are struck down.\n\n" +
-               $"Regu also gains +{Pct(damageReductionMultiplier)} DEF.\n\n" +
-               "Keeps working while Regu is benched.";
+               $"Whoever is on the field gains +{Pct(damageReductionMultiplier)} DEF.\n\n" +
+               "Keeps working while Regu is benched; the DEF bonus passes to whoever Regu switches to.";
     }
 
     public override void Activate()
@@ -47,7 +47,8 @@ public class EmergencyRegulationExSkill : ExSkill
         Cancel();
 
         ApplyLimit();
-        ApplyDefense(Owner, this, Owner.DefensePower * damageReductionMultiplier);
+        BeginFollowField();
+        ApplyDefense(FieldHolder, this, FieldHolder.DefensePower * damageReductionMultiplier);
 
         // Visual: a regulation sweep across the screen + a seal on the party.
         Vector3 pos = Owner.transform.position;
@@ -81,6 +82,12 @@ public class EmergencyRegulationExSkill : ExSkill
         limiter.gameObject.SetActive(true);
     }
 
+    protected override void OnFieldHolderChanged(Character previous, Character next)
+    {
+        ClearModifiers(previous, this);
+        ApplyDefense(next, this, next.DefensePower * damageReductionMultiplier);
+    }
+
     private IEnumerator EndAfterDuration()
     {
         yield return new WaitForSeconds(duration);
@@ -91,7 +98,8 @@ public class EmergencyRegulationExSkill : ExSkill
 
     private void EndSkill()
     {
-        ClearModifiers(Owner, this);
+        ClearPartyModifiers(this);
+        EndFollowField();
 
         if (limiter != null)
         {

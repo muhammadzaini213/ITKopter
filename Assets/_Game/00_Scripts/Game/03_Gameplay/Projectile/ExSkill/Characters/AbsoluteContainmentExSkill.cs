@@ -21,7 +21,7 @@ public class AbsoluteContainmentExSkill : ExSkill
     private LayerMask enemyProjectileMask;
 
     private Shield barrierShield;
-    private Health ownerHealth;
+    private Health holderHealth;
     private Coroutine durationRoutine;
     private VfxRing dome;
     private VfxRing frame;
@@ -33,10 +33,16 @@ public class AbsoluteContainmentExSkill : ExSkill
 
     protected override string[] DefaultActivationLines => new[] { "Absolute containment! Nothing gets through!", "Stay behind the barrier!" };
 
+    // The barrier stays up around whoever is switched in.
+    protected override bool PersistsWhenBenched => true;
+
+    private Transform HolderTransform => FieldHolder != null ? FieldHolder.transform : Owner != null ? Owner.transform : null;
+
     public override string Describe(float attack, float defense)
     {
         return $"Raises a containment barrier (radius {Num(barrierRadius)}) for {Seconds(barrierDuration)} with {DefPct(barrierHitpointsMultiplier, defense)} HP.\n\n" +
-               "Enemy bullets entering the barrier are destroyed and their damage is drained from it; it also absorbs hits on Bokusu. Shatters when its HP runs out.";
+               "Enemy bullets entering the barrier are destroyed and their damage is drained from it; it also absorbs hits on Bokusu. Shatters when its HP runs out.\n\n" +
+               "Stays up around whoever Bokusu switches to.";
     }
 
     public override void Activate()
@@ -46,6 +52,7 @@ public class AbsoluteContainmentExSkill : ExSkill
 
         Cancel();
 
+        BeginFollowField();
         CreateBarrier();
         durationRoutine = StartSkillRoutine(DurationRoutine());
     }
@@ -53,26 +60,61 @@ public class AbsoluteContainmentExSkill : ExSkill
     private void CreateBarrier()
     {
         var shieldGo = new GameObject("AbsoluteContainmentBarrier");
-        shieldGo.transform.SetParent(Owner.transform, false);
+        shieldGo.transform.SetParent(FieldHolder.transform, false);
 
         barrierShield = shieldGo.AddComponent<Shield>();
         barrierShield.Set(Mathf.Max(1f, Owner.EffectiveDefensePower * barrierHitpointsMultiplier));
         barrierShield.OnBroken += OnBarrierBroken;
         barrierShield.OnAmountChanged += OnBarrierChanged;
 
-        ownerHealth = Owner.GetComponent<Health>();
-        if (ownerHealth != null)
-            ownerHealth.AssignShield(barrierShield);
+        holderHealth = FieldHolder.GetComponent<Health>();
+        if (holderHealth != null)
+            holderHealth.AssignShield(barrierShield);
 
-        dome = SkillVFX.Aura(Owner.transform, SkillColor, barrierRadius, 0.12f, -1f, 0.02f);
-        frame = SkillVFX.Aura(Owner.transform, SkillColor.WithAlpha(0.6f), barrierRadius * 0.95f, 0.05f, -1f, 0.02f, 6, 1, 25f);
+        BuildDome(FieldHolder.transform);
 
-        SkillVFX.Ring(Owner.transform.position, Color.white, barrierRadius * 0.3f, barrierRadius, 0.25f, 0.1f);
+        SkillVFX.Ring(FieldHolder.transform.position, Color.white, barrierRadius * 0.3f, barrierRadius, 0.25f, 0.1f);
     }
 
+    private void BuildDome(Transform holder)
+    {
+        if (dome != null) dome.Stop();
+        if (frame != null) frame.Stop();
+
+        dome = SkillVFX.Aura(holder, SkillColor, barrierRadius, 0.12f, -1f, 0.02f);
+        frame = SkillVFX.Aura(holder, SkillColor.WithAlpha(0.6f), barrierRadius * 0.95f, 0.05f, -1f, 0.02f, 6, 1, 25f);
+
+        if (barrierShield != null)
+            OnBarrierChanged(barrierShield.Current);
+    }
+
+    protected override void OnFieldHolderChanged(Character previous, Character next)
+    {
+        if (barrierShield == null)
+            return;
+
+        holderHealth = MoveShield(barrierShield, holderHealth, next);
+        BuildDome(next.transform);
+    }
+
+    // Runs on the CombatFeel runner: Bokusu's own Update stops once benched.
     private IEnumerator DurationRoutine()
     {
-        yield return new WaitForSeconds(barrierDuration);
+        float elapsed = 0f;
+
+        while (elapsed < barrierDuration && barrierShield != null)
+        {
+            elapsed += Time.deltaTime;
+
+            scanTimer -= Time.deltaTime;
+            if (scanTimer <= 0f)
+            {
+                scanTimer = 1f / 30f;
+                ContainProjectiles();
+            }
+
+            yield return null;
+        }
 
         durationRoutine = null;
         DestroyBarrier(false);
@@ -97,22 +139,13 @@ public class AbsoluteContainmentExSkill : ExSkill
         DestroyBarrier(true);
     }
 
-    private void Update()
-    {
-        if (barrierShield == null || Owner == null)
-            return;
-
-        scanTimer -= Time.deltaTime;
-        if (scanTimer > 0f)
-            return;
-
-        scanTimer = 1f / 30f;
-        ContainProjectiles();
-    }
-
     private void ContainProjectiles()
     {
-        Vector2 center = Owner.transform.position;
+        Transform holder = HolderTransform;
+        if (holder == null)
+            return;
+
+        Vector2 center = holder.position;
         float sqrRadius = barrierRadius * barrierRadius;
 
         foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None))
@@ -148,15 +181,16 @@ public class AbsoluteContainmentExSkill : ExSkill
             barrierShield.OnBroken -= OnBarrierBroken;
             barrierShield.OnAmountChanged -= OnBarrierChanged;
 
-            if (ownerHealth != null && ownerHealth.Shield == barrierShield)
-                ownerHealth.RemoveShield();
+            if (holderHealth != null && holderHealth.Shield == barrierShield)
+                holderHealth.RemoveShield();
 
             Destroy(barrierShield.gameObject);
             barrierShield = null;
 
-            if (Owner != null)
+            Transform holder = HolderTransform;
+            if (holder != null)
             {
-                Vector3 pos = Owner.transform.position;
+                Vector3 pos = holder.position;
 
                 if (broken)
                 {
@@ -177,6 +211,8 @@ public class AbsoluteContainmentExSkill : ExSkill
         if (frame != null) frame.Stop();
         dome = null;
         frame = null;
+        holderHealth = null;
+        EndFollowField();
     }
 
     public override void Cancel()

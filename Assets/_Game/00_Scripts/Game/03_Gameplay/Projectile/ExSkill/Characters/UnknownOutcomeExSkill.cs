@@ -21,7 +21,7 @@ public class UnknownOutcomeExSkill : ExSkill
     private float afterimageInterval = 0.12f;
 
     private Shield stealthShield;
-    private Health ownerHealth;
+    private Health holderHealth;
     private Coroutine durationRoutine;
     private VfxRing zone;
     private VfxRing glyph;
@@ -34,10 +34,15 @@ public class UnknownOutcomeExSkill : ExSkill
 
     protected override string[] DefaultActivationLines => new[] { "You can't hit what you can't see.", "Who, me? I was never here." };
 
+    // The cloak passes to whoever is switched in.
+    protected override bool PersistsWhenBenched => true;
+
+    private Transform HolderTransform => FieldHolder != null ? FieldHolder.transform : Owner != null ? Owner.transform : null;
+
     public override string Describe(float attack, float defense)
     {
         return $"For {Seconds(duration)} Anon fades out: gains a shield worth {DefPct(shieldMultiplier, defense)} and erases every enemy bullet that comes within {Num(untouchableRadius)} units.\n\n" +
-               "Ends early if the shield breaks.";
+               "Ends early if the shield breaks. Carries over to whoever Anon switches to.";
     }
 
     public override void Activate()
@@ -47,10 +52,9 @@ public class UnknownOutcomeExSkill : ExSkill
 
         Cancel();
 
+        BeginFollowField();
         CreateShield();
-
-        zone = SkillVFX.Aura(Owner.transform, SkillColor.WithAlpha(0.55f), untouchableRadius, 0.05f, -1f, 0.04f, 0, 1, 0f);
-        glyph = SkillVFX.Aura(Owner.transform, SkillColor, untouchableRadius * 0.92f, 0.04f, -1f, 0.02f, 5, 2, 60f);
+        BuildZone(FieldHolder.transform);
 
         durationRoutine = StartSkillRoutine(DurationRoutine());
     }
@@ -58,20 +62,46 @@ public class UnknownOutcomeExSkill : ExSkill
     private void CreateShield()
     {
         var shieldGo = new GameObject("UnknownOutcomeShield");
-        shieldGo.transform.SetParent(Owner.transform, false);
+        shieldGo.transform.SetParent(FieldHolder.transform, false);
 
         stealthShield = shieldGo.AddComponent<Shield>();
         stealthShield.Set(Mathf.Max(1f, Owner.EffectiveDefensePower * shieldMultiplier));
         stealthShield.OnBroken += OnShieldBroken;
 
-        ownerHealth = Owner.GetComponent<Health>();
-        if (ownerHealth != null)
-            ownerHealth.AssignShield(stealthShield);
+        holderHealth = FieldHolder.GetComponent<Health>();
+        if (holderHealth != null)
+            holderHealth.AssignShield(stealthShield);
     }
 
+    private void BuildZone(Transform holder)
+    {
+        if (zone != null) zone.Stop();
+        if (glyph != null) glyph.Stop();
+
+        zone = SkillVFX.Aura(holder, SkillColor.WithAlpha(0.55f), untouchableRadius, 0.05f, -1f, 0.04f, 0, 1, 0f);
+        glyph = SkillVFX.Aura(holder, SkillColor, untouchableRadius * 0.92f, 0.04f, -1f, 0.02f, 5, 2, 60f);
+    }
+
+    protected override void OnFieldHolderChanged(Character previous, Character next)
+    {
+        if (stealthShield == null)
+            return;
+
+        holderHealth = MoveShield(stealthShield, holderHealth, next);
+        BuildZone(next.transform);
+    }
+
+    // Runs on the CombatFeel runner: Anon's own Update stops once benched.
     private IEnumerator DurationRoutine()
     {
-        yield return new WaitForSeconds(duration);
+        float elapsed = 0f;
+
+        while (elapsed < duration && stealthShield != null)
+        {
+            elapsed += Time.deltaTime;
+            Tick(Time.deltaTime);
+            yield return null;
+        }
 
         durationRoutine = null;
         EndSkill(false);
@@ -82,31 +112,31 @@ public class UnknownOutcomeExSkill : ExSkill
         EndSkill(true);
     }
 
-    private void Update()
+    private void Tick(float dt)
     {
-        if (stealthShield == null || Owner == null)
+        Transform holder = HolderTransform;
+        if (stealthShield == null || holder == null)
             return;
 
-        afterimageTimer -= Time.deltaTime;
+        afterimageTimer -= dt;
         if (afterimageTimer <= 0f)
         {
             afterimageTimer = afterimageInterval;
-            SkillVFX.Ghost(Owner.transform, SkillColor.WithAlpha(0.45f), 0.35f, 1.05f);
+            SkillVFX.Ghost(holder, SkillColor.WithAlpha(0.45f), 0.35f, 1.05f);
         }
 
         // Scanning every projectile each frame is expensive; 30 Hz is plenty.
-        scanTimer -= Time.deltaTime;
+        scanTimer -= dt;
         if (scanTimer <= 0f)
         {
             scanTimer = 1f / 30f;
-            DestroyIncomingProjectiles();
+            DestroyIncomingProjectiles(holder.position);
         }
     }
 
-    private void DestroyIncomingProjectiles()
+    private void DestroyIncomingProjectiles(Vector2 center)
     {
         // Projectiles have no colliders (they BoxCast), so OverlapCircle can't see them.
-        Vector2 center = Owner.transform.position;
         float sqrRadius = untouchableRadius * untouchableRadius;
 
         foreach (var projectile in Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None))
@@ -132,19 +162,20 @@ public class UnknownOutcomeExSkill : ExSkill
         {
             stealthShield.OnBroken -= OnShieldBroken;
 
-            if (ownerHealth != null && ownerHealth.Shield == stealthShield)
-                ownerHealth.RemoveShield();
+            if (holderHealth != null && holderHealth.Shield == stealthShield)
+                holderHealth.RemoveShield();
 
             Destroy(stealthShield.gameObject);
             stealthShield = null;
 
-            if (Owner != null)
+            Transform holder = HolderTransform;
+            if (holder != null)
             {
-                SkillVFX.Ring(Owner.transform.position, SkillColor, untouchableRadius, untouchableRadius * 0.2f, 0.25f, 0.06f);
+                SkillVFX.Ring(holder.position, SkillColor, untouchableRadius, untouchableRadius * 0.2f, 0.25f, 0.06f);
 
                 if (broken)
                 {
-                    SkillVFX.Sparks(Owner.transform.position, SkillColor, 16, 5f, 0.4f);
+                    SkillVFX.Sparks(holder.position, SkillColor, 16, 5f, 0.4f);
                     CombatFeel.Shake(0.15f, 0.2f);
                 }
             }
@@ -154,6 +185,8 @@ public class UnknownOutcomeExSkill : ExSkill
         if (glyph != null) glyph.Stop();
         zone = null;
         glyph = null;
+        holderHealth = null;
+        EndFollowField();
     }
 
     public override void Cancel()
