@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,10 @@ public class EnemyWaveManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform enemyContainer;
     [SerializeField] private Slider waveProgressSlider;
+
+    [SerializeField, Tooltip("Title above the wave bar (\"Wave 2/3\", \"Boss: Regu - Phase 2\"). " +
+                             "Empty = the text next to the wave slider that starts with \"Wave\".")]
+    private TMP_Text waveTitleText;
 
     [Header("Wave Settings")]
     [SerializeField, Min(0f)] private float delayBetweenWaves = 1f;
@@ -41,6 +46,94 @@ public class EnemyWaveManager : MonoBehaviour
     {
         levelSystem = LevelSystem.Instance;
         ResetProgressSlider();
+        FindWaveTitle();
+    }
+
+    // ---- wave title ---------------------------------------------------
+
+    private EnemyBoss currentBoss;
+    private EnemyShooter currentBossShooter;
+    private bool shownPhase2;
+    private Coroutine titlePunch;
+
+    private void FindWaveTitle()
+    {
+        if (waveTitleText != null || waveProgressSlider == null)
+            return;
+
+        // The scene's static "Wave 1: ..." label sits beside the slider.
+        Transform scope = waveProgressSlider.transform.parent;
+
+        for (int depth = 0; depth < 2 && scope != null && waveTitleText == null; depth++)
+        {
+            foreach (TMP_Text text in scope.GetComponentsInChildren<TMP_Text>(true))
+            {
+                if (text != null && !text.transform.IsChildOf(waveProgressSlider.transform) &&
+                    text.text != null && text.text.TrimStart().StartsWith("Wave", StringComparison.OrdinalIgnoreCase))
+                {
+                    waveTitleText = text;
+                    break;
+                }
+            }
+
+            scope = scope.parent;
+        }
+    }
+
+    private void SetWaveTitle(string value)
+    {
+        if (waveTitleText == null || waveTitleText.text == value)
+            return;
+
+        waveTitleText.text = value;
+
+        if (titlePunch != null)
+            StopCoroutine(titlePunch);
+
+        titlePunch = StartCoroutine(PunchTitle());
+    }
+
+    private IEnumerator PunchTitle()
+    {
+        Transform target = waveTitleText.transform;
+        float t = 0f;
+
+        while (t < 0.3f)
+        {
+            t += Time.unscaledDeltaTime;
+            float k = t / 0.3f;
+            target.localScale = Vector3.one * (k < 0.35f ? Mathf.Lerp(1f, 1.18f, k / 0.35f) : Mathf.Lerp(1.18f, 1f, (k - 0.35f) / 0.65f));
+            yield return null;
+        }
+
+        target.localScale = Vector3.one;
+        titlePunch = null;
+    }
+
+    private void ShowWaveTitle(EnemyCollection collection)
+    {
+        currentBoss = collection != null ? collection.GetComponentInChildren<EnemyBoss>(true) : null;
+        currentBossShooter = currentBoss != null ? currentBoss.GetComponent<EnemyShooter>() : null;
+        shownPhase2 = false;
+
+        if (currentBoss != null)
+        {
+            SetWaveTitle($"Boss: {currentBoss.DisplayName}");
+            return;
+        }
+
+        int number = Mathf.Clamp(completedWaves + 1, 1, Mathf.Max(1, totalWaves));
+        SetWaveTitle(totalWaves > 0 ? $"Wave {number}/{totalWaves}" : $"Wave {number}");
+    }
+
+    private void Update()
+    {
+        // Boss crossed its HP threshold → Phase 2.
+        if (!shownPhase2 && currentBoss != null && currentBossShooter != null && currentBossShooter.IsPhase2)
+        {
+            shownPhase2 = true;
+            SetWaveTitle($"Boss: {currentBoss.DisplayName} - Phase 2");
+        }
     }
 
     public void StartLevelWaves()
@@ -167,6 +260,7 @@ public class EnemyWaveManager : MonoBehaviour
                     continue;
                 }
 
+                ShowWaveTitle(currentCollection);
                 OnWaveStarted?.Invoke(partIndex, waveIndex);
 
                 Debug.Log(
@@ -213,6 +307,9 @@ public class EnemyWaveManager : MonoBehaviour
         Debug.Log(
             "[EnemyWaveManager] All level waves completed.",
             this);
+
+        currentBoss = null;
+        SetWaveTitle("Cleared!");
 
         OnLevelWon?.Invoke();
     }

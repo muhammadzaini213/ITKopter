@@ -127,6 +127,9 @@ public class EnemyShooter : MonoBehaviour
     private EnemyPatternSlot[] activePatterns;
     private Camera cachedCamera;
     private bool phase2Active;
+
+    /// <summary>True once the HP threshold swapped in the Phase 2 patterns.</summary>
+    public bool IsPhase2 => phase2Active;
     private bool stopped;
     private System.Random rng;
 
