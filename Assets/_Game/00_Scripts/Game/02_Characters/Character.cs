@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Character : MonoBehaviour
@@ -67,17 +68,23 @@ public abstract class Character : MonoBehaviour
         CharacterType = data.CharacterType;
         CharacterRole = data.CharacterRole;
 
-        AttackPowerBonus = 0f;
-        DefensePowerBonus = 0f;
+        legacyAttackBonus = 0f;
+        legacyDefenseBonus = 0f;
+        attackModifiers.Clear();
+        defenseModifiers.Clear();
+        fireIntervalModifiers.Clear();
 
-        Health healthComponent = GetComponent<Health>();
+        healthComponent = GetComponent<Health>();
 
         if (healthComponent != null)
             healthComponent.SetMaxHealth(Health);
         else
             Debug.LogWarning("[Character] Health component is missing.", this);
 
-        ExSkill exSkill = GetComponent<ExSkill>();
+        RecalculateBonuses();
+
+        // The EX skill usually lives on an (inactive) "ExSkill" child.
+        ExSkill exSkill = GetComponentInChildren<ExSkill>(true);
 
         if (exSkill != null)
         {
@@ -85,13 +92,95 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    public void AddAttackPowerBonus(float amount) => AttackPowerBonus += amount;
+    // ---- Stat modifiers ---------------------------------------------
+    // Keyed by source (usually the EX skill instance) so overlapping buffs
+    // from different skills never wipe each other out. Defense feeds the
+    // Health component as percentage armor.
 
-    public void AddDefensePowerBonus(float amount) => DefensePowerBonus += amount;
+    private Health healthComponent;
+    private float legacyAttackBonus;
+    private float legacyDefenseBonus;
+    private readonly Dictionary<object, float> attackModifiers = new Dictionary<object, float>();
+    private readonly Dictionary<object, float> defenseModifiers = new Dictionary<object, float>();
+    private readonly Dictionary<object, float> fireIntervalModifiers = new Dictionary<object, float>();
 
-    public void ClearAttackPowerBonus() => AttackPowerBonus = 0f;
+    /// <summary>Product of all fire-interval modifiers (&lt; 1 = shoots faster).</summary>
+    public float FireIntervalMultiplier { get; private set; } = 1f;
 
-    public void ClearDefensePowerBonus() => DefensePowerBonus = 0f;
+    public void SetAttackModifier(object source, float flatAmount)
+    {
+        if (source == null) return;
+        attackModifiers[source] = flatAmount;
+        RecalculateBonuses();
+    }
+
+    public void SetDefenseModifier(object source, float flatAmount)
+    {
+        if (source == null) return;
+        defenseModifiers[source] = flatAmount;
+        RecalculateBonuses();
+    }
+
+    /// <summary>Multiplies the auto-fire interval (0.5 = twice as fast, 2 = half speed).</summary>
+    public void SetFireIntervalModifier(object source, float intervalMultiplier)
+    {
+        if (source == null) return;
+        fireIntervalModifiers[source] = Mathf.Max(0.05f, intervalMultiplier);
+        RecalculateBonuses();
+    }
+
+    public void RemoveModifiers(object source)
+    {
+        if (source == null) return;
+
+        bool changed = attackModifiers.Remove(source);
+        changed |= defenseModifiers.Remove(source);
+        changed |= fireIntervalModifiers.Remove(source);
+
+        if (changed)
+            RecalculateBonuses();
+    }
+
+    public bool HasModifiers(object source) =>
+        source != null &&
+        (attackModifiers.ContainsKey(source) ||
+         defenseModifiers.ContainsKey(source) ||
+         fireIntervalModifiers.ContainsKey(source));
+
+    private void RecalculateBonuses()
+    {
+        float attack = legacyAttackBonus;
+        foreach (float value in attackModifiers.Values)
+            attack += value;
+
+        float defense = legacyDefenseBonus;
+        foreach (float value in defenseModifiers.Values)
+            defense += value;
+
+        float interval = 1f;
+        foreach (float value in fireIntervalModifiers.Values)
+            interval *= value;
+
+        // Never let debuffs push attack below 10% of base.
+        AttackPowerBonus = Mathf.Max(attack, -AttackPower * 0.9f);
+        DefensePowerBonus = Mathf.Max(defense, -DefensePower);
+        FireIntervalMultiplier = Mathf.Clamp(interval, 0.1f, 10f);
+
+        if (healthComponent == null)
+            healthComponent = GetComponent<Health>();
+
+        if (healthComponent != null)
+            healthComponent.SetArmor(EffectiveDefensePower);
+    }
+
+    // Legacy unkeyed API (kept for older callers) — prefer the keyed one.
+    public void AddAttackPowerBonus(float amount) { legacyAttackBonus += amount; RecalculateBonuses(); }
+
+    public void AddDefensePowerBonus(float amount) { legacyDefenseBonus += amount; RecalculateBonuses(); }
+
+    public void ClearAttackPowerBonus() { legacyAttackBonus = 0f; RecalculateBonuses(); }
+
+    public void ClearDefensePowerBonus() { legacyDefenseBonus = 0f; RecalculateBonuses(); }
 
     public abstract void BaseAttack();
 

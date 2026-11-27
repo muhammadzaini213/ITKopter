@@ -32,6 +32,20 @@ public class Health : MonoBehaviour, IDamageable
 
     public float IncomingDamageMultiplier { get; set; } = 1f;
 
+    // Player defense: percentage reduction (armor / (armor + ArmorScale)),
+    // pushed by Character from its EffectiveDefensePower. Enemies keep the
+    // flat defensePower subtraction above (set by EnemyDataBinder).
+    public const float ArmorScale = 100f;
+    private float armor;
+    public float Armor => armor;
+    public void SetArmor(float value) => armor = Mathf.Max(0f, value);
+
+    // Temporary i-frames (forced swap after a defeat, etc.).
+    private float invulnerableUntil = -1f;
+    public bool IsInvulnerable => Time.time < invulnerableUntil;
+    public void SetInvulnerable(float seconds) =>
+        invulnerableUntil = Mathf.Max(invulnerableUntil, Time.time + Mathf.Max(0f, seconds));
+
     public Shield Shield => shield;
 
     public float HealthPercentage => maxHealth > 0f
@@ -79,7 +93,7 @@ public class Health : MonoBehaviour, IDamageable
 
     public void TakeDamage(float amount)
     {
-        if (isDead || amount <= 0f)
+        if (isDead || amount <= 0f || IsInvulnerable)
             return;
 
         if (shield != null)
@@ -92,7 +106,10 @@ public class Health : MonoBehaviour, IDamageable
             return;
         }
 
-        amount *= IncomingDamageMultiplier;
+        amount *= Mathf.Max(0f, IncomingDamageMultiplier);
+
+        if (armor > 0f)
+            amount *= ArmorScale / (ArmorScale + armor);
 
         float finalDamage = Mathf.Max(0f, amount - defensePower);
 
@@ -145,6 +162,20 @@ public class Health : MonoBehaviour, IDamageable
 
         if (isDead)
             OnDeath?.Invoke();
+    }
+
+    // Brings a defeated entity back (Cashino's Jackpot). Death listeners stay
+    // subscribed, so a second death fires OnDeath again as usual.
+    public void Revive(float healthFraction = 1f)
+    {
+        if (!isDead)
+            return;
+
+        isDead = false;
+        currentHealth = Mathf.Clamp(maxHealth * Mathf.Clamp01(healthFraction), 1f, maxHealth);
+
+        OnAnyHealed?.Invoke(this, currentHealth);
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
     public void RestoreFullHealth()

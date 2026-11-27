@@ -24,6 +24,14 @@ public class TeamSelectionPopupUI : MonoBehaviour
     [SerializeField] private Button startButton;
     [SerializeField] private Button closeButton;
 
+    [Tooltip("Opens the hierarchy (type matchup) guide. Empty = cloned from the Cancel button and placed between Start and Cancel.")]
+    [SerializeField] private Button guideButton;
+
+    [SerializeField] private SFXReference guideClickSfx;
+
+    [Tooltip("Shows this level's enemies, their hierarchy and suggested counters. Empty = cloned from Cancel.")]
+    [SerializeField] private Button enemiesButton;
+
     [Header("Scene")]
     [SerializeField] private SceneReference gameplayScene;
 
@@ -43,7 +51,60 @@ public class TeamSelectionPopupUI : MonoBehaviour
         if (closeButton != null)
             closeButton.onClick.AddListener(Hide);
 
+        SetupGuideButton();
+
         RefreshSelectionUI();
+    }
+
+    private void SetupGuideButton()
+    {
+        if (guideButton == null && closeButton != null)
+        {
+            guideButton = InfoPopupUI.CloneButton(
+                closeButton, closeButton.transform.parent, "GuideButton", "Type Guide", null);
+
+            if (enemiesButton == null)
+            {
+                enemiesButton = InfoPopupUI.CloneButton(
+                    closeButton, closeButton.transform.parent, "EnemiesButton", "Enemies", null);
+            }
+
+            // Stack Enemies and Type Guide evenly between Start and Cancel.
+            if (startButton != null &&
+                startButton.transform.parent == closeButton.transform.parent)
+            {
+                // localPosition, not anchoredPosition: Start and Cancel use
+                // different anchors, so their anchored positions don't mix.
+                Vector3 start = startButton.transform.localPosition;
+                Vector3 close = closeButton.transform.localPosition;
+
+                if (enemiesButton != null)
+                    enemiesButton.transform.localPosition = Vector3.Lerp(start, close, 1f / 3f);
+
+                if (guideButton != null)
+                    guideButton.transform.localPosition = Vector3.Lerp(start, close, 2f / 3f);
+            }
+        }
+
+        if (guideButton != null)
+            guideButton.onClick.AddListener(OpenHierarchyGuide);
+
+        if (enemiesButton != null)
+            enemiesButton.onClick.AddListener(OpenEnemyIntel);
+    }
+
+    private void OpenEnemyIntel()
+    {
+        InfoPopupUI.Show(
+            LevelEnemyIntel.Title(selectedLevel),
+            LevelEnemyIntel.BuildBody(selectedLevel),
+            new Vector2(1400f, 940f),
+            guideClickSfx);
+    }
+
+    private void OpenHierarchyGuide()
+    {
+        InfoPopupUI.Show(HierarchyGuide.Title, HierarchyGuide.BuildBody(), new Vector2(1500f, 960f), guideClickSfx);
     }
 
     private void OnDestroy()

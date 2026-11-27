@@ -44,6 +44,13 @@ public class EnemyPatternSpawner : BulletSpawner
         if (projectile == null)
             return null;
 
+        // Projectile travels along transform.up, but enemy bullet art is
+        // drawn facing DOWN, so rotating the root toward the travel
+        // direction left every sprite pointing backwards (180° off).
+        // flipX + flipY is a 180° turn of the art itself; set it on every
+        // spawn since pooled bullets keep their renderer state.
+        FaceSpritesForward(projectile);
+
         // Pool does not reset scale; assume prefab base scale of 1.
         if (!Mathf.Approximately(scale, 1f))
             projectile.transform.localScale = Vector3.one * scale;
@@ -62,6 +69,27 @@ public class EnemyPatternSpawner : BulletSpawner
         }
 
         return projectile;
+    }
+
+    private readonly System.Collections.Generic.Dictionary<Projectile, SpriteRenderer[]> spriteCache =
+        new System.Collections.Generic.Dictionary<Projectile, SpriteRenderer[]>();
+
+    private void FaceSpritesForward(Projectile projectile)
+    {
+        if (!spriteCache.TryGetValue(projectile, out SpriteRenderer[] sprites))
+        {
+            sprites = projectile.GetComponentsInChildren<SpriteRenderer>(true);
+            spriteCache[projectile] = sprites;
+        }
+
+        foreach (SpriteRenderer sprite in sprites)
+        {
+            if (sprite == null)
+                continue;
+
+            sprite.flipX = true;
+            sprite.flipY = true;
+        }
     }
 
     // One sound per fire action (not per bullet in a wall/ring).

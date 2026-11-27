@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class AnnihilatorAutoShooter : MonoBehaviour
@@ -13,6 +12,12 @@ public class AnnihilatorAutoShooter : MonoBehaviour
 
     private float fireTimer;
     private bool hasLoggedMissingReference;
+
+    /// <summary>Damage per bullet set by AnnihilatorManifestation (0 = spawner default).</summary>
+    public float DamageOverride { get; set; }
+
+    /// <summary>Fire interval multiplier (&lt; 1 = faster), from the player's level.</summary>
+    public float IntervalMultiplier { get; set; } = 1f;
 
     private void Awake()
     {
@@ -41,14 +46,17 @@ public class AnnihilatorAutoShooter : MonoBehaviour
 
         fireTimer += Time.deltaTime;
 
-        if (fireTimer < fireInterval)
+        float interval = Mathf.Max(0.03f, fireInterval * Mathf.Max(0.1f, IntervalMultiplier));
+
+        if (fireTimer < interval)
             return;
 
-        fireTimer -= fireInterval;
+        fireTimer = Mathf.Min(fireTimer - interval, interval);
 
         bulletSpawner.Fire(
             firePoint.transform,
-            bulletSpeed
+            bulletSpeed,
+            DamageOverride
         );
     }
 

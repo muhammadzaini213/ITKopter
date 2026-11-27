@@ -135,7 +135,11 @@ public class StoryToastUI : MonoBehaviour
 
         if (speakerIcon != null)
         {
-            Sprite icon = line.speaker != null ? line.speaker.Icon : null;
+            CharacterData speaker = StorySystem.Instance != null
+                ? StorySystem.Instance.ResolveSpeaker(line.speaker, line.speakerName)
+                : line.speaker;
+
+            Sprite icon = speaker != null ? speaker.Icon : null;
             speakerIcon.sprite = icon;
             speakerIcon.preserveAspect = true;
             speakerIcon.enabled = icon != null;

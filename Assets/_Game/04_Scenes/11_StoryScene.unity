@@ -2679,6 +2679,10 @@ MonoBehaviour:
   rightPortrait: {fileID: 2087751820}
   activePortraitColor: {r: 1, g: 1, b: 1, a: 1}
   inactivePortraitColor: {r: 0.35, g: 0.38, b: 0.45, a: 1}
+  portraitBorderSprite: {fileID: -1307673412102789708, guid: 0cd48981fbd7c9b9297032622f4391a2,
+    type: 3}
+  portraitBorderColor: {r: 0, g: 0.98, b: 1, a: 1}
+  portraitBorderAspect: 1.0963597
   dialogueBox: {fileID: 880205304}
   namePlate: {fileID: 1089118546}
   nameText: {fileID: 1180812795}

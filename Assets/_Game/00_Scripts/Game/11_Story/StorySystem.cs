@@ -29,6 +29,34 @@ public class StorySystem : GameSystem<StorySystem>
     [Header("UI")]
     [SerializeField] private StoryToastUI toastUI;
 
+    [Header("Named Speakers")]
+    [Tooltip("Non-playable speakers (e.g. Fajar, the King of All Concepts). Lines with only a speaker name " +
+             "matching one of these use its portrait (_0) and face icon (_1). Not part of the CharacterDatabase.")]
+    [SerializeField] private CharacterData[] namedSpeakers = new CharacterData[0];
+
+    [Tooltip("The player's avatar in battle (talks when the Annihilator manifests).")]
+    [SerializeField] private CharacterData playerAvatar;
+
+    public CharacterData PlayerAvatar => playerAvatar;
+
+    /// <summary>The speaker for a line: its CharacterData, or a named speaker matched by name.</summary>
+    public CharacterData ResolveSpeaker(CharacterData speaker, string speakerName)
+    {
+        if (speaker != null || string.IsNullOrWhiteSpace(speakerName) || namedSpeakers == null)
+            return speaker;
+
+        foreach (CharacterData named in namedSpeakers)
+        {
+            if (named != null &&
+                string.Equals(named.CharacterName, speakerName.Trim(), System.StringComparison.OrdinalIgnoreCase))
+            {
+                return named;
+            }
+        }
+
+        return null;
+    }
+
     private bool battleInProgress;
     private bool completing;
     private string pendingToastScene;

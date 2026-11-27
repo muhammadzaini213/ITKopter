@@ -1,7 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Warlock — Total Warfare.
+// Opening shockwave, then a focused barrage at the toughest enemy on screen
+// (marked with a crosshair). Every barrage hit that lands on the target
+// charges the finale blast.
 public class TotalWarfareExSkill : ExSkill
 {
     [Header("Opening AOE Settings")]
@@ -33,73 +36,111 @@ public class TotalWarfareExSkill : ExSkill
 
     private int successfulHits;
     private Health highestHpTarget;
+    private Coroutine barrageRoutine;
+    private VfxRing crosshair;
+    private VfxRing crosshairInner;
+    private VfxText hitCounter;
+    private bool listening;
+    private BulletSpawner bulletSpawner;
+
+    protected override Color DefaultColor => new Color(1f, 0.42f, 0.15f);
+
+    protected override string[] DefaultActivationLines => new[] { "Total warfare. No one walks away.", "Focus fire on the big one!" };
+
+    public override string Describe(float attack, float defense)
+    {
+        return $"Opens with a shockwave: {AtkPct(aoeDamageMultiplier, attack)} damage to every enemy within {Num(aoeRadius)} units.\n\n" +
+               $"Then fires {Num(focusProjectiles)} focused shots at the toughest enemy, one every {Seconds(focusInterval)}, each dealing {AtkPct(focusDamageMultiplier, attack)}.\n\n" +
+               $"Finale: enemies within {Num(finaleRadius)} units take {AtkPct(finaleDamageMultiplier, attack)} for <i>every</i> focused shot that hit.";
+    }
 
     public override void Activate()
     {
-        if (!CanUse()) return;
+        if (!CanUse())
+            return;
+
+        Cancel();
 
         successfulHits = 0;
-        highestHpTarget = FindHighestHpEnemy();
+        bulletSpawner = Owner.GetComponentInChildren<BulletSpawner>(true);
 
         FireOpeningAOE();
-        StartFocusBarrage();
-    }
+        SetTarget(SkillTargets.HighestHealthEnemy());
 
-    private Health FindHighestHpEnemy()
-    {
-        Health best = null;
-        float bestHealth = -1f;
+        Projectile.OnHit += OnProjectileHit;
+        listening = true;
 
-        var enemies = Object.FindObjectsByType<Health>(FindObjectsSortMode.None);
-
-        foreach (var health in enemies)
-        {
-            if (health == null || health.IsDead)
-                continue;
-
-            if (health.CurrentHealth > bestHealth)
-            {
-                bestHealth = health.CurrentHealth;
-                best = health;
-            }
-        }
-
-        return best;
+        barrageRoutine = StartSkillRoutine(BarrageRoutine());
     }
 
     private void FireOpeningAOE()
     {
         Vector2 center = Owner.transform.position;
-        var hits = Physics2D.OverlapCircleAll(center, aoeRadius, enemyMask);
+        Color color = SkillColor;
+
+        SkillVFX.Ring(center, color, 0.5f, aoeRadius, 0.5f, 0.3f);
+        SkillVFX.Ring(center, Color.white.WithAlpha(0.8f), 0.3f, aoeRadius * 0.7f, 0.35f, 0.08f);
+        SkillVFX.Sparks(center, color, 30, 10f, 0.5f);
 
         float damage = Owner.EffectiveAttackPower * aoeDamageMultiplier;
 
-        foreach (var hit in hits)
+        foreach (var health in SkillTargets.EnemiesInRadius(center, aoeRadius))
         {
-            if (hit.transform == null)
-                continue;
-
-            Health health = hit.GetComponentInParent<Health>();
-            if (health == null)
-                continue;
-
+            SkillVFX.Sparks(health.transform.position, color, 8, 4f, 0.3f);
             CounterMechanics.Damage(Owner, health, damage);
-
-            if (health == highestHpTarget)
-                successfulHits++;
         }
     }
 
-    private void StartFocusBarrage()
+    private void SetTarget(Health target)
     {
-        StartCoroutine(BarrageRoutine());
+        highestHpTarget = target;
+
+        if (crosshair != null) crosshair.Stop(0.1f);
+        if (crosshairInner != null) crosshairInner.Stop(0.1f);
+        if (hitCounter != null) hitCounter.Stop();
+
+        crosshair = null;
+        crosshairInner = null;
+        hitCounter = null;
+
+        if (target == null || target.IsDead)
+            return;
+
+        crosshair = SkillVFX.Marker(target, SkillColor, -1f, 4, 1, 0f);
+        crosshairInner = SkillVFX.Marker(target, Color.white.WithAlpha(0.8f), -1f, 4, 1, -160f);
+
+        if (crosshairInner != null)
+            crosshairInner.Radius *= 0.6f;
+
+        float radius = SkillVFX.GetVisualRadius(target.transform);
+        hitCounter = SkillVFX.Label(target.transform, Vector3.up * (radius + 0.5f), HitText(), SkillColor, 3f);
+    }
+
+    private string HitText() => $"x{successfulHits}";
+
+    private void OnProjectileHit(Character owner, Health target, float damage, bool wasKilled)
+    {
+        if (owner != Owner || target == null || target != highestHpTarget)
+            return;
+
+        successfulHits++;
+
+        if (hitCounter != null)
+            hitCounter.SetText(HitText());
+
+        SkillVFX.Sparks(target.transform.position, SkillColor, 6, 4f, 0.25f);
     }
 
     private IEnumerator BarrageRoutine()
     {
         for (int i = 0; i < focusProjectiles; i++)
         {
+            // Target died: retarget the next toughest enemy instead of
+            // abandoning the barrage.
             if (highestHpTarget == null || highestHpTarget.IsDead)
+                SetTarget(SkillTargets.HighestHealthEnemy());
+
+            if (highestHpTarget == null)
                 break;
 
             FireFocusProjectile();
@@ -107,66 +148,85 @@ public class TotalWarfareExSkill : ExSkill
             yield return new WaitForSeconds(focusInterval);
         }
 
+        // Let the last shots land before the finale.
+        yield return new WaitForSeconds(0.25f);
+
         FireFinale();
+
+        StopListening();
+        SetTarget(null);
+        barrageRoutine = null;
     }
 
     private void FireFocusProjectile()
     {
-        if (highestHpTarget == null)
+        if (highestHpTarget == null || bulletSpawner == null)
             return;
 
-        Vector2 direction = ((Vector2)highestHpTarget.transform.position - (Vector2)Owner.transform.position).normalized;
+        Vector2 origin = Owner.transform.position;
+        Vector2 direction = ((Vector2)highestHpTarget.transform.position - origin).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
         var temp = new GameObject("TotalWarfareFirePoint");
-        temp.transform.position = Owner.transform.position;
-        temp.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        temp.transform.SetPositionAndRotation(origin, Quaternion.Euler(0f, 0f, angle));
 
-        var bulletSpawner = Owner.GetComponentInChildren<BulletSpawner>(true);
-        if (bulletSpawner != null)
-        {
-            bulletSpawner.Fire(
-                temp.transform,
-                Owner.BulletSpeed,
-                Owner.EffectiveAttackPower * focusDamageMultiplier);
-        }
+        bulletSpawner.Fire(
+            temp.transform,
+            Owner.BulletSpeed * 1.3f,
+            Owner.EffectiveAttackPower * focusDamageMultiplier);
 
         Destroy(temp);
+
+        SkillVFX.Sparks(origin + direction * 0.4f, SkillColor, 5, 5f, 0.2f);
+        SkillVFX.Beam(origin, highestHpTarget.transform.position, SkillColor.WithAlpha(0.35f), 0.03f, 0.1f, 0.02f);
+        CombatFeel.Shake(0.07f, 0.08f);
     }
 
     private void FireFinale()
     {
-        Vector2 center = Owner.transform.position;
-        var hits = Physics2D.OverlapCircleAll(center, finaleRadius, enemyMask);
+        if (Owner == null)
+            return;
 
+        Vector2 center = Owner.transform.position;
         float bonus = successfulHits * Owner.EffectiveAttackPower * finaleDamageMultiplier;
 
-        foreach (var hit in hits)
+        SkillVFX.Explosion(center, SkillColor, finaleRadius, withFeel: false);
+        SkillVFX.Text(center + Vector2.up * 1.5f, $"FINALE x{successfulHits}", SkillColor, 4.5f, 1f);
+
+        if (bonus > 0f)
         {
-            if (hit.transform == null)
-                continue;
-
-            Health health = hit.GetComponentInParent<Health>();
-            if (health == null)
-                continue;
-
-            CounterMechanics.Damage(Owner, health, bonus);
+            foreach (var health in SkillTargets.EnemiesInRadius(center, finaleRadius))
+            {
+                SkillVFX.Explosion(health.transform.position, SkillColor, 1.2f, withFeel: false);
+                CounterMechanics.Damage(Owner, health, bonus);
+            }
         }
+
+        CombatFeel.Flash(SkillColor.WithAlpha(0.25f), 0.2f);
+        CombatFeel.HitStop(Mathf.Lerp(0.08f, 0.18f, Mathf.Clamp01(successfulHits / 6f)));
+        CombatFeel.Shake(Mathf.Lerp(0.25f, 0.5f, Mathf.Clamp01(successfulHits / 6f)), 0.4f);
     }
 
+    // Kept for external callers.
     public void RegisterHit(Health target)
     {
         if (target == highestHpTarget)
             successfulHits++;
     }
 
-    public override void Cancel()
+    private void StopListening()
     {
-        StopAllCoroutines();
+        if (!listening)
+            return;
+
+        Projectile.OnHit -= OnProjectileHit;
+        listening = false;
     }
 
-    private void OnDisable()
+    public override void Cancel()
     {
-        Cancel();
+        StopSkillRoutine(ref barrageRoutine);
+        StopListening();
+        SetTarget(null);
     }
 }

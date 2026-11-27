@@ -43,6 +43,11 @@ public class CharacterDetailPanelUI : MonoBehaviour
     [SerializeField] private Slider affectionSlider;
     [SerializeField] private TMP_Text affectionText;
 
+    [Header("EX Skill Info")]
+    [Tooltip("Opens the EX skill description. Empty = cloned from the Upgrade button and placed at the panel's top-right.")]
+    [SerializeField] private Button skillInfoButton;
+    [SerializeField] private SFXReference skillInfoClickSfx;
+
     [Header("Navigation")]
     [SerializeField] private Button previousButton;
     [SerializeField] private Button nextButton;
@@ -50,6 +55,9 @@ public class CharacterDetailPanelUI : MonoBehaviour
     private Action previousCallback;
     private Action nextCallback;
     private Action upgradeCallback;
+
+    private CharacterData shownCharacter;
+    private int shownLevel = 1;
 
     private void Awake()
     {
@@ -61,6 +69,69 @@ public class CharacterDetailPanelUI : MonoBehaviour
 
         if (upgradeButton != null)
             upgradeButton.onClick.AddListener(HandleUpgrade);
+
+        SetupSkillInfoButton();
+    }
+
+    private void SetupSkillInfoButton()
+    {
+        if (skillInfoButton == null && upgradeButton != null)
+        {
+            // Inside the stats card (the Upgrade button's parent), not the
+            // full-screen container this component sits on.
+            Transform card = upgradeButton.transform.parent != null
+                ? upgradeButton.transform.parent
+                : transform;
+
+            skillInfoButton = InfoPopupUI.CloneButton(
+                upgradeButton, card, "SkillInfoButton", "EX Skill", null);
+
+            if (skillInfoButton != null)
+            {
+                var rect = (RectTransform)skillInfoButton.transform;
+                rect.anchorMin = rect.anchorMax = new Vector2(1f, 1f);
+                rect.pivot = new Vector2(1f, 1f);
+                rect.sizeDelta = new Vector2(118f, 42f);
+                rect.anchoredPosition = new Vector2(-14f, -14f);
+
+                foreach (var label in skillInfoButton.GetComponentsInChildren<TMP_Text>(true))
+                {
+                    label.enableAutoSizing = true;
+                    label.fontSizeMin = 10f;
+                    label.fontSizeMax = 22f;
+                }
+            }
+        }
+
+        if (skillInfoButton != null)
+            skillInfoButton.onClick.AddListener(OpenSkillInfo);
+    }
+
+    /// <summary>Shows the EX skill of the character on display, with numbers at its current level.</summary>
+    public void OpenSkillInfo()
+    {
+        if (shownCharacter == null)
+            return;
+
+        ExSkill skill = shownCharacter.CharacterPrefab != null
+            ? shownCharacter.CharacterPrefab.GetComponentInChildren<ExSkill>(true)
+            : null;
+
+        float attack = shownCharacter.GetAttackAtLevel(shownLevel);
+        float defense = shownCharacter.GetDefenseAtLevel(shownLevel);
+
+        string title = skill != null && !string.IsNullOrEmpty(skill.SkillName)
+            ? skill.SkillName.ToUpperInvariant()
+            : "EX SKILL";
+
+        string body =
+            $"<color=#19F0FF>{shownCharacter.CharacterName}</color>  Lv. {shownLevel}   " +
+            $"<color=#8FA9B5>ATK {Mathf.RoundToInt(attack)}  DEF {Mathf.RoundToInt(defense)}  " +
+            $"Cooldown {shownCharacter.ExSkillCooldown:0}s</color>\n\n" +
+            (skill != null ? skill.Describe(attack, defense) : "This unit has no EX skill.") +
+            "\n\n<color=#8FA9B5>Numbers in (~) are at the current level; % values scale with upgrades.</color>";
+
+        InfoPopupUI.Show(title, body, new Vector2(1100f, 720f), skillInfoClickSfx);
     }
 
     private void OnDestroy()
@@ -73,6 +144,9 @@ public class CharacterDetailPanelUI : MonoBehaviour
 
         if (upgradeButton != null)
             upgradeButton.onClick.RemoveListener(HandleUpgrade);
+
+        if (skillInfoButton != null)
+            skillInfoButton.onClick.RemoveListener(OpenSkillInfo);
     }
 
     public void SetNavigationCallbacks(
@@ -99,6 +173,9 @@ public class CharacterDetailPanelUI : MonoBehaviour
             return;
 
         int level = progression.Level;
+
+        shownCharacter = character;
+        shownLevel = level;
 
         if (iconImage != null)
         {

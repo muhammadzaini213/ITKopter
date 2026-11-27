@@ -1,7 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Vio — Unrestrained Violence.
+// Rage mode: Vio takes more damage, but every hit builds stacks of ATK and
+// fire rate. Stacks bleed off one by one if Vio stops landing hits.
 public class UnrestrainedViolenceExSkill : ExSkill
 {
     [Header("Buff Settings")]
@@ -25,26 +27,55 @@ public class UnrestrainedViolenceExSkill : ExSkill
     private float hitWindow = 1f;
 
     private int stacks;
+    private bool isActive;
+    private bool listening;
     private float damageTakenBonus;
+    private Health ownerHealth;
     private Coroutine durationRoutine;
     private Coroutine decayRoutine;
 
+    private VfxRing aura;
+    private VfxRing spikes;
+    private VfxText stackLabel;
+
     public int Stacks => stacks;
+
+    protected override Color DefaultColor => new Color(1f, 0.12f, 0.2f);
+
+    protected override string[] DefaultActivationLines => new[] { "No more holding back!", "Hit me. I'll hit harder!" };
+
+    public override string Describe(float attack, float defense)
+    {
+        return $"For {Seconds(duration)} Vio rages and takes {Pct(damageTakenMultiplier)} damage from every hit.\n\n" +
+               $"Each hit Vio lands adds a stack (max {Num(maxStacks)}): +{Pct(attackMultiplierPerStack)} ATK and +{Pct(attackSpeedMultiplierPerStack)} fire rate per stack.\n\n" +
+               $"Stacks fall off one by one if Vio lands no hit for {Seconds(hitWindow)}.";
+    }
 
     public override void Activate()
     {
-        if (!CanUse()) return;
+        if (!CanUse())
+            return;
+
+        Cancel();
 
         stacks = 0;
+        isActive = true;
+
+        ownerHealth = Owner.GetComponent<Health>();
         ApplyDamageTakenModifier(true);
         ApplyStatBonuses();
 
         Projectile.OnHit += OnProjectileHit;
+        listening = true;
 
-        if (durationRoutine != null)
-            StopCoroutine(durationRoutine);
+        float radius = SkillVFX.GetVisualRadius(Owner.transform);
+        aura = SkillVFX.Aura(Owner.transform, SkillColor.WithAlpha(0.6f), radius * 1.25f, 0.05f, -1f, 0.1f);
+        spikes = SkillVFX.Aura(Owner.transform, SkillColor, radius * 1.45f, 0.05f, -1f, 0.04f, 8, 3, -200f);
+        stackLabel = SkillVFX.Label(Owner.transform, Vector3.up * (radius + 0.5f), "RAGE", SkillColor, 3f);
 
-        durationRoutine = StartCoroutine(DurationRoutine());
+        CombatFeel.Flash(SkillColor.WithAlpha(0.2f), 0.25f);
+
+        durationRoutine = StartSkillRoutine(DurationRoutine());
     }
 
     private void OnProjectileHit(Character owner, Health target, float damage, bool wasKilled)
@@ -60,8 +91,10 @@ public class UnrestrainedViolenceExSkill : ExSkill
         if (!isActive)
             return;
 
+        bool gained = stacks < maxStacks;
         stacks = Mathf.Min(maxStacks, stacks + 1);
         ApplyStatBonuses();
+        RefreshVisuals(gained);
 
         if (decayRoutine != null)
             StopCoroutine(decayRoutine);
@@ -69,81 +102,94 @@ public class UnrestrainedViolenceExSkill : ExSkill
         decayRoutine = StartCoroutine(DecayRoutine());
     }
 
-    private bool isActive;
-
     private IEnumerator DurationRoutine()
     {
-        isActive = true;
-
         yield return new WaitForSeconds(duration);
 
-        isActive = false;
-        EndSkill();
+        durationRoutine = null;
+        Cancel();
     }
 
     private IEnumerator DecayRoutine()
     {
-        yield return new WaitForSeconds(hitWindow);
-
-        if (!isActive)
-            yield break;
-
-        stacks = Mathf.Max(0, stacks - 1);
-        ApplyStatBonuses();
-
-        if (stacks > 0)
+        while (isActive && stacks > 0)
         {
-            decayRoutine = StartCoroutine(DecayRoutine());
+            yield return new WaitForSeconds(hitWindow);
+
+            if (!isActive)
+                yield break;
+
+            stacks = Mathf.Max(0, stacks - 1);
+            ApplyStatBonuses();
+            RefreshVisuals(false);
+        }
+
+        decayRoutine = null;
+    }
+
+    private void RefreshVisuals(bool gained)
+    {
+        if (Owner == null)
+            return;
+
+        float t = maxStacks > 0 ? stacks / (float)maxStacks : 0f;
+        float radius = SkillVFX.GetVisualRadius(Owner.transform);
+
+        if (spikes != null)
+        {
+            spikes.Radius = radius * Mathf.Lerp(1.45f, 2.1f, t);
+            spikes.Width = Mathf.Lerp(0.05f, 0.13f, t);
+        }
+
+        if (aura != null)
+            aura.Color = Color.Lerp(SkillColor.WithAlpha(0.6f), Color.white, t * 0.4f);
+
+        if (stackLabel != null)
+            stackLabel.SetText(stacks > 0 ? $"RAGE x{stacks}" : "RAGE", gained);
+
+        if (gained && stacks == maxStacks)
+        {
+            SkillVFX.Sparks(Owner.transform.position, SkillColor, 18, 6f, 0.35f);
+            CombatFeel.Shake(0.12f, 0.15f);
         }
     }
 
     private void ApplyStatBonuses()
     {
-        Owner.ClearAttackPowerBonus();
-
-        float attackBonus = Owner.AttackPower * attackMultiplierPerStack * stacks;
-        Owner.AddAttackPowerBonus(attackBonus);
-
-        var shooter = Owner.GetComponentInChildren<PlayerAutoShooter>(true);
-        if (shooter != null)
-            shooter.FireIntervalMultiplier = 1f / (1f + attackSpeedMultiplierPerStack * stacks);
+        ApplyAttack(Owner, this, Owner.AttackPower * attackMultiplierPerStack * stacks);
+        ApplyFireInterval(Owner, this, 1f / (1f + attackSpeedMultiplierPerStack * stacks));
     }
 
     private void ApplyDamageTakenModifier(bool apply)
     {
+        if (ownerHealth == null)
+            return;
+
         if (apply)
         {
             damageTakenBonus = damageTakenMultiplier - 1f;
-            Owner.GetComponent<Health>().IncomingDamageMultiplier += damageTakenBonus;
+            ownerHealth.IncomingDamageMultiplier += damageTakenBonus;
         }
         else
         {
-            Owner.GetComponent<Health>().IncomingDamageMultiplier -= damageTakenBonus;
+            ownerHealth.IncomingDamageMultiplier -= damageTakenBonus;
             damageTakenBonus = 0f;
         }
     }
 
-    private void EndSkill()
+    private void StopListening()
     {
-        ApplyDamageTakenModifier(false);
-        Owner.ClearAttackPowerBonus();
+        if (!listening)
+            return;
 
-        var shooter = Owner.GetComponentInChildren<PlayerAutoShooter>(true);
-        if (shooter != null)
-            shooter.FireIntervalMultiplier = 1f;
-
-        stacks = 0;
+        Projectile.OnHit -= OnProjectileHit;
+        listening = false;
     }
 
     public override void Cancel()
     {
-        Projectile.OnHit -= OnProjectileHit;
-
-        if (durationRoutine != null)
-        {
-            StopCoroutine(durationRoutine);
-            durationRoutine = null;
-        }
+        StopListening();
+        StopSkillRoutine(ref durationRoutine);
 
         if (decayRoutine != null)
         {
@@ -151,12 +197,21 @@ public class UnrestrainedViolenceExSkill : ExSkill
             decayRoutine = null;
         }
 
-        isActive = false;
-        EndSkill();
-    }
+        // Only undo the damage-taken penalty once (Cancel used to run twice
+        // and could leave Vio permanently fragile or tanky).
+        if (isActive)
+            ApplyDamageTakenModifier(false);
 
-    private void OnDisable()
-    {
-        Cancel();
+        isActive = false;
+        stacks = 0;
+        ClearModifiers(Owner, this);
+
+        if (aura != null) aura.Stop();
+        if (spikes != null) spikes.Stop();
+        if (stackLabel != null) stackLabel.Stop();
+
+        aura = null;
+        spikes = null;
+        stackLabel = null;
     }
 }

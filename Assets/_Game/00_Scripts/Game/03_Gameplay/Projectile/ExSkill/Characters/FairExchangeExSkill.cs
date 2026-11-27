@@ -1,7 +1,10 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
+// Trady — Fair Exchange.
+// Opens a choice popup (game paused):
+//   DEFENSE — big shield bubble, weaker attack
+//   ATTACK  — huge attack + fire rate, weaker defense
 public class FairExchangeExSkill : ExSkill
 {
     [Header("Defense Settings")]
@@ -27,20 +30,52 @@ public class FairExchangeExSkill : ExSkill
     [SerializeField, Min(0f)]
     private float defensePenaltyMultiplier = 0.6f;
 
+    private static readonly Color DefenseColor = new Color(0.35f, 0.75f, 1f);
+    private static readonly Color AttackColor = new Color(1f, 0.55f, 0.2f);
+
     private TradyExchangeChoiceUI choiceUI;
     private Coroutine durationRoutine;
-
+    private Shield shield;
+    private Health ownerHealth;
+    private VfxRing aura;
+    private VfxRing auraOuter;
+    private VfxText label;
     private bool choiceMade;
+
+    protected override Color DefaultColor => new Color(0.2f, 1f, 0.7f);
+
+    protected override string[] DefaultActivationLines => new[] { "Let's make a fair exchange.", "Everything has a price." };
+
+    // The pause popup is the "moment"; the burst plays on the choice instead.
+    public override bool PlayDefaultActivationFeel => false;
+
+    public override string Describe(float attack, float defense)
+    {
+        return $"Pauses the fight and offers a trade:\n\n" +
+               $"<color=#5FB8FF>DEFENSE</color>: a shield worth {DefPct(defenseShieldMultiplier, defense)} for {Seconds(defenseDuration)}, but -{Pct(offensePenaltyMultiplier)} ATK.\n\n" +
+               $"<color=#FF8C33>ATTACK</color>: ATK becomes {Pct(attackDamageMultiplier)} and fire rate {Pct(attackSpeedMultiplier)} for {Seconds(attackDuration)}, but DEF drops to {Pct(defensePenaltyMultiplier)}.";
+    }
 
     public override void Activate()
     {
-        if (!CanUse()) return;
+        if (!CanUse())
+            return;
 
-        choiceUI = UnityEngine.Object.FindFirstObjectByType<TradyExchangeChoiceUI>();
+        Cancel();
 
-        if (choiceUI == null) return;
+        choiceUI = Object.FindFirstObjectByType<TradyExchangeChoiceUI>();
+
+        if (choiceUI == null)
+        {
+            // No popup in this scene — don't waste the skill, pick attack.
+            OnAttackChosen();
+            return;
+        }
 
         choiceMade = false;
+        ownerHealth = Owner.GetComponent<Health>();
+
+        SkillVFX.Ghost(Owner.transform, SkillColor, 0.4f, 1.6f);
 
         choiceUI.Show(
             Owner,
@@ -51,95 +86,148 @@ public class FairExchangeExSkill : ExSkill
 
     private void OnDefenseChosen()
     {
-        choiceMade = true;
+        if (Owner == null)
+            return;
 
-        float shield = Owner.EffectiveDefensePower * defenseShieldMultiplier;
+        choiceMade = true;
+        ownerHealth = Owner.GetComponent<Health>();
+
+        float amount = Mathf.Max(1f, Owner.EffectiveDefensePower * defenseShieldMultiplier);
 
         var shieldGo = new GameObject("FairExchangeDefenseShield");
-        shieldGo.transform.position = Owner.transform.position;
+        shieldGo.transform.SetParent(Owner.transform, false);
 
-        var shieldComp = shieldGo.AddComponent<Shield>();
-        shieldComp.Set(Mathf.Max(1f, shield));
-        Owner.GetComponent<Health>().AssignShield(shieldComp);
+        shield = shieldGo.AddComponent<Shield>();
+        shield.Set(amount);
+        shield.OnAmountChanged += OnShieldChanged;
+        shield.OnBroken += OnShieldBroken;
 
-        Owner.AddAttackPowerBonus(-Owner.EffectiveAttackPower * offensePenaltyMultiplier);
+        if (ownerHealth != null)
+            ownerHealth.AssignShield(shield);
 
-        StartDefenseTimer(shieldComp);
-    }
+        ApplyAttack(Owner, this, -Owner.AttackPower * offensePenaltyMultiplier);
 
-    private void StartDefenseTimer(Shield shieldComp)
-    {
-        if (durationRoutine != null)
-            StopCoroutine(durationRoutine);
+        float radius = SkillVFX.GetVisualRadius(Owner.transform);
+        aura = SkillVFX.Aura(Owner.transform, DefenseColor, radius * 1.5f, 0.1f, -1f, 0.03f);
+        auraOuter = SkillVFX.Aura(Owner.transform, DefenseColor.WithAlpha(0.5f), radius * 1.7f, 0.04f, -1f, 0.03f, 6, 1, 30f);
+        PlayChoiceFeel("DEFENSE TRADE", DefenseColor);
 
-        durationRoutine = StartCoroutine(DefenseRoutine(shieldComp));
-    }
-
-    private IEnumerator DefenseRoutine(Shield shieldComp)
-    {
-        yield return new WaitForSeconds(defenseDuration);
-
-        if (shieldComp != null)
-            shieldComp.Break();
-
-        Owner.GetComponent<Health>().RemoveShield();
-        Owner.ClearAttackPowerBonus();
+        StartTimer(defenseDuration);
     }
 
     private void OnAttackChosen()
     {
+        if (Owner == null)
+            return;
+
         choiceMade = true;
 
-        Owner.AddAttackPowerBonus(Owner.EffectiveAttackPower * attackDamageMultiplier);
+        ApplyAttack(Owner, this, Owner.AttackPower * Mathf.Max(0f, attackDamageMultiplier - 1f));
+        ApplyFireInterval(Owner, this, 1f / Mathf.Max(0.05f, attackSpeedMultiplier));
+        ApplyDefense(Owner, this, -Owner.DefensePower * (1f - defensePenaltyMultiplier));
 
-        var shooter = Owner.GetComponentInChildren<PlayerAutoShooter>(true);
-        if (shooter != null)
-            shooter.FireIntervalMultiplier = 1f / attackSpeedMultiplier;
+        float radius = SkillVFX.GetVisualRadius(Owner.transform);
+        aura = SkillVFX.Aura(Owner.transform, AttackColor, radius * 1.35f, 0.07f, -1f, 0.1f, 3, 1, 180f);
+        auraOuter = SkillVFX.Aura(Owner.transform, AttackColor.WithAlpha(0.5f), radius * 1.6f, 0.04f, -1f, 0.08f, 3, 1, -180f);
+        PlayChoiceFeel("ATTACK TRADE", AttackColor);
 
-        Owner.AddDefensePowerBonus(-Owner.EffectiveDefensePower * (1f - defensePenaltyMultiplier));
-
-        if (durationRoutine != null)
-            StopCoroutine(durationRoutine);
-
-        durationRoutine = StartCoroutine(AttackRoutine(shooter));
+        StartTimer(attackDuration);
     }
 
-    private IEnumerator AttackRoutine(PlayerAutoShooter shooter)
+    private void PlayChoiceFeel(string title, Color color)
     {
-        yield return new WaitForSeconds(attackDuration);
+        Vector3 pos = Owner.transform.position;
+        float radius = SkillVFX.GetVisualRadius(Owner.transform);
 
-        Owner.ClearAttackPowerBonus();
-        Owner.ClearDefensePowerBonus();
+        label = SkillVFX.Label(Owner.transform, Vector3.up * (radius + 0.5f), title, color, 3f);
+        SkillVFX.Activation(Owner, null, color);
+        SkillVFX.Text(pos + Vector3.up * (radius + 1.2f), title, color, 4.5f, 1f);
+    }
 
-        if (shooter != null)
-            shooter.FireIntervalMultiplier = 1f;
+    private void OnShieldChanged(float current)
+    {
+        if (aura == null || shield == null || shield.Max <= 0f)
+            return;
+
+        float t = Mathf.Clamp01(current / shield.Max);
+        aura.Width = Mathf.Lerp(0.03f, 0.1f, t);
+        aura.Color = DefenseColor.WithAlpha(Mathf.Lerp(0.35f, 1f, t));
+
+        if (Owner != null)
+            SkillVFX.Sparks(Owner.transform.position, DefenseColor, 4, 3f, 0.2f, 0.08f);
+    }
+
+    private void OnShieldBroken()
+    {
+        if (Owner != null)
+        {
+            SkillVFX.Explosion(Owner.transform.position, DefenseColor, 1.6f, withFeel: false);
+            CombatFeel.Shake(0.15f, 0.2f);
+        }
+
+        RemoveShield();
+
+        if (aura != null) aura.Stop();
+        if (auraOuter != null) auraOuter.Stop();
+        aura = null;
+        auraOuter = null;
+    }
+
+    private void StartTimer(float seconds)
+    {
+        StopSkillRoutine(ref durationRoutine);
+        durationRoutine = StartSkillRoutine(DurationRoutine(seconds));
+    }
+
+    private IEnumerator DurationRoutine(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        durationRoutine = null;
+        EndTrade();
+    }
+
+    private void RemoveShield()
+    {
+        if (shield == null)
+            return;
+
+        shield.OnAmountChanged -= OnShieldChanged;
+        shield.OnBroken -= OnShieldBroken;
+
+        if (ownerHealth != null && ownerHealth.Shield == shield)
+            ownerHealth.RemoveShield();
+
+        if (shield != null)
+            Destroy(shield.gameObject);
+
+        shield = null;
+    }
+
+    private void EndTrade()
+    {
+        RemoveShield();
+        ClearModifiers(Owner, this);
+
+        if (aura != null) aura.Stop();
+        if (auraOuter != null) auraOuter.Stop();
+        if (label != null) label.Stop();
+
+        aura = null;
+        auraOuter = null;
+        label = null;
+        choiceMade = false;
     }
 
     public override void Cancel()
     {
-        if (durationRoutine != null)
-        {
-            StopCoroutine(durationRoutine);
-            durationRoutine = null;
-        }
+        StopSkillRoutine(ref durationRoutine);
 
-        if (!choiceMade)
-            return;
+        // Benched while the popup is still open: close it so the game
+        // doesn't stay paused waiting for a dead callback.
+        if (!choiceMade && choiceUI != null && choiceUI.IsOpen)
+            choiceUI.Close();
 
-        Owner.ClearAttackPowerBonus();
-        Owner.ClearDefensePowerBonus();
-
-        var health = Owner.GetComponent<Health>();
-        if (health != null)
-            health.RemoveShield();
-
-        var shooter = Owner.GetComponentInChildren<PlayerAutoShooter>(true);
-        if (shooter != null)
-            shooter.FireIntervalMultiplier = 1f;
-    }
-
-    private void OnDisable()
-    {
-        Cancel();
+        EndTrade();
     }
 }

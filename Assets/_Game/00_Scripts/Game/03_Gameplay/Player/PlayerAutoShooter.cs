@@ -12,15 +12,28 @@ public class PlayerAutoShooter : MonoBehaviour
     private Transform firePoint;
     private CharacterSwitcher characterSwitcher;
     private Character character;
+    private Health characterHealth;
     private float fireTimer;
     private bool hasLoggedMissingReference;
 
+    /// <summary>
+    /// Extra multiplier on the fire interval (&lt; 1 = faster). EX skills use
+    /// Character.SetFireIntervalModifier instead; both stack.
+    /// </summary>
     public float FireIntervalMultiplier { get; set; } = 1f;
+
+    public float EffectiveFireInterval =>
+        fireInterval *
+        Mathf.Max(0.05f, FireIntervalMultiplier) *
+        (character != null ? character.FireIntervalMultiplier : 1f);
 
     private void Awake()
     {
         character = GetComponentInParent<Character>();
-        firePoint = GetComponentInChildren<Firepoint>().transform;
+        characterHealth = character != null ? character.GetComponent<Health>() : null;
+
+        Firepoint point = GetComponentInChildren<Firepoint>();
+        firePoint = point != null ? point.transform : null;
         if (character == null)
         {
             Debug.LogError(
@@ -65,12 +78,16 @@ public class PlayerAutoShooter : MonoBehaviour
 
         fireTimer += Time.deltaTime;
 
-        float effectiveInterval = fireInterval / Mathf.Max(0.01f, FireIntervalMultiplier);
+        // Interval multiplier: 0.5 = twice the fire rate. (It used to divide,
+        // which inverted every EX skill's haste/slow.)
+        float effectiveInterval = Mathf.Max(0.02f, EffectiveFireInterval);
 
         if (fireTimer < effectiveInterval)
             return;
 
-        fireTimer -= fireInterval;
+        // Subtract the interval actually used; clamp so a long hitch can't
+        // queue a burst of shots.
+        fireTimer = Mathf.Min(fireTimer - effectiveInterval, effectiveInterval);
 
         bulletSpawner.Fire(
             firePoint,
@@ -101,6 +118,10 @@ public class PlayerAutoShooter : MonoBehaviour
             return false;
         }
 
+        // Health sits on the character root, not on this child.
+        if (characterHealth != null && characterHealth.IsDead)
+            return false;
+
         // During the switching window, every active character can shoot.
         if (characterSwitcher.IsSwitching)
             return true;
@@ -109,10 +130,6 @@ public class PlayerAutoShooter : MonoBehaviour
         if (characterSwitcher.ActiveCharacter != character.gameObject)
             return false;
 
-        Health health = GetComponent<Health>();
-
-        if (health != null && health.IsDead)
-            return false;
 
         return true;
     }

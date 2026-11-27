@@ -122,6 +122,53 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         }
     }
 
+    /// <summary>Level / progress / requirement for any total EXP value (same curve as PlayerLevel).</summary>
+    public static void GetLevelProgress(long totalExp, out int level, out int currentExp, out int requiredExp)
+    {
+        level = 1;
+        long remaining = Math.Max(0L, totalExp);
+        long required = BaseExpRequired;
+
+        while (remaining >= required && level < int.MaxValue)
+        {
+            remaining -= required;
+            level++;
+            required = GetNextRequiredExp(required);
+        }
+
+        currentExp = (int)remaining;
+        requiredExp = (int)required;
+    }
+
+    // ---- pending EXP gain (shown by the reward popup's EXP bar) ---------
+
+    public struct ExpGain
+    {
+        public int ExpBefore;
+        public int Amount;
+        public float RealTime;
+    }
+
+    private ExpGain? pendingExpGain;
+
+    /// <summary>Takes the latest level-clear EXP gain (once, and only if recent).</summary>
+    public bool TryConsumeExpGain(out ExpGain gain)
+    {
+        gain = default;
+
+        if (!pendingExpGain.HasValue)
+            return false;
+
+        gain = pendingExpGain.Value;
+        pendingExpGain = null;
+
+        // Stale gains (popup never shown) are dropped.
+        return Time.realtimeSinceStartup - gain.RealTime < 60f;
+    }
+
+    public bool HasPendingExpGain =>
+        pendingExpGain.HasValue && Time.realtimeSinceStartup - pendingExpGain.Value.RealTime < 60f;
+
     public override IEnumerator Initialize()
     {
         isPlayerDataLoaded = false;
@@ -231,6 +278,31 @@ public class PlayerSystem : GameSystem<PlayerSystem>
         }
 
         OnPlayerNameChanged?.Invoke(playerName);
+    }
+
+    public const float FirstClearExpMultiplier = 2f;
+    public const int UpgradeExpBase = 15;
+    public const int UpgradeExpPerLevel = 5;
+
+    /// <summary>
+    /// Grants the level's clear EXP (doubled on the first clear). Call BEFORE
+    /// CompleteLevel so "first clear" is still known. Returns the EXP given.
+    /// </summary>
+    public int GrantLevelExp(LevelData level)
+    {
+        if (level == null)
+            return 0;
+
+        bool firstClear = !string.IsNullOrEmpty(level.LevelId) && !IsLevelCompleted(level.LevelId);
+        int amount = Mathf.RoundToInt(level.ExpReward * (firstClear ? FirstClearExpMultiplier : 1f));
+
+        int before = playerExp;
+        AddExp(amount);
+
+        if (amount > 0)
+            pendingExpGain = new ExpGain { ExpBefore = before, Amount = amount, RealTime = Time.realtimeSinceStartup };
+
+        return amount;
     }
 
     public void AddExp(int amount)
@@ -413,6 +485,10 @@ public class PlayerSystem : GameSystem<PlayerSystem>
 
         progression.LevelUp();
         Objectives.Report(ObjectiveType.UpgradeCharacters, 1);
+
+        // Upgrading characters also grows the player's level (and with it
+        // the Annihilator).
+        AddExp(UpgradeExpBase + UpgradeExpPerLevel * progression.Level);
 
         if (!SavePlayerData())
         {

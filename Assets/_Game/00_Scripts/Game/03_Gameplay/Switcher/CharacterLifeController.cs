@@ -10,6 +10,7 @@ public class CharacterLifeController : MonoBehaviour
     private Action[] deathCallbacks;
 
     public event Action<int> CharacterDefeated;
+    public event Action<int> CharacterRevived;
 
     public bool IsInitialized { get; private set; }
 
@@ -204,12 +205,16 @@ public class CharacterLifeController : MonoBehaviour
 
         defeated[index] = false;
 
-        healths[index].RestoreFullHealth();
+        // RestoreFullHealth() is a no-op on a dead Health, so the old revive
+        // never actually brought anyone back. The death callback was never
+        // unsubscribed, so re-adding it would double-fire.
+        healths[index].Revive(1f);
 
-        if (deathCallbacks[index] != null)
-            healths[index].OnDeath += deathCallbacks[index];
+        // The switcher decides visibility — a benched revive stays benched
+        // (it used to pop in mid-formation, collidable but not shooting).
+        characters[index].SetActive(false);
 
-        characters[index].SetActive(true);
+        CharacterRevived?.Invoke(index);
 
         Debug.Log(
             $"[CharacterLifeController] Character at index {index} was revived.",

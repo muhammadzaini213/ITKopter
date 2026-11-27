@@ -111,12 +111,9 @@ public class ExSkillController : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("[ExSkillController] Controller enabled.", this);
-
         if (exSkillButton != null)
         {
             exSkillButton.onClick.AddListener(useExSkillAction);
-            Debug.Log("[ExSkillController] Button listener registered.", this);
         }
         else
         {
@@ -209,8 +206,6 @@ public class ExSkillController : MonoBehaviour
 
     public void UseExSkill()
     {
-        Debug.Log("[ExSkillController] UseExSkill() called.", this);
-
         Character activeCharacter = GetActiveCharacter();
 
         if (activeCharacter == null)
@@ -225,20 +220,14 @@ public class ExSkillController : MonoBehaviour
             return;
         }
 
-        if (characterSwitcher.IsSwitching)
-        {
-            Debug.LogWarning("[ExSkillController] Cannot use EX Skill while switching.", this);
+        if (characterSwitcher.IsSwitching || AnnihilatorManifestation.IsAnyManifesting)
             return;
-        }
 
         float remaining = GetCooldownRemaining(activeCharacter);
 
         if (remaining > 0f)
         {
-            Debug.LogWarning(
-                $"[ExSkillController] Cooldown is still active: {remaining:0.00}s.",
-                this
-            );
+            ShowNotReady(activeCharacter, remaining);
             return;
         }
 
@@ -276,13 +265,6 @@ public class ExSkillController : MonoBehaviour
         // Ensure the skill has its owning character before checking CanUse.
         exSkill.Initialize(activeCharacter);
 
-        Debug.Log(
-            $"[ExSkillController] Found skill '{exSkill.SkillName}'. " +
-            $"CanUse: {exSkill.CanUse()}, " +
-            $"Skill object active: {exSkill.gameObject.activeInHierarchy}",
-            exSkill
-        );
-
         if (!exSkill.CanUse())
         {
             Debug.LogWarning(
@@ -294,6 +276,8 @@ public class ExSkillController : MonoBehaviour
 
         exSkillTransform.gameObject.SetActive(true);
         exSkill.Activate();
+
+        PlaySkillMoment(activeCharacter, exSkill);
 
         if (exSkill.ActivationSfx != null)
             Audio.PlaySFX2D(exSkill.ActivationSfx);
@@ -317,10 +301,100 @@ public class ExSkillController : MonoBehaviour
         RefreshSkillUI();
         RefreshButton();
 
-        Debug.Log(
-            $"[ExSkillController] Activated '{exSkill.SkillName}' for '{activeCharacter.name}'.",
-            activeCharacter
-        );
+    }
+
+    [Header("Skill Moment")]
+    [SerializeField, Tooltip("Slow-motion beat when an EX skill fires so the player notices it.")]
+    private bool slowMoOnActivate = true;
+
+    [SerializeField, Min(0f), Tooltip("Real-time seconds of the slow-mo beat.")]
+    private float slowMoDuration = 0.75f;
+
+    [SerializeField, Range(0.02f, 1f)]
+    private float slowMoTimeScale = 0.15f;
+
+    [SerializeField, Tooltip("Show the character's activation line as a speaker toast.")]
+    private bool showSkillDialogue = true;
+
+    [SerializeField, Min(0.5f)]
+    private float skillDialogueDuration = 2.6f;
+
+    // The "EX fired" beat: slow-mo + letterbox, callout/afterimage/burst,
+    // hitstop + shake, and the character's line as a speaker toast.
+    private void PlaySkillMoment(Character character, ExSkill exSkill)
+    {
+        if (character == null || exSkill == null)
+            return;
+
+        if (slowMoOnActivate && slowMoDuration > 0f)
+            CombatFeel.SlowMo(slowMoDuration, slowMoTimeScale, letterbox: true);
+
+        if (exSkill.PlayDefaultActivationFeel)
+            SkillVFX.Activation(character, exSkill.SkillName, exSkill.SkillColor);
+
+        if (!showSkillDialogue)
+            return;
+
+        string line = exSkill.PickActivationLine();
+
+        if (string.IsNullOrWhiteSpace(line) ||
+            StorySystem.Instance == null ||
+            StorySystem.Instance.Toasts == null)
+        {
+            return;
+        }
+
+        var toast = new StoryToastLine
+        {
+            speaker = character.Data,
+            speakerName = character.CharacterName,
+            text = line,
+            duration = skillDialogueDuration
+        };
+
+        // A skill that opens a paused popup (Trady's choice) would have the
+        // toast drawn over it — show the line once the popup has closed.
+        if (Slafurry.Systems.Pause.PauseSystem.Instance != null &&
+            Slafurry.Systems.Pause.PauseSystem.Instance.IsPaused)
+        {
+            StartCoroutine(ShowToastWhenUnpaused(toast));
+            return;
+        }
+
+        StorySystem.Instance.Toasts.Show(toast);
+    }
+
+    private System.Collections.IEnumerator ShowToastWhenUnpaused(StoryToastLine toast)
+    {
+        float waited = 0f;
+
+        while (Slafurry.Systems.Pause.PauseSystem.Instance != null &&
+               Slafurry.Systems.Pause.PauseSystem.Instance.IsPaused &&
+               waited < 30f)
+        {
+            waited += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        if (StorySystem.Instance != null && StorySystem.Instance.Toasts != null)
+            StorySystem.Instance.Toasts.Show(toast);
+    }
+
+    private float lastNotReadyTime = -10f;
+
+    private void ShowNotReady(Character character, float remaining)
+    {
+        if (character == null || Time.unscaledTime - lastNotReadyTime < 0.5f)
+            return;
+
+        lastNotReadyTime = Time.unscaledTime;
+
+        float radius = SkillVFX.GetVisualRadius(character.transform);
+        SkillVFX.Text(
+            character.transform.position + Vector3.up * (radius + 0.4f),
+            $"EX {Mathf.CeilToInt(remaining)}s",
+            new Color(0.7f, 0.7f, 0.75f),
+            3f, 0.6f, 0.4f);
     }
 
 
@@ -461,6 +535,7 @@ public class ExSkillController : MonoBehaviour
 
         bool canUse =
             !characterSwitcher.IsSwitching &&
+            !AnnihilatorManifestation.IsAnyManifesting &&
             GetCooldownRemaining(activeCharacter) <= 0f;
 
         Health health = activeCharacter.GetComponent<Health>();
