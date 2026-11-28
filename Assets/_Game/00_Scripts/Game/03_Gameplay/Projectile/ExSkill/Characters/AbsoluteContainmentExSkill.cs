@@ -14,6 +14,12 @@ public class AbsoluteContainmentExSkill : ExSkill
     [SerializeField, Min(0f)]
     private float barrierHitpointsMultiplier = 3f;
 
+    [SerializeField, Min(0f), Tooltip("Extra barrier HP as a share of Bokusu's max HP (0.4 = 40%). DEF alone made the barrier break after one or two bullets.")]
+    private float barrierMaxHealthShare = 0.4f;
+
+    [SerializeField, Range(0f, 1f), Tooltip("Share of a contained bullet's damage the barrier takes (it destroys the bullet). Direct hits still cost full damage.")]
+    private float containedDamageShare = 0.25f;
+
     [SerializeField, Min(0f)]
     private float barrierRadius = 3f;
 
@@ -40,8 +46,9 @@ public class AbsoluteContainmentExSkill : ExSkill
 
     public override string Describe(float attack, float defense)
     {
-        return $"Raises a containment barrier (radius {Num(barrierRadius)}) for {Seconds(barrierDuration)} with {DefPct(barrierHitpointsMultiplier, defense)} HP.\n\n" +
-               "Enemy bullets entering the barrier are destroyed and their damage is drained from it; it also absorbs hits on Bokusu. Shatters when its HP runs out.\n\n" +
+        return $"Raises a containment barrier (radius {Num(barrierRadius)}) for {Seconds(barrierDuration)} with HP equal to {Pct(barrierMaxHealthShare)} of Bokusu's max HP plus {DefPct(barrierHitpointsMultiplier, defense)}.\n\n" +
+               $"Enemy bullets entering the barrier are destroyed and drain only {Pct(containedDamageShare)} of their damage from it. Direct hits drain full damage.\n\n" +
+               "Shatters when its HP runs out.\n\n" +
                "Stays up around whoever Bokusu switches to.";
     }
 
@@ -63,7 +70,9 @@ public class AbsoluteContainmentExSkill : ExSkill
         shieldGo.transform.SetParent(FieldHolder.transform, false);
 
         barrierShield = shieldGo.AddComponent<Shield>();
-        barrierShield.Set(Mathf.Max(1f, Owner.EffectiveDefensePower * barrierHitpointsMultiplier));
+        Health bokusuHealth = Owner.GetComponent<Health>();
+        float fromHealth = bokusuHealth != null ? bokusuHealth.MaxHealth * barrierMaxHealthShare : 0f;
+        barrierShield.Set(Mathf.Max(1f, fromHealth + Owner.EffectiveDefensePower * barrierHitpointsMultiplier));
         barrierShield.OnBroken += OnBarrierBroken;
         barrierShield.OnAmountChanged += OnBarrierChanged;
 
@@ -161,7 +170,7 @@ public class AbsoluteContainmentExSkill : ExSkill
             if ((pos - center).sqrMagnitude > sqrRadius)
                 continue;
 
-            float damage = projectile.Damage;
+            float damage = projectile.Damage * containedDamageShare;
             projectile.ReturnToPool();
 
             SkillVFX.Sparks(pos, SkillColor, 5, 3f, 0.2f, 0.08f);
