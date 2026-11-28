@@ -52,7 +52,9 @@ public enum LoginOutcome
     /// <summary>New account (or empty cloud): this device's progress was uploaded.</summary>
     Uploaded,
     /// <summary>The account already has a cloud save: the player must choose.</summary>
-    NeedsChoice
+    NeedsChoice,
+    /// <summary>This device had no progress yet: the cloud save was applied and the game restarts.</summary>
+    LoadedCloud
 }
 
 /// <summary>
@@ -75,7 +77,26 @@ public class AccountSystem : GameSystem<AccountSystem>
 
 #if UNITY_WEBGL && !UNITY_EDITOR
     [DllImport("__Internal")] private static extern void PersistentStorage_SyncAndReload();
+    [DllImport("__Internal")] private static extern int PersistentStorage_IsTemporary();
 #endif
+
+    /// <summary>
+    /// The browser deletes this game's saves when the page closes (Brave
+    /// gives embedded games, like itch.io's frame, temporary storage).
+    /// Only the cloud save survives there.
+    /// </summary>
+    public static bool BrowserClearsSaves
+    {
+        get
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            try { return PersistentStorage_IsTemporary() != 0; }
+            catch { return false; }
+#else
+            return false;
+#endif
+        }
+    }
 
     [Header("Server")]
     [SerializeField, Tooltip("Game server URL. Empty = use BundleSystem's Payment Server Url.")]
@@ -306,6 +327,16 @@ public class AccountSystem : GameSystem<AccountSystem>
         if (status == 200 && TryParse(body, out JObject cloud))
         {
             CacheCloud(cloud);
+
+            // Nothing to lose on this device (new browser, or its storage was
+            // wiped): load the cloud progress without asking.
+            if (IsFreshDevice())
+            {
+                done?.Invoke(LoginOutcome.LoadedCloud, null);
+                yield return ResolveRoutine(true, null);
+                yield break;
+            }
+
             PendingConflict = ReadSummary(cloud);
             OnSyncChanged?.Invoke();
             done?.Invoke(LoginOutcome.NeedsChoice, null);
@@ -470,6 +501,13 @@ public class AccountSystem : GameSystem<AccountSystem>
     }
 
     /// <summary>This device's progress, for the cloud summary and the choice screen.</summary>
+    /// <summary>No stage or chapter cleared and still level 1.</summary>
+    private bool IsFreshDevice()
+    {
+        CloudSaveSummary device = DeviceSummary();
+        return device.stagesCleared == 0 && device.chaptersCleared == 0 && device.playerLevel <= 1;
+    }
+
     public CloudSaveSummary DeviceSummary()
     {
         var summary = new CloudSaveSummary { savedAt = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() };

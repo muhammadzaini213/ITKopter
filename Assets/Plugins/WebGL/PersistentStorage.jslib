@@ -25,6 +25,16 @@ mergeInto(LibraryManager.library, {
     run();
   },
 
+  // 1 when the browser keeps this page's storage only until it closes.
+  // Brave gives third-party frames (itch.io embeds the game from itch.zone)
+  // ephemeral storage that is deleted when the top site is closed.
+  PersistentStorage_IsTemporary: function () {
+    var embedded;
+    try { embedded = window.self !== window.top; } catch (e) { embedded = true; }
+    var brave = typeof navigator !== "undefined" && !!navigator.brave;
+    return embedded && brave ? 1 : 0;
+  },
+
   // Saves the file system to IndexedDB, then reloads the page (a cloud
   // save was written over the local one; the game must boot with it).
   PersistentStorage_SyncAndReload: function () {

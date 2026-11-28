@@ -143,8 +143,18 @@ public class AccountPopupUI : MonoBehaviour
             Close();
         });
 
-        if (!firstLaunch)
+        if (AccountSystem.BrowserClearsSaves)
+            AddTemporaryStorageWarning();
+        else if (!firstLaunch)
             AddGuestNote();
+    }
+
+    private void AddTemporaryStorageWarning()
+    {
+        RuntimeUIKit.NewText("StorageWarning", content, font,
+            "<color=#FFD447>Brave deletes this game's saves when you close itch.io.</color>\n" +
+            "<color=#8FA9B5>Log in to keep your progress, or allow cookies for itch.io in Brave Shields.</color>",
+            15f, Color.white, new Vector2(0f, -80f), new Vector2(720f, 42f));
     }
 
     private void AddGuestNote()
@@ -198,6 +208,10 @@ public class AccountPopupUI : MonoBehaviour
                         break;
                     case LoginOutcome.NeedsChoice:
                         ShowChoice();
+                        break;
+                    case LoginOutcome.LoadedCloud:
+                        login.interactable = resend.interactable = back.interactable = false;
+                        Info("Found your saved progress. Loading it... the game will restart.");
                         break;
                     default:
                         Error(error);
