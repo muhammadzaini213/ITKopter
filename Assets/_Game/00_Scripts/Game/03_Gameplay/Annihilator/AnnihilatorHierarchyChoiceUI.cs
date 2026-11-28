@@ -17,7 +17,9 @@ public class AnnihilatorHierarchyChoiceUI : MonoBehaviour
     {
         CharacterType.ABSTRACT,
         CharacterType.SIMPLE,
-        CharacterType.SPECIAL
+        CharacterType.SPECIAL,
+        CharacterType.PRIMORDIAL,
+        CharacterType.ANOMALY
     };
 
     public const string FrameSpriteName = "9Slice_0";
@@ -65,27 +67,31 @@ public class AnnihilatorHierarchyChoiceUI : MonoBehaviour
 
         // Panel: the project's 9-slice frame (dark fill + cyan pixel border), untinted.
         RectTransform panel = NewImage("Panel", transform, Color.white, frame, 1f).rectTransform;
-        panel.sizeDelta = new Vector2(820f, 420f);
+        panel.sizeDelta = new Vector2(1000f, 430f);
 
-        NewText("Title", panel, font, "MANIFEST YOUR AUTHORITY", 36f, Cyan, new Vector2(0f, 158f), new Vector2(760f, 50f));
+        NewText("Title", panel, font, "MANIFEST YOUR AUTHORITY", 36f, Cyan, new Vector2(0f, 162f), new Vector2(900f, 50f));
         NewText("Subtitle", panel, font,
             "Choose the hierarchy of the Annihilator's attack.",
-            19f, SubtleText, new Vector2(0f, 118f), new Vector2(760f, 28f));
+            19f, SubtleText, new Vector2(0f, 122f), new Vector2(900f, 28f));
+
+        const float cardWidth = 172f, step = 184f;
+        float first = -(Choices.Length - 1) * step * 0.5f;
 
         for (int i = 0; i < Choices.Length; i++)
         {
             CharacterType type = Choices[i];
-            CharacterType beats = Choices[(i + 1) % Choices.Length];
             bool best = recommended.HasValue && recommended.Value == type;
+            bool weak = !best && IsWeakAgainstField(type);
 
             string label =
                 $"<size=60%><color=#8FA9B5>[{i + 1}]</color></size>\n" +
-                $"<size=130%>{HierarchyGuide.Tag(type)}</size>\n" +
-                $"<size=72%><color=#6CFF8A>x{CounterMechanics.StrongMultiplier:0.#}</color> vs {HierarchyGuide.Tag(beats)}</size>" +
-                (best ? "\n<size=68%><color=#FFD447>COUNTERS FIELD</color></size>" : "");
+                $"<size=95%>{HierarchyGuide.Tag(type)}</size>\n" +
+                $"<size=68%>{MatchupLine(type)}</size>" +
+                (best ? "\n<size=64%><color=#FFD447>COUNTERS FIELD</color></size>"
+                      : weak ? "\n<size=64%><color=#FF5A6E>WEAK HERE</color></size>" : "");
 
-            Button button = NewButton($"Choice_{type}", panel, font, frame, label, 22f,
-                new Vector2(-250f + 250f * i, -14f), new Vector2(226f, 190f), 1.5f);
+            Button button = NewButton($"Choice_{type}", panel, font, frame, label, 20f,
+                new Vector2(first + step * i, -14f), new Vector2(cardWidth, 196f), 1.5f);
 
             button.onClick.AddListener(() => Pick(type));
 
@@ -106,9 +112,17 @@ public class AnnihilatorHierarchyChoiceUI : MonoBehaviour
         if (done || Keyboard.current == null)
             return;
 
-        if (Keyboard.current.digit1Key.wasPressedThisFrame || Keyboard.current.numpad1Key.wasPressedThisFrame) Pick(Choices[0]);
-        else if (Keyboard.current.digit2Key.wasPressedThisFrame || Keyboard.current.numpad2Key.wasPressedThisFrame) Pick(Choices[1]);
-        else if (Keyboard.current.digit3Key.wasPressedThisFrame || Keyboard.current.numpad3Key.wasPressedThisFrame) Pick(Choices[2]);
+        var digits = new[] { Key.Digit1, Key.Digit2, Key.Digit3, Key.Digit4, Key.Digit5 };
+        var numpad = new[] { Key.Numpad1, Key.Numpad2, Key.Numpad3, Key.Numpad4, Key.Numpad5 };
+
+        for (int i = 0; i < Choices.Length && i < digits.Length; i++)
+        {
+            if (Keyboard.current[digits[i]].wasPressedThisFrame || Keyboard.current[numpad[i]].wasPressedThisFrame)
+            {
+                Pick(Choices[i]);
+                return;
+            }
+        }
     }
 
     public void Pick(CharacterType type)
@@ -131,7 +145,53 @@ public class AnnihilatorHierarchyChoiceUI : MonoBehaviour
         onCancel?.Invoke();
     }
 
-    /// <summary>The trinity type that counters the most enemies on screen (null if none does).</summary>
+    /// <summary>
+    /// What a type does against the others, read from CounterMechanics:
+    /// "x2 vs SIMPLE" for the trinity, "Neutral vs trinity / x0.4 vs ANOMALY"
+    /// for the duality.
+    /// </summary>
+    public static string MatchupLine(CharacterType type)
+    {
+        var strong = new System.Collections.Generic.List<string>();
+        var weak = new System.Collections.Generic.List<string>();
+
+        foreach (CharacterType other in Choices)
+        {
+            float m = CounterMechanics.GetMultiplier(type, other);
+            if (m > CounterMechanics.NeutralMultiplier) strong.Add(HierarchyGuide.Tag(other));
+            else if (m < CounterMechanics.NeutralMultiplier) weak.Add(HierarchyGuide.Tag(other));
+        }
+
+        string line = strong.Count > 0
+            ? $"<color=#6CFF8A>x{CounterMechanics.StrongMultiplier:0.#}</color> vs {string.Join(" ", strong)}"
+            : "<color=#8FA9B5>Neutral vs trinity</color>";
+
+        if (strong.Count == 0 && weak.Count > 0)
+            line += $"\n<color=#FF5A6E>x{CounterMechanics.WeakMultiplier:0.#}</color> vs {string.Join(" ", weak)}";
+
+        return line;
+    }
+
+    /// <summary>Most enemies on screen resist this type.</summary>
+    public static bool IsWeakAgainstField(CharacterType type)
+    {
+        int total = 0, resisted = 0;
+
+        foreach (var health in SkillTargets.AliveEnemies())
+        {
+            var binder = health.GetComponent<EnemyDataBinder>();
+            if (binder == null || binder.Data == null)
+                continue;
+
+            total++;
+            if (CounterMechanics.GetMultiplier(type, binder.Data.characterType) < CounterMechanics.NeutralMultiplier)
+                resisted++;
+        }
+
+        return total > 0 && resisted * 2 > total;
+    }
+
+    /// <summary>The type that counters the most enemies on screen (null if none does).</summary>
     public static CharacterType? RecommendedForField()
     {
         CharacterType? best = null;

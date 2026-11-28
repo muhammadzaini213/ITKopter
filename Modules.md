@@ -268,17 +268,17 @@ _Scene/prefab component: no members called by other classes._
 
 | Member | Used by |
 |---|---|
-| `static Color Cyan` | AccountPopupUI, StageSweepPopupUI |
-| `static Color Dim` | AccountPopupUI, StageSweepPopupUI |
-| `static Color SubtleText` | AccountPopupUI, StageSweepPopupUI |
-| `static Button NewButton(string name, Transform parent, TMP_FontAsset font, Sprite frame, string label, float size, Vector2 position, Vector2 box, float pixelsPerUnit = 1.5)` | AccountPopupUI, AccountSettingsRow, AnnihilatorHierarchyChoiceUI, StageSweepPopupUI |
-| `static GameObject NewOverlayCanvas(string name, int sortingOrder)` | AccountPopupUI, StageSweepPopupUI |
-| `static Image NewImage(string name, Transform parent, Color color, Sprite sprite, float pixelsPerUnit = 1)` | AccountPopupUI, AnnihilatorHierarchyChoiceUI, StageSweepPopupUI |
-| `static Sprite FindFrameSprite()` | AccountPopupUI, AccountSettingsRow, AnnihilatorHierarchyChoiceUI, StageSweepPopupUI |
-| `static TMP_FontAsset FindFont()` | AccountPopupUI, AccountSettingsRow, StageSweepPopupUI |
-| `static TMP_Text NewText(string name, Transform parent, TMP_FontAsset font, string text, float size, Color color, Vector2 position, Vector2 box)` | AccountPopupUI, AccountSettingsRow, AnnihilatorHierarchyChoiceUI, StageSweepPopupUI |
+| `static Color Cyan` | AccountPopupUI, BundleComponentUI, StageSweepPopupUI, StoryEndPopupUI |
+| `static Color Dim` | AccountPopupUI, StageSweepPopupUI, StoryEndPopupUI |
+| `static Color SubtleText` | AccountPopupUI, StageSweepPopupUI, StoryEndPopupUI |
+| `static Button NewButton(string name, Transform parent, TMP_FontAsset font, Sprite frame, string label, float size, Vector2 position, Vector2 box, float pixelsPerUnit = 1.5)` | AccountPopupUI, AccountSettingsRow, AnnihilatorHierarchyChoiceUI, BundleComponentUI, StageSweepPopupUI +1 more |
+| `static GameObject NewOverlayCanvas(string name, int sortingOrder)` | AccountPopupUI, StageSweepPopupUI, StoryEndPopupUI |
+| `static Image NewImage(string name, Transform parent, Color color, Sprite sprite, float pixelsPerUnit = 1)` | AccountPopupUI, AnnihilatorHierarchyChoiceUI, StageSweepPopupUI, StoryEndPopupUI |
+| `static Sprite FindFrameSprite()` | AccountPopupUI, AccountSettingsRow, AnnihilatorHierarchyChoiceUI, BundleComponentUI, StageSweepPopupUI +1 more |
+| `static TMP_FontAsset FindFont()` | AccountPopupUI, AccountSettingsRow, BundleComponentUI, StageSweepPopupUI, StoryEndPopupUI |
+| `static TMP_Text NewText(string name, Transform parent, TMP_FontAsset font, string text, float size, Color color, Vector2 position, Vector2 box)` | AccountPopupUI, AccountSettingsRow, AnnihilatorHierarchyChoiceUI, StageSweepPopupUI, StoryEndPopupUI |
 | `static void SetLabel(Button button, string label)` | AccountSettingsRow |
-| `static void Stretch(RectTransform rt)` | AccountPopupUI, AnnihilatorHierarchyChoiceUI, StageSweepPopupUI |
+| `static void Stretch(RectTransform rt)` | AccountPopupUI, AnnihilatorHierarchyChoiceUI, StageSweepPopupUI, StoryEndPopupUI |
 
 ### `UI/Generic/InfoPopupUI.cs`
 
@@ -291,7 +291,7 @@ _Scene/prefab component: no members called by other classes._
 
 | Member | Used by |
 |---|---|
-| `static UIAttentionPulse Attach(GameObject target)` | AnnihilatorHierarchyChoiceUI, ObjectiveRowUI, OnboardingLauncher, StageSelectTutorial |
+| `static UIAttentionPulse Attach(GameObject target)` | AnnihilatorHierarchyChoiceUI, ObjectiveRowUI, OnboardingLauncher, StageSelectTutorial, StoryEndPopupUI |
 | `static void Detach(GameObject target)` | ObjectiveRowUI, StageSelectTutorial |
 
 
@@ -793,6 +793,7 @@ _Scene/prefab component: no members called by other classes._
 
 | Member | Used by |
 |---|---|
+| `static string FormatPrice(float price)` | BundlePurchasePopupUI |
 | `void Setup(BundleEntry entry, Action purchaseCallback)` | BundleComponentUI |
 
 ### `UI/Components/Bundle/BundlePurchasePopupUI.cs`
@@ -1115,7 +1116,7 @@ Chapters, dialogue, story battles, onboarding, stage gates.
 | `SceneReference AfterScene` | StorySystem |
 | `Sprite Background` | StoryDialogueUI |
 | `StoryAfterAction AfterAction` | StorySystem |
-| `StoryData NextStory` | StoryProgress |
+| `StoryData NextStory` | StoryProgress, StorySystem |
 | `StoryData PreviousStory` | StoryProgress |
 | `StoryLine[] FollowUpLines` | StorySceneController |
 | `StoryRewardEntry[] RewardEntries` | StorySystem |
@@ -1125,10 +1126,10 @@ Chapters, dialogue, story battles, onboarding, stage gates.
 | `StoryToastLine[] AfterSceneToasts` | StorySystem |
 | `bool HasFollowUp` | StorySystem |
 | `bool HasSegments` | StorySceneController, StorySystem |
-| `string ChapterLabel` | StoryDialogueUI, StoryListItemUI |
+| `string ChapterLabel` | StoryDialogueUI, StoryEndPopupUI, StoryListItemUI |
 | `string StoryDescription` | StoryConfirmPopupUI |
 | `string StoryId` | StoryProgress, StorySelectionUI, StorySystem |
-| `string StoryName` | StoryConfirmPopupUI, StoryDialogueUI, StoryListItemUI, StorySceneController, StorySelectionUI +1 more |
+| `string StoryName` | StoryConfirmPopupUI, StoryDialogueUI, StoryEndPopupUI, StoryListItemUI, StorySceneController +2 more |
 
 ### `Game/11_Story/StoryTypes.cs`
 
@@ -1169,7 +1170,7 @@ Chapters, dialogue, story battles, onboarding, stage gates.
 | Member | Used by |
 |---|---|
 | `static bool IsNew(StoryData story, PlayerSystem player)` | StorySelectionUI |
-| `static bool IsUnlocked(StoryData story, PlayerSystem player)` | StorySelectionUI |
+| `static bool IsUnlocked(StoryData story, PlayerSystem player)` | StorySelectionUI, StorySystem |
 | `static int NewCount(PlayerSystem player)` | StoryBadgeUI |
 | `static string LockReason(StoryData story, PlayerSystem player)` | StorySelectionUI |
 
@@ -1229,6 +1230,12 @@ _Scene/prefab component: no members called by other classes._
 ### `UI/Components/Story/StoryBadgeUI.cs`
 
 _Scene/prefab component: no members called by other classes._
+
+### `UI/Components/Story/StoryEndPopupUI.cs`
+
+| Member | Used by |
+|---|---|
+| `static StoryEndPopupUI Show(StoryData finished, StoryData next, Action<bool> onChoice)` | StorySystem |
 
 ### `UI/Components/Story/OnboardingLauncher.cs`
 
