@@ -62,6 +62,9 @@ public class BundlePurchasePopupUI : MonoBehaviour
         if (iconImage != null)
         {
             iconImage.sprite = entry.Icon;
+            iconImage.type = Image.Type.Simple;
+            iconImage.preserveAspect = true;
+            iconImage.color = Color.white;
             iconImage.enabled = entry.Icon != null;
         }
 
@@ -72,7 +75,7 @@ public class BundlePurchasePopupUI : MonoBehaviour
             descriptionText.text = entry.Description;
 
         if (priceText != null)
-            priceText.text = entry.Price.ToString("N0");
+            priceText.text = BundleItemUI.FormatPrice(entry.Price);
 
         if (errorText != null)
             errorText.text = string.Empty;

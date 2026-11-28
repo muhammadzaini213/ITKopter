@@ -198,7 +198,7 @@ async function handleNotification(request, env) {
   );
 
   if (!timingSafeEqual(expected, String(note.signature_key || ""))) {
-    console.warn("Bad Midtrans signature for", orderId);
+    console.warn("Bad Midtrans signature for", orderId, "(the notification was signed with a different server key)");
     return json({ error: "invalid_signature" }, 401);
   }
 
@@ -222,9 +222,15 @@ async function refreshFromMidtrans(env, order) {
     headers: midtransHeaders(env),
   });
 
-  if (!response.ok) return;
+  if (!response.ok) {
+    // e.g. 401/403 when the server key lacks the Core API "Read" permission
+    console.warn("Midtrans status check failed", order.orderId, response.status, (await response.text().catch(() => "")).slice(0, 300));
+    return;
+  }
 
   const status = await response.json().catch(() => null);
+
+  console.log("Midtrans status for", order.orderId, JSON.stringify(status ? { code: status.status_code, transaction: status.transaction_status, type: status.payment_type, fraud: status.fraud_status, gross: status.gross_amount } : null));
 
   // 404 inside the body = the player hasn't picked a payment method yet.
   if (!status || String(status.status_code) === "404") return;

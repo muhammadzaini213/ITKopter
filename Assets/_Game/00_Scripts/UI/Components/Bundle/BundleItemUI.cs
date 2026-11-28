@@ -15,10 +15,43 @@ public class BundleItemUI : MonoBehaviour
 
     private Action onPurchaseClicked;
 
+    private static readonly System.Globalization.CultureInfo Indonesian = new System.Globalization.CultureInfo("id-ID");
+
+    /// <summary>Rupiah price as shown to players, e.g. "Rp 15.000".</summary>
+    public static string FormatPrice(float price) => "Rp " + price.ToString("N0", Indonesian);
+
     private void Awake()
     {
         if (purchaseButton != null)
             purchaseButton.onClick.AddListener(HandlePurchaseClicked);
+
+        // Names wrap to two lines and descriptions vary a lot in length:
+        // size them to their boxes so nothing spills onto the price button.
+        FitText(nameText, 16f, 28f, TextAlignmentOptions.Center);
+        FitText(descriptionText, 10f, 16f, TextAlignmentOptions.Center);
+
+        // The prefab's boxes are a single name line and a short description:
+        // room for two name lines, and the full gap between art and price.
+        Resize(nameText, 220f, 56f);
+        Resize(descriptionText, 214f, 80f);
+    }
+
+    private static void Resize(TMP_Text text, float width, float height)
+    {
+        if (text != null)
+            text.rectTransform.sizeDelta = new Vector2(width, height);
+    }
+
+    private static void FitText(TMP_Text text, float min, float max, TextAlignmentOptions alignment)
+    {
+        if (text == null)
+            return;
+
+        text.enableAutoSizing = true;
+        text.fontSizeMin = min;
+        text.fontSizeMax = max;
+        text.alignment = alignment;
+        text.overflowMode = TextOverflowModes.Ellipsis;
     }
 
     private void OnDestroy()
@@ -39,7 +72,11 @@ public class BundleItemUI : MonoBehaviour
 
         if (iconImage != null)
         {
+            // The prefab's placeholder is a sliced check-mark: show the art whole.
             iconImage.sprite = entry.Icon;
+            iconImage.type = Image.Type.Simple;
+            iconImage.preserveAspect = true;
+            iconImage.color = Color.white;
             iconImage.enabled = entry.Icon != null;
         }
 
@@ -50,7 +87,7 @@ public class BundleItemUI : MonoBehaviour
             descriptionText.text = entry.Description;
 
         if (priceText != null)
-            priceText.text = entry.Price.ToString("N0");
+            priceText.text = FormatPrice(entry.Price);
 
         if (purchaseButton != null)
             purchaseButton.interactable = entry.Price > 0f;

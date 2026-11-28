@@ -36,16 +36,36 @@ mergeInto(LibraryManager.library, {
       return;
     }
 
-    try {
-      window.snap.pay(token, {
-        onSuccess: function () { send("success"); },
-        onPending: function () { send("pending"); },
-        onError: function () { send("error"); },
-        onClose: function () { send("close"); }
-      });
-    } catch (e) {
-      console.error(e);
-      send("error");
+    function open() {
+      try {
+        window.snap.pay(token, {
+          onSuccess: function () { send("success"); },
+          onPending: function () { send("pending"); },
+          onError: function () { send("error"); },
+          onClose: function () { send("close"); }
+        });
+      } catch (e) {
+        console.error(e);
+        send("error");
+      }
+    }
+
+    // In fullscreen only the game canvas is visible, so the Snap window
+    // (added to the page) stays hidden until the player leaves fullscreen.
+    // Leave fullscreen first, then open Snap.
+    var fullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+    var exit = document.exitFullscreen || document.webkitExitFullscreen;
+
+    if (fullscreen && exit) {
+      try {
+        var result = exit.call(document);
+        if (result && typeof result.then === "function") result.then(open, open);
+        else setTimeout(open, 250);
+      } catch (e) {
+        open();
+      }
+    } else {
+      open();
     }
   }
 });

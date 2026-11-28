@@ -52,10 +52,14 @@ public class BundleComponentUI : MonoBehaviour
         SelectInitialBundleCategory();
     }
 
+    private readonly List<Button> runtimeTabs = new();
+
     private void RegisterBundleButtons()
     {
         if (bundleSlots == null)
             return;
+
+        BuildMissingTabs();
 
         for (int i = 0; i < bundleSlots.Length; i++)
         {
@@ -114,6 +118,7 @@ public class BundleComponentUI : MonoBehaviour
 
         currentBundleIndex = index;
         currentBundleData = bundleSlots[index].bundleData;
+        HighlightTab(index);
 
         Debug.Log(
             $"[BundleUI] Selected category: " +
@@ -152,6 +157,87 @@ public class BundleComponentUI : MonoBehaviour
 
             spawnedItems.Add(item);
         }
+
+        CenterContent();
+    }
+
+    // ---- category tabs (built at runtime when a slot has no button) --------
+
+    private static readonly Color TabSelected = new Color(0.75f, 1f, 1f, 1f);
+    private static readonly Color TabIdle = new Color(0.45f, 0.6f, 0.65f, 1f);
+
+    private void BuildMissingTabs()
+    {
+        int missing = 0;
+        foreach (BundleSlot slot in bundleSlots)
+            if (slot != null && slot.bundleData != null && slot.selectButton == null)
+                missing++;
+
+        if (missing == 0)
+            return;
+
+        var font = RuntimeUIKit.FindFont();
+        Sprite frame = RuntimeUIKit.FindFrameSprite();
+        const float width = 200f, gap = 16f;
+        float start = -(missing - 1) * (width + gap) * 0.5f;
+        int n = 0;
+
+        for (int i = 0; i < bundleSlots.Length; i++)
+        {
+            BundleSlot slot = bundleSlots[i];
+            if (slot == null || slot.bundleData == null || slot.selectButton != null)
+                continue;
+
+            string label = string.IsNullOrWhiteSpace(slot.bundleData.BundleCategory)
+                ? slot.bundleData.name
+                : slot.bundleData.BundleCategory;
+
+            // Above the panel, centred, like a row of tabs on its top edge.
+            Button tab = RuntimeUIKit.NewButton($"Tab_{label}", transform, font, frame, label.ToUpperInvariant(), 22f,
+                Vector2.zero, new Vector2(width, 56f), 2f);
+            var rt = (RectTransform)tab.transform;
+            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 1f);
+            rt.pivot = new Vector2(0.5f, 0f);
+            rt.anchoredPosition = new Vector2(start + n * (width + gap), 4f);
+
+            slot.selectButton = tab;
+            runtimeTabs.Add(tab);
+            n++;
+        }
+    }
+
+    private void HighlightTab(int index)
+    {
+        for (int i = 0; i < bundleSlots.Length; i++)
+        {
+            Button button = bundleSlots[i]?.selectButton;
+            if (button == null || !runtimeTabs.Contains(button))
+                continue;
+
+            button.targetGraphic.color = i == index ? TabSelected : TabIdle;
+            var label = button.GetComponentInChildren<TMPro.TMP_Text>(true);
+            if (label != null)
+                label.color = i == index ? RuntimeUIKit.Cyan : new Color(0.7f, 0.8f, 0.85f);
+        }
+    }
+
+    // A few cards sit in the middle of the panel; more than fit scroll from the left.
+    private void CenterContent()
+    {
+        if (!(contentRoot is RectTransform content))
+            return;
+
+        content.anchorMin = new Vector2(0.5f, content.anchorMin.y);
+        content.anchorMax = new Vector2(0.5f, content.anchorMax.y);
+        content.pivot = new Vector2(0.5f, content.pivot.y);
+        content.anchoredPosition = new Vector2(0f, content.anchoredPosition.y);
+
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(content);
+
+        var scroll = content.GetComponentInParent<ScrollRect>();
+        if (scroll != null)
+            scroll.horizontalNormalizedPosition = 0f;
     }
 
     private void OpenPurchasePopup(
