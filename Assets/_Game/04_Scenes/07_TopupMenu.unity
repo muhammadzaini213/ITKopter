@@ -1703,18 +1703,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1207574516}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1207574518 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7521695591534275911, guid: 0e1c5d97723bdd54f855117e98a5b341,
-    type: 3}
-  m_PrefabInstance: {fileID: 1207574516}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1211702858
 GameObject:
   m_ObjectHideFlags: 0
@@ -2321,9 +2309,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BundleComponentUI
   bundleSlots:
   - bundleData: {fileID: 11400000, guid: 6952014d8116657dbbb85e55d37ea62a, type: 2}
-    selectButton: {fileID: 1207574518}
+    selectButton: {fileID: 0}
   - bundleData: {fileID: 11400000, guid: 05690edd6ad49f54daf750eb11eb53c5, type: 2}
-    selectButton: {fileID: 1207574518}
+    selectButton: {fileID: 0}
   contentRoot: {fileID: 340496385}
   itemPrefab: {fileID: 5079822446750584828, guid: 6b10414e0c11e1976ba95b11fdd1d7cc,
     type: 3}

@@ -18,7 +18,7 @@ MonoBehaviour:
     bundleName: EyaY Neural Pack
     description: Contains 600 Gems, 10 EyaY Engrams, and 10 Anomaly Dust. A special
       bundle for players looking to recruit and strengthen EyaY.
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    icon: {fileID: 21300000, guid: 2d51f1637e4457d2e9f5869f9f35725c, type: 3}
     price: 29000
     rewards:
     - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
@@ -31,7 +31,7 @@ MonoBehaviour:
     bundleName: Regu Regulation Pack
     description: Contains 600 Gems, 10 Regu Engrams, and 10 Special Dust. A special
       bundle for players looking to recruit and strengthen Regu.
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    icon: {fileID: 21300000, guid: 57dc9800e174566e6a5a132e799b8c02, type: 3}
     price: 29000
     rewards:
     - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
@@ -45,7 +45,7 @@ MonoBehaviour:
     description: Contains 1,600 Gems, 20 EyaY Engrams, 20 Regu Engrams, 20 Anomaly
       Dust, and 30 Special Dust. A combined bundle featuring resources for both EyaY
       and Regu, perfect for players who want to build and strengthen both characters.
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    icon: {fileID: 21300000, guid: a0f785b0af05d8c8a9e76a73c4b51e8c, type: 3}
     price: 79000
     rewards:
     - reward: {fileID: 11400000, guid: 5d81f2fa6903ec7078955ac2c89b06b1, type: 2}
