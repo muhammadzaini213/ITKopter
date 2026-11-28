@@ -26,7 +26,7 @@ Rules that keep the user's work safe:
 - Never edit or save a scene that is open with unsaved changes. Open others with `EditorSceneManager.OpenScene(path, OpenSceneMode.Additive)`, save, then `CloseScene(sc, true)`. Use try/finally so a throw doesn't leave scenes open.
 - `EditorSceneManager.OpenScene` is illegal during Play mode. Check `Application.isPlaying` first, and don't stop a Play session the user is driving.
 - For Play-mode tests, set `EditorSceneManager.playModeStartScene` to `00_Boot`, and reset it to `null` afterwards.
-- Back up `Application.persistentDataPath` (`~/.config/unity3d/DefaultCompany/Sourdough Starter`) before tests that write saves, and restore it after (with Play mode stopped).
+- Back up `Application.persistentDataPath` (`~/.config/unity3d/Slafurry Studios/Concept Wars`) before tests that write saves, and restore it after (with Play mode stopped).
 - If the Editor is closed, run one-off editor code with batchmode `-executeMethod` from a temporary script under `Assets/Editor/`, and delete the script and its `.meta` afterwards.
 - Visual checks: temporarily switch the Canvas to ScreenSpaceCamera, render the scene camera into a RenderTexture, and save a PNG. In `05_GameplayScene` the persistent `StoryOverlay` (ScreenSpaceOverlay) does not show up in such renders, so verify its state through code instead.
 

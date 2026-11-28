@@ -23,5 +23,16 @@ mergeInto(LibraryManager.library, {
     }
 
     run();
+  },
+
+  // Saves the file system to IndexedDB, then reloads the page (a cloud
+  // save was written over the local one; the game must boot with it).
+  PersistentStorage_SyncAndReload: function () {
+    function reload() { try { window.location.reload(); } catch (e) { console.error(e); } }
+    if (typeof FS === "undefined" || typeof FS.syncfs !== "function") { reload(); return; }
+    FS.syncfs(false, function (err) {
+      if (err) console.error("[PersistentStorage] sync before reload failed", err);
+      reload();
+    });
   }
 });

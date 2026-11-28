@@ -36,7 +36,7 @@ public class BundleSystem : GameSystem<BundleSystem>
     [SerializeField] private BundleData[] catalogs = new BundleData[0];
 
     [Header("Real Payments (Midtrans)")]
-    [Tooltip("Cloudflare Worker URL, e.g. https://itkopter-payments.<account>.workers.dev. Empty = no real payments.")]
+    [Tooltip("Cloudflare Worker URL, e.g. https://concept-wars-server.<account>.workers.dev. Empty = no real payments.")]
     [SerializeField] private string paymentServerUrl = "";
 
     [Tooltip("Midtrans CLIENT key (public). Never put the server key here.")]
@@ -58,6 +58,9 @@ public class BundleSystem : GameSystem<BundleSystem>
     private Coroutine resumeRoutine;
 
     public bool RealPaymentsEnabled => !string.IsNullOrWhiteSpace(paymentServerUrl);
+
+    /// <summary>The game server URL (payments, and login / cloud saves via AccountSystem).</summary>
+    public string ServerUrl => paymentServerUrl;
 
     public bool DummyPaymentsAllowed => Application.isEditor || allowDummyPayments;
 
@@ -250,7 +253,7 @@ public class BundleSystem : GameSystem<BundleSystem>
                 OrderStatusResponse polled = null;
 
                 yield return GetJson<OrderStatusResponse>(
-                    $"/orders/{order.orderId}?playerId={PlayerId}", r => polled = r, _ => { });
+                    $"/orders/{order.orderId}?playerId={OwnerIdFor(order.orderId)}", r => polled = r, _ => { });
 
                 if (polled != null)
                     status = polled.status;
@@ -267,7 +270,7 @@ public class BundleSystem : GameSystem<BundleSystem>
             {
                 OrderStatusResponse last = null;
                 yield return GetJson<OrderStatusResponse>(
-                    $"/orders/{order.orderId}?playerId={PlayerId}", r => last = r, _ => { });
+                    $"/orders/{order.orderId}?playerId={OwnerIdFor(order.orderId)}", r => last = r, _ => { });
 
                 status = last != null ? last.status : status;
                 break;
@@ -334,7 +337,7 @@ public class BundleSystem : GameSystem<BundleSystem>
         long code = 0;
 
         yield return PostJson<ClaimResponse>($"/orders/{orderId}/claim",
-            JsonUtility.ToJson(new ClaimRequest { playerId = PlayerId }),
+            JsonUtility.ToJson(new ClaimRequest { playerId = OwnerIdFor(orderId) }),
             r => claim = r, e => error = e, c => code = c);
 
         // 409 + alreadyClaimed: claimed earlier but this device never granted it
@@ -404,7 +407,7 @@ public class BundleSystem : GameSystem<BundleSystem>
                 OrderStatusResponse status = null;
                 long code = 0;
                 yield return GetJson<OrderStatusResponse>(
-                    $"/orders/{p.orderId}?playerId={PlayerId}", r => status = r, _ => { }, c => code = c);
+                    $"/orders/{p.orderId}?playerId={OwnerIdFor(p.orderId)}", r => status = r, _ => { }, c => code = c);
 
                 if (code == 404 || (status != null && status.status == "failed"))
                 {
@@ -507,10 +510,18 @@ public class BundleSystem : GameSystem<BundleSystem>
     // Local bookkeeping (PlayerPrefs → IndexedDB on WebGL)
     // =====================================================================
 
+    /// <summary>
+    /// Who orders belong to on the server: the logged-in account, otherwise a
+    /// random id kept on this device.
+    /// </summary>
     public string PlayerId
     {
         get
         {
+            AccountSystem account = AccountSystem.Instance;
+            if (account != null && account.IsLoggedIn && !string.IsNullOrEmpty(account.AccountId))
+                return account.AccountId;
+
             string id = PlayerPrefs.GetString(PlayerIdKey, string.Empty);
 
             if (string.IsNullOrEmpty(id))
@@ -524,7 +535,15 @@ public class BundleSystem : GameSystem<BundleSystem>
         }
     }
 
-    [Serializable] private class PendingOrder { public string orderId; public string productId; public long createdAt; }
+    // playerId: the id the order was created with, so an order started as a
+    // guest still resolves after logging in (and vice versa).
+    [Serializable] private class PendingOrder { public string orderId; public string productId; public long createdAt; public string playerId; }
+
+    private string OwnerIdFor(string orderId)
+    {
+        PendingOrder pending = LoadPending().Find(o => o.orderId == orderId);
+        return pending != null && !string.IsNullOrEmpty(pending.playerId) ? pending.playerId : PlayerId;
+    }
 
     private const long PendingMaxAgeSeconds = 60 * 60 * 48;
 
@@ -546,11 +565,11 @@ public class BundleSystem : GameSystem<BundleSystem>
         PlayerPrefs.Save();
     }
 
-    private static void AddPending(string orderId, string productId)
+    private void AddPending(string orderId, string productId)
     {
         var list = LoadPending();
         if (list.Exists(o => o.orderId == orderId)) return;
-        list.Add(new PendingOrder { orderId = orderId, productId = productId, createdAt = Now });
+        list.Add(new PendingOrder { orderId = orderId, productId = productId, createdAt = Now, playerId = PlayerId });
         SavePending(list);
     }
 
