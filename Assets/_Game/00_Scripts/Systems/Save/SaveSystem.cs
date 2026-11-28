@@ -10,9 +10,10 @@ namespace Slafurry.Systems.Save
 {
     public static class Save
     {
-        public static void To<T>(T data, string fileName) => SaveSystem.Instance.Save(data, fileName);
-        public static T From<T>(string fileName, T fallback = default) => SaveSystem.Instance.Load(fileName, fallback);
-        public static bool Exists(string fileName) => SaveSystem.Instance.HasSave(fileName);
+        // Null-safe: systems save in OnApplicationQuit, when SaveSystem may already be gone.
+        public static void To<T>(T data, string fileName) => SaveSystem.Instance?.Save(data, fileName);
+        public static T From<T>(string fileName, T fallback = default) => SaveSystem.Instance != null ? SaveSystem.Instance.Load(fileName, fallback) : fallback;
+        public static bool Exists(string fileName) => SaveSystem.Instance != null && SaveSystem.Instance.HasSave(fileName);
     }
     
     public class SaveSystem : GameSystem<SaveSystem>
