@@ -233,7 +233,7 @@ public class StoryDialogueUI : MonoBehaviour
         {
             case StoryLineStyle.Narration:
                 DimPortraits();
-                narrationText.text = text;
+                SetHidden(narrationText, text);
                 SetGroup(narrationGroup, 1f);
                 PlayEffect(line.effect);
                 yield return Type(narrationText);
@@ -246,7 +246,7 @@ public class StoryDialogueUI : MonoBehaviour
 
                 ruleLabelText.text = line.label ?? string.Empty;
                 ruleHeadingText.text = Format(line.heading);
-                ruleBodyText.text = text;
+                SetHidden(ruleBodyText, text);
                 yield return Fade(ruleGroup, 0f, 1f);
                 PlayEffect(line.effect);
                 yield return Type(ruleBodyText);
@@ -259,7 +259,7 @@ public class StoryDialogueUI : MonoBehaviour
                 string speakerName = Format(line.DisplayName);
                 namePlate.SetActive(!string.IsNullOrWhiteSpace(speakerName));
                 nameText.text = speakerName;
-                dialogueText.text = text;
+                SetHidden(dialogueText, text);
 
                 PlayEffect(line.effect);
 
@@ -271,6 +271,17 @@ public class StoryDialogueUI : MonoBehaviour
         }
 
         yield return WaitForAdvance();
+    }
+
+    // New text starts hidden: the previous line ended fully revealed, so
+    // assigning text used to flash the whole line before typing restarted.
+    private static void SetHidden(TMP_Text target, string text)
+    {
+        if (target == null)
+            return;
+
+        target.maxVisibleCharacters = 0;
+        target.text = text;
     }
 
     private IEnumerator Type(TMP_Text target)

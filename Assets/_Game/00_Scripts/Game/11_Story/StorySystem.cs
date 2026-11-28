@@ -366,6 +366,24 @@ public class StorySystem : GameSystem<StorySystem>
             yield break;
         }
 
+        // Replay from the story menu: offer the next chapter when it's unlocked.
+        StoryData nextChapter = story.NextStory;
+
+        if (nextChapter != null && StoryProgress.IsUnlocked(nextChapter, PlayerSystem.Instance))
+        {
+            bool? goNext = null;
+            StoryEndPopupUI.Show(story, nextChapter, choice => goNext = choice);
+
+            while (goNext == null)
+                yield return null;
+
+            if (goNext.Value)
+            {
+                StartStory(nextChapter, false);
+                yield break;
+            }
+        }
+
         ClearCurrentStory();
         LoadScene(storyMenuScene != null ? storyMenuScene : mainMenuScene);
     }

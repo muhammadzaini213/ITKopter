@@ -27,7 +27,10 @@ public class StoryConfirmPopupUI : MonoBehaviour
         if (cancelButton != null)
             cancelButton.onClick.AddListener(Hide);
 
-        if (popupRoot != null)
+        // When the popup is its own root it starts inactive in the scene, and
+        // Awake first runs inside Show(): hiding here closed it again, so the
+        // first tap did nothing and only the second opened it.
+        if (popupRoot != null && popupRoot != gameObject)
             popupRoot.SetActive(false);
     }
 
