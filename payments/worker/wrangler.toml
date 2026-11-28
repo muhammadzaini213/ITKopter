@@ -1,4 +1,4 @@
-name = "itkopter-payments"
+name = "concept-wars-server"
 main = "src/index.js"
 compatibility_date = "2025-06-01"
 
@@ -19,5 +19,13 @@ ALLOWED_ORIGINS = "*.itch.zone,http://localhost:8000,http://localhost:8080"
 # Optional page Midtrans redirects to after payment (Snap redirect mode).
 FINISH_URL = ""
 
-# Secret (never commit it):
+# Login emails are sent from this address (domain verified in Resend).
+MAIL_FROM = "Concept Wars <login@slafurrystudios.com>"
+
+# Secrets (never commit them):
 #   wrangler secret put MIDTRANS_SERVER_KEY
+#   wrangler secret put AUTH_SECRET        # any long random string; signs login sessions
+#   wrangler secret put RESEND_API_KEY     # from resend.com, for login code emails
+#
+# Local testing: put DEV_RETURN_CODE = "true" (plus AUTH_SECRET) in .dev.vars
+# so /auth/request returns the code instead of emailing it.

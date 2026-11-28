@@ -1431,6 +1431,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &545198431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 545198433}
+  - component: {fileID: 545198432}
+  m_Layer: 0
+  m_Name: AccountSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &545198432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545198431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617b08a8ee953508a8d5279b371c0de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccountSystem
+  serverUrl: 
+  requestTimeout: 10
+  bootTimeout: 6
+  uploadDelay: 5
+--- !u!4 &545198433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545198431}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &721020367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1926,8 +1974,8 @@ MonoBehaviour:
   catalogs:
   - {fileID: 11400000, guid: 6952014d8116657dbbb85e55d37ea62a, type: 2}
   - {fileID: 11400000, guid: 05690edd6ad49f54daf750eb11eb53c5, type: 2}
-  paymentServerUrl: https://itkopter-payments.slafurrystudios.workers.dev
-  midtransClientKey: 
+  paymentServerUrl: https://concept-wars-server.slafurrystudios.workers.dev
+  midtransClientKey: SB-Mid-client-EnWw.wO-OWVIHd_Va~RJX5Bz
   midtransProduction: 0
   allowDummyPayments: 0
   pollInterval: 3
@@ -4305,6 +4353,7 @@ SceneRoots:
   - {fileID: 366140426}
   - {fileID: 1152725920}
   - {fileID: 1043244356}
+  - {fileID: 545198433}
   - {fileID: 1436594583}
   - {fileID: 393791939}
   - {fileID: 845296719}

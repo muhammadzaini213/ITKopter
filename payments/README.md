@@ -1,4 +1,11 @@
-# Top-up payments (Midtrans + Cloudflare Workers)
+# Game server: top-up payments and login (Cloudflare Workers)
+
+One Worker (`payments/worker`) handles two things:
+
+- **Top-up payments** with Midtrans Snap (sections 1–5 below)
+- **Email login and cloud saves** (section 6 below)
+
+# Top-up payments (Midtrans)
 
 Real-money bundles for the WebGL build. Unity IAP doesn't support WebGL, so
 payments go through **Midtrans Snap** with a small **Cloudflare Worker** that
@@ -35,7 +42,7 @@ wrangler login
 wrangler kv namespace create ORDERS            # paste the id into wrangler.toml → id
 wrangler kv namespace create ORDERS --preview  # paste into → preview_id
 wrangler secret put MIDTRANS_SERVER_KEY        # paste the Midtrans SERVER key
-wrangler deploy                                # prints https://itkopter-payments.<account>.workers.dev
+wrangler deploy                                # prints https://concept-wars-server.<account>.workers.dev
 ```
 
 `wrangler.toml` vars:
@@ -92,3 +99,70 @@ Catalog** and `wrangler deploy` again; the server only charges prices from
   before an unfinished order is claimed loses the link to that order (the
   payment is still visible in the Midtrans dashboard for manual support).
 - Refunds/chargebacks are not handled automatically.
+
+## 6. Email login and cloud saves
+
+Players log in with their email: the server emails a 6-digit code, no
+password. Their save files are then stored on the server, so progress
+survives clearing browser data, new itch.io uploads and switching devices.
+Guests can still play; their progress stays in that browser until they log in.
+
+```
+Game                                  Worker                         Resend
+────                                  ──────                         ──────
+email ──────── POST /auth/request ──► code (hashed in KV, 10 min) ──► email with the code
+code ───────── POST /auth/verify ───► signed session token (30 days)
+boot / saves ─ GET / PUT /save ─────► save:<account> in KV (revision-checked)
+```
+
+- Code: `worker/src/account.js` (server), `Game/13_Account/AccountSystem.cs`
+  (client), `UI/Components/Account/` (login popup, Settings row).
+- Boot: a logged-in player's newer cloud save is written to disk before the
+  other systems load it. Every save uploads a few seconds later.
+- Two devices: if both changed since the last sync, the game asks which
+  progress to keep (cloud vs this device, with level / stages / chapters).
+- Purchases made while logged in belong to the account.
+
+### Setup (once)
+
+1. **Resend** (sends the emails): create an account at https://resend.com.
+   - Domains → Add Domain → `slafurrystudios.com`, then add the DNS records
+     it shows (SPF/DKIM) at your domain registrar and wait until it's Verified.
+   - API Keys → create a key with "Sending access".
+2. **Worker secrets** (from `payments/worker`):
+   ```bash
+   wrangler secret put AUTH_SECRET      # any long random string, e.g. `openssl rand -base64 48`
+   wrangler secret put RESEND_API_KEY   # the Resend key
+   ```
+   `MAIL_FROM` in `wrangler.toml` is `Concept Wars <login@slafurrystudios.com>`;
+   any address on the verified domain works.
+3. `wrangler deploy`
+4. Unity: nothing to set. `AccountSystem` (in `00_Boot`) uses the same server
+   URL as `BundleSystem` unless its own **Server Url** is filled in.
+
+Check: `curl -X POST https://<worker>/auth/request -H 'Content-Type: application/json' -d '{"email":"you@example.com"}'`
+should answer `{"ok":true,...}` and the email should arrive.
+
+Keep `AUTH_SECRET` fixed: changing it logs everyone out (their saves stay).
+
+### Limits
+
+- Codes: one request per minute and 10 per day per email; 5 wrong tries
+  burn a code. Sessions last 30 days.
+- Saves are up to 1 MB and written by the game, so this protects players
+  from losing progress, not from editing their own save.
+
+### Testing locally
+
+1. `payments/worker/.dev.vars` (gitignored):
+   ```
+   AUTH_SECRET="any-local-secret"
+   DEV_RETURN_CODE="true"
+   ```
+   `DEV_RETURN_CODE` makes `/auth/request` return the code instead of
+   emailing it, and the login popup fills it in. Never set it in production.
+2. `wrangler dev --local --port 8787`
+3. Point the Editor at it (Editor only, never in builds): run once in the
+   Editor `EditorPrefs.SetString("ConceptWars.AccountServerOverride", "http://localhost:8787")`,
+   and `EditorPrefs.DeleteKey(...)` the same key when done.
+

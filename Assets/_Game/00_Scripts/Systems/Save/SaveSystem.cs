@@ -28,7 +28,8 @@ namespace Slafurry.Systems.Save
 
         private string saveFolder;
 
-        private string SaveFolder
+        /// <summary>Folder holding the save files (WebGL: a fixed IndexedDB-backed folder).</summary>
+        public string SaveFolder
         {
             get
             {
@@ -100,8 +101,32 @@ namespace Slafurry.Systems.Save
             base.OnSingletonAwake();
         }
 
+        /// <summary>
+        /// Set after a cloud save was written for a restart: the systems still
+        /// hold the old progress in memory, and their quit/pause saves must not
+        /// overwrite the files the game is about to boot with.
+        /// </summary>
+        public bool SavesBlocked { get; private set; }
+
+        public void BlockSaves() => SavesBlocked = true;
+
+        /// <summary>The account file is still written while saves are blocked (it records what was just applied).</summary>
+        public void SaveAccountFile<T>(T data, string fileName)
+        {
+            bool blocked = SavesBlocked;
+            SavesBlocked = false;
+            Save(data, fileName);
+            SavesBlocked = blocked;
+        }
+
         public void Save<T>(T data, string fileName)
         {
+            if (SavesBlocked)
+            {
+                Debug.Log($"[SaveSystem] Skipped saving '{fileName}': restarting with a cloud save.");
+                return;
+            }
+
             try
             {
                 string path = GetPath(fileName);
@@ -136,6 +161,41 @@ namespace Slafurry.Systems.Save
         }
 
         public bool HasSave(string fileName) => File.Exists(GetPath(fileName));
+
+        /// <summary>Names (without .json) of all save files on this device.</summary>
+        public System.Collections.Generic.List<string> SaveFileNames()
+        {
+            var names = new System.Collections.Generic.List<string>();
+
+            if (!Directory.Exists(SaveFolder))
+                return names;
+
+            foreach (string file in Directory.GetFiles(SaveFolder, "*.json"))
+                names.Add(Path.GetFileNameWithoutExtension(file));
+
+            return names;
+        }
+
+        /// <summary>Raw JSON of a save file, or null (cloud sync).</summary>
+        public string ReadRaw(string fileName)
+        {
+            string path = GetPath(fileName);
+            return File.Exists(path) ? File.ReadAllText(path) : null;
+        }
+
+        /// <summary>Writes a save file's raw JSON as-is (cloud sync). Does not raise OnSaved.</summary>
+        public void WriteRaw(string fileName, string json)
+        {
+            try
+            {
+                File.WriteAllText(GetPath(fileName), json);
+                Flush();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[SaveSystem] Failed to write '{fileName}': {e}");
+            }
+        }
 
         public void DeleteSave(string fileName)
         {

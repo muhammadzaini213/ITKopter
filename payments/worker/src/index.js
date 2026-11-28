@@ -1,4 +1,6 @@
-// ITKopter top-up payment backend (Cloudflare Worker + KV + Midtrans Snap).
+// Concept Wars game server (Cloudflare Worker + KV):
+//   - top-up payments with Midtrans Snap (this file)
+//   - email-code login and cloud saves (account.js)
 //
 // Endpoints
 //   POST /orders                 { productId, playerId }      -> { orderId, token, redirectUrl, amount }
@@ -14,6 +16,7 @@
 // The Midtrans server key is a Worker secret (MIDTRANS_SERVER_KEY).
 
 import catalog from "./catalog.json";
+import { handleAccount } from "./account.js";
 
 const ORDER_TTL_SECONDS = 60 * 60 * 24 * 30; // keep orders 30 days
 
@@ -36,6 +39,8 @@ export default {
         response = await createOrder(request, env);
       } else if (request.method === "POST" && path === "/midtrans/notify") {
         response = await handleNotification(request, env);
+      } else if ((response = await handleAccount(request, env, path)) !== null) {
+        // login / cloud save (account.js)
       } else {
         const match = path.match(/^\/orders\/([A-Za-z0-9_-]{8,64})(\/claim)?$/);
 
@@ -79,7 +84,7 @@ async function createOrder(request, env) {
     return json({ error: "payments_not_configured" }, 503);
   }
 
-  const orderId = "itk-" + crypto.randomUUID().replace(/-/g, "").slice(0, 24);
+  const orderId = "cw-" + crypto.randomUUID().replace(/-/g, "").slice(0, 24);
   const amount = Math.round(product.price);
 
   const snapBody = {
@@ -352,8 +357,8 @@ function corsHeaders(request, env) {
   }
 
   const headers = {
-    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
     "Access-Control-Max-Age": "86400",
     Vary: "Origin",
   };

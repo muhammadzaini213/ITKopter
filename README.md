@@ -1,8 +1,8 @@
-# Sourdough-Starter
+# Concept Wars
 Unity 6.3 LTS URP starter for Slafurry Studios — GameSystem base classes, Drive asset sync, and itch.io deploy included.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/9dee6058-b82a-43b4-ae26-eab6ffe699da" width="100%" alt="Sourdough-Starter banner" />
+  <img src="https://github.com/user-attachments/assets/9dee6058-b82a-43b4-ae26-eab6ffe699da" width="100%" alt="Concept Wars banner" />
 </p>
 
 <br>
@@ -64,8 +64,8 @@ See [`ARCHITECTURE.md`](./ARCHITECTURE.md) for the full breakdown of base classe
 
 ### Setup
 ```bash
-git clone https://github.com/muhammadzaini213/Sourdough-Starter.git
-cd Sourdough-Starter
+git clone https://github.com/muhammadzaini213/concept-wars.git
+cd concept-wars
 ```
 Open the project in Unity Hub, let it import, then open `Assets/_Game/04_Scenes/Boot.unity`.
 
